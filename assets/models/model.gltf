@@ -1,0 +1,95 @@
+{
+  "asset": {
+    "generator": "glTF-Transform v4.2.1",
+    "version": "2.0"
+  },
+  "accessors": [
+    {
+      "type": "VEC3",
+      "componentType": 5126,
+      "count": 172086,
+      "max": [
+        0.823509156703949,
+        0.9484965801239014,
+        0.8229069113731384
+      ],
+      "min": [
+        -0.8249263763427734,
+        -0.9506230354309082,
+        -0.8246852159500122
+      ],
+      "bufferView": 0,
+      "byteOffset": 0
+    },
+    {
+      "type": "SCALAR",
+      "componentType": 5125,
+      "count": 1032504,
+      "bufferView": 1,
+      "byteOffset": 0
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 2065032,
+      "byteStride": 12,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 2065032,
+      "byteLength": 4130016,
+      "target": 34963
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "buffer.bin",
+      "byteLength": 6195048
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {}
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0
+          },
+          "mode": 4,
+          "material": 0,
+          "indices": 1
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ]
+    },
+    {
+      "name": "Mesh10",
+      "extras": {
+        "name": "Mesh1.0"
+      },
+      "mesh": 0
+    }
+  ],
+  "scenes": [
+    {
+      "name": "AuxScene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "scene": 0
+}

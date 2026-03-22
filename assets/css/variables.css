@@ -1,0 +1,16 @@
+:root {
+  --rich-black: #0D0D0D;
+  --ice-blue: #EAEFF5;
+  --charcoar-gray: #333333;
+  --powder-blue: #BFDCFF;
+  --light-gray: #4D4D4D;
+  --bg: linear-gradient(to right, rgb(45, 45, 45), rgb(14, 14, 12));
+  --border-w: radial-gradient(
+    circle at top left, /* або 0% 0% */
+    rgba(234, 239, 245, 1) 0%,     /* #EAEFF5 зі 100% непрозорістю */
+    rgba(234, 239, 245, 0.23) 100% /* #EAEFF5 із 23% непрозорістю */
+  );
+  
+
+
+}
