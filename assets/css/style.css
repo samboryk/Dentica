@@ -572,6 +572,8 @@ position: absolute;
 }
 
 .contacts-card{
+  overflow: hidden;
+  position: relative;
   display: flex;
   align-items: center;
   grid-column: 1/6;
@@ -603,10 +605,21 @@ position: absolute;
      padding: 0 60px;
 }
 
+
+.mapboxgl-ctrl-bottom-left {
+display: none
+}
+
+.mapboxgl-ctrl-bottom-right {
+ display: none
+}
+
+
 .info-wrapper{
   display: flex;
   flex-direction: column;
   gap: 25px;
+  z-index: 1;
 }
 
 .contact-details{
@@ -662,3 +675,29 @@ position: absolute;
   justify-content: center;
   align-items: center;     
 }
+
+
+
+.aurora{
+  z-index: 0;
+  position:absolute;
+  width:350px;
+  height:200px;
+  top: 0;
+  right: 0;
+ background: radial-gradient(circle at 35% 25%, rgba(191, 220, 255, 1), transparent 80%),
+              radial-gradient(circle at 75% 45%, rgba(191, 220, 255, 0.5), transparent 30%);
+
+  filter: blur(90px);
+  animation: moveAurora 8s infinite alternate ease-in-out;
+}
+
+@keyframes moveAurora{
+  0%{
+    transform:translateX(-200px) translateY(-50px);
+  }
+  100%{
+    transform:translateX(200px) translateY(50px);
+  }
+}
+
