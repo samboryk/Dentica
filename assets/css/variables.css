@@ -4,6 +4,7 @@
   --charcoar-gray: #333333;
   --powder-blue: #BFDCFF;
   --light-gray: #4D4D4D;
+  --super-gray: #222222;
   --bg: linear-gradient(to right, rgb(45, 45, 45), rgb(14, 14, 12));
   --border-w: radial-gradient(
     circle at top left, /* або 0% 0% */

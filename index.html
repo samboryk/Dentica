@@ -7,17 +7,15 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
 
+
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <title>Dentica - Сучасна стоматологія</title>
 </head>
-<script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-            }
-        }
-    </script>
 <body>
   
  <div class="hero-background">
@@ -70,28 +68,28 @@
          <section class="hero">
                <div class="container">
               <div class="hero-grid">
-                <aside class="hero-sidebar sidebar-left">
-            <ul class="sidebar-numbers">
-              <li class="active">01</li>
-              <li>02</li>
-              <li>03</li>
-              <li>04</li>
-              <li>05</li>
-              <li>06</li>
-            </ul></aside> 
-                 <aside class="hero-sidebar sidebar-right">
-              <ul class="sidebar-socials">
-                <li><a href="#"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.8 0L14.2 0C17.4 0 20 2.6 20 5.8V14.2C20 15.7383 19.3889 17.2135 18.3012 18.3012C17.2135 19.3889 15.7383 20 14.2 20H5.8C2.6 20 0 17.4 0 14.2L0 5.8C0 4.26174 0.61107 2.78649 1.69878 1.69878C2.78649 0.61107 4.26174 0 5.8 0ZM5.6 2C4.64522 2 3.72955 2.37928 3.05442 3.05442C2.37928 3.72955 2 4.64522 2 5.6L2 14.4C2 16.39 3.61 18 5.6 18H14.4C15.3548 18 16.2705 17.6207 16.9456 16.9456C17.6207 16.2705 18 15.3548 18 14.4V5.6C18 3.61 16.39 2 14.4 2L5.6 2ZM15.25 3.5C15.5815 3.5 15.8995 3.6317 16.1339 3.86612C16.3683 4.10054 16.5 4.41848 16.5 4.75C16.5 5.08152 16.3683 5.39946 16.1339 5.63388C15.8995 5.8683 15.5815 6 15.25 6C14.9185 6 14.6005 5.8683 14.3661 5.63388C14.1317 5.39946 14 5.08152 14 4.75C14 4.41848 14.1317 4.10054 14.3661 3.86612C14.6005 3.6317 14.9185 3.5 15.25 3.5ZM10 5C11.3261 5 12.5979 5.52678 13.5355 6.46447C14.4732 7.40215 15 8.67392 15 10C15 11.3261 14.4732 12.5979 13.5355 13.5355C12.5979 14.4732 11.3261 15 10 15C8.67392 15 7.40215 14.4732 6.46447 13.5355C5.52678 12.5979 5 11.3261 5 10C5 8.67392 5.52678 7.40215 6.46447 6.46447C7.40215 5.52678 8.67392 5 10 5ZM10 7C9.20435 7 8.44129 7.31607 7.87868 7.87868C7.31607 8.44129 7 9.20435 7 10C7 10.7956 7.31607 11.5587 7.87868 12.1213C8.44129 12.6839 9.20435 13 10 13C10.7956 13 11.5587 12.6839 12.1213 12.1213C12.6839 11.5587 13 10.7956 13 10C13 9.20435 12.6839 8.44129 12.1213 7.87868C11.5587 7.31607 10.7956 7 10 7Z" fill="white"/></svg></a></li>
-                <li><a href="#"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 10.0251C20 4.49123 15.52 0 10 0C4.48 0 0 4.49123 0 10.0251C0 14.8772 3.44 18.9173 8 19.8496L8 13.0326H6V10.0251H8V7.5188C8 5.58396 9.57 4.01003 11.5 4.01003H14V7.01754H12C11.45 7.01754 11 7.46867 11 8.02005V10.0251H14V13.0326H11L11 20C16.05 19.4987 20 15.2281 20 10.0251Z" fill="white"/></svg></a></li>
-                <li><a href="#"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.1939 11.9V8.18H19.7449C19.8878 8.81 20 9.4 20 10.23C20 15.94 16.0918 20 10.2041 20C4.57143 20 0 15.52 0 10C0 4.48 4.57143 0 10.2041 0C12.9592 0 15.2653 0.99 17.0306 2.61L14.1327 5.37C13.398 4.69 12.1122 3.89 10.2041 3.89C6.82653 3.89 4.07143 6.64 4.07143 10.01C4.07143 13.38 6.82653 16.13 10.2041 16.13C14.1122 16.13 15.551 13.48 15.8163 11.91H10.1939V11.9Z" fill="white"/></svg></a></li>
-              </ul>
-            </aside> 
-                <div class="hero-bg-text">Інноваційні</div>
+              
+                <div class="hero-bg-text" id="changing-text">Інноваційні</div>
                 <h1 class="hero-title title-left"><span class="thin-w">технології </span><br><span class="roman">відновлення </span><span class="thin-b">зубів </span><br> <span class="thin-w">для </span> <span class="thin-b">здорової </span></h1>
                 <h1 class="hero-title title-right"><span class="thin-w">та </span><span class="roman">впевненої </span><span class="thin-b">усмішки </span></h1>
               
-              <div class="hero-tooth">
-    <div id="canvas-container"></div>
+<div class="hero-tooth">
+  <model-viewer
+  id="tooth-viewer"
+  src="/assets/models/tooth.glb"
+  environment-image="https://modelviewer.dev/shared-assets/environments/aircraft_workshop_01_1k.hdr"
+
+  exposure="1.1"
+  roughness="0.15"
+  shadow-intensity="0"
+  tone-mapping="commerce"
+  disable-zoom
+  disable-pan
+  interaction-prompt="none"
+  style="width:85%;height:85%;background:transparent;--poster-color:transparent;"
+  
+></model-viewer>
+<div class="tooth-shadow"></div>
 </div>
               <div class="hero-bottom bottom-left">
       <p class="hero-desc">Сучасна стоматологія. Реальний комфорт. <br> Результат, який видно і відчувається — <br>ми дбаємо про здоров'я зубів і ваш спокій.</p>
@@ -112,73 +110,433 @@
     </div>
             </div></div>
         </section>
+         <aside class="hero-sidebar sidebar-right">
+              <ul class="sidebar-socials">
+                <li><a href="#"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.8 0L14.2 0C17.4 0 20 2.6 20 5.8V14.2C20 15.7383 19.3889 17.2135 18.3012 18.3012C17.2135 19.3889 15.7383 20 14.2 20H5.8C2.6 20 0 17.4 0 14.2L0 5.8C0 4.26174 0.61107 2.78649 1.69878 1.69878C2.78649 0.61107 4.26174 0 5.8 0ZM5.6 2C4.64522 2 3.72955 2.37928 3.05442 3.05442C2.37928 3.72955 2 4.64522 2 5.6L2 14.4C2 16.39 3.61 18 5.6 18H14.4C15.3548 18 16.2705 17.6207 16.9456 16.9456C17.6207 16.2705 18 15.3548 18 14.4V5.6C18 3.61 16.39 2 14.4 2L5.6 2ZM15.25 3.5C15.5815 3.5 15.8995 3.6317 16.1339 3.86612C16.3683 4.10054 16.5 4.41848 16.5 4.75C16.5 5.08152 16.3683 5.39946 16.1339 5.63388C15.8995 5.8683 15.5815 6 15.25 6C14.9185 6 14.6005 5.8683 14.3661 5.63388C14.1317 5.39946 14 5.08152 14 4.75C14 4.41848 14.1317 4.10054 14.3661 3.86612C14.6005 3.6317 14.9185 3.5 15.25 3.5ZM10 5C11.3261 5 12.5979 5.52678 13.5355 6.46447C14.4732 7.40215 15 8.67392 15 10C15 11.3261 14.4732 12.5979 13.5355 13.5355C12.5979 14.4732 11.3261 15 10 15C8.67392 15 7.40215 14.4732 6.46447 13.5355C5.52678 12.5979 5 11.3261 5 10C5 8.67392 5.52678 7.40215 6.46447 6.46447C7.40215 5.52678 8.67392 5 10 5ZM10 7C9.20435 7 8.44129 7.31607 7.87868 7.87868C7.31607 8.44129 7 9.20435 7 10C7 10.7956 7.31607 11.5587 7.87868 12.1213C8.44129 12.6839 9.20435 13 10 13C10.7956 13 11.5587 12.6839 12.1213 12.1213C12.6839 11.5587 13 10.7956 13 10C13 9.20435 12.6839 8.44129 12.1213 7.87868C11.5587 7.31607 10.7956 7 10 7Z" fill="white"/></svg></a></li>
+                <li><a href="#"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 10.0251C20 4.49123 15.52 0 10 0C4.48 0 0 4.49123 0 10.0251C0 14.8772 3.44 18.9173 8 19.8496L8 13.0326H6V10.0251H8V7.5188C8 5.58396 9.57 4.01003 11.5 4.01003H14V7.01754H12C11.45 7.01754 11 7.46867 11 8.02005V10.0251H14V13.0326H11L11 20C16.05 19.4987 20 15.2281 20 10.0251Z" fill="white"/></svg></a></li>
+                <li><a href="#"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.1939 11.9V8.18H19.7449C19.8878 8.81 20 9.4 20 10.23C20 15.94 16.0918 20 10.2041 20C4.57143 20 0 15.52 0 10C0 4.48 4.57143 0 10.2041 0C12.9592 0 15.2653 0.99 17.0306 2.61L14.1327 5.37C13.398 4.69 12.1122 3.89 10.2041 3.89C6.82653 3.89 4.07143 6.64 4.07143 10.01C4.07143 13.38 6.82653 16.13 10.2041 16.13C14.1122 16.13 15.551 13.48 15.8163 11.91H10.1939V11.9Z" fill="white"/></svg></a></li>
+              </ul>
+            </aside> 
       </div>
+      
       </section>
-        <section class="advantages"></section>
+     
+<section class="trust">
+    <div class="container trust-grid-container">
+        
+        <div class="trust-content">
+            <h2 class="title">
+                <span class="thin-b">Ваша</span> <span class="thin-w">довіра —</span><br>
+                <span class="roman">основа</span> <span class="thin-b">нашої</span><br>
+                <span class="thin-w">турботи</span>
+            </h2>
+            <p class="trust-description">
+                Ми поєднуємо сучасні технології, досвід <br>лікарів і турботу про пацієнта, щоб кожен <br>візит був комфортним і результативним.
+            </p>
+        </div>
+        
+        <div class="trust-image-wrapper">
+            <img src="assets/images/trust.png" alt="Лікар-стоматолог за роботою" class="trust-image">
+        </div>
 
-        <section class="services">
-          <div class="services-header">
-    <h2 class="title">Все для здорової<br>усмішки</h2>
-    <div class="header-info">
-      <p>Професійне лікування та профілактика стоматологічних захворювань.</p>
-      <a href="#" class="link-all">Переглянути усі послуги</a>
+        <div class="trust-card trust-card-dark">
+            <div class="trust-card-number">300+</div>
+            <div class="trust-card-info">
+                <h3 class="trust-card-title">Щасливих пацієнтів</h3>
+                <p class="trust-card-text">Усмішки, перевтілені з турботою, довірою та сучасними методами лікування.</p>
+            </div>
+        </div>
+
+        <div class="trust-card trust-card-accent">
+            <div class="trust-card-number">6+</div>
+            <div class="trust-card-info">
+                <h3 class="trust-card-title">Років досвіду</h3>
+                <p class="trust-card-text">Команда сертифікованих стоматологів, які надають професійні рішення.</p>
+            </div>
+        </div>
+
+        <div class="trust-card trust-card-dark">
+            <div class="trust-card-number">100%</div>
+            <div class="trust-card-info">
+                <h3 class="trust-card-title">Безпечні процедури</h3>
+                <p class="trust-card-text">Передові технології та дбайливі методи для кожного пацієнта.</p>
+            </div>
+        </div>
+
     </div>
-  </div>
-
-  <div class="services-grid">
+</section>
+       <section class="services">
+  <div class="services-container">
     
-    <div class="card dark-card">
-      <span class="card-num">01</span>
-      <h3>Імплантація</h3>
-      <p>Хірургічний процес встановлення штучного зуба...</p>
-      <div class="card-bottom">
-        <a href="#">Записатись</a>
-        <span class="price">Ціна</span>
+    <div class="services-header">
+      <div class="services-header-left">
+        <h2 class="title"><span class="thin-w">Все для </span> <span class="thin-b">здорової</span> <br> <span class="roman">усмішки</span></h2>
+      </div>
+      <div class="services-header-right">
+        <p class="services-subtitle">Професійне лікування та профілактика<br>стоматологічних захворювань.</p>
+        
       </div>
     </div>
 
-    <div class="card blue-card">
-      <h3>Dentica</h3>
-      <p>Сучасний підхід до здоров'я ваших зубів...</p>
-      <div class="star-icon">✦</div>
+    <div class="services-all-link"> <a href="#" class=" service-card-action">Переглянути усі послуги</a></div>
+ 
+    <div class="services-grid">
+     
+      <article class="service-card">
+        <div class="service-card-number">01</div>
+        <h3 class="service-card-title">Імплантація</h3>
+        <p class="service-card-description">Хірургічний процес встановлення штучного зуба в кістку щелепи, який використовується для заміни втраченого зуба або зубів.</p>
+        <div class="service-card-footer">
+          <a href="#" class="service-card-action">Записатись</a>
+          <a href="#" class="service-card-action price">Ціна</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-card-number">02</div>
+        <h3 class="service-card-title">Ортодонтія</h3>
+        <p class="service-card-description">Комплекс заходів для виправлення прикусу та вирівнювання зубного ряду за допомогою сучасних брекет-систем або прозорих елайнерів.</p>
+        <div class="service-card-footer">
+          <a href="#" class="service-card-action">Записатись</a>
+          <a href="#" class="service-card-action price">Ціна</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-card-number">03</div>
+        <h3 class="service-card-title">Відбілювання</h3>
+        <p class="service-card-description">Процедура, спрямована на видалення плям та відновлення природного білого кольору зубів.</p>
+        <div class="service-card-footer">
+          <a href="#" class="service-card-action">Записатись</a>
+          <a href="#" class="service-card-action price">Ціна</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-card-number">04</div>
+        <h3 class="service-card-title">Протезування</h3>
+        <p class="service-card-description">Процес відновлення зубного ряду за допомогою зубних протезів, які можуть бути використані для заміни втрачених зубів.</p>
+        <div class="service-card-footer">
+          <a href="#" class="service-card-action">Записатись</a>
+          <a href="#" class="service-card-action price">Ціна</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-card-number">05</div>
+        <h3 class="service-card-title">Терапія</h3>
+        <p class="service-card-description">Безболісне видалення уражених тканин зуба та відновлення його анатомічної форми й естетики за допомогою сучасних пломбувальних матеріалів.</p>
+        <div class="service-card-footer">
+          <a href="#" class="service-card-action">Записатись</a>
+          <a href="#" class="service-card-action price">Ціна</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-card-number">06</div>
+        <h3 class="service-card-title">Ортодонтія</h3>
+        <p class="service-card-description">Комплекс заходів для виправлення прикусу та вирівнювання зубного ряду за допомогою сучасних брекет-систем або прозорих елайнерів.</p>
+        <div class="service-card-footer">
+          <a href="#" class="service-card-action">Записатись</a>
+          <a href="#" class="service-card-action price">Ціна</a>
+        </div>
+      </article>
+
+      <div class="services-image-wrapper">
+        <img src="/assets/images/services.png" alt="Стоматолог за роботою з пацієнтом" class="services-image">
+      </div>
+
     </div>
-
-    <div class="card dark-card">
-      <span class="card-num">02</span>
-      <h3>Відбілювання</h3>
-      <p>Процедура, спрямована на видалення плям...</p>
-      </div>
-
-    <div class="card dark-card">
-      <span class="card-num">03</span>
-      <h3>Протезування</h3>
-      <p>Процес відновлення зубного ряду...</p>
-      </div>
-
-    <div class="card dark-card">
-      <span class="card-num">04</span>
-      <h3>Терапія</h3>
-      <p>Безболісне видалення уражених тканин...</p>
-      </div>
-
-    <div class="card dark-card">
-      <span class="card-num">05</span>
-      <h3>Ортодонтія</h3>
-      <p>Комплекс заходів для виправлення прикусу...</p>
-      </div>
-
-    <div class="image-card">
-      <img src="dentist.jpg" alt="Лікування">
-    </div>
-
   </div>
+</section>
+
+<section class="team">
+    <div class="container team-grid-container">
+        <div class="team-header">
+            <h2 class="title">
+                <span class="thin-w">Команда</span> <span class="thin-b">наших</span><br>
+                <span class="roman">спеціалістів</span>
+            </h2>
+            <div class="team-slider-controls">
+                <button class="team-btn prev-btn" id="team-prev">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button class="team-btn next-btn" id="team-next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="team-content-grid">
+            <div class="team-image-wrapper">
+                <img src="assets/images/doctor1.png" alt="Олександра Ромашевська" class="team-image" id="team-photo">
+            </div>
+
+            <div class="team-info-wrapper">
+                <div class="team-member-card" id="team-info-card">
+                    <div class="team-member-header">
+                        <h3 class="team-member-name" id="team-name">Олександра Ромашевська</h3>
+                        <p class="team-member-role" id="team-role">Головний лікар-стоматолог</p>
+                    </div>
+                    <div class="team-member-divider"></div>
+                    <div class="team-member-footer">
+                        <p class="team-member-desc" id="team-desc">Експерт з естетичної стоматології та складних реставрацій. Поєднує багаторічний досвід із цифровими технологіями, створюючи ідеальні посмішки з увагою до кожної деталі.</p>
+                        <a href="#" class="team-member-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-quote-card" id="team-quote-card">
+                    <div class="team-quote-number" id="team-number">01</div>
+                    <div class="team-quote-text" id="team-quote">Досконалість у кожній деталі вашої посмішки</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section class="faq">
+  <div class="faq-container">
+    
+    <header class="faq-header">
+      <h2 class="title"><span class="thin-b">Цікаво</span> <span class="roman">знати</span> </h2>
+    </header>
+
+    <div class="faq-list">
+      
+      <article class="faq-item">
+        <button class="faq-item-trigger" aria-expanded="false">
+          <h3 class="faq-item-question">Як часто потрібно відвідувати стоматолога?</h3>
+          <span class="faq-item-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 7L7 17M7 17H16M7 17V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        
+        <div class="faq-item-content">
+          <div class="faq-item-body">
+            <div class="faq-item-image-wrapper">
+              <img src="/assets/images/FAQs.png" alt="Огляд у стоматолога" class="faq-item-image">
+            </div>
+            <div class="faq-item-info">
+              <p class="faq-item-text">
+                Рекомендується проходити профілактичний огляд та професійну гігієну порожнини рота щонайменше раз на 6 місяців. Це дозволяє виявити проблеми на ранніх стадіях, уникнути зубного болю та складного, дороговартісного лікування в майбутньому.
+              </p>
+              <a href="#" class="btn">Записатись</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-item-trigger" aria-expanded="false">
+          <h3 class="faq-item-question">Чи шкодить емалі професійне відбілювання?</h3>
+          <span class="faq-item-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 7L7 17M7 17H16M7 17V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        
+        <div class="faq-item-content">
+          <div class="faq-item-body">
+            <div class="faq-item-image-wrapper">
+              <img src="/assets/images/FAQs.png" alt="Процес відбілювання зубів" class="faq-item-image">
+            </div>
+            <div class="faq-item-info">
+              <p class="faq-item-text">
+                Сучасні системи відбілювання абсолютно безпечні для вашої емалі. Ми використовуємо сертифіковані гелі, які впливають виключно на пігмент всередині зуба, не руйнуючи його мінеральну структуру та не підвищуючи чутливість.
+              </p>
+              <a href="#" class="btn">Записатись</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    <article class="faq-item"> 
+        <button class="faq-item-trigger" aria-expanded="false">
+          <h3 class="faq-item-question">Що краще: імплантат чи коронка?</h3>
+          <span class="faq-item-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 7L7 17M7 17H16M7 17V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        
+        <div class="faq-item-content">
+          <div class="faq-item-body">
+            <div class="faq-item-image-wrapper">
+              <img src="/assets/images/FAQs.png" alt="Лікар показує 3D знімок на планшеті" class="faq-item-image">
+            </div>
+            <div class="faq-item-info">
+              <p class="faq-item-text">
+                Коронка відновлює зруйновану, але наявну частину зуба. Імплантат же повністю замінює втрачений корінь і є найнадійнішим рішенням при повній відсутності зуба. Оптимальний план відновлення завжди підбирається індивідуально після 3D-діагностики.
+              </p>
+              <a href="#" class="btn">Записатись</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-item-trigger" aria-expanded="false">
+          <h3 class="faq-item-question">Чи боляче лікувати зуби в сучасних умовах?</h3>
+          <span class="faq-item-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 7L7 17M7 17H16M7 17V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        
+        <div class="faq-item-content">
+          <div class="faq-item-body">
+            <div class="faq-item-image-wrapper">
+              <img src="/assets/images/FAQs.png" alt="Комфортне лікування" class="faq-item-image">
+            </div>
+            <div class="faq-item-info">
+              <p class="faq-item-text">
+                Зовсім ні! Завдяки сучасним технологіям комп'ютерної анестезії та якісним препаратам, ми гарантуємо, що будь-яке втручання пройде абсолютно безболісно і максимально комфортно.
+              </p>
+              <a href="#" class="btn">Записатись</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-item-trigger" aria-expanded="false">
+          <h3 class="faq-item-question">Як проходить процес встановлення вінірів?</h3>
+          <span class="faq-item-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 7L7 17M7 17H16M7 17V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        
+        <div class="faq-item-content">
+          <div class="faq-item-body">
+            <div class="faq-item-image-wrapper">
+              <img src="/assets/images/FAQs.png" alt="Моделювання ідеальної усмішки" class="faq-item-image">
+            </div>
+            <div class="faq-item-info">
+              <p class="faq-item-text">
+                Встановлення вінірів — це безболісний процес, який зазвичай вимагає лише кількох візитів. Спочатку ми проводимо 3D-моделювання вашої майбутньої усмішки. Потім поверхня зубів мінімально готується, знімаються цифрові відбитки, і вже незабаром ви отримуєте ідеальну усмішку, що виглядає максимально природно та естетично.
+              </p>
+              <a href="#" class="btn">Записатись</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="reviews">
+    <div class="container reviews-grid-container">
+        <div class="reviews-header">
+            <h2 class="title">
+                <span class="thin-w">Відгуки</span> <span class="thin-b">наших</span><br>
+                <span class="roman">пацієнтів</span>
+            </h2>
+            <div class="reviews-slider-controls">
+                <button class="team-btn prev-btn" id="rev-prev">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button class="team-btn next-btn" id="rev-next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="reviews-content-grid">
+            <div class="reviews-slider-viewport">
+                <div class="reviews-track" id="reviews-track">
+                    
+                    <div class="review-card">
+                        <div class="review-text">"Дуже професійний підхід! Боялася лікувати зуби з дитинства, але тут все пройшло абсолютно безболісно. Лікар все пояснював під час процесу."</div>
+                        <div class="review-author">
+                            <div class="review-avatar">О</div>
+                            <div class="review-author-info">
+                                <h4>Олена К.</h4>
+                                <span>Імплантація</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-text">"Ставив вініри. Результат перевершив усі очікування. Посмішка виглядає максимально природно. Дякую Олександрі за ідеальну роботу!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">М</div>
+                            <div class="review-author-info">
+                                <h4>Максим В.</h4>
+                                <span>Естетична стоматологія</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-text">"Чудова клініка! Чисто, сучасно, привітний персонал. Вилікували складний карієс під мікроскопом. Тепер довіряю зуби тільки вам."</div>
+                        <div class="review-author">
+                            <div class="review-avatar">І</div>
+                            <div class="review-author-info">
+                                <h4>Ірина С.</h4>
+                                <span>Терапія</span>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="review-card">
+                        <div class="review-text">"Приводив дитину на перший огляд. Лікар знайшов підхід моментально, малий навіть не зрозумів, що йому лікували зуби. Рекомендую всім батькам."</div>
+                        <div class="review-author">
+                            <div class="review-avatar">Д</div>
+                            <div class="review-author-info">
+                                <h4>Дмитро П.</h4>
+                                <span>Дитяча стоматологія</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-text">"Професійне відбілювання зубів пройшло чудово. Результат тримається довго, ніякої чутливості не виникло. Рекомендую!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">А</div>
+                            <div class="review-author-info">
+                                <h4>Анна М.</h4>
+                                <span>Відбілювання</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="reviews-pagination" id="reviews-pagination">
+                </div>
+
+        </div>
+    </div>
+</section>
+
+        <section class="cta">
+          <div class="cta-card">
+  <div class="cta-card-content">
+    
+    <div class="cta-card-text-wrapper">
+      <p class="cta-card-subtitle">Зробіть <span class="cta-card-accent">перший крок до здорової усмішки</span></p>
+      <h2 class="cta-card-title">Запишіться на консультацію.</h2>
+    </div>
+
+    <a href="#" class="btn">Записатись</a>
+    
+  </div>
+  <div class="aurora"></div>
+
+   <div class="aurora aurora-bottom "></div>
+</div>
         </section>
-
-        <section class="faq"></section>
-
-        <section class="reviews"></section>
-
-        <section class="cta"></section>
     </main>
 
 <footer class="footer">
@@ -223,7 +581,57 @@
 
   </div>
 </footer>
+<div class="floating-widgets">
+    <button id="scrollTopBtn" class="widget-btn scroll-btn" aria-label="Повернутися вгору">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
 
+    <button id="aiChatBtn" class="widget-btn chat-btn" aria-label="Відкрити чат-помічник">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3C14.7536 3.00359 16.9135 3.8994 18.507 5.49298C20.1006 7.08656 20.9964 9.24636 21 11.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+</div>
+<div class="ai-chat-window" id="aiChatWindow">
+    
+    <div class="ai-chat-header">
+        <div class="ai-chat-title">
+            <span class="ai-chat-avatar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3C14.7536 3.00359 16.9135 3.8994 18.507 5.49298C20.1006 7.08656 20.9964 9.24636 21 11.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <div>
+                <h3>Dentica AI</h3>
+                <p>Онлайн консультант</p>
+            </div>
+        </div>
+        <button class="ai-chat-close" id="aiChatCloseBtn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="ai-chat-body" id="aiChatBody">
+        <div class="chat-msg bot-msg">
+            <p>Вітаю! Я віртуальний помічник клініки Dentica. Чим можу допомогти вам сьогодні? ✨</p>
+        </div>
+    </div>
+
+    <div class="ai-chat-footer">
+        <input type="text" id="aiChatInput" placeholder="Напишіть ваше запитання..." autocomplete="off">
+        <button id="aiChatSendBtn" aria-label="Відправити">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 2L11 13M22 2L15 22L11 13M11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script src="assets/js/ai-config.js"></script>
 <script src="/assets/js/main.js"></script>
 <script type="module" src="assets/js/tooth.js"></script>
 </body>

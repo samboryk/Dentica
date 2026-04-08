@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js"></script>
     <title>Спеціалісти - Dentica</title>
 </head>
@@ -28,7 +33,7 @@
         <li><a href="/contact.html">Контакти</a></li>
       </ul>
     </nav>
-
+    
     <div class="header-actions">
 
       <button class="theme-toggle">
@@ -52,12 +57,115 @@
 
   </div>
 </header>
-<section class="contacts-section">
-            <div class="container">
-              
+<main class="specialists-page">
+  
+  <section class="team">
+    <div class="team-page-container">
+      
+      <div class="team-grid-page">
+      <div class="team-header-grid">
+        <h1 class="page-title">Спеціалісти</h1>
+        <p class="page-description">
+          Наші спеціалісти поєднують досвід, сучасні технології та турботу про кожного пацієнта, щоб забезпечити якісне, сучасне та комфортне лікування.
+        </p>
+      </div>
+
+       <div class="team-grid">
+        <article class="team-card">
+          <div class="team-card-image-wrapper">
+            <img src="/assets/images/doctor1.png" alt="Олександра Ромашевська" class="team-card-image">
+          </div>
+          <div class="team-card-content">
+            <div class="team-card-text">
+              <h3 class="team-card-name">ОЛЕКСАНДРА РОМАШЕВСЬКА</h3>
+              <p class="team-card-role">Головний лікар-стоматолог</p>
             </div>
-        </section>
-    </main>
+            <a href="#" class="team-card-link" aria-label="Детальніше про лікаря">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="team-card">
+          <div class="team-card-image-wrapper">
+            <img src="/assets/images/doctor2.png" alt="Максим Будяківський" class="team-card-image">
+          </div>
+          <div class="team-card-content">
+            <div class="team-card-text">
+              <h3 class="team-card-name">МАКСИМ БУДЯКІВСЬКИЙ</h3>
+              <p class="team-card-role">Хірург-стоматолог</p>
+            </div>
+            <a href="#" class="team-card-link" aria-label="Детальніше про лікаря">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="team-card">
+          <div class="team-card-image-wrapper">
+            <img src="/assets/images/doctor3.png" alt="Анна Шимчук" class="team-card-image">
+          </div>
+          <div class="team-card-content">
+            <div class="team-card-text">
+              <h3 class="team-card-name">АННА ШИМЧУК</h3>
+              <p class="team-card-role">Дитячий стоматолог</p>
+            </div>
+            <a href="#" class="team-card-link" aria-label="Детальніше про лікаря">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="results">
+    <div class="container">
+      
+      <header class="results-header">
+        <h2 class="title"> <span class="thin-w">Результати</span> <span class="thin-b">нашої</span> <span class="roman">роботи</span></h2>
+      </header>
+
+      <div class="results-slider-wrapper">
+        
+        <button class="slider-nav prev" aria-label="Попередній слайд">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="swiper results-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="/assets/images/image 104.png" alt="Результат роботи До">
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/images/result2.jpg" alt="Результат роботи Після">
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/images/result3.jpg" alt="Результат роботи До">
+            </div>
+          </div>
+        </div>
+
+        <button class="slider-nav next" aria-label="Наступний слайд">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+</main>
 
 <footer class="footer">
   <div class="container">
@@ -101,7 +209,21 @@
 
   </div>
 </footer>
+<div class="floating-widgets">
+    <button id="scrollTopBtn" class="widget-btn scroll-btn" aria-label="Повернутися вгору">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
 
+    <button id="aiChatBtn" class="widget-btn chat-btn" aria-label="Відкрити чат-помічник">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3C14.7536 3.00359 16.9135 3.8994 18.507 5.49298C20.1006 7.08656 20.9964 9.24636 21 11.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+</div>
+<script src="/assets/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 
 </html>

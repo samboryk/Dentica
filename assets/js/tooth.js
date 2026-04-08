@@ -1,109 +1,72 @@
-import * as THREE from "three";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+const viewer = document.getElementById("tooth-viewer");
 
-const container = document.querySelector(".hero");
-const titleElement = document.getElementById("hero-title"); // ← ключовий елемент
+const BASE_THETA = 0;   
+const BASE_PHI = 90;     
+const DISTANCE = "auto";
 
-// сцена
-const scene = new THREE.Scene();
+let currentTheta = BASE_THETA;
+let currentPhi = BASE_PHI;
+let targetTheta = BASE_THETA;
+let targetPhi = BASE_PHI;
 
-// камера (залишаємо Perspective, бо зуб виглядає об'ємно)
-const camera = new THREE.PerspectiveCamera(
-  35,
-  container.clientWidth / container.clientHeight,
-  0.1,
-  100
-);
-camera.position.z = 5;
 
-// renderer
-const renderer = new THREE.WebGLRenderer({
-  alpha: true,
-  antialias: true
-});
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(container.clientWidth, container.clientHeight);
-container.appendChild(renderer.domElement);
+document.addEventListener("mousemove", (e) => {
+  const cx = window.innerWidth / 2;
+  const cy = window.innerHeight / 2;
 
-// світло
-scene.add(new THREE.AmbientLight(0xffffff, 1));
-const light = new THREE.DirectionalLight(0xffffff, 1.5);
-light.position.set(3, 3, 5);
-scene.add(light);
 
-let tooth;
-const loader = new GLTFLoader();
+  const nx = (e.clientX - cx) / cx;
+  const ny = (e.clientY - cy) / cy;
 
-loader.load("/assets/models/tooth.glb", (gltf) => {
-  tooth = gltf.scene;
 
-  tooth.traverse((child) => {
-    if (child.isMesh) {
-      child.material = new THREE.MeshStandardMaterial({
-        color: 0xffffff,
-        roughness: 0.3,
-        metalness: 0
-      });
-    }
-  });
-
-  scene.add(tooth);
-  tooth.position.set(0, 0, 0); // центр
-  updateToothScale();          // перше масштабування
+  targetTheta = BASE_THETA + nx * 20;
+  targetPhi   = BASE_PHI   - ny * 15;
 });
 
-// ────────────── Головна функція — масштаб зуба за текстом ──────────────
-function updateToothScale() {
-  if (!tooth || !titleElement) return;
 
-  // Беремо реальний розмір заголовка на екрані
-  const titleRect = titleElement.getBoundingClientRect();
-  const titleWidth = titleRect.width;   // ширина в пікселях
-  // або titleHeight = titleRect.height; // якщо хочеш прив'язати до висоти
-
-  // Базова ширина заголовка, при якій масштаб зуба = 1 (підбери на десктопі)
-  const baseTitleWidth = 900;   // наприклад, коли заголовок ~900–1100 px — зуб нормальний розмір
-
-  // Розрахунок масштабу
-  let scale = titleWidth / baseTitleWidth;
-
-  // Обмежуємо, щоб на дуже вузьких екранах не зник, а на широких не велетенський
-  scale = Math.max(0.45, Math.min(1.4, scale)); // налаштуй межі під себе
-
-  // Застосовуємо
-  tooth.scale.set(scale, scale, scale);
-
-  // Опціонально: трохи зсуваємо зуб, щоб краще "сидів" відносно тексту
-  // tooth.position.x = titleWidth * 0.0005; // або по Y
+function lerp(a, b, t) {
+  return a + (b - a) * t;
 }
 
-// Оновлюємо при ресайзі контейнера/вікна
-const resizeObserver = new ResizeObserver(() => {
-  const width = container.clientWidth;
-  const height = container.clientHeight;
-
-  renderer.setSize(width, height);
-  camera.aspect = width / height;
-  camera.updateProjectionMatrix();
-
-  updateToothScale(); // оновлюємо зуб щоразу при зміні розміру
-});
-
-resizeObserver.observe(container);
-
-// також реагуємо на зміну вікна (на всяк випадок)
-window.addEventListener("resize", () => {
-  updateToothScale();
-});
+let time = 0;
 
 function animate() {
   requestAnimationFrame(animate);
+  time += 0.008;
 
-  if (tooth) {
-    tooth.rotation.y += 0.002;
-  }
+  currentTheta = lerp(currentTheta, targetTheta, 0.8);
+  currentPhi   = lerp(currentPhi,   targetPhi,   0.8);
 
-  renderer.render(scene, camera);
+
+  const floatTheta = currentTheta + Math.sin(time) * 5;
+  const floatPhi   = currentPhi   + Math.cos(time * 0.7) * 4;
+
+  viewer.setAttribute(
+    "camera-orbit",
+    `${floatTheta}deg ${floatPhi}deg ${DISTANCE}`
+  );
 }
 
-animate();
+viewer.addEventListener("load", () => {
+  // Початкова позиція камери
+  viewer.setAttribute("camera-orbit", `${BASE_THETA}deg ${BASE_PHI}deg auto`);
+  viewer.setAttribute("min-camera-orbit", "auto auto auto");
+  viewer.setAttribute("max-camera-orbit", "auto auto auto");
+  animate();
+});
+
+viewer.addEventListener("load", () => {
+
+  const model = viewer.model;
+  
+  model.materials.forEach((material) => {
+
+    material.pbrMetallicRoughness.setBaseColorFactor([0.9, 0.9, 0.9, 1]); // R, G, B, A
+
+    material.pbrMetallicRoughness.setMetallicFactor(0);
+    material.pbrMetallicRoughness.setRoughnessFactor(0.4); // 0 = глянець, 1 = матовий
+  });
+
+  viewer.setAttribute("camera-orbit", `${BASE_THETA}deg ${BASE_PHI}deg auto`);
+  animate();
+});
