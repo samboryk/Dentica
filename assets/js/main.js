@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendBtn = document.getElementById('aiChatSendBtn');
 
     // === НАЛАШТУВАННЯ ===
-    const API_KEY = "AIzaSyAX4r-rUnHoCGYnWlOQQe891RUCzVXPg_c"; // Твій ключ
+    const API_KEY = "AIzaSyDv3hdDdrIfkeiBmfoxL3xOr1E8NWAvaYo"; // Твій ключ
 
     // Актуальна модель на квітень 2026
     const MODEL_NAME = "gemini-2.5-flash";        // Рекомендую для чату (швидко + добре)
