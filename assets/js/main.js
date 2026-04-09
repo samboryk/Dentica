@@ -688,3 +688,146 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener('resize', updateSliderPosition);
 });
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // ==========================================
+    // 1. ЛОГІКА АКОРДЕОНА (Ізольована)
+    // ==========================================
+    function initAccordion() {
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        if (!accordionItems.length) return;
+
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            
+            header.addEventListener('click', () => {
+                // Закриваємо всі інші
+                accordionItems.forEach(el => {
+                    if (el !== item) {
+                        el.classList.remove('active');
+                        const icon = el.querySelector('.accordion-btn');
+                        if (icon) icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                // Перемикаємо поточний
+                item.classList.toggle('active');
+
+                // Анімація стрілки
+                const icon = item.querySelector('.accordion-btn');
+                if (icon) {
+                    icon.style.transform = item.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+                }
+            });
+        });
+    }
+    
+    // Запускаємо акордеон одразу
+    initAccordion();
+
+
+    // ==========================================
+    // 2. ЛОГІКА СЛАЙДЕРА (Безкінечне коло)
+    // ==========================================
+    function initCertSlider() {
+        const track = document.getElementById('cert-track');
+        const btnNext = document.getElementById('cert-next');
+        const btnPrev = document.getElementById('cert-prev');
+        const paginationContainer = document.getElementById('cert-pagination');
+        
+        if (!track || !btnNext || !btnPrev || !paginationContainer) return;
+
+        let currentIndex = 0;
+        const cards = track.querySelectorAll('.cert-card');
+        if (!cards.length) return;
+
+        const visibleCards = 3; 
+        const totalCards = cards.length;
+        const maxIndex = Math.max(0, totalCards - visibleCards);
+        const autoPlayDelay = 3000; 
+        let autoPlayTimer;
+
+        // Генерація цяток
+        paginationContainer.innerHTML = ''; 
+        for (let i = 0; i <= maxIndex; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('cert-dot');
+            if (i === 0) dot.classList.add('active');
+            
+            dot.addEventListener('click', () => {
+                currentIndex = i;
+                updateSlider();
+                resetAutoPlay();
+            });
+            paginationContainer.appendChild(dot);
+        }
+        const dots = paginationContainer.querySelectorAll('.cert-dot');
+
+        // Функція зсуву треку
+        function updateSlider() {
+            // Беремо ширину першої картки ТІЛЬКИ коли вона вже відмальована
+            const cardWidth = cards[0].offsetWidth;
+            const gap = 24; 
+            const moveDistance = (cardWidth + gap) * currentIndex;
+            
+            track.style.transform = `translateX(-${moveDistance}px)`;
+
+            // Оновлюємо активну цятку
+            dots.forEach((dot, index) => {
+                if (index === currentIndex) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex < maxIndex) ? currentIndex + 1 : 0;
+            updateSlider();
+        }
+
+        function startAutoPlay() {
+            autoPlayTimer = setInterval(nextSlide, autoPlayDelay);
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayTimer);
+            startAutoPlay();
+        }
+
+        // Кліки по кнопках
+        btnNext.addEventListener('click', () => {
+            nextSlide();
+            resetAutoPlay();
+        });
+
+        btnPrev.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : maxIndex;
+            updateSlider();
+            resetAutoPlay();
+        });
+
+        // Пауза при наведенні
+        track.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
+        track.addEventListener('mouseleave', startAutoPlay);
+
+        // Перший запуск
+        updateSlider();
+        startAutoPlay();
+        
+        // Оновлюємо при зміні розміру вікна
+        window.addEventListener('resize', updateSlider);
+    }
+
+    // ВАЖЛИВО: Запускаємо слайдер ТІЛЬКИ після повного завантаження всіх картинок (window.load)
+    // Це лікує проблему, коли ширина картинок дорівнює нулю на момент запуску скрипта
+    if (document.readyState === 'complete') {
+        initCertSlider();
+    } else {
+        window.addEventListener('load', initCertSlider);
+    }
+});

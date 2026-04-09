@@ -600,121 +600,243 @@ model-viewer::part(default-poster) {
   text-align: justify;
 }
 
-.contacts-card{
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  grid-column: 1/6;
-  height: 400px;
-  grid-row: 3;
-  width: 100%;
-  border: 1px solid transparent;
-  border-radius: 24px;
-  background: 
-    linear-gradient(to bottom, #2D2D2D 0%, #0E0E0C 100%) padding-box,
-    linear-gradient(to bottom right,  rgb(234, 239, 245) 10%, rgb(64, 65, 65) 80%) border-box;
+
+.contacts {
+    padding-bottom: 100px;
+    width: 100%;
 }
 
-.map-wrapper iframe {
-  
-  width: 420px;
-  height: 300px;
-  border-radius: 20px;
+.contacts-grid-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex !important;
+    flex-direction: column;
+    gap: 40px;
 }
 
-.map-wrapper {
-  position: relative;
+.contacts-header-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
 }
 
-.map{
-     padding: 0 60px;
+.contacts-header-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    gap: 40px;
 }
 
-.mapboxgl-ctrl-bottom-left {
-display: none
+.contacts-content-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+    width: 100%;
+    height: 520px; 
 }
 
-.mapboxgl-ctrl-bottom-right {
- display: none
+
+.contacts-info-wrapper {
+    grid-column: span 5; 
+    display: grid;
+   
+    grid-template-rows: auto 1fr; 
+    gap: 24px;
+    height: 450px;
 }
 
-.info-wrapper{
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  z-index: 1;
+
+.contact-action-card {
+    background-color: var(--powder-blue);
+    border-radius: 24px;
+    padding: 32px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
 }
 
-.contact-details{
-  font-style: normal;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
+
+
+/* --- Права частина (Карта) --- */
+.contacts-map-wrapper {
+    grid-column: span 7; /* Займає 7 колонок */
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--light-gray, #333);
+    height: 450px;
 }
 
-.info-block h3{
-  font-size: 1.4rem;
-  font-weight: 300;
-  padding-bottom: 5px;
+.contacts-map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Фільтр для карти (можеш прибрати, якщо хочеш оригінальні кольори) */
+    filter: contrast(0.9) opacity(0.9);
 }
 
-.info-block a{
-  padding-bottom: 10px;
+/* --- Темна картка (Деталі) --- */
+.contact-details-card {
+    background-color: var(--super-gray, #222);
+    border-radius: 24px;
+    padding: 40px;
+    position: relative; /* Важливо для позиціонування аврори */
+    overflow: hidden; /* Щоб аврора не вилазила за краї */
 }
 
-.info-block p{
-  font-size: 1.6rem;
-  font-weight: 400;
+/* Обгортка контенту, щоб він був над авророю */
+.details-content {
+    position: relative;
+    z-index: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
-.card-footer{
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 200px;
-  padding-right: 60px;
+
+
+/* --- Типографіка всередині темної картки --- */
+.details-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 36px; /* Відстань між блоками, як на фото */
 }
 
-.social-links{
-  display: flex;
-  gap: 15px;
+.info-block h3 {
+    font-size: 14px;
+    font-weight: 300;
+    color: #A0AAB5;
+    margin: 0 0 10px 0;
+    letter-spacing: 0.02em;
 }
 
-.social-links a{
-  width: 40px;
-  height: 40px;
-  background-color: #333333;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
+.info-link, .info-text {
+    font-size: 18px;
+    color: var(--ice-blue);
+    margin: 0 0 4px 0; 
+    text-decoration: none;
+    display: block;
+    font-weight: 400;
+    line-height: 1.4;
 }
 
-.social-links svg{
-  display: flex;
-  justify-content: center;
-  align-items: center;     
+.info-link:hover {
+    color: var(--powder-blue);
 }
+
+.contact-socials {
+    display: flex;
+    gap: 16px;
+    margin-top: 40px; 
+}
+
+.social-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #2A2A2A; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ice-blue); 
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    background-color: var(--powder-blue, );
+    color: var(--rich-black);
+    transform: translateY(-2px); /* Легке підняття при наведенні */
+}
+
+
+.contact-action-card .info-block h3 {
+    color: #4A5568 !important; 
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.contact-action-card .info-block p {
+    color: var(--rich-black); 
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+.contact-action-card .btn {
+   background-color: var(--rich-black); /* Чорний фон, щоб було видно */
+    color: var(--powder-blue) ;
+}
+
+.contact-action-card .btn:hover {
+    transform: scale(1.05);
+}
+
+.info-block h3 {
+    font-size: 14px;
+    font-weight: 300;
+    margin: 0 0 8px 0 ;
+    letter-spacing: 0.02em;
+}
+
+.contact-details-card .info-block h3 { color: #A0AAB5 ; }
+
+.contact-action-card .info-block h3 { color: #4A5568 ; }
+
+.info-link, 
+.info-text, 
+.contact-action-card .info-block p,
+.contact-details-card .info-block p {
+    font-size: 18px;
+    font-weight: 400; 
+    line-height: 1.4;
+    margin: 0 0 6px 0;
+    text-decoration: none;
+    display: block; 
+}
+
+.info-block p:last-child,
+.info-block a:last-child {
+    margin-bottom: 0 ;
+}
+
+.contact-details-card .info-link,
+.contact-details-card .info-text,
+.contact-details-card .info-block p {
+    color: var(--ice-blue);
+}
+.contact-details-card .info-link:hover {
+    color: var(--powder-blue);
+}
+
+.contact-action-card .info-block p {
+    color: var(--rich-black);
+}
+
+
 
 .aurora{
   z-index: 0;
   position:absolute;
   width:350px;
   height:200px;
-  top: 0;
+  bottom: 0;
   right: 0;
  background: radial-gradient(circle at 35% 25%, rgba(191, 220, 255, 1), transparent 80%),
               radial-gradient(circle at 75% 45%, rgba(191, 220, 255, 0.5), transparent 30%);
 
-  filter: blur(90px);
+  filter: blur(140px);
   animation: moveAurora 8s infinite alternate ease-in-out;
 }
 
 @keyframes moveAurora{
   0%{
-    transform:translateX(-200px) translateY(-50px);
+    transform:translateX(-300px) translateY(-50px);
   }
   100%{
     transform:translateX(200px) translateY(50px);
@@ -2337,5 +2459,269 @@ padding-bottom: 15px;
         width: calc(100% - 48px);
         bottom: 80px;
     }
+}
+
+
+
+.doctor-profile {
+    padding-bottom:100px ;
+    width: 100%;
+}
+
+.doctor-grid-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex !important;
+    flex-direction: column;
+
+}
+
+.doctor-main-title {
+    font-size: 56px;
+    font-weight: 400;
+    color: var(--ice-blue, #fff);
+    margin: 0 0 40px 0;
+    line-height: 1.1;
+}
+
+.doctor-content-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+    width: 100%;
+    align-items: start; 
+}
+
+.doctor-accordion-wrapper {
+    grid-column: span 7; 
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.accordion-item {
+    background-color: var(--super-gray);
+    border: 3px solid var(--light-gray);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.accordion-header {
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.accordion-title {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ice-blue);
+    margin: 0;
+}
+
+.accordion-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--powder-blue);
+    color: #0E0E0C;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+/* Контент всередині акордеона */
+.accordion-content {
+    display: grid;
+    grid-template-rows: 0fr; /* CSS магія для плавного відкриття */
+    transition: grid-template-rows 0.4s ease;
+}
+
+.accordion-inner-text {
+    overflow: hidden; /* Обов'язково для grid-template-rows 0fr */
+}
+
+.accordion-inner-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ice-blue);
+    margin: 0 0 16px 0;
+    padding: 0 32px; /* Відступи по боках */
+}
+
+.accordion-inner-text p:last-child {
+    margin-bottom: 32px; /* Відступ знизу перед закриттям блоку */
+}
+
+/* Стан відкритого акордеона */
+.accordion-item.active {
+    border-color: var(--light-gray, #555);
+}
+
+.accordion-item.active .accordion-content {
+    grid-template-rows: 1fr;
+}
+
+.accordion-item.active .accordion-btn {
+    /* Розворот іконки, як на макеті */
+    transform: rotate(180deg); 
+}
+
+/* --- Права частина (Фото) --- */
+.doctor-photo-wrapper {
+    grid-column: span 5; /* Займає 5 колонок */
+    background-color: var(--powder-blue);
+    border-radius: 20px 60px 20px 60px;
+    height: 480px; /* Фіксована висота, як ти просив раніше */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Притискаємо фото лікаря до низу */
+    overflow: hidden;
+}
+
+.doctor-photo {
+    width: 90%; /* Або 100%, залежно від того, як обрізане твоє фото */
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* =========================================
+   СЕРТИФІКАТИ (Нижня частина)
+========================================= */
+.certificates {
+    padding: 60px 0 100px 0;
+    width: 100%;
+}
+
+.certificates-grid-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center; /* Центруємо заголовок */
+}
+
+.certificates-title {
+    font-size: 48px;
+    font-weight: 300; /* Тонкий шрифт як на фото */
+    color: var(--ice-blue, #fff);
+    margin: 0 0 60px 0;
+    text-align: center;
+}
+
+.certificates-slider-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 24px;
+}
+
+/* Вікно для сертифікатів */
+.certificates-viewport {
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative;
+    padding: 10px 0; /* Щоб не обрізало тінь, якщо вона є */
+}
+
+.certificates-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cert-card {
+    /* 3 сертифікати на екрані. 100% мінус 2 відступи(48px) поділити на 3 */
+    width: calc((100% - 48px) / 3);
+    flex-shrink: 0;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3); /* Легка тінь для глибини */
+}
+
+/* Кнопки перемикання (використовуємо твої класи .team-btn) */
+.cert-btn {
+    flex-shrink: 0;
+}
+
+/* --- Заголовок --- */
+.doctor-header-left {
+    width: 100%;
+    text-align: left; /* Жорстко притискаємо текст вліво */
+}
+
+.doctor-main-title {
+    font-size: 56px;
+    font-weight: 400;
+    color: var(--ice-blue, #fff);
+    margin: 0 0 40px 0;
+    line-height: 1.1;
+    display: inline-block;
+}
+
+
+/* --- Пагінація Сертифікатів --- */
+.certificates-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.cert-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--light-gray, #444);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cert-dot.active {
+    background-color: var(--powder-blue, #C4DFFA);
+    transform: scale(1.2);
+}
+
+/* Контент всередині акордеона */
+.accordion-content {
+    display: grid;
+    grid-template-rows: 0fr; 
+    transition: grid-template-rows 0.4s ease;
+}
+
+.accordion-inner-text {
+    overflow: hidden; 
+}
+
+/* НОВЕ: Блок, який створює лінію і відступи */
+.accordion-text-block {
+    /* Вертикальна лінія 3px товщиною, колір фону фото */
+    border-left: 3px solid var(--powder-blue, #C4DFFA); 
+    padding-left: 20px; /* Відступ тексту від лінії */
+    margin: 0 32px 32px 32px; /* Вирівнюємо по ширині заголовка і робимо відступ знизу */
+}
+
+.accordion-text-block p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ice-blue, #fff);
+    margin: 0 0 16px 0;
+}
+
+.accordion-text-block p:last-child {
+    margin-bottom: 0; /* Прибираємо зайвий відступ у останнього абзацу */
 }
 

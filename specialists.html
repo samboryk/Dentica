@@ -59,72 +59,50 @@
 </header>
 <main class="specialists-page">
   
+
+  
   <section class="team">
-    <div class="team-page-container">
-      
-      <div class="team-grid-page">
-      <div class="team-header-grid">
-        <h1 class="page-title">Спеціалісти</h1>
-        <p class="page-description">
-          Наші спеціалісти поєднують досвід, сучасні технології та турботу про кожного пацієнта, щоб забезпечити якісне, сучасне та комфортне лікування.
-        </p>
-      </div>
-
-       <div class="team-grid">
-        <article class="team-card">
-          <div class="team-card-image-wrapper">
-            <img src="/assets/images/doctor1.png" alt="Олександра Ромашевська" class="team-card-image">
-          </div>
-          <div class="team-card-content">
-            <div class="team-card-text">
-              <h3 class="team-card-name">ОЛЕКСАНДРА РОМАШЕВСЬКА</h3>
-              <p class="team-card-role">Головний лікар-стоматолог</p>
+    <div class="container team-grid-container">
+        <div class="team-header">
+             <h1 class="page-title">Спеціалісти</h1>
+            <div class="team-slider-controls">
+                <button class="team-btn prev-btn" id="team-prev">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button class="team-btn next-btn" id="team-next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
             </div>
-            <a href="#" class="team-card-link" aria-label="Детальніше про лікаря">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-        </article>
+        </div>
 
-        <article class="team-card">
-          <div class="team-card-image-wrapper">
-            <img src="/assets/images/doctor2.png" alt="Максим Будяківський" class="team-card-image">
-          </div>
-          <div class="team-card-content">
-            <div class="team-card-text">
-              <h3 class="team-card-name">МАКСИМ БУДЯКІВСЬКИЙ</h3>
-              <p class="team-card-role">Хірург-стоматолог</p>
+        <div class="team-content-grid">
+            <div class="team-image-wrapper">
+                <img src="assets/images/doctor1.png" alt="Олександра Ромашевська" class="team-image" id="team-photo">
             </div>
-            <a href="#" class="team-card-link" aria-label="Детальніше про лікаря">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-        </article>
 
-        <article class="team-card">
-          <div class="team-card-image-wrapper">
-            <img src="/assets/images/doctor3.png" alt="Анна Шимчук" class="team-card-image">
-          </div>
-          <div class="team-card-content">
-            <div class="team-card-text">
-              <h3 class="team-card-name">АННА ШИМЧУК</h3>
-              <p class="team-card-role">Дитячий стоматолог</p>
+            <div class="team-info-wrapper">
+                <div class="team-member-card" id="team-info-card">
+                    <div class="team-member-header">
+                        <h3 class="team-member-name" id="team-name">Олександра Ромашевська</h3>
+                        <p class="team-member-role" id="team-role">Головний лікар-стоматолог</p>
+                    </div>
+                    <div class="team-member-divider"></div>
+                    <div class="team-member-footer">
+                        <p class="team-member-desc" id="team-desc">Експерт з естетичної стоматології та складних реставрацій. Поєднує багаторічний досвід із цифровими технологіями, створюючи ідеальні посмішки з увагою до кожної деталі.</p>
+                        <a href="#" class="team-member-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-quote-card" id="team-quote-card">
+                    <div class="team-quote-number" id="team-number">01</div>
+                    <div class="team-quote-text" id="team-quote">Досконалість у кожній деталі вашої посмішки</div>
+                </div>
             </div>
-            <a href="#" class="team-card-link" aria-label="Детальніше про лікаря">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-        </article>
-      </div>
-
+        </div>
     </div>
-  </section>
+</section>
 
   <section class="results">
     <div class="container">
@@ -222,8 +200,45 @@
         </svg>
     </button>
 </div>
+<script src="/assets/js/ai-config.js"></script>
 <script src="/assets/js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<div class="ai-chat-window" id="aiChatWindow">
+    
+    <div class="ai-chat-header">
+        <div class="ai-chat-title">
+            <span class="ai-chat-avatar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3C14.7536 3.00359 16.9135 3.8994 18.507 5.49298C20.1006 7.08656 20.9964 9.24636 21 11.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <div>
+                <h3>Dentica AI</h3>
+                <p>Онлайн консультант</p>
+            </div>
+        </div>
+        <button class="ai-chat-close" id="aiChatCloseBtn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="ai-chat-body" id="aiChatBody">
+        <div class="chat-msg bot-msg">
+            <p>Вітаю! Я віртуальний помічник клініки Dentica. Чим можу допомогти вам сьогодні? ✨</p>
+        </div>
+    </div>
+
+    <div class="ai-chat-footer">
+        <input type="text" id="aiChatInput" placeholder="Напишіть ваше запитання..." autocomplete="off">
+        <button id="aiChatSendBtn" aria-label="Відправити">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 2L11 13M22 2L15 22L11 13M11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+</div>
 </body>
 
 </html>
