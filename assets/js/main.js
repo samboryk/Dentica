@@ -732,6 +732,9 @@ document.addEventListener("DOMContentLoaded", () => {
     initAccordion();
 
 
+
+
+    
     // ==========================================
     // 2. ЛОГІКА СЛАЙДЕРА (Безкінечне коло)
     // ==========================================
@@ -936,5 +939,3 @@ document.addEventListener("DOMContentLoaded", () => {
     updateSlider();
     startAutoPlay();
 });
-
-
