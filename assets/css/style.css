@@ -3,6 +3,10 @@ html {
   font-size: 62.5%; 
 }
 
+main{
+    flex-grow: 1; 
+}
+
 
 
 body{
@@ -12,6 +16,9 @@ body{
     color: var(--ice-blue);
     height: 100%;
     font-size: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .container{
@@ -1384,10 +1391,6 @@ padding-bottom: 15px;
   border-bottom: 1px solid var(--ice-blue);
 }
 
-
-
-
-/* --- СЕКЦІЯ ТА КОНТЕЙНЕР --- */
 .team {
     padding-bottom: 100px;
     width: 100%;
@@ -1398,18 +1401,15 @@ padding-bottom: 15px;
     width: 100%;
     margin: 0 auto;
     padding: 0 20px;
-    
-    /* Жорстко задаємо колонкову структуру, щоб заголовок був над контентом */
-    display: flex !important; 
+    display: flex; 
     flex-direction: column;
-    gap: 40px; /* Відстань між шапкою і блоком з лікарями */
+    gap: 40px; 
 }
 
-/* --- ШАПКА (Заголовок + Кнопки) --- */
 .team-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end; /* Кнопки притискаються до нижнього краю заголовка */
+    align-items: flex-end; 
     width: 100%;
 }
 
@@ -1441,33 +1441,28 @@ padding-bottom: 15px;
     background: var(--super-gray, #222);
 }
 
-/* --- ОСНОВНА СІТКА (Фотографії + Картки) --- */
 .team-content-grid {
     display: grid;
-    grid-template-columns: repeat(12, 1fr); /* 12 колонок */
+    grid-template-columns: repeat(12, 1fr);
     gap: 24px;
     width: 100%;
-    /* Статична висота всього блоку. Якщо треба більше/менше - міняй тут */
     height: 450px; 
 }
 
-/* --- ЛІВА ЧАСТИНА: Фотографія --- */
 .team-image-wrapper {
-    grid-column: span 7; /* Фото займає 7 колонок з 12 */
-    height: 100%; /* Розтягується на всі 540px */
+    grid-column: span 7;
+    height: 100%; 
     border-radius: 24px;
     overflow: hidden;
-    background-color: var(--super-gray, #222); /* Заглушка, поки вантажиться фото */
-    border: 1px solid transparent; /* Для балансу з правою карткою */
+    background-color: var(--super-gray); 
     position: relative;
 }
-
 
 .team-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Додали filter у transition, щоб розмиття було плавним */
+
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
                 opacity 0.5s ease, 
                 filter 0.5s ease;
@@ -1476,28 +1471,23 @@ padding-bottom: 15px;
     opacity: 1;
 }
 
-/* --- ПРАВА ЧАСТИНА: Обидві картки --- */
 .team-info-wrapper {
-    grid-column: span 5; /* Картки займають 5 колонок з 12 */
+    grid-column: span 5; 
     display: grid;
-    /* Верхня картка бере весь вільний простір (1fr), нижня - фіксована (130px) */
     grid-template-rows: 1fr 130px; 
     gap: 24px;
     height: 100%;
     perspective: 1000px;
 }
 
-/* Верхня картка: Інформація про лікаря */
 .team-member-card {
     background-color: var(--super-gray);
     border-radius: 24px;
     padding: 40px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Текст догори, опис і кнопка - донизу */
+    justify-content: space-between; 
     border: 1px solid var(--light-gray);
-    
-    /* Для 3D анімації */
     transform-style: preserve-3d;
     backface-visibility: hidden;
 }
@@ -1517,8 +1507,8 @@ padding-bottom: 15px;
 
 .team-member-divider {
     height: 1px;
-    background-color: var(--light-gray, #333);
-    margin: 24px 0; /* Відступи для лінії */
+    background-color: var(--light-gray);
+    margin: 24px 0; 
 }
 
 .team-member-footer {
@@ -1547,9 +1537,14 @@ padding-bottom: 15px;
     justify-content: center;
     flex-shrink: 0;
     text-decoration: none;
+    transition: 0.3s ease;
 }
 
-/* Нижня картка: Цитата */
+.team-member-link:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(191, 220, 255, 0.4);
+}
+
 .team-quote-card {
     background-color: var(--powder-blue);
     border-radius: 24px;
@@ -1557,9 +1552,7 @@ padding-bottom: 15px;
     display: flex;
     align-items: center;
     gap: 30px;
-    height: 100%; /* Розтягується на виділені 130px гріда */
-    
-    /* Для 3D анімації */
+    height: 100%; 
     transform-style: preserve-3d;
     backface-visibility: hidden;
 }
@@ -1578,15 +1571,10 @@ padding-bottom: 15px;
     font-weight: 500;
 }
 
-/* =========================================
-   КЛАСИ ДЛЯ JS АНІМАЦІЙ (Залишаємо як було)
-========================================= */
 .anim-photo-hide {
     opacity: 0;
-    transform: scale(1.05); /* Фото трохи наближається */
-    filter: blur(15px); /* Сильне розмиття (можеш міняти цифру, щоб зробити сильніше/слабше) */
-    
-    /* Робимо зникнення трохи швидшим, ніж появу */
+    transform: scale(1.05); 
+    filter: blur(15px); 
     transition: transform 0.3s ease-in, 
                 opacity 0.3s ease-in, 
                 filter 0.3s ease-in;
@@ -1597,12 +1585,6 @@ padding-bottom: 15px;
 .anim-quote-out { transform: rotateY(90deg); transition: transform 0.3s ease-in; }
 .anim-quote-in { transform: rotateY(-90deg); }
 .anim-quote-in.active { transform: rotateY(0); transition: transform 0.3s ease-out; }
-
-
-
-
-
-
 
 
 .faq {
@@ -2594,11 +2576,9 @@ padding-bottom: 15px;
     display: block;
 }
 
-/* =========================================
-   СЕРТИФІКАТИ (Нижня частина)
-========================================= */
+
 .certificates {
-    padding: 60px 0 100px 0;
+    padding: 0px 0 100px 0;
     width: 100%;
 }
 
@@ -2613,10 +2593,7 @@ padding-bottom: 15px;
 }
 
 .certificates-title {
-    font-size: 48px;
-    font-weight: 300; /* Тонкий шрифт як на фото */
-    color: var(--ice-blue, #fff);
-    margin: 0 0 60px 0;
+    margin: 0 0 35px 0;
     text-align: center;
 }
 
@@ -2628,12 +2605,11 @@ padding-bottom: 15px;
     gap: 24px;
 }
 
-/* Вікно для сертифікатів */
 .certificates-viewport {
     flex-grow: 1;
     overflow: hidden;
     position: relative;
-    padding: 10px 0; /* Щоб не обрізало тінь, якщо вона є */
+    padding: 10px 0; 
 }
 
 .certificates-track {
@@ -2643,59 +2619,54 @@ padding-bottom: 15px;
 }
 
 .cert-card {
-    /* 3 сертифікати на екрані. 100% мінус 2 відступи(48px) поділити на 3 */
     width: calc((100% - 48px) / 3);
     flex-shrink: 0;
-    border-radius: 12px;
+    border-radius: 20px;
+    border: 3px solid var(--light-gray);
     object-fit: cover;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3); /* Легка тінь для глибини */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3); 
 }
 
-/* Кнопки перемикання (використовуємо твої класи .team-btn) */
 .cert-btn {
     flex-shrink: 0;
 }
 
-/* --- Заголовок --- */
 .doctor-header-left {
     width: 100%;
-    text-align: left; /* Жорстко притискаємо текст вліво */
+    text-align: left;
 }
 
 .doctor-main-title {
     font-size: 56px;
     font-weight: 400;
-    color: var(--ice-blue, #fff);
+    color: var(--ice-blue);
     margin: 0 0 40px 0;
     line-height: 1.1;
     display: inline-block;
 }
 
-
-/* --- Пагінація Сертифікатів --- */
 .certificates-pagination {
     display: flex;
     justify-content: center;
     gap: 12px;
-    margin-top: 40px;
+    margin-top: 20px;
     width: 100%;
 }
 
 .cert-dot {
-    width: 12px;
-    height: 12px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background-color: var(--light-gray, #444);
+    background-color: var(--light-gray);
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .cert-dot.active {
-    background-color: var(--powder-blue, #C4DFFA);
+    background-color: var(--powder-blue);
     transform: scale(1.2);
 }
 
-/* Контент всередині акордеона */
 .accordion-content {
     display: grid;
     grid-template-rows: 0fr; 
@@ -2706,22 +2677,336 @@ padding-bottom: 15px;
     overflow: hidden; 
 }
 
-/* НОВЕ: Блок, який створює лінію і відступи */
 .accordion-text-block {
-    /* Вертикальна лінія 3px товщиною, колір фону фото */
-    border-left: 3px solid var(--powder-blue, #C4DFFA); 
-    padding-left: 20px; /* Відступ тексту від лінії */
-    margin: 0 32px 32px 32px; /* Вирівнюємо по ширині заголовка і робимо відступ знизу */
+    border-left: 3px solid var(--powder-blue); 
+    padding-left: 20px; 
+    margin: 0 32px 32px 32px; 
 }
 
 .accordion-text-block p {
     font-size: 16px;
     line-height: 1.6;
-    color: var(--ice-blue, #fff);
+    color: var(--ice-blue);
     margin: 0 0 16px 0;
 }
 
 .accordion-text-block p:last-child {
-    margin-bottom: 0; /* Прибираємо зайвий відступ у останнього абзацу */
+    margin-bottom: 0; 
+}
+
+
+
+/* =========================================
+   СЕКЦІЯ РЕЗУЛЬТАТІВ (3D Слайдер на 5 карток)
+========================================= */
+.results-section {
+    padding-bottom: 100px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.results-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.results-title {
+    margin: 0 0 35px 0;
+    text-align: center;
+    font-weight: 500;
+}
+
+.results-title .thin-text {
+    font-weight: 300;
+    color: #A0AAB5;
+}
+
+.results-slider-wrapper {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.results-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.result-slide {
+    position: absolute;
+    width: 340px; 
+    height: 450px; 
+    border-radius: 20px;
+    overflow: hidden;
+    
+    /* ЗБІЛЬШЕНО ЧАС АНІМАЦІЇ ДЛЯ ПЛАВНОСТІ (0.8s) */
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.8s ease, 
+                filter 0.8s ease, 
+                z-index 0s;
+    
+    opacity: 0;
+    filter: grayscale(100%) brightness(0.2);
+    transform: scale(0.5) translateX(0);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.result-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* --- СТАН 1: Центральний (Активний) --- */
+.result-slide.active {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+    z-index: 5;
+    filter: grayscale(0%) brightness(1); /* Кольорове, світле */
+    pointer-events: auto;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+/* --- СТАН 2: Перші бокові (Ближчі до центру) --- */
+.result-slide.prev-1 {
+    opacity: 1;
+    transform: scale(0.85) translateX(-70%);
+    z-index: 4;
+    filter: grayscale(100%) brightness(0.5);
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.result-slide.next-1 {
+    opacity: 1;
+    transform: scale(0.85) translateX(70%);
+    z-index: 4;
+    filter: grayscale(100%) brightness(0.5);
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* --- СТАН 3: Другі бокові (Дальні) --- */
+.result-slide.prev-2 {
+    opacity: 1;
+    transform: scale(0.7) translateX(-145%);
+    z-index: 3;
+    filter: grayscale(100%) brightness(0.25);
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.result-slide.next-2 {
+    opacity: 1;
+    transform: scale(0.7) translateX(145%);
+    z-index: 3;
+    filter: grayscale(100%) brightness(0.25);
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* --- Пагінація --- */
+.results-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 40px;
+}
+
+.res-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.res-dot.active {
+    background-color: var(--powder-blue, #C4DFFA);
+    width: 6px;
+    height: 6px;
+}
+
+
+/* =========================================
+   СТОРІНКА ОДНІЄЇ ПОСЛУГИ
+========================================= */
+
+/* --- Hero Фото --- */
+.single-service-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 540px; /* Велике гарне фото */
+    border-radius: 32px;
+    background-color: var(--super-gray, #222);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.single-service-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+    filter: brightness(0.85); /* Трохи приглушуємо, щоб виглядало преміально */
+}
+
+/* --- Прайс-лист (Bento Card) --- */
+.pricing-bento-card {
+    background-color: var(--super-gray, #222);
+    border: 1px solid var(--light-gray, #333);
+    border-radius: 32px;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.pricing-header h2 {
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--ice-blue, #fff);
+    margin: 0 0 12px 0;
+}
+
+.pricing-header p {
+    font-size: 16px;
+    color: #A0AAB5;
+    margin: 0;
+}
+
+.pricing-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.pricing-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pricing-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.pricing-info {
+    max-width: 75%;
+}
+
+.pricing-info h4 {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ice-blue, #fff);
+    margin: 0 0 8px 0;
+}
+
+.pricing-info span {
+    font-size: 14px;
+    color: #A0AAB5;
+    line-height: 1.5;
+    display: block;
+}
+
+.pricing-cost {
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--powder-blue, #C4DFFA);
+    white-space: nowrap;
+}
+
+/* --- Сітка FAQ --- */
+.faq-grid-container {
+    display: grid;
+    grid-template-columns: 4fr 8fr; /* Заголовок зліва, питання справа */
+    gap: 60px;
+    align-items: start;
+}
+
+.faq-main-title {
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--ice-blue, #fff);
+    margin: 0;
+    position: sticky; /* "Прилипає" при скролі */
+    top: 120px;
+}
+
+.faq-accordion-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+
+.single-service{
+  padding-bottom: 100px;
+}
+
+.single-service-grid-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto max-content max-content 1fr; 
+    
+    column-gap: 40px;
+    row-gap: 24px;
+    align-items: start;
+}
+
+.single-service-header-layout {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.single-service-photo-wrapper {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+.single-service-photo-wrapper .single-service-photo {
+    width: 100%;
+    height: 320px; 
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
+}
+
+.single-service-grid-container .contact-action-card {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+}
+
+.single-service-accordion-wrapper {
+    grid-column: 2 / 3;
+  
+    grid-row: 2 / 5; 
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 

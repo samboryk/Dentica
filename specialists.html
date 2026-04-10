@@ -89,7 +89,7 @@
                     <div class="team-member-divider"></div>
                     <div class="team-member-footer">
                         <p class="team-member-desc" id="team-desc">Експерт з естетичної стоматології та складних реставрацій. Поєднує багаторічний досвід із цифровими технологіями, створюючи ідеальні посмішки з увагою до кожної деталі.</p>
-                        <a href="#" class="team-member-link">
+                        <a href="doctor.html" class="team-member-link">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </a>
                     </div>
@@ -104,44 +104,40 @@
     </div>
 </section>
 
-  <section class="results">
-    <div class="container">
-      
-      <header class="results-header">
-        <h2 class="title"> <span class="thin-w">Результати</span> <span class="thin-b">нашої</span> <span class="roman">роботи</span></h2>
-      </header>
-
-      <div class="results-slider-wrapper">
+<section class="results-section">
+    <div class="container results-container">
         
-        <button class="slider-nav prev" aria-label="Попередній слайд">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+        <h2 class="results-title title">
+            <span class="thin-w">Результати </span> <span class="thin-b">нашої </span>  <span class="roman">роботи</span>
+        </h2>
 
-        <div class="swiper results-swiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="/assets/images/image 104.png" alt="Результат роботи До">
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/images/result2.jpg" alt="Результат роботи Після">
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/images/result3.jpg" alt="Результат роботи До">
-            </div>
-          </div>
+        <div class="results-slider-wrapper" id="results-wrapper">
+            
+            <button class="team-btn prev-btn slider-nav-btn" id="res-prev" style="position: absolute; left: 0; z-index: 10;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+
+            <div class="results-track" id="res-track">
+                <div class="result-slide"><img src="assets/images/r1.png" alt="Результат 1" class="result-image"></div>
+                <div class="result-slide"><img src="assets/images/r2.png" alt="Результат 2" class="result-image"></div>
+                <div class="result-slide"><img src="assets/images/r3.png" alt="Результат 3" class="result-image"></div>
+                <div class="result-slide"><img src="assets/images/r4.png" alt="Результат 4" class="result-image"></div>
+                <div class="result-slide"><img src="assets/images/r5.png" alt="Результат 5" class="result-image"></div>
+                <div class="result-slide"><img src="assets/images/r5.png" alt="Результат 5" class="result-image"></div>
+                <div class="result-slide"><img src="assets/images/r5.png" alt="Результат 5" class="result-image"></div>
+                <div class="result-slide"><img src="assets/images/r5.png" alt="Результат 5" class="result-image"></div>
+                </div>
+
+            <button class="team-btn next-btn slider-nav-btn" id="res-next" style="position: absolute; right: 0; z-index: 10;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+            
         </div>
 
-        <button class="slider-nav next" aria-label="Наступний слайд">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+        <div class="results-pagination" id="res-pagination"></div>
 
-      </div>
     </div>
-  </section>
+</section>
 
 </main>
 

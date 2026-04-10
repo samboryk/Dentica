@@ -831,3 +831,110 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener('load', initCertSlider);
     }
 });
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const slides = document.querySelectorAll('.result-slide');
+    const btnNext = document.getElementById('res-next');
+    const btnPrev = document.getElementById('res-prev');
+    const paginationContainer = document.getElementById('res-pagination');
+    const wrapper = document.getElementById('results-wrapper');
+    
+    if (!slides.length || !btnNext || !btnPrev || !paginationContainer) return;
+
+    let currentIndex = 2; // Починаємо з центрального (3-го)
+    const totalSlides = slides.length;
+    
+    // СПОВІЛЬНЕНО АВТОПЛЕЙ ДО 5 СЕКУНД
+    const autoPlayDelay = 3000; 
+    let autoPlayTimer;
+
+    // Створюємо цятки
+    paginationContainer.innerHTML = ''; 
+    slides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.classList.add('res-dot');
+        dot.addEventListener('click', () => {
+            currentIndex = i;
+            updateSlider();
+            resetAutoPlay();
+        });
+        paginationContainer.appendChild(dot);
+    });
+    const dots = paginationContainer.querySelectorAll('.res-dot');
+
+    function updateSlider() {
+        slides.forEach((slide, i) => {
+            slide.className = 'result-slide';
+            slide.onclick = null;
+            
+            // Розраховуємо індекси сусідів по колу
+            const prev1 = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
+            const next1 = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
+            const prev2 = (prev1 === 0) ? totalSlides - 1 : prev1 - 1;
+            const next2 = (next1 === totalSlides - 1) ? 0 : next1 + 1;
+
+            // Призначаємо класи для 5-ти видимих карток
+            if (i === currentIndex) {
+                slide.classList.add('active');
+            } else if (i === prev1) {
+                slide.classList.add('prev-1');
+                slide.onclick = () => { currentIndex = i; updateSlider(); resetAutoPlay(); };
+            } else if (i === next1) {
+                slide.classList.add('next-1');
+                slide.onclick = () => { currentIndex = i; updateSlider(); resetAutoPlay(); };
+            } else if (i === prev2) {
+                slide.classList.add('prev-2');
+                slide.onclick = () => { currentIndex = i; updateSlider(); resetAutoPlay(); };
+            } else if (i === next2) {
+                slide.classList.add('next-2');
+                slide.onclick = () => { currentIndex = i; updateSlider(); resetAutoPlay(); };
+            }
+        });
+
+        // Оновлюємо цятки
+        dots.forEach((dot, index) => {
+            if (index === currentIndex) dot.classList.add('active');
+            else dot.classList.remove('active');
+        });
+    }
+
+    function goToNext() {
+        currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
+        updateSlider();
+    }
+
+    function goToPrev() {
+        currentIndex = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
+        updateSlider();
+    }
+
+    function startAutoPlay() {
+        autoPlayTimer = setInterval(goToNext, autoPlayDelay);
+    }
+
+    function resetAutoPlay() {
+        clearInterval(autoPlayTimer);
+        startAutoPlay();
+    }
+
+    btnNext.addEventListener('click', () => {
+        goToNext();
+        resetAutoPlay();
+    });
+
+    btnPrev.addEventListener('click', () => {
+        goToPrev();
+        resetAutoPlay();
+    });
+
+    wrapper.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
+    wrapper.addEventListener('mouseleave', startAutoPlay);
+
+    // Перший запуск
+    updateSlider();
+    startAutoPlay();
+});
+
+
