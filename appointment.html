@@ -12,8 +12,10 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
-    <script src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js"></script>
-    <title>Зв'язатись з нами - Dentica</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.4/build/css/intlTelInput.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css" />
+
+<title>Зв'язатись з нами - Dentica</title>
 </head>
 <body>
 <header class="header">
@@ -57,83 +59,91 @@
 
   </div>
 </header>
-<section class="contact-section">
-  <div class="container">
-    <div class="grid-form">
- 
-      <!-- Заголовок -->
-      <div class="form-header-text">
-        <h1 class="page-title">Зв'язатися<br>з нами</h1>
-      </div>
- 
-      <!-- Контактна інформація -->
-      <div class="info-wrapper">
-        <address class="contact-details">
-          <div class="info-block">
-            <h3>Контактна інформація</h3>
-            <a href="tel:+380638843475">+38 (063) 884 34 75</a><br>
-            <a href="mailto:dentica@gmail.com">dentica@gmail.com</a>
-          </div>
-          <div class="info-block">
-            <h3>Локація</h3>
-            <p>м. Київ, вул. Євгена Коновальця, 36Е</p>
-          </div>
-          <div class="info-block">
-            <h3>Години роботи</h3>
-            <p>Пн - Сб 8:00-20:00</p>
-          </div>
-        </address>
- 
-        <div class="card-footer">
-          <div class="social-links">
-            <a href="#">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5.8 0L14.2 0C17.4 0 20 2.6 20 5.8V14.2C20 15.7383 19.3889 17.2135 18.3012 18.3012C17.2135 19.3889 15.7383 20 14.2 20H5.8C2.6 20 0 17.4 0 14.2L0 5.8C0 4.26174 0.61107 2.78649 1.69878 1.69878C2.78649 0.61107 4.26174 0 5.8 0ZM5.6 2C4.64522 2 3.72955 2.37928 3.05442 3.05442C2.37928 3.72955 2 4.64522 2 5.6L2 14.4C2 16.39 3.61 18 5.6 18H14.4C15.3548 18 16.2705 17.6207 16.9456 16.9456C17.6207 16.2705 18 15.3548 18 14.4V5.6C18 3.61 16.39 2 14.4 2L5.6 2ZM15.25 3.5C15.5815 3.5 15.8995 3.6317 16.1339 3.86612C16.3683 4.10054 16.5 4.41848 16.5 4.75C16.5 5.08152 16.3683 5.39946 16.1339 5.63388C15.8995 5.8683 15.5815 6 15.25 6C14.9185 6 14.6005 5.8683 14.3661 5.63388C14.1317 5.39946 14 5.08152 14 4.75C14 4.41848 14.1317 4.10054 14.3661 3.86612C14.6005 3.6317 14.9185 3.5 15.25 3.5ZM10 5C11.3261 5 12.5979 5.52678 13.5355 6.46447C14.4732 7.40215 15 8.67392 15 10C15 11.3261 14.4732 12.5979 13.5355 13.5355C12.5979 14.4732 11.3261 15 10 15C8.67392 15 7.40215 14.4732 6.46447 13.5355C5.52678 12.5979 5 11.3261 5 10C5 8.67392 5.52678 7.40215 6.46447 6.46447C7.40215 5.52678 8.67392 5 10 5ZM10 7C9.20435 7 8.44129 7.31607 7.87868 7.87868C7.31607 8.44129 7 9.20435 7 10C7 10.7956 7.31607 11.5587 7.87868 12.1213C8.44129 12.6839 9.20435 13 10 13C10.7956 13 11.5587 12.6839 12.1213 12.1213C12.6839 11.5587 13 10.7956 13 10C13 9.20435 12.6839 8.44129 12.1213 7.87868C11.5587 7.31607 10.7956 7 10 7Z" fill="white"/></svg>
-            </a>
-            <a href="#">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M20 10.0251C20 4.49123 15.52 0 10 0C4.48 0 0 4.49123 0 10.0251C0 14.8772 3.44 18.9173 8 19.8496L8 13.0326H6V10.0251H8V7.5188C8 5.58396 9.57 4.01003 11.5 4.01003H14V7.01754H12C11.45 7.01754 11 7.46867 11 8.02005V10.0251H14V13.0326H11L11 20C16.05 19.4987 20 15.2281 20 10.0251Z" fill="white"/></svg>
-            </a>
-            <a href="#">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10.1939 11.9V8.18H19.7449C19.8878 8.81 20 9.4 20 10.23C20 15.94 16.0918 20 10.2041 20C4.57143 20 0 15.52 0 10C0 4.48 4.57143 0 10.2041 0C12.9592 0 15.2653 0.99 17.0306 2.61L14.1327 5.37C13.398 4.69 12.1122 3.89 10.2041 3.89C6.82653 3.89 4.07143 6.64 4.07143 10.01C4.07143 13.38 6.82653 16.13 10.2041 16.13C14.1122 16.13 15.551 13.48 15.8163 11.91H10.1939V11.9Z" fill="white"/></svg>
-            </a>
-          </div>
+<main>
+           <section class="form-section" id="form">
+    <div class="container">
+        
+        <div class="form-header">
+            <h2 class="page-title">Зв’язатися<br>з нами</h2>
+            <p class="form-subtitle">Ми завжди поруч, щоб подбати про здоров'я та красу ваших зубів. Залиште свої контакти, і наші адміністратори зв'яжуться з вами.</p>
         </div>
-      </div>
- 
 
-      <div class="contact-form-wrapper">
-        <div class="contact-form-card">
-          <div class="aurora"></div>
- 
-          <div class="card-inner" id="formState">
-            <p class="card-label">Запис на прийом</p>
-            <h2 class="card-title">Залиште свій номер</h2>
-            <p class="card-sub">Ми поруч, щоб подбати про вашу усмішку.<br>Наші фахівці зв'яжуться з вами.</p>
- 
-            <label class="field-label" for="phoneInput">Ваш номер телефону</label>
-            <input type="tel" id="phoneInput" placeholder="(097) 000 00 00" autocomplete="tel" />
-            <p class="msg" id="msg"></p>
- 
-            <button class="submit-btn" id="submitBtn" type="button">
-              <div class="spinner"></div>
-              <span class="btn-text">Записатися</span>
-            </button>
- 
-            <div class="form-divider"></div>
-            <p class="footer-note">Ваш номер використовується лише для зв'язку з клінікою.</p>
-          </div>
- 
+        <div class="form-grid">
+            
+            <div class="form-info-side">
+                <div class="contact-action-card">
+                    <div class="info-block">
+                        <h3>Години роботи</h3>
+                        <p>Пн - Сб 8:00-20:00</p>
+                    </div>
+                    <a href="/services.html" class="btn">Переглянути послуги</a>
+                </div>
+
+                <div class="form-image-card">
+                    <img src="assets/images/zap.png" alt="Стоматолог з інструментами">
+                </div>
+            </div>
+
+            <div class="form-card" id="formCard">
+
+    <div id="formState">
       
-          <div class="success-state card-inner" id="successState">
-            <div class="success-icon">✓</div>
-            <h2 class="success-title">Дякуємо!</h2>
-            <p class="success-sub">Ваш номер отримано. Наш фахівець зв'яжеться з вами найближчим часом.</p>
-          </div>
- 
+        <div class="form-card-header">
+            <h3 class="form-title">Залиште свій номер</h3>
+            <p class="form-desc">Ми поруч, щоб подбати про вашу усмішку. Наші фахівці зв'яжуться з вами.</p>
         </div>
-      </div>
- 
+<form id="contactForm" class="form-wrapper" onsubmit="return false;">
+    <label class="input-label">ВАШ НОМЕР ТЕЛЕФОНУ</label>
+    <div class="custom-phone-wrapper" id="customPhoneWrapper">
+        
+        <div class="country-selector" id="countrySelector">
+    <span id="selectedFlag" class="fi fi-ua" style="font-size: 20px; border-radius: 2px;"></span>
+    <span id="selectedCode" class="code">+380</span>
+    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L5 5L9 1" stroke="#888888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</div>
+        
+        <div class="input-divider"></div>
+        
+        <input type="tel" id="phoneInput" placeholder="50 123 45 67" required autocomplete="off">
+        
+        <ul class="custom-country-list" id="countryList">
+            <li class="country-item active" data-country="UA" data-code="+380">
+                <span class="flag">🇺🇦</span> Україна (+380)
+            </li>
+                  </ul>
     </div>
-  </div>
+    
+    <div id="msg" class="msg"></div> 
+    <button type="submit" id="submitBtn" class="btn">Записатись</button>
+</form>
+
+        <div class="form-footer">
+            <div class="form-divider"></div>
+            <p class="disclaimer">
+                Ваш номер використовується лише для зв'язку з клінікою.<br>
+                <a href="/privacy.html">Політика конфіденційності.</a>
+            </p>
+        </div>
+    </div>
+
+    <div id="successState" style="display: none;" class="success-state">
+        <div class="success-animation">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+        </div>
+        <h3 class="success-title">Успішно!</h3>
+        <p class="success-desc">Ваша заявка відправлена.<br>Ми зателефонуємо вам найближчим часом.</p>
+    </div>
+
+</div>
+
+        </div>
+
+    </div>
 </section>
     </main>
 
@@ -193,83 +203,184 @@
 </div>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/intlTelInput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.10.49/libphonenumber-js.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.10.49/libphonenumber-js.min.js"></script>
 <script>
-  const TELEGRAM_BOT_TOKEN = '8615878715:AAHSLK0kyqpEVLDXV5tulwQsRZgw1LlkI_M';
-const TELEGRAM_CHAT_ID   = '-1003737699666';
-const API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    const TELEGRAM_BOT_TOKEN = '8615878715:AAHSLK0kyqpEVLDXV5tulwQsRZgw1LlkI_M';
+    const TELEGRAM_CHAT_ID   = '-1003737699666';
+    const API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
-const input     = document.getElementById('phoneInput');
-const msgEl     = document.getElementById('msg');
-const submitBtn = document.getElementById('submitBtn');
+    const input = document.getElementById("phoneInput");
+    const wrapper = document.getElementById("customPhoneWrapper");
+    const msgEl = document.getElementById("msg");
+    const submitBtn = document.getElementById("submitBtn");
+    const formState = document.getElementById("formState");
+    const successState = document.getElementById("successState");
 
-const iti = window.intlTelInput(input, {
-  initialCountry: 'ua',
-  preferredCountries: ['ua', 'pl', 'de', 'us', 'gb', 'cz', 'it'],
-  separateDialCode: true,
-  searchInput: true,
-  searchPlaceholder: 'Пошук країни...',
-  utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/utils.js',
-});
+    const countrySelector = document.getElementById("countrySelector");
+    const countryList = document.getElementById("countryList");
+    const selectedFlag = document.getElementById("selectedFlag");
+    const selectedCode = document.getElementById("selectedCode");
 
-input.addEventListener('input', () => {
-  input.value = input.value.replace(/[^\d\s\-\(\)]/g, '');
-  input.classList.remove('error');
-  clearMsg();
-});
+    let currentCountry = 'UA';
+    let currentCode = '+380';
 
-function clearMsg() { msgEl.textContent = ''; msgEl.className = 'msg'; }
-function showMsg(t, type = 'error') { msgEl.textContent = t; msgEl.className = `msg ${type}`; }
+    // === 1. ГЕНЕРАЦІЯ КРАЇН ТА ПРАПОРІВ ===
+    const regionNames = new Intl.DisplayNames(['uk'], { type: 'region' });
 
-function isValidPhone() {
-  const country = iti.getSelectedCountryData().iso2;
-  const digits  = iti.getNumber().replace(/\D/g, '');
+    let countriesData = libphonenumber.getCountries().map(code => {
+        try {
+            return {
+                code: code,
+                dial: '+' + libphonenumber.getCountryCallingCode(code),
+                name: regionNames.of(code)
+            };
+        } catch (e) {
+            return null;
+        }
+    }).filter(Boolean);
 
-  if (country === 'ua') {
-   
-    return /^380\d{9}$/.test(digits);
-  }
+    countriesData.sort((a, b) => a.name.localeCompare(b.name, 'uk'));
+    const uaIndex = countriesData.findIndex(c => c.code === 'UA');
+    if (uaIndex > -1) countriesData.unshift(countriesData.splice(uaIndex, 1)[0]);
 
-  return iti.isValidNumber();
-}
+    function renderCountries() {
+        countryList.innerHTML = ''; 
+        countriesData.forEach(country => {
+            const li = document.createElement('li');
+            li.className = `country-item ${country.code === currentCountry ? 'active' : ''}`;
+            
+            const flagClass = `fi fi-${country.code.toLowerCase()}`;
+            li.innerHTML = `<span class="${flagClass}" style="font-size: 16px; border-radius: 2px;"></span> ${country.name} (${country.dial})`;
+            
+            li.addEventListener('click', () => {
+                document.querySelectorAll('.country-item').forEach(i => i.classList.remove('active'));
+                li.classList.add('active');
+                
+                currentCountry = country.code;
+                currentCode = country.dial;
+                
+                selectedFlag.className = `fi fi-${country.code.toLowerCase()}`;
+                selectedCode.textContent = country.dial;
+                
+                // Очищаємо інпут при зміні країни
+                input.value = ''; 
+                countryList.classList.remove('open');
+                input.focus();
+                resetValidation();
+            });
+            
+            countryList.appendChild(li);
+        });
+    }
 
-submitBtn.addEventListener('click', async () => {
-  if (!isValidPhone()) {
-    input.classList.add('error');
-    showMsg('⚠ Введіть коректний номер телефону');
-    input.focus();
-    return;
-  }
+    renderCountries();
 
-  const fullNumber = iti.getNumber();
+    // Відкрити/Закрити список
+    countrySelector.addEventListener('click', () => countryList.classList.toggle('open'));
+    document.addEventListener('click', (e) => {
+        if (!countrySelector.contains(e.target) && !countryList.contains(e.target)) {
+            countryList.classList.remove('open');
+        }
+    });
 
-  submitBtn.classList.add('loading');
-  submitBtn.disabled = true;
-  clearMsg();
+    // === 2. РОЗУМНА МАСКА (БЕЗ CLEAVE) ===
+    input.addEventListener('focus', () => wrapper.classList.add('focused'));
+    input.addEventListener('blur', () => wrapper.classList.remove('focused'));
 
-  const text = `🦷 Нова заявка з сайту Dentica!\n\nТелефон: ${fullNumber}`;
+    input.addEventListener('input', () => {
+        resetValidation();
+        
+        // 1. Залишаємо тільки цифри
+        let rawDigits = input.value.replace(/\D/g, ''); 
 
-  try {
-    const form = new FormData();
-    form.append('chat_id', TELEGRAM_CHAT_ID);
-    form.append('text', text);
+        // 2. ФІШКА ДЛЯ УКРАЇНИ: якщо людина вводить "050", прибираємо перший "0"
+        if (currentCountry === 'UA' && rawDigits.startsWith('0')) {
+            rawDigits = rawDigits.substring(1);
+        }
 
-    const res  = await fetch(API_URL, { method: 'POST', body: form });
-    const data = await res.json();
-    if (!data.ok) throw new Error(data.description);
+        if (!rawDigits) {
+            input.value = '';
+            return;
+        }
 
-    document.getElementById('formState').style.display = 'none';
-    document.getElementById('successState').style.display = 'flex';
+        // 3. Віддаємо бібліотеці код + цифри для красивого форматування
+        let formatter = new libphonenumber.AsYouType(currentCountry);
+        let formattedFull = formatter.input(currentCode + rawDigits);
 
-  } catch (e) {
-    showMsg('⚠ Помилка відправки. Спробуйте ще раз.');
-    console.error(e);
-  } finally {
-    submitBtn.classList.remove('loading');
-    submitBtn.disabled = false;
-  }
-});
+        // 4. Відрізаємо код країни (напр. "+380 ") від результату
+        let displayValue = formattedFull;
+        if (displayValue.startsWith(currentCode)) {
+            displayValue = displayValue.slice(currentCode.length).trim();
+        }
 
-input.addEventListener('keydown', e => { if (e.key === 'Enter') submitBtn.click(); });
+        // 5. Виводимо готову маску в інпут
+        input.value = displayValue;
+    });
+
+    function resetValidation() {
+        wrapper.classList.remove("error");
+        msgEl.innerHTML = "";
+        msgEl.classList.remove("show");
+    }
+
+    // === 3. ВАЛІДАЦІЯ ТА ВІДПРАВКА ===
+    submitBtn.addEventListener('click', async () => {
+        resetValidation();
+
+        let rawNumber = input.value.replace(/\D/g, '');
+        
+        // Повертаємо 0 для України перед перевіркою, якщо його немає, 
+        // щоб бібліотека 100% правильно перевірила валідність
+        if (currentCountry === 'UA' && rawNumber.length === 9) {
+            rawNumber = '0' + rawNumber;
+        }
+
+        let fullNumberForValidation = currentCode + rawNumber;
+        let parsedNumber = libphonenumber.parsePhoneNumberFromString(fullNumberForValidation, currentCountry);
+
+        // Перевіряємо чи номер до кінця введений
+        if (!parsedNumber || !parsedNumber.isValid()) {
+            wrapper.classList.add("error");
+            msgEl.innerHTML = "⚠ Введіть повний та коректний номер";
+            msgEl.classList.add("show");
+            return;
+        }
+
+        const finalNumber = parsedNumber.format('E.164');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = "Відправка...";
+        submitBtn.disabled = true;
+
+        const text = `🦷 Нова заявка з сайту Dentica!\n\n📞 Телефон: ${finalNumber}`;
+
+        try {
+            const res = await fetch(API_URL, { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: text }) 
+            });
+            const data = await res.json();
+            
+            if (!data.ok) throw new Error(data.description);
+
+            formState.style.display = 'none';
+            successState.style.display = 'flex';
+
+        } catch (e) {
+            wrapper.classList.add("error");
+            msgEl.innerHTML = "⚠ Помилка відправки. Спробуйте пізніше.";
+            msgEl.classList.add("show");
+        } finally {
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+        }
+    });
+
+    input.addEventListener('keydown', (e) => { 
+        if (e.key === 'Enter') { e.preventDefault(); submitBtn.click(); }
+    });
 </script>
 </body>
 

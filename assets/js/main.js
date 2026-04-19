@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
   // Знаходимо всі кнопки-тригери акордеону
   const triggers = document.querySelectorAll('.faq-item-trigger');
@@ -474,10 +476,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    // База даних команди (можеш додати скільки завгодно)
     const teamData = [
         {
-            photo: "assets/images/doctor1.png", // Вкажи свої шляхи до фото
+            photo: "assets/images/doctor1.png", 
             name: "Олександра Ромашевська",
             role: "Головний лікар-стоматолог",
             desc: "Експерт з естетичної стоматології та складних реставрацій. Поєднує багаторічний досвід із цифровими технологіями, створюючи ідеальні посмішки з увагою до кожної деталі.",
@@ -485,7 +486,7 @@ document.addEventListener("DOMContentLoaded", () => {
             quote: "Досконалість у кожній деталі вашої посмішки"
         },
         {
-            photo: "assets/images/doctor2.png",
+            photo: "assets/images/doctor2.png", 
             name: "Іван Петренко",
             role: "Хірург-імплантолог",
             desc: "Спеціалізується на безболісній хірургії та відновленні втрачених зубів. Використовує передові протоколи лікування для максимального комфорту пацієнтів.",
@@ -493,7 +494,7 @@ document.addEventListener("DOMContentLoaded", () => {
             quote: "Повертаємо впевненість та радість життя"
         },
         {
-            photo: "assets/images/doctor3.png",
+            photo: "assets/images/doctor3.png", 
             name: "Марія Коваль",
             role: "Ортодонт",
             desc: "Допомагає вирівняти зуби та виправити прикус у будь-якому віці за допомогою сучасних брекет-систем та невидимих елайнерів.",
@@ -505,9 +506,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentIndex = 0;
     let isAnimating = false;
 
-    // DOM Елементи
     const els = {
-        photo: document.getElementById('team-photo'),
+        photo: document.getElementById('team-photo'), // Картинка (для заміни src)
+        photoWrapper: document.querySelector('.team-image-wrapper'), // Обгортка (для АНІМАЦІЇ)
         infoCard: document.getElementById('team-info-card'),
         quoteCard: document.getElementById('team-quote-card'),
         name: document.getElementById('team-name'),
@@ -519,11 +520,25 @@ document.addEventListener("DOMContentLoaded", () => {
         btnPrev: document.getElementById('team-prev')
     };
 
+    if (!els.photo || !els.btnNext) return;
+
+    // Початковий стан: ставимо по центру
+    els.photoWrapper.classList.add('carousel-center');
+    els.infoCard.classList.add('carousel-center');
+    els.quoteCard.classList.add('carousel-center');
+
+    teamData.forEach(member => {
+        const img = new Image();
+        img.src = member.photo;
+    });
+
     function changeSlide(direction) {
         if (isAnimating) return;
         isAnimating = true;
 
-        // Обчислення нового індексу
+        const outClass = direction === 'next' ? 'carousel-out-left' : 'carousel-out-right';
+        const readyClass = direction === 'next' ? 'carousel-ready-right' : 'carousel-ready-left';
+
         if (direction === 'next') {
             currentIndex = (currentIndex + 1) % teamData.length;
         } else {
@@ -532,14 +547,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const nextData = teamData[currentIndex];
 
-        // 1. Запускаємо анімації зникнення (OUT)
-        els.photo.classList.add('anim-photo-hide');
-        els.infoCard.classList.add('anim-info-out');
-        els.quoteCard.classList.add('anim-quote-out');
+        // 1. ВІДПРАВЛЯЄМО ВЕСЬ КОНТЕНТ ЗА ЕКРАН
+        els.photoWrapper.classList.remove('carousel-center');
+        els.infoCard.classList.remove('carousel-center');
+        els.quoteCard.classList.remove('carousel-center');
 
-        // Чекаємо половину часу (300ms), поки картки "ребром" до глядача (невидимі)
+        els.photoWrapper.classList.add(outClass);
+        els.infoCard.classList.add(outClass);
+        els.quoteCard.classList.add(outClass);
+
+        // 2. Чекаємо поки все сховається
         setTimeout(() => {
-            // Змінюємо контент
+            // Міняємо дані (картинка зараз невидима)
             els.photo.src = nextData.photo;
             els.name.textContent = nextData.name;
             els.role.textContent = nextData.role;
@@ -547,37 +566,36 @@ document.addEventListener("DOMContentLoaded", () => {
             els.number.textContent = nextData.number;
             els.quote.textContent = nextData.quote;
 
-            // Перемикаємо класи на підготовку до появи (IN)
-            els.infoCard.classList.remove('anim-info-out');
-            els.quoteCard.classList.remove('anim-quote-out');
-            
-            els.infoCard.classList.add('anim-info-in');
-            els.quoteCard.classList.add('anim-quote-in');
+            // Перекидаємо ОБГОРТКУ на інший бік
+            els.photoWrapper.classList.remove(outClass);
+            els.infoCard.classList.remove(outClass);
+            els.quoteCard.classList.remove(outClass);
 
-            // Мікро-затримка, щоб браузер застосував стартові позиції IN
+            els.photoWrapper.classList.add(readyClass);
+            els.infoCard.classList.add(readyClass);
+            els.quoteCard.classList.add(readyClass);
+
+            // 3. ВИВОДИМО НОВИЙ КОНТЕНТ У ЦЕНТР
             requestAnimationFrame(() => {
-                els.photo.classList.remove('anim-photo-hide');
-                els.infoCard.classList.add('active');
-                els.quoteCard.classList.add('active');
+                void els.photoWrapper.offsetWidth; 
 
-                // Чекаємо завершення появи (IN)
-                setTimeout(() => {
-                    // Очищаємо класи після завершення
-                    els.infoCard.classList.remove('anim-info-in', 'active');
-                    els.quoteCard.classList.remove('anim-quote-in', 'active');
-                    
-                    // Знімаємо блокування натискань
-                    isAnimating = false;
-                }, 300); // Час ease-out
+                els.photoWrapper.classList.remove(readyClass);
+                els.infoCard.classList.remove(readyClass);
+                els.quoteCard.classList.remove(readyClass);
+
+                els.photoWrapper.classList.add('carousel-center');
+                els.infoCard.classList.add('carousel-center');
+                els.quoteCard.classList.add('carousel-center');
+
+                setTimeout(() => { isAnimating = false; }, 400);
             });
-        }, 300); // Час ease-in
+
+        }, 400); 
     }
 
-    // Обробники подій
     els.btnNext.addEventListener('click', () => changeSlide('next'));
     els.btnPrev.addEventListener('click', () => changeSlide('prev'));
 });
-
 
 document.addEventListener("DOMContentLoaded", () => {
     const track = document.getElementById('reviews-track');
@@ -938,4 +956,91 @@ document.addEventListener("DOMContentLoaded", () => {
     // Перший запуск
     updateSlider();
     startAutoPlay();
+});
+
+
+// ==========================================
+    // БІЧНА НАВІГАЦІЯ (Scroll Spy)
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.side-scroller a');
+
+    if (sections.length > 0 && navLinks.length > 0) {
+        // Налаштування для "спостерігача"
+        const observerOptions = {
+            root: null,
+            // Спрацьовує, коли секція доходить приблизно до середини екрана
+            rootMargin: '-30% 0px -60% 0px', 
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const currentId = entry.target.getAttribute('id');
+                    
+                    // Проходимось по всіх посиланнях
+                    navLinks.forEach(link => {
+                        // Забираємо клас active у всіх `<li>`
+                        link.parentElement.classList.remove('active');
+                        // Додаємо клас active тому `<li>`, чий href співпадає з id секції
+                        if (link.getAttribute('href') === `#${currentId}`) {
+                            link.parentElement.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Вішаємо "спостерігача" на кожну секцію
+        sections.forEach(section => observer.observe(section));
+    }
+
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+    
+    // ==========================================
+    // СКРОЛ-ШПИГУН (Side Nav Update 01, 02...)
+    // ==========================================
+    const sections = document.querySelectorAll('.hero-background, section[id]');
+    const navLinks = document.querySelectorAll('.side-scroller li');
+
+    const observerOptions = {
+        root: null,
+        threshold: 0.3 // Спрацьовує, коли 30% секції на екрані
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const currentId = entry.target.getAttribute('id') || 'hero';
+                
+                navLinks.forEach(li => {
+                    li.classList.remove('active');
+                    const link = li.querySelector('a');
+                    if (link && link.getAttribute('href') === `#${currentId}`) {
+                        li.classList.add('active');
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+
+    // Клік по цифрах
+    navLinks.forEach((li) => {
+        li.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = li.querySelector('a').getAttribute('href');
+            const targetSection = document.querySelector(targetId === '#hero' ? '.hero-background' : targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    // ТУТ ТВІЙ КОД ДЛЯ АКОРДЕОНА (initAccordion)
 });
