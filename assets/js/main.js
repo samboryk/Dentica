@@ -9,7 +9,30 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.querySelector('.theme-toggle');
+    const body = document.body;
 
+    // 1. Перевіряємо, чи користувач вже обирав тему раніше
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        body.classList.add('light-mode');
+        themeToggle.classList.add('active');
+    }
+
+    // 2. Функція перемикання
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-mode');
+        themeToggle.classList.toggle('active');
+
+        // Зберігаємо вибір
+        if (body.classList.contains('light-mode')) {
+            localStorage.setItem('theme', 'light');
+        } else {
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   // Знаходимо всі кнопки-тригери акордеону
