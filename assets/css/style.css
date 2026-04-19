@@ -1,36 +1,35 @@
 html {
-  /* 16px * 62.5% = 10px */
+ 
   font-size: 62.5%; 
-  scrollbar-width: thin; /* Робить скрол тоншим */
+  scrollbar-width: thin;
     scrollbar-color: #444444 #111111;
 }
 
 ::-webkit-scrollbar {
-    width: 10px; /* Товщина вертикального скролу */
-    height: 10px; /* Товщина горизонтального скролу (якщо такий з'явиться) */
+    width: 10px;
+    height: 10px;
 }
 
-/* Доріжка (задній фон скролбару) */
+
 ::-webkit-scrollbar-track {
-    background-color: #111111; /* Темний фон, щоб зливався з сайтом */
+    background-color: #111111;
 }
 
-/* Сам повзунок */
+
 ::-webkit-scrollbar-thumb {
-    background-color: #444444; /* Темно-сірий колір повзунка */
-    border-radius: 10px; /* Красиві закруглені кінці */
+    background-color: #444444;
+    border-radius: 10px;
     
-    /* Маленький хитрий трюк: додаємо рамку кольору фону, 
-       щоб повзунок здавався ще тоншим і не прилипав до країв екрану */
+   
     border: 2px solid #111111; 
 }
 
-/* Повзунок при наведенні мишки (Hover) */
+
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #666666; /* Трохи світлішає при наведенні */
+    background-color: #666666;
     
-    /* АБО можеш розкоментувати рядок нижче, щоб він світився фірмовим блакитним кольором */
-    /* background-color: var(--powder-blue, #BFDCFF); */
+   
+   
 }
 
 
@@ -277,19 +276,21 @@ position: absolute;
   transform: rotate(45deg);
 }
 }
+/*---------------------------*/
+
+
 
 .hero-grid {
   display: grid;
-  grid-template-columns: repeat(10, 1fr); /* Тепер у нас рівно 10 рівних колонок */
+  grid-template-columns: repeat(20, 1fr); /* Змінено з 10 на 20 */
   grid-template-rows: repeat(3, 1fr);
-  min-height: calc(100vh - 100px); /* 100px - це висота вашого хедера, щоб не було зайвого скролу */
+  min-height: calc(100vh - 100px);
   position: relative;
   margin: 0 auto;
-  
 }
 
 .hero-bg-text{
-  grid-column: 1/-1;
+  grid-column: 1 / -1; /* Залишається без змін (на всю ширину) */
   grid-row: 1 ;
   font-size: 15vw; 
   line-height: 1;
@@ -304,7 +305,7 @@ position: absolute;
 }
 
 .hero-tooth{
-  grid-column: 4 / 8;
+  grid-column: 7 / 15; /* Було 4 / 8 */
   grid-row: 1 /  4;
   display: flex;
   -webkit-user-select: none; 
@@ -313,10 +314,6 @@ position: absolute;
   position: relative;
   justify-content: center;
   align-items: center;
-}
-
-#changing-text {
-    transition: opacity 0.5s ease-in-out;
 }
 
 .hero{
@@ -336,13 +333,13 @@ position: absolute;
     position: absolute;
     
     left: 50%;
-    transform: translateX(-50%); /* Центрування */
-    width: 100%; /* Тінь вужча за зуб */
+    transform: translateX(-50%);
+    width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Темна тінь */
-    border-radius: 50%; /* Овальна форма */
-    filter: blur(200px); /* Сильне розмиття */
-    z-index: 1; /* Тінь під зубом */
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    filter: blur(200px);
+    z-index: 1;
 }
 
 model-viewer::part(default-progress-bar) {
@@ -362,8 +359,7 @@ model-viewer::part(default-poster) {
   color: var(--powder-blue);
   font-weight: 300;
 }
-
-.hero-title{
+.hero-title {
   font-size: 2.2vw;
   -webkit-user-select: none; 
   -ms-user-select: none;    
@@ -371,39 +367,47 @@ model-viewer::part(default-poster) {
   z-index: 2;
 }
 
-.title-right{
-  grid-column: 6/8;
-  grid-row: 2 ;
+.title-right {
+  grid-column: 14 / 18; /* Було 6 / 8 */
+  grid-row: 2;
   display: block;
   justify-self: center; 
   align-self: center;
-  margin-left: 3rem;
-  margin-top: 5rem;
+  margin-left: 1vw; 
+  margin-top: 4.7vw; 
 }
 
-.title-right .thin-b{
-  margin-left: -3rem;
+.title-right .thin-b {
+  margin-left: -2.5vw; 
 }
 
-.title-left{
-  grid-column: 3/4;
-  grid-row: 2 ;
+.title-left {
+  grid-column: 6 / 8; /* Було 3 / 4 */
+  grid-row: 2;
   display: block;
   justify-self: center; 
   align-self: center;
-  margin-top: -100px;
-  margin-left: -220px;
+  margin-top: -3vw; 
+  margin-left: -11.46vw; 
 }
 
-.title-left .thin-w{
-  margin-left: 90px;
+.title-left .thin-w {
+  margin-left: 4.69vw; 
+}
+
+.star{
+width:1.82vw;
+}
+
+.star-right{
+    margin-left: 14vw;
 }
 
 .hero-bottom.bottom-left {
-  grid-column: 1 / 5; /* Даємо йому 4 колонки, щоб текст вільно дихав */
+  grid-column: 1 / 9; /* Було 1 / 5 */
   grid-row: 3;
-  align-self: end;    /* Притискаємо до самого низу екрана */
-  padding-bottom: 40px; /* Відступ від нижнього краю */
+  align-self: end;   
+  padding-bottom: 40px;
 }
 
 .hero-desc{
@@ -415,11 +419,11 @@ model-viewer::part(default-poster) {
 }
 
 .hero-bottom.bottom-right {
-  grid-column: 6 / 11; /* Від 6 до 9 колонки включно */
+  grid-column: 11 / 21; /* Було 6 / 11 */
   grid-row: 3;
   align-self: end;
-  display: flex;       /* Обов'язково вмикаємо flex, щоб картки стали в ряд */
-  justify-content: flex-end; /* Притискаємо вправо */
+  display: flex;      
+  justify-content: flex-end;
   gap: 20px;
   padding-bottom: 40px;
 }
@@ -504,40 +508,78 @@ model-viewer::part(default-poster) {
 }
 
 .sidebar-right {
-  position: absolute; /* Прив'язуємо до батьківського .hero, а не до вікна браузера */
-  right: 2rem;        /* Відступ від правого краю блоку .hero (20px) */
-  top: 50%;           /* Спускаємо на 50% висоти .hero */
-  transform: translateY(-50%); /* Відцентровуємо по вертикалі */
-  z-index: 10;        /* Гарантуємо, що іконки будуть поверх інших елементів */
+  position: absolute;
+  right: 2rem;       
+  top: 50%;          
+  transform: translateY(-50%);
+  z-index: 10;       
 }
 
-/* 2.Список з іконками (очищуємо від старого сміття) */
+
 .sidebar-socials {
   margin: 0;
   padding: 0;
-  list-style-type: none; /* Гарантовано прибираємо маркери списку */
+  list-style-type: none;
   display: flex;
-  flex-direction: column; /* Іконки залишаються одна під одною */
-  gap: 1.5rem; /* Чіткий вертикальний відступ між іконками (15px) */
-  align-items: center; /* Центруємо іконки горизонтально всередині контейнера */
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
 }
 
-/* 3.Стилі для самих посилань-кіл (оновлено для чистоти) */
+
 .sidebar-socials a {
-  width: 4rem;  /* Трохи більший розмір (40px base) */
-  height: 4rem; /* Чітко квадратне коло */
-  background-color: #333333; /* Такий же колір тла */
-  border-radius: 50%; /* Ідеально кругле */
+  width: 4rem; 
+  height: 4rem;
+  background-color: #333333;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0; /* Прибираємо старі відступи, які тепер регулюються через gap */
+  margin-bottom: 0;
 }
 
-/* Гарантоване очищення для li */
+
 .sidebar-socials li {
   list-style-type: none;
 }
+
+/* Анімація фонового тексту (зміна слів) */
+#changing-text {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+#changing-text.fade-out {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+#changing-text.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Float анімація для лівого заголовку */
+@keyframes floatLeft {
+  0%   { transform: translate(0px, 0px); }
+  33%  { transform: translate(-4px, -8px); }
+  66%  { transform: translate(3px, -4px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+/* Float анімація для правого заголовку */
+@keyframes floatRight {
+  0%   { transform: translate(0px, 0px); }
+  33%  { transform: translate(4px, -5px); }
+  66%  { transform: translate(-3px, -10px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+.title-left {
+  animation: floatLeft 7s ease-in-out infinite;
+}
+
+.title-right {
+  animation: floatRight 7s ease-in-out 1.5s infinite;
+}
+/*---------------------------*/
 
 .footer {
   background: var(--bg); 
@@ -594,7 +636,7 @@ model-viewer::part(default-poster) {
 }
 
 .footer-made{
-  color: var(--light-gray);
+  color: #4D4D4D;
   font-size: 1.4rem;
   font-weight: 400;
   text-align: center;
@@ -703,9 +745,9 @@ model-viewer::part(default-poster) {
 
 
 
-/* --- Права частина (Карта) --- */
+
 .contacts-map-wrapper {
-    grid-column: span 7; /* Займає 7 колонок */
+    grid-column: span 7;
     border-radius: 24px;
     overflow: hidden;
     border: 2px solid var(--charcoar-gray);
@@ -716,21 +758,21 @@ model-viewer::part(default-poster) {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Фільтр для карти (можеш прибрати, якщо хочеш оригінальні кольори) */
+   
     filter: contrast(0.9) opacity(0.9);
 }
 
-/* --- Темна картка (Деталі) --- */
+
 .contact-details-card {
     background-color: var(--super-gray, #222);
         border: 2px solid var(--charcoar-gray);
     border-radius: 24px;
     padding: 40px;
-    position: relative; /* Важливо для позиціонування аврори */
-    overflow: hidden; /* Щоб аврора не вилазила за краї */
+    position: relative;
+    overflow: hidden;
 }
 
-/* Обгортка контенту, щоб він був над авророю */
+
 .details-content {
     position: relative;
     z-index: 1; 
@@ -742,11 +784,11 @@ model-viewer::part(default-poster) {
 
 
 
-/* --- Типографіка всередині темної картки --- */
+
 .details-blocks {
     display: flex;
     flex-direction: column;
-    gap: 36px; /* Відстань між блоками, як на фото */
+    gap: 36px;
 }
 
 .info-block h3 {
@@ -793,7 +835,7 @@ model-viewer::part(default-poster) {
 .social-icon:hover {
     background-color: var(--powder-blue, );
     color: var(--rich-black);
-    transform: translateY(-2px); /* Легке підняття при наведенні */
+    transform: translateY(-2px);
 }
 
 
@@ -884,9 +926,7 @@ model-viewer::part(default-poster) {
     transform:translateX(200px) translateY(50px);
   }
 }
-/* =========================================
-   ФОРМА ТА КОНТАКТИ (ONLY CSS GRID)
-   ========================================= */
+
 
 .form-section {
     padding-bottom: 100px;
@@ -930,7 +970,7 @@ model-viewer::part(default-poster) {
     gap: 24px;
 }
 
-/* --- ЛІВА ЧАСТИНА --- */
+
 .form-info-side {
     display: grid;
     grid-template-rows: 115px 280px;
@@ -949,15 +989,15 @@ model-viewer::part(default-poster) {
     object-fit: cover;
 }
 
-/* --- ПРАВА ЧАСТИНА (ФОРМА) --- */
+
 .form-card {
     background-color: #222222;
     border: 1px solid #333333;
     border-radius: 24px;
-    padding: 48px; /* Збільшив падінг для дорогого вигляду */
+    padding: 48px;
     display: grid;
     grid-template-rows: 200px;
-    gap: 32px; /* Гармонійний відступ між блоками */
+    gap: 32px;
 }
 
 .form-card-header {
@@ -979,10 +1019,10 @@ model-viewer::part(default-poster) {
     margin: 0;
 }
 
-/* --- БЛОК ВВОДУ --- */
+
 .form-wrapper {
     display: grid;
-    gap: 10px; /* Більше повітря між лейблом і інпутом */
+    gap: 10px;
     padding-top: 25px;
 }
 
@@ -1001,7 +1041,7 @@ model-viewer::part(default-poster) {
     border: 1px solid #444444;
     border-radius: 16px;
     padding: 0 20px;
-    height: 60px; /* Зробив поле трохи вищим, під стать кнопці */
+    height: 60px;
     transition: border-color 0.3s ease;
 }
 
@@ -1038,7 +1078,7 @@ model-viewer::part(default-poster) {
 }
 #phoneInput::placeholder { color: #888888; }
 
-/* --- НАШ КАСТОМНИЙ ВИПАДАЮЧИЙ СПИСОК --- */
+
 .custom-country-list {
     position: absolute;
     top: calc(100% + 8px);
@@ -1071,7 +1111,7 @@ model-viewer::part(default-poster) {
 .custom-country-list::-webkit-scrollbar { width: 6px; }
 .custom-country-list::-webkit-scrollbar-thumb { background-color: #555555; border-radius: 10px; }
 
-/* --- СТИЛІ СКРОЛБАРУ (З ФІКСОМ КУТІВ) --- */
+
 .custom-country-list::-webkit-scrollbar { 
     width: 6px; 
 }
@@ -1079,8 +1119,7 @@ model-viewer::part(default-poster) {
 .custom-country-list::-webkit-scrollbar-track { 
     background: transparent; 
     
-    /* МАГІЯ ТУТ: додаємо відступи зверху і знизу доріжки. 
-       16px - це розмір твого border-radius. */
+   
     margin: 16px 0; 
 }
 
@@ -1106,7 +1145,7 @@ model-viewer::part(default-poster) {
 .country-item:hover { background-color: #333333; }
 .country-item.active { background-color: #444444; }
 
-/* --- ПОВІДОМЛЕННЯ ТА КНОПКА --- */
+
 .msg {
     font-size: 1.3rem;
     color: #ff4d4f;
@@ -1117,7 +1156,7 @@ model-viewer::part(default-poster) {
 }
 .msg.show { opacity: 1; }
 
-/* --- ФУТЕР ФОРМИ ТА АНІМАЦІЯ УСПІХУ --- */
+
 .form-footer {
     align-self: end; 
     display: grid;
@@ -1184,8 +1223,8 @@ model-viewer::part(default-poster) {
 @keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }
 @keyframes fill { 100% { box-shadow: inset 0px 0px 0px 50px var(--powder-blue, #BFDCFF); } }
 .trust {
-    padding: 100px 0 0 0; /* Додав нижній відступ для симетрії */
-    /* background-color: #0d0d0d; Розкоментуй, якщо потрібен темний фон секції */
+    padding: 100px 0 0 0;
+   
 }
 
 .trust-grid-container {
@@ -1195,19 +1234,19 @@ model-viewer::part(default-poster) {
     padding: 0 20px;
     display: grid;
     grid-template-columns: repeat(12, 1fr); 
-    gap: 24px; /* Однаковий відступ між усіма елементами */
+    gap: 24px;
 }
 
-/* --- ВЕРХНЯ ЧАСТИНА --- */
+
 .trust-content {
-    grid-column: span 6; /* Займає рівно половину (6 з 12 колонок) */
+    grid-column: span 6;
     display: flex;
     flex-direction: column;
    align-self: start;
    gap: 30px;
 }
 
-/* Додав базові стилі заголовка, щоб відповідав макету */
+
 
 
 .trust-description {
@@ -1215,17 +1254,17 @@ model-viewer::part(default-poster) {
     line-height: 26px;
     letter-spacing: -0.23px;
     margin: 0;
-    max-width: 380px; /* Трохи збільшив, щоб текст переносився як на дизайні */
+    max-width: 380px;
     color: var(--ice-blue); 
     font-weight: 300;
 }
 
 .trust-image-wrapper {
-    grid-column: span 6; /* Займає другу половину */
+    grid-column: span 6;
     border-radius: 24px;
     border: solid 2px var(--charcoar-gray);
     height: 335px;
-    overflow: hidden; /* Важливо: ховає краї картинки, якщо вони виходять за border-radius */
+    overflow: hidden;
 }
 
 .trust-image {
@@ -1235,24 +1274,24 @@ model-viewer::part(default-poster) {
     display: block;
 }
 
-/* --- НИЖНЯ ЧАСТИНА (Картки) --- */
+
 .trust-card {
-    grid-column: span 4; /* Кожна картка займає 4 колонки (разом 12) і автоматично падає на другий ряд */
+    grid-column: span 4;
     border-radius: 24px;
     border: solid 2px var(--charcoar-gray);
     padding: 32px 40px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Розносить цифру вгору, а текст вниз */
-    height: 260px; /* Задав фіксовану висоту для карток */
+    justify-content: space-between;
+    height: 260px;
     box-sizing: border-box;
 }
 
 .trust-card-number {
     font-size: 64px;
-    font-weight: 300; /* На макеті цифри виглядають тоншими */
+    font-weight: 300;
     letter-spacing: -0.02em;
-    margin: 0; /* Відступ прибрав, бо працює space-between */
+    margin: 0;
 }
 
 .trust-card-title {
@@ -1267,7 +1306,7 @@ model-viewer::part(default-poster) {
     margin: 0;
 }
 
-/* Кольори карток */
+
 .trust-card-dark {
     background-color: var(--super-gray);
     color: var(--ice-blue);
@@ -1593,17 +1632,15 @@ padding-bottom: 15px;
     font-weight: 500;
 }
 
-/* =========================================
-   ОДНОЧАСНА АНІМАЦІЯ "КАРУСЕЛЬ" ДЛЯ КОМАНДИ
-========================================= */
 
-/* Анімуємо ОБГОРТКУ фото, а не саму картинку */
+
+
 .team-image-wrapper, #team-info-card, #team-quote-card {
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
     will-change: transform, opacity;
 }
 
-/* Забороняємо картинці анімуватись окремо від обгортки */
+
 #team-photo {
     transition: none !important;
     opacity: 1 !important;
@@ -1612,35 +1649,35 @@ padding-bottom: 15px;
 
 
 
-/* КЛАСИ ДЛЯ АНІМАЦІЇ */
 
-/* Від'їжджає вліво і зникає */
+
+
 .carousel-out-left {
     opacity: 0 !important;
     transform: translateX(-80px) !important;
 }
 
-/* Від'їжджає вправо і зникає */
+
 .carousel-out-right {
     opacity: 0 !important;
     transform: translateX(80px) !important;
 }
 
-/* Готується виїхати справа (Миттєве переміщення без анімації) */
+
 .carousel-ready-right {
     opacity: 0 !important;
     transform: translateX(80px) !important;
     transition: none !important; 
 }
 
-/* Готується виїхати зліва (Миттєве переміщення без анімації) */
+
 .carousel-ready-left {
     opacity: 0 !important;
     transform: translateX(-80px) !important;
     transition: none !important;
 }
 
-/* Активний стан (По центру) */
+
 .carousel-center {
     opacity: 1 !important;
     transform: translateX(0) !important;
@@ -1667,16 +1704,16 @@ padding-bottom: 15px;
 }
 
 .faq-title-accent {
-  color: var(--powder-blue); /* Приглушений колір слова "Цікаво" */
+  color: var(--powder-blue);
 }
 
 
 .faq-list {
-  border-top: 1px solid  var(--charcoar-gray); /* Верхня лінія першого елемента */
+  border-top: 1px solid  var(--charcoar-gray);
 }
 
 .faq-item {
-  border-bottom: 1px solid var(--charcoar-gray); /* Лінія між елементами */
+  border-bottom: 1px solid var(--charcoar-gray);
 }
 
 .faq-item-trigger {
@@ -1774,7 +1811,7 @@ padding-bottom: 15px;
   transform: rotate(180deg);
 }
 
-/* --- СЕКЦІЯ ТА КОНТЕЙНЕР --- */
+
 .reviews {
     padding-bottom: 100px;
     width: 100%;
@@ -1790,7 +1827,7 @@ padding-bottom: 15px;
     gap: 40px;
 }
 
-/* --- ШАПКА --- */
+
 .reviews-header {
     display: flex;
     justify-content: space-between;
@@ -1808,7 +1845,7 @@ padding-bottom: 15px;
     gap: 16px;
 }
 
-/* --- ОСНОВНА СІТКА --- */
+
 .reviews-content-grid {
     display: flex;
     flex-direction: column;
@@ -1816,26 +1853,26 @@ padding-bottom: 15px;
     width: 100%;
 }
 
-/* --- СЛАЙДЕР (Вікно) --- */
+
 .reviews-slider-viewport {
     width: 100%;
-    height: 300px; /* Статична висота карток */
-    overflow: hidden; /* Ховаємо картки, які не влізли */
+    height: 300px;
+    overflow: hidden;
     position: relative;
 }
 
-/* Трек, який буде рухатись */
+
 .reviews-track {
     display: flex;
-    gap: 24px; /* Відступ між картками */
+    gap: 24px;
     height: 100%;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* --- КАРТКА ВІДГУКУ --- */
+
 .review-card {
-    /* Розрахунок ширини: 1/3 від всього контейнера мінус відступи */
-    /* (100% мінус 2 відступи по 24px) поділити на 3 */
+   
+   
     width: calc((100% - 48px) / 3); 
     flex-shrink: 0; 
     background-color: var(--super-gray, #222);
@@ -1889,7 +1926,6 @@ padding-bottom: 15px;
     color: #A0AAB5;
 }
 
-/* --- ПАГІНАЦІЯ (Крапочки) --- */
 .reviews-pagination {
     display: flex;
     justify-content: center;
@@ -1910,8 +1946,6 @@ padding-bottom: 15px;
     transform: scale(1.2);
 }
 
-
-
 .price-page {
     display: block;
     box-sizing: border-box;
@@ -1925,8 +1959,6 @@ padding-bottom: 15px;
     width: 100%;
     padding-bottom: 100px;
 }
-
-
 
 .price-page-header {
     margin-bottom: 40px;
@@ -1969,9 +2001,9 @@ padding-bottom: 15px;
 }
 
 .price-card.active-card {
-    border-color: var(--powder-blue, #BFDCFF); /* Це робить рамку синьою */
-    box-shadow: 0 0 15px rgba(191, 220, 255, 0.15); /* Додає світіння */
-    transform: translateY(-2px); /* Також змушує активну картку трохи підніматися */
+    border-color: var(--powder-blue, #BFDCFF);
+    box-shadow: 0 0 15px rgba(191, 220, 255, 0.15);
+    transform: translateY(-2px);
 }
 
 .price-card {
@@ -2020,7 +2052,6 @@ padding-bottom: 15px;
     flex-grow: 1;
 }
 
-
 .price-row {
     display: flex;
     align-items: flex-end; 
@@ -2037,7 +2068,6 @@ padding-bottom: 15px;
     order: 1;
 }
 
-
 .price-row::after {
     content: "";
     flex-grow: 1; 
@@ -2052,9 +2082,9 @@ padding-bottom: 15px;
     font-size: 1.6rem;
     white-space: nowrap; 
     margin-bottom: 1px;
-    order: 3; /* 3. Третьою йде ціна (в самий кінець) */
+    order: 3;
 }
-/* --- ПОСИЛАННЯ ВНИЗУ КАРТКИ --- */
+
 .price-card-link {
     margin-top: 32px; 
     padding-top: 16px;
@@ -2072,8 +2102,6 @@ padding-bottom: 15px;
     color: #ffffff;
 }
 
-
-
 .price-page-download {
     margin-top: 60px;
     display: flex;
@@ -2081,7 +2109,6 @@ padding-bottom: 15px;
     align-items: center;
     gap: 40px;
 }
-
 
 .price-disclaimer {
     text-align: center;
@@ -2100,7 +2127,6 @@ padding-bottom: 15px;
     font-weight: 500;
 }
 
-
 .price-page-download-container {
     width: 100%;
     display: flex;
@@ -2109,14 +2135,12 @@ padding-bottom: 15px;
     gap: 20px;
 }
 
-
 .price-page-download-container .footer-divider {
     height: 1px;
     background-color: #333333;
     flex-grow: 1;
     max-width: 450px;
 }
-
 
 .price-page-download-container .btn {
     width: auto;
@@ -2137,7 +2161,6 @@ padding-bottom: 15px;
   font-size: 5.5rem;
 }
 
-
 .cta-title-small{
   font-size: 5rem;
 }
@@ -2149,8 +2172,6 @@ padding-bottom: 15px;
 .team-grid-page{
   grid-template-rows: 1fr auto;
 }
-
-
 
 .team-header-grid{
   display: flex;
@@ -2164,7 +2185,6 @@ padding-bottom: 15px;
   margin: 0 auto;
 }
 
-/* --- СЕКЦІЯ: РЕЗУЛЬТАТИ (СЛАЙДЕР) --- */
 .results {
   padding: 60px 0 100px;
   text-align: center;
@@ -2177,11 +2197,10 @@ padding-bottom: 15px;
 }
 
 .results-header .accent-text {
-  color: #6a8c9e; /* Сизуватий колір */
+  color: #6a8c9e;
   font-style: italic;
 }
 
-/* Обгортка слайдера з кнопками */
 .results-slider-wrapper {
   position: relative;
   display: flex;
@@ -2191,23 +2210,21 @@ padding-bottom: 15px;
   margin: 0 auto;
 }
 
-/* Сама зона слайдера */
 .results-swiper {
   width: 100%;
-  padding: 40px 0; /* Місце для збільшеного центрального слайда */
+  padding: 40px 0;
   overflow: hidden;
 }
 
-/* Налаштування слайдів для ефекту перекриття */
 .swiper-slide {
-  width: 320px; /* Фіксована ширина слайда */
-  height: 400px; /* Фіксована висота */
+  width: 320px;
+  height: 400px;
   border-radius: 16px;
   overflow: hidden;
-  opacity: 0.5; /* Бокові трохи прозорі */
-  transition: all 0.5s ease; /* Плавний перехід */
-  transform: scale(0.85); /* Бокові зменшені */
-  filter: grayscale(30%); /* Можна додати легке знебарвлення боковим */
+  opacity: 0.5;
+  transition: all 0.5s ease;
+  transform: scale(0.85);
+  filter: grayscale(30%);
 }
 
 .swiper-slide img {
@@ -2217,16 +2234,14 @@ padding-bottom: 15px;
   display: block;
 }
 
-/* АКТИВНИЙ (центральний) слайд */
 .swiper-slide-active {
   opacity: 1;
-  transform: scale(1.15); /* Збільшуємо */
+  transform: scale(1.15);
   filter: grayscale(0%);
-  z-index: 10; /* Виводимо на передній план */
-  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.8); /* Тінь для виділення */
+  z-index: 10;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.8);
 }
 
-/* Навігація (кнопки) */
 .slider-nav {
   position: absolute;
   top: 50%;
@@ -2257,8 +2272,6 @@ padding-bottom: 15px;
   right: 0;
 }
 
-
-/* Контейнер для плаваючих кнопок */
 .floating-widgets {
     position: fixed;
     bottom: 25px;
@@ -2266,10 +2279,9 @@ padding-bottom: 15px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    z-index: 999; /* Щоб кнопки були поверх усього контенту */
+    z-index: 999;
 }
 
-/* Загальні стилі для круглих кнопок */
 .widget-btn {
     width: 56px;
     height: 56px;
@@ -2283,9 +2295,8 @@ padding-bottom: 15px;
     transition: all 0.3s ease;
 }
 
-/* Кнопка "ШІ Чат" (робимо акцентною) */
 .chat-btn {
-    background-color: var(--powder-blue); /* Твій акцентний колір */
+    background-color: var(--powder-blue);
     color: var(--charcoar-gray);
 }
 
@@ -2294,13 +2305,13 @@ padding-bottom: 15px;
     box-shadow: 0 6px 20px rgba(191, 220, 255, 0.4);
 }
 
-/* Кнопка "Вгору" (робимо темною з бордером) */
+
 .scroll-btn {
     background-color: var(--charcoar-gray);
     color: var(--powder-blue);
     border: 1px solid var(--light-gray);
     
-    /* Ховаємо кнопку по замовчуванню */
+   
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px); 
@@ -2311,29 +2322,16 @@ padding-bottom: 15px;
     border-color: var(--powder-blue);
 }
 
-/* Клас, який буде додаватися через JS для показу кнопки "Вгору" */
+
 .scroll-btn.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
-/* Адаптив для мобільних пристроїв */
-@media (max-width: 768px) {
-    .floating-widgets {
-        bottom: 20px;
-        right: 20px;
-    }
-    .widget-btn {
-        width: 50px;
-        height: 50px;
-    }
-}
-
-/* Вікно чату (сховане за замовчуванням) */
 .ai-chat-window {
     position: fixed;
-    bottom: 90px; /* Трохи вище за плаваючі кнопки */
+    bottom: 90px;
     right: 24px;
     width: 350px;
     height: 500px;
@@ -2346,21 +2344,19 @@ padding-bottom: 15px;
     z-index: 1000;
     overflow: hidden;
     
-    /* Анімація появи */
+   
     opacity: 0;
     transform: translateY(20px) scale(0.95);
     pointer-events: none;
     transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Клас для показу вікна */
 .ai-chat-window.show {
     opacity: 1;
     transform: translateY(0) scale(1);
     pointer-events: auto;
 }
 
-/* Шапка */
 .ai-chat-header {
     background: linear-gradient(to right, #2D2D2D, #1a1a1a);
     padding: 16px 20px;
@@ -2413,7 +2409,6 @@ padding-bottom: 15px;
     color: #ff6b6b;
 }
 
-/* Тіло чату (Скрол) */
 .ai-chat-body {
     flex-grow: 1;
     padding: 20px;
@@ -2428,7 +2423,6 @@ padding-bottom: 15px;
 .ai-chat-body::-webkit-scrollbar { width: 6px; }
 .ai-chat-body::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
 
-/* Повідомлення */
 .chat-msg {
     max-width: 85%;
     padding: 12px 16px;
@@ -2451,7 +2445,6 @@ padding-bottom: 15px;
     border-radius: 16px 16px 4px 16px;
 }
 
-/* Індикатор друкування бота */
 .typing-indicator {
     display: flex;
     gap: 4px;
@@ -2478,7 +2471,6 @@ padding-bottom: 15px;
     40% { transform: scale(1); }
 }
 
-/* Футер (Ввід) */
 .ai-chat-footer {
     padding: 16px;
     border-top: 1px solid #333;
@@ -2520,9 +2512,6 @@ padding-bottom: 15px;
 .ai-chat-footer button:hover {
     transform: scale(1.05);
 }
-
-
-
 
 .doctor-profile {
     padding-bottom:100px ;
@@ -2599,17 +2588,14 @@ padding-bottom: 15px;
     flex-shrink: 0;
 }
 
-/* Контент всередині акордеона */
 .accordion-content {
     display: grid;
-    grid-template-rows: 0fr; /* CSS магія для плавного відкриття */
+    grid-template-rows: 0fr;
     transition: grid-template-rows 0.4s ease;
 }
 
-
-
 .accordion-inner-text {
-    overflow: hidden; /* Обов'язково для grid-template-rows 0fr */
+    overflow: hidden;
 }
 
 .accordion-inner-text p {
@@ -2617,14 +2603,14 @@ padding-bottom: 15px;
     line-height: 1.6;
     color: var(--ice-blue);
     margin: 0 0 16px 0;
-    padding: 0 32px; /* Відступи по боках */
+    padding: 0 32px;
 }
 
 .accordion-inner-text p:last-child {
-    margin-bottom: 32px; /* Відступ знизу перед закриттям блоку */
+    margin-bottom: 32px;
 }
 
-/* Стан відкритого акордеона */
+
 .accordion-item.active {
     border-color: var(--light-gray, #555);
 }
@@ -2634,29 +2620,27 @@ padding-bottom: 15px;
 }
 
 .accordion-item.active .accordion-btn {
-    /* Розворот іконки, як на макеті */
+   
     transform: rotate(180deg); 
 }
 
-/* --- Права частина (Фото) --- */
 .doctor-photo-wrapper {
-    grid-column: span 5; /* Займає 5 колонок */
+    grid-column: span 5;
     background-color: var(--powder-blue);
     border-radius: 20px 60px 20px 60px;
-    height: 480px; /* Фіксована висота, як ти просив раніше */
+    height: 480px;
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* Притискаємо фото лікаря до низу */
+    align-items: flex-end;
     overflow: hidden;
 }
 
 .doctor-photo {
-    width: 90%; /* Або 100%, залежно від того, як обрізане твоє фото */
+    width: 90%;
     height: auto;
     object-fit: contain;
     display: block;
 }
-
 
 .certificates {
     padding: 0px 0 100px 0;
@@ -2670,7 +2654,7 @@ padding-bottom: 15px;
     padding: 0 20px;
     display: flex !important;
     flex-direction: column;
-    align-items: center; /* Центруємо заголовок */
+    align-items: center;
 }
 
 .certificates-title {
@@ -2776,11 +2760,6 @@ padding-bottom: 15px;
     margin-bottom: 0; 
 }
 
-
-
-/* =========================================
-   СЕКЦІЯ РЕЗУЛЬТАТІВ (3D Слайдер на 5 карток)
-========================================= */
 .results-section {
     padding-bottom: 100px;
     width: 100%;
@@ -2833,7 +2812,7 @@ padding-bottom: 15px;
     border-radius: 20px;
     overflow: hidden;
     
-    /* ЗБІЛЬШЕНО ЧАС АНІМАЦІЇ ДЛЯ ПЛАВНОСТІ (0.8s) */
+   
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
                 opacity 0.8s ease, 
                 filter 0.8s ease, 
@@ -2853,17 +2832,15 @@ padding-bottom: 15px;
     display: block;
 }
 
-/* --- СТАН 1: Центральний (Активний) --- */
 .result-slide.active {
     opacity: 1;
     transform: scale(1) translateX(0);
     z-index: 5;
-    filter: grayscale(0%) brightness(1); /* Кольорове, світле */
+    filter: grayscale(0%) brightness(1);
     pointer-events: auto;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
 }
 
-/* --- СТАН 2: Перші бокові (Ближчі до центру) --- */
 .result-slide.prev-1 {
     opacity: 1;
     transform: scale(0.85) translateX(-70%);
@@ -2882,7 +2859,6 @@ padding-bottom: 15px;
     cursor: pointer;
 }
 
-/* --- СТАН 3: Другі бокові (Дальні) --- */
 .result-slide.prev-2 {
     opacity: 1;
     transform: scale(0.7) translateX(-145%);
@@ -2901,7 +2877,6 @@ padding-bottom: 15px;
     cursor: pointer;
 }
 
-/* --- Пагінація --- */
 .results-pagination {
     display: flex;
     justify-content: center;
@@ -2924,8 +2899,6 @@ padding-bottom: 15px;
     width: 6px;
     height: 6px;
 }
-
-
 
 .single-service{
   padding-bottom: 100px;
@@ -2978,7 +2951,6 @@ padding-bottom: 15px;
     gap: 16px;
 }
 
-
 .privacy-page {
     padding: 60px 0 100px 0;
     width: 100%;
@@ -3007,7 +2979,7 @@ padding-bottom: 15px;
     color: #888888;
     font-size: 1.4rem;
 }
-/* Стилізація самого тексту */
+
 .privacy-content {
     color: #cccccc;
     font-size: 1.6rem;
@@ -3029,7 +3001,7 @@ padding-bottom: 15px;
 .privacy-content ul {
     margin-bottom: 30px;
     padding-left: 20px;
-    list-style-type: none; /* Кастомні маркери */
+    list-style-type: none;
 }
 
 .privacy-content li {
@@ -3038,7 +3010,6 @@ padding-bottom: 15px;
     padding-left: 15px;
 }
 
-/* Робимо гарні крапочки для списку */
 .privacy-content li::before {
     content: "•";
     color: var(--powder-blue, #BFDCFF);
@@ -3053,10 +3024,6 @@ padding-bottom: 15px;
     font-weight: 500;
 }
 
-/* =========================================
-   СТОРІНКА 404 (NOT FOUND)
-   ========================================= */
-
 .not-found-wrapper {
     display: flex;
     align-items: center;
@@ -3068,17 +3035,17 @@ padding-bottom: 15px;
     width: 100%;
     display: flex;
     justify-content: center;
-    min-height: 85vh; /* Центрує наш новий контейнер */
+    min-height: 85vh;
 }
 
-/* НОВИЙ КОНТЕЙНЕР ЗАМІСТЬ ГЛОБАЛЬНОГО */
+
 .not-found-container {
     text-align: center;
     max-width: 800px;
     padding: 0 20px;
     display: flex;
-    flex-direction: column; /* Змушує елементи йти згори донизу */
-    align-items: center; /* Центрує елементи по горизонталі */
+    flex-direction: column;
+    align-items: center;
 }
 
 .not-found-title {
@@ -3098,7 +3065,6 @@ padding-bottom: 15px;
   display: flex;
 }
 
-
 .not-found-subtitle {
     font-size: 3.2rem;
     font-weight: 400;
@@ -3111,7 +3077,7 @@ padding-bottom: 15px;
     color: #888888;
     line-height: 1.6;
     max-width: 600px;
-    margin: 0 0 40px 0; /* Прибрали auto, бо flex і так центрує */
+    margin: 0 0 40px 0;
 }
 
 .not-found-btn {
