@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.querySelector('.theme-toggle');
     const body = document.body;
@@ -187,549 +191,61 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-
 document.addEventListener('DOMContentLoaded', () => {
-    const filterButtons = document.querySelectorAll('.price-page-filter-btn');
-    const priceCards = document.querySelectorAll('.price-card');
-    const priceGrid = document.querySelector('.price-page-grid');
-
+    const filter = document.querySelector('.price-page-filter');
+    const buttons = document.querySelectorAll('.price-page-filter-btn');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
-    const aiChatBtn = document.getElementById('aiChatBtn');
-
-    let isAutoScrolling = false; 
-    let scrollTimeout;
-
-    // 1. Кліки по кнопках фільтру
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            isAutoScrolling = true;
-            clearTimeout(scrollTimeout);
-
-            // Знімаємо активність з усіх і додаємо ТІЛЬКИ тій, по якій клікнули
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-
-            const targetId = this.getAttribute('data-target');
-            
-            if (targetId) {
-                const targetCard = document.getElementById(targetId);
-                
-                if (targetCard) {
-                    priceCards.forEach(card => card.classList.remove('active-card'));
-                    targetCard.classList.add('active-card');
-
-                    targetCard.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'center' 
-                    });
-
-                    scrollTimeout = setTimeout(() => {
-                        isAutoScrolling = false;
-                    }, 800); 
-                }
-            }
-        });
-    });
-
-    // 2. Скрол мишкою/пальцем
+    
+    // 1. Поява кнопки "Вгору" та границя фільтра при скролі
     window.addEventListener('scroll', () => {
-        if (scrollTopBtn) {
-            if (window.scrollY > 300) {
-                scrollTopBtn.classList.add('show');
-            } else {
-                scrollTopBtn.classList.remove('show');
-            }
-        }
+        const scrollY = window.scrollY;
 
-        if (!isAutoScrolling && priceGrid) {
-            const gridPosition = priceGrid.getBoundingClientRect().top;
-            
-            // Якщо проскролили вище блоку з картками
-            if (gridPosition > 150) { 
-                // ПРОСТО знімаємо всі класи, НІЧОГО не додаємо
-                priceCards.forEach(card => card.classList.remove('active-card'));
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-            }
-        }
-    });
-
-    // 3. Клік по кнопці "Вгору"
-    if (scrollTopBtn) {
-        scrollTopBtn.addEventListener('click', () => {
-            isAutoScrolling = true; 
-            clearTimeout(scrollTimeout);
-            
-            // ПРОСТО знімаємо всі класи перед польотом вгору
-            priceCards.forEach(card => card.classList.remove('active-card'));
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-
-            scrollTimeout = setTimeout(() => {
-                isAutoScrolling = false;
-            }, 800);
-        });
-    }
-
-    // 4. Клік по чату
-    if (aiChatBtn) {
-        aiChatBtn.addEventListener('click', () => {
-            console.log('Відкриття вікна ШІ помічника...');
-        });
-    }
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Елементи
-    const chatBtn = document.getElementById('aiChatBtn');
-    const chatWindow = document.getElementById('aiChatWindow');
-    const closeBtn = document.getElementById('aiChatCloseBtn');
-    const chatBody = document.getElementById('aiChatBody');
-    const chatInput = document.getElementById('aiChatInput');
-    const sendBtn = document.getElementById('aiChatSendBtn');
-
-    // === НАЛАШТУВАННЯ ===
-    const API_KEY = "AIzaSyDv3hdDdrIfkeiBmfoxL3xOr1E8NWAvaYo"; // Твій ключ
-
-    // Актуальна модель на квітень 2026
-    const MODEL_NAME = "gemini-2.5-flash";        // Рекомендую для чату (швидко + добре)
-    // Альтернативи:
-    // const MODEL_NAME = "gemini-2.5-pro";       // потужніша, але дорожча
-    // const MODEL_NAME = "gemini-2.5-flash-lite"; // найдешевша для великих обсягів
-
-    const API_URL = `https://generativelanguage.googleapis.com/v1/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
-
-    let isSending = false; // Захист від подвійних запитів
-
-    // Логіка відкриття/закриття
-    if (chatBtn) {
-        chatBtn.onclick = () => {
-            chatWindow.classList.toggle('show');
-            chatInput?.focus();
-            console.log("Відкриття вікна Dentica AI...");
-        };
-    }
-
-    closeBtn?.addEventListener('click', () => {
-        chatWindow.classList.remove('show');
-    });
-
-    // Функція відправки повідомлення
-    async function handleSendMessage() {
-        if (isSending) return;
-        const message = chatInput.value.trim();
-        if (!message) return;
-
-        isSending = true;
-        sendBtn.disabled = true;
-
-        // Додаємо повідомлення користувача
-        addMessage('user', message);
-        chatInput.value = '';
-        showTypingIndicator();
-
-        try {
-            const response = await fetch(API_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    contents: [{
-                        parts: [{
-                            text: `${DENTICA_CONTEXT || ''}\n\nКористувач: ${message}`
-                        }]
-                    }],
-                    generationConfig: {
-                        temperature: 0.7,
-                        maxOutputTokens: 1000,
-                    }
-                })
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                console.error("API Error:", data);
-                let errorMsg = data.error?.message || "Помилка сервера";
-
-                if (data.error?.code === 404) {
-                    errorMsg = `Модель ${MODEL_NAME} не знайдена. Спробуй іншу модель (наприклад gemini-2.5-flash).`;
-                }
-
-                throw new Error(errorMsg);
-            }
-
-            // Отримуємо текст відповіді
-            const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text 
-                || "Вибачте, не вдалося згенерувати відповідь.";
-
-            removeTypingIndicator();
-            addMessage('bot', aiText);
-
-        } catch (error) {
-            console.error("Chat Error:", error);
-            removeTypingIndicator();
-            addMessage('bot', "Вибачте, сталася помилка при обробці запиту. Спробуйте ще раз.");
-        } finally {
-            isSending = false;
-            sendBtn.disabled = false;
-            chatInput.focus();
-        }
-    }
-
-    // Рендер повідомлень
-    function addMessage(sender, text) {
-        const msgDiv = document.createElement('div');
-        msgDiv.className = `chat-msg ${sender}-msg`;
-        msgDiv.innerHTML = `<p>${text.replace(/\n/g, '<br>')}</p>`;
-        chatBody.appendChild(msgDiv);
-        chatBody.scrollTop = chatBody.scrollHeight;
-    }
-
-    function showTypingIndicator() {
-        const indicator = document.createElement('div');
-        indicator.className = 'chat-msg bot-msg typing-indicator';
-        indicator.id = 'temp-typing';
-        indicator.innerHTML = `<span></span><span></span><span></span>`;
-        chatBody.appendChild(indicator);
-        chatBody.scrollTop = chatBody.scrollHeight;
-    }
-
-    function removeTypingIndicator() {
-        document.getElementById('temp-typing')?.remove();
-    }
-
-    // Слухачі подій
-    sendBtn?.addEventListener('click', handleSendMessage);
-    chatInput?.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            handleSendMessage();
-        }
-    });
-
-    // Додатковий дебаг: вивести доступні моделі в консоль
-    console.log(`Dentica AI запущено з моделлю: ${MODEL_NAME}`);
-});
-
-
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.diff-card');
-    const toothViewer = document.getElementById('diffToothViewer');
-    
-    if (cards.length === 0) return;
-
-    let currentIndex = 0;
-    const totalCards = cards.length;
-    let autoplayInterval;
-    let cameraRotation = 0; // Для 3D зуба
-
-    // Функція, яка роздає жорсткі стани карткам та крутить зуб
-    function updateStates(index) {
-        // Зациклення індексів
-        if (index >= totalCards) index = 0;
-        if (index < 0) index = totalCards - 1;
-        
-        currentIndex = index;
-
-        // 1. Обертаємо 3D Зуб (через камеру моделі)
-        cameraRotation += 60; // Кожен слайд крутить камеру на 60 градусів
-        if (toothViewer) {
-            // Формат: "горизонталь вертикаль віддалення"
-            toothViewer.setAttribute('camera-orbit', `${cameraRotation}deg 90deg auto`);
-        }
-
-        // 2. Роздаємо класи карткам
-        cards.forEach((card, i) => {
-            // Очищаємо всі класи
-            card.classList.remove('active', 'next', 'prev', 'hidden');
-
-            if (i === currentIndex) {
-                // Активна (по центру, синя)
-                card.classList.add('active');
-            } else if (i === (currentIndex + 1) % totalCards) {
-                // Наступна (визирає справа)
-                card.classList.add('next');
-            } else if (i === (currentIndex - 1 + totalCards) % totalCards) {
-                // Попередня (та, що щойно сховалася за зуб)
-                card.classList.add('prev');
-            } else {
-                // Всі інші далеко справа
-                card.classList.add('hidden');
-            }
-        });
-    }
-
-    function startAutoplay() {
-        autoplayInterval = setInterval(() => {
-            updateStates(currentIndex + 1);
-        }, 4000); // 4 секунди на слайд
-    }
-
-    function stopAutoplay() {
-        clearInterval(autoplayInterval);
-    }
-
-    // Клік по будь-якій картці перемикає слайдер на неї
-    cards.forEach((card, index) => {
-        card.addEventListener('click', () => {
-            updateStates(index);
-            stopAutoplay();
-            startAutoplay();
-        });
-    });
-
-    const container = document.getElementById('diffCardsContainer');
-    if (container) {
-        container.addEventListener('mouseenter', stopAutoplay);
-        container.addEventListener('mouseleave', startAutoplay);
-    }
-
-    // Ініціалізація
-    updateStates(0);
-    startAutoplay();
-});
-
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    const teamData = [
-        {
-            photo: "assets/images/doctor1.png", 
-            name: "Олександра Ромашевська",
-            role: "Головний лікар-стоматолог",
-            desc: "Експерт з естетичної стоматології та складних реставрацій. Поєднує багаторічний досвід із цифровими технологіями, створюючи ідеальні посмішки з увагою до кожної деталі.",
-            number: "01",
-            quote: "Досконалість у кожній деталі вашої посмішки"
-        },
-        {
-            photo: "assets/images/doctor2.png", 
-            name: "Іван Петренко",
-            role: "Хірург-імплантолог",
-            desc: "Спеціалізується на безболісній хірургії та відновленні втрачених зубів. Використовує передові протоколи лікування для максимального комфорту пацієнтів.",
-            number: "02",
-            quote: "Повертаємо впевненість та радість життя"
-        },
-        {
-            photo: "assets/images/doctor3.png", 
-            name: "Марія Коваль",
-            role: "Ортодонт",
-            desc: "Допомагає вирівняти зуби та виправити прикус у будь-якому віці за допомогою сучасних брекет-систем та невидимих елайнерів.",
-            number: "03",
-            quote: "Рівні зуби — це фундамент здоров'я"
-        }
-    ];
-
-    let currentIndex = 0;
-    let isAnimating = false;
-
-    const els = {
-        photo: document.getElementById('team-photo'), // Картинка (для заміни src)
-        photoWrapper: document.querySelector('.team-image-wrapper'), // Обгортка (для АНІМАЦІЇ)
-        infoCard: document.getElementById('team-info-card'),
-        quoteCard: document.getElementById('team-quote-card'),
-        name: document.getElementById('team-name'),
-        role: document.getElementById('team-role'),
-        desc: document.getElementById('team-desc'),
-        number: document.getElementById('team-number'),
-        quote: document.getElementById('team-quote'),
-        btnNext: document.getElementById('team-next'),
-        btnPrev: document.getElementById('team-prev')
-    };
-
-    if (!els.photo || !els.btnNext) return;
-
-    // Початковий стан: ставимо по центру
-    els.photoWrapper.classList.add('carousel-center');
-    els.infoCard.classList.add('carousel-center');
-    els.quoteCard.classList.add('carousel-center');
-
-    teamData.forEach(member => {
-        const img = new Image();
-        img.src = member.photo;
-    });
-
-    function changeSlide(direction) {
-        if (isAnimating) return;
-        isAnimating = true;
-
-        const outClass = direction === 'next' ? 'carousel-out-left' : 'carousel-out-right';
-        const readyClass = direction === 'next' ? 'carousel-ready-right' : 'carousel-ready-left';
-
-        if (direction === 'next') {
-            currentIndex = (currentIndex + 1) % teamData.length;
+        // Кнопка вгору
+        if (scrollY > 400) {
+            scrollTopBtn.classList.add('show');
         } else {
-            currentIndex = (currentIndex - 1 + teamData.length) % teamData.length;
+            scrollTopBtn.classList.remove('show');
         }
 
-        const nextData = teamData[currentIndex];
+        // Границя для фільтра (is-pinned)
+        if (filter.getBoundingClientRect().top <= 0) {
+            filter.classList.add('is-pinned');
+        } else {
+            filter.classList.remove('is-pinned');
+        }
+    });
 
-        // 1. ВІДПРАВЛЯЄМО ВЕСЬ КОНТЕНТ ЗА ЕКРАН
-        els.photoWrapper.classList.remove('carousel-center');
-        els.infoCard.classList.remove('carousel-center');
-        els.quoteCard.classList.remove('carousel-center');
+    // 2. Клік "Вгору"
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-        els.photoWrapper.classList.add(outClass);
-        els.infoCard.classList.add(outClass);
-        els.quoteCard.classList.add(outClass);
+    // 3. Кліки по фільтрах + підсвітка
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-target');
+            const targetCard = document.getElementById(targetId);
+            
+            if (targetCard) {
+                const offset = filter.offsetHeight + 20;
+                const elementPosition = targetCard.getBoundingClientRect().top + window.pageYOffset;
+                
+                window.scrollTo({
+                    top: elementPosition - offset,
+                    behavior: 'smooth'
+                });
 
-        // 2. Чекаємо поки все сховається
-        setTimeout(() => {
-            // Міняємо дані (картинка зараз невидима)
-            els.photo.src = nextData.photo;
-            els.name.textContent = nextData.name;
-            els.role.textContent = nextData.role;
-            els.desc.textContent = nextData.desc;
-            els.number.textContent = nextData.number;
-            els.quote.textContent = nextData.quote;
-
-            // Перекидаємо ОБГОРТКУ на інший бік
-            els.photoWrapper.classList.remove(outClass);
-            els.infoCard.classList.remove(outClass);
-            els.quoteCard.classList.remove(outClass);
-
-            els.photoWrapper.classList.add(readyClass);
-            els.infoCard.classList.add(readyClass);
-            els.quoteCard.classList.add(readyClass);
-
-            // 3. ВИВОДИМО НОВИЙ КОНТЕНТ У ЦЕНТР
-            requestAnimationFrame(() => {
-                void els.photoWrapper.offsetWidth; 
-
-                els.photoWrapper.classList.remove(readyClass);
-                els.infoCard.classList.remove(readyClass);
-                els.quoteCard.classList.remove(readyClass);
-
-                els.photoWrapper.classList.add('carousel-center');
-                els.infoCard.classList.add('carousel-center');
-                els.quoteCard.classList.add('carousel-center');
-
-                setTimeout(() => { isAnimating = false; }, 400);
-            });
-
-        }, 400); 
-    }
-
-    els.btnNext.addEventListener('click', () => changeSlide('next'));
-    els.btnPrev.addEventListener('click', () => changeSlide('prev'));
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    const track = document.getElementById('reviews-track');
-    const btnNext = document.getElementById('rev-next');
-    const btnPrev = document.getElementById('rev-prev');
-    const paginationContainer = document.getElementById('reviews-pagination');
-    
-    if (!track || !btnNext || !btnPrev || !paginationContainer) return;
-
-    let currentIndex = 0;
-    const cards = track.querySelectorAll('.review-card');
-    const visibleCards = 3; // Показуємо 3 картки
-    const totalCards = cards.length;
-    const maxIndex = Math.max(0, totalCards - visibleCards);
-    const autoPlayInterval = 4000; // Час в мілісекундах (4 секунди)
-    let autoPlayTimer;
-
-    if (totalCards <= visibleCards) {
-        btnNext.style.display = 'none';
-        btnPrev.style.display = 'none';
-        return;
-    }
-
-    // --- Генерація пагінації ---
-    for (let i = 0; i <= maxIndex; i++) {
-        const dot = document.createElement('div');
-        dot.classList.add('pagination-dot');
-        if (i === 0) dot.classList.add('active');
-        
-        dot.addEventListener('click', () => {
-            currentIndex = i;
-            updateSliderPosition();
-            resetAutoPlay(); // Скидаємо таймер при кліку
-        });
-        
-        paginationContainer.appendChild(dot);
-    }
-    const dots = paginationContainer.querySelectorAll('.pagination-dot');
-
-    // --- Оновлення позиції ---
-    function updateSliderPosition() {
-        const cardWidth = cards[0].offsetWidth;
-        const gap = 24; 
-        
-        const moveDistance = (cardWidth + gap) * currentIndex;
-        track.style.transform = `translateX(-${moveDistance}px)`;
-
-        // Оновлення кнопок
-        btnPrev.style.opacity = currentIndex === 0 ? '0.3' : '1';
-        btnPrev.style.cursor = currentIndex === 0 ? 'default' : 'pointer';
-        
-        btnNext.style.opacity = currentIndex === maxIndex ? '0.3' : '1';
-        btnNext.style.cursor = currentIndex === maxIndex ? 'default' : 'pointer';
-
-        // Оновлення крапочок
-        dots.forEach((dot, index) => {
-            if (index === currentIndex) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
+                // Ефект підсвітки
+                document.querySelectorAll('.price-card').forEach(c => c.classList.remove('highlight-card'));
+                targetCard.classList.add('highlight-card');
+                
+                setTimeout(() => {
+                    targetCard.classList.remove('highlight-card');
+                }, 2000);
             }
         });
-    }
-
-    // --- Функції авто-гортання ---
-    function nextSlide() {
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-        } else {
-            currentIndex = 0; // Повертаємось на початок
-        }
-        updateSliderPosition();
-    }
-
-    function startAutoPlay() {
-        autoPlayTimer = setInterval(nextSlide, autoPlayInterval);
-    }
-
-    function resetAutoPlay() {
-        clearInterval(autoPlayTimer);
-        startAutoPlay();
-    }
-
-    // --- Обробники кнопок ---
-    btnNext.addEventListener('click', () => {
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-            updateSliderPosition();
-            resetAutoPlay();
-        }
     });
-
-    btnPrev.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateSliderPosition();
-            resetAutoPlay();
-        }
-    });
-
-    // --- Зупинка автоплею при наведенні миші ---
-    track.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
-    track.addEventListener('mouseleave', startAutoPlay);
-
-    // Ініціалізація
-    updateSliderPosition();
-    startAutoPlay();
-
-    window.addEventListener('resize', updateSliderPosition);
 });
-
 
 
 

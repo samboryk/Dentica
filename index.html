@@ -11,9 +11,12 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
-
-
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.4/build/css/intlTelInput.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/css/intlTelInput.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>    
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <title>Dentica - Сучасна стоматологія</title>
 </head>
 <body>
@@ -52,7 +55,7 @@
         </div>
       </button>
 
-      <a href="/appointment.html" class="header-btn">
+     <a  class="header-btn js-open-modal">
             <div class="text">Записатись</div>
             <div class="arrow"><img src="assets/images/arrow.svg" alt=""></div>
     </a>
@@ -105,7 +108,7 @@
 </div>
               <div class="hero-bottom bottom-left">
       <p class="hero-desc">Сучасна стоматологія. Реальний комфорт. <br> Результат, який видно і відчувається — <br>ми дбаємо про здоров'я зубів і ваш спокій.</p>
-      <a href="/appointment.html" class="btn">
+      <a  class="btn js-open-modal">
         <div class="text">Записатись</div>
       </a>
     </div>
@@ -199,7 +202,7 @@
         <h3 class="service-card-title">Імплантація</h3>
         <p class="service-card-description">Хірургічний процес встановлення штучного зуба в кістку щелепи, який використовується для заміни втраченого зуба або зубів.</p>
         <div class="service-card-footer">
-          <a href="/appointment.html" class="service-card-action">Записатись</a>
+          <a  class="service-card-action js-open-modal">Записатись</a>
           <a href="/service.html" class="service-card-action price">Ціна</a>
         </div>
       </article>
@@ -209,7 +212,7 @@
         <h3 class="service-card-title">Ортодонтія</h3>
         <p class="service-card-description">Комплекс заходів для виправлення прикусу та вирівнювання зубного ряду за допомогою сучасних брекет-систем або прозорих елайнерів.</p>
          <div class="service-card-footer">
-          <a href="/appointment.html" class="service-card-action">Записатись</a>
+          <a  class="service-card-action js-open-modal">Записатись</a>
           <a href="/service.html" class="service-card-action price">Ціна</a>
         </div>
       </article>
@@ -219,7 +222,7 @@
         <h3 class="service-card-title">Відбілювання</h3>
         <p class="service-card-description">Процедура, спрямована на видалення плям та відновлення природного білого кольору зубів.</p>
          <div class="service-card-footer">
-          <a href="/appointment.html" class="service-card-action">Записатись</a>
+          <a  class="service-card-action js-open-modal">Записатись</a>
           <a href="/service.html" class="service-card-action price">Ціна</a>
         </div>
       </article>
@@ -229,7 +232,7 @@
         <h3 class="service-card-title">Протезування</h3>
         <p class="service-card-description">Процес відновлення зубного ряду за допомогою зубних протезів, які можуть бути використані для заміни втрачених зубів.</p>
          <div class="service-card-footer">
-          <a href="/appointment.html" class="service-card-action">Записатись</a>
+          <a  class="service-card-action js-open-modal">Записатись</a>
           <a href="/service.html" class="service-card-action price">Ціна</a>
         </div>
       </article>
@@ -239,7 +242,7 @@
         <h3 class="service-card-title">Терапія</h3>
         <p class="service-card-description">Безболісне видалення уражених тканин зуба та відновлення його анатомічної форми й естетики за допомогою сучасних пломбувальних матеріалів.</p>
          <div class="service-card-footer">
-          <a href="/appointment.html" class="service-card-action">Записатись</a>
+          <a  class="service-card-action js-open-modal">Записатись</a>
           <a href="/service.html" class="service-card-action price">Ціна</a>
         </div>
       </article>
@@ -249,7 +252,7 @@
         <h3 class="service-card-title">Ортодонтія</h3>
         <p class="service-card-description">Комплекс заходів для виправлення прикусу та вирівнювання зубного ряду за допомогою сучасних брекет-систем або прозорих елайнерів.</p>
          <div class="service-card-footer">
-          <a href="/appointment.html" class="service-card-action">Записатись</a>
+          <a  class="service-card-action js-open-modal">Записатись</a>
           <a href="/service.html" class="service-card-action price">Ціна</a>
         </div>
       </article>
@@ -336,7 +339,7 @@
               <p class="faq-item-text">
                 Рекомендується проходити профілактичний огляд та професійну гігієну порожнини рота щонайменше раз на 6 місяців. Це дозволяє виявити проблеми на ранніх стадіях, уникнути зубного болю та складного, дороговартісного лікування в майбутньому.
               </p>
-              <a href="#" class="btn">Записатись</a>
+              <a  class="btn js-open-modal">Записатись</a>
             </div>
           </div>
         </div>
@@ -361,7 +364,7 @@
               <p class="faq-item-text">
                 Сучасні системи відбілювання абсолютно безпечні для вашої емалі. Ми використовуємо сертифіковані гелі, які впливають виключно на пігмент всередині зуба, не руйнуючи його мінеральну структуру та не підвищуючи чутливість.
               </p>
-              <a href="#" class="btn">Записатись</a>
+              <a  class="btn js-open-modal">Записатись</a>
             </div>
           </div>
         </div>
@@ -386,7 +389,7 @@
               <p class="faq-item-text">
                 Коронка відновлює зруйновану, але наявну частину зуба. Імплантат же повністю замінює втрачений корінь і є найнадійнішим рішенням при повній відсутності зуба. Оптимальний план відновлення завжди підбирається індивідуально після 3D-діагностики.
               </p>
-              <a href="#" class="btn">Записатись</a>
+              <a  class="btn js-open-modal">Записатись</a>
             </div>
           </div>
         </div>
@@ -411,7 +414,7 @@
               <p class="faq-item-text">
                 Зовсім ні! Завдяки сучасним технологіям комп'ютерної анестезії та якісним препаратам, ми гарантуємо, що будь-яке втручання пройде абсолютно безболісно і максимально комфортно.
               </p>
-              <a href="#" class="btn">Записатись</a>
+              <a  class="btn js-open-modal">Записатись</a>
             </div>
           </div>
         </div>
@@ -436,7 +439,7 @@
               <p class="faq-item-text">
                 Встановлення вінірів — це безболісний процес, який зазвичай вимагає лише кількох візитів. Спочатку ми проводимо 3D-моделювання вашої майбутньої усмішки. Потім поверхня зубів мінімально готується, знімаються цифрові відбитки, і вже незабаром ви отримуєте ідеальну усмішку, що виглядає максимально природно та естетично.
               </p>
-              <a href="#" class="btn">Записатись</a>
+              <a  class="btn js-open-modal">Записатись</a>
             </div>
           </div>
         </div>
@@ -554,7 +557,7 @@
                         <h3>Години роботи</h3>
                         <p>Пн - Сб 8:00-20:00</p>
                     </div>
-                    <a href="/appointment.html" class="btn" >Записатись</a>
+                    <a  class="btn js-open-modal" >Записатись</a>
                 </div>
 
                 <div class="contact-details-card">
@@ -690,7 +693,79 @@
     </div>
 </div>
 
+<div class="modal-overlay" id="appointmentModal">
+    <div class="modal-content form-card" id="modalFormCard">
+        
+        <button class="modal-close" id="closeModalBtn" aria-label="Закрити">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+
+           <div class="form-card" id="formCard">
+
+    <div id="formState">
+      
+        <div class="form-card-header">
+            <h3 class="form-title">Залиште свій номер</h3>
+            <p class="form-desc">Ми поруч, щоб подбати про вашу усмішку. <br> Наші фахівці зв'яжуться з вами.</p>
+        </div>
+<form id="contactForm" class="form-wrapper" onsubmit="return false;">
+    <label class="input-label">ВАШ НОМЕР ТЕЛЕФОНУ</label>
+    <div class="custom-phone-wrapper" id="customPhoneWrapper">
+        
+        <div class="country-selector" id="countrySelector">
+    <span id="selectedFlag" class="fi fi-ua" style="font-size: 20px; border-radius: 2px;"></span>
+    <span id="selectedCode" class="code">+380</span>
+    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L5 5L9 1" stroke="#888888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</div>
+        
+        <div class="input-divider"></div>
+        
+        <input type="tel" id="phoneInput" placeholder="50 123 45 67" required autocomplete="off">
+        
+        <ul class="custom-country-list" id="countryList">
+            <li class="country-item active" data-country="UA" data-code="+380">
+                <span class="flag">🇺🇦</span> Україна (+380)
+            </li>
+                  </ul>
+    </div>
+    
+    <div id="msg" class="msg"></div> 
+    <button type="submit" id="submitBtn" class="btn">Записатись</button>
+</form>
+
+        <div class="form-footer">
+            <div class="form-divider"></div>
+            <p class="disclaimer">
+                Ваш номер використовується лише для зв'язку з клінікою.<br>
+                <a href="/privacy.html">Політика конфіденційності.</a>
+            </p>
+        </div>
+    </div>
+
+    <div id="successState" style="display: none;" class="success-state">
+        <div class="success-animation">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+        </div>
+        <h3 class="success-title">Успішно!</h3>
+        <p class="success-desc">Ваша заявка відправлена.<br>Ми зателефонуємо вам найближчим часом.</p>
+    </div>
+
+</div>
+</div>
+<script src="assets/js/doctors.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/intlTelInput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.10.49/libphonenumber-js.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.10.49/libphonenumber-js.min.js"></script>
+<script src="/assets/js/form.js"></script>
 <script src="/assets/js/ai-config.js"></script>
+<script src="assets/js/ai-chat.js"></script>
 <script src="/assets/js/main.js"></script>
 <script type="module" src="assets/js/tooth.js"></script>
 </body>

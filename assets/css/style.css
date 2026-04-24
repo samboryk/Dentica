@@ -1,5 +1,5 @@
 html {
- 
+ scroll-behavior: smooth;
   font-size: 62.5%; 
   scrollbar-width: thin;
     scrollbar-color: var(--border-light) var(--bg-main);
@@ -19,17 +19,12 @@ html {
 ::-webkit-scrollbar-thumb {
     background-color: var(--border-light);
     border-radius: 10px;
-    
-   
     border: 2px solid var(--bg-main); 
 }
 
 
 ::-webkit-scrollbar-thumb:hover {
     background-color: var(--border-hover);
-    
-   
-   
 }
 
 
@@ -257,25 +252,6 @@ position: absolute;
   transition: transform 300ms ease-out;
 }
 
-.header-btn:hover  {
-    padding: 0px 5px 0px 5px;
-    gap: 0;
-
-    .text {
-        z-index: 0;
-        display: absolute;
-}
-
- .arrow {
-    z-index: 1;
-    width: 160px;
-    padding: 0;
-}
-
- .arrow img {
-  transform: rotate(45deg);
-}
-}
 
 
 
@@ -933,71 +909,72 @@ width:2.3vw;
 }
 
 
-.form-section {
-    padding-bottom: 100px;
+
+
+/* --- Modal Styles --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    
+    /* Анімація приховування */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    position: relative;
     width: 100%;
+    max-width: 500px; 
+    height: 400px;/* Або ширина твоєї оригінальної картки */
+    margin: 20px;
+    
+    /* Анімація появи знизу */
+    transform: translateY(30px);
+    transition: transform 0.3s ease;
 }
 
-.form-section .container {
-    display: block !important; 
-    max-width: 1200px;
-    margin: 0 auto;
+.modal-overlay.is-active .modal-content {
+    transform: translateY(0);
 }
 
-.form-header {
-    display: grid;
-    grid-template-columns: 1fr 400px; 
-    justify-content: space-between;
-    align-items: center; 
-    margin-bottom: 40px; 
-    gap: 40px;
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 5px;
+    z-index: 10;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.form-heading {
-    font-size: 8rem;
-    font-weight: 400;
-    color: var(--text-main);
-    margin: 0;
-    line-height: 1.1;
+.modal-close:hover {
+    color: var(--color-error); /* В темній темі можна змінити на білий */
 }
-
-.form-subtitle {
-    font-size: 1.6rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin: 15px 0 0 0; 
-    text-align: left; 
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-}
-
-
-.form-info-side {
-    display: grid;
-    grid-template-rows: 115px 280px;
-    gap: 24px;
-}
-
-.form-image-card {
-    border-radius: 24px;
-    overflow: hidden;
-    display: grid;
-}
-
-.form-image-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 
 .form-card {
     background-color: var(--surface-2);
-    border: 1px solid var(--border-main);
+
     border-radius: 24px;
     padding: 48px;
     display: grid;
@@ -1005,10 +982,7 @@ width:2.3vw;
     gap: 32px;
 }
 
-.form-card-header {
-    display: grid;
-    gap: 12px;
-}
+
 
 .form-title {
     font-size: 3.2rem;
@@ -1083,6 +1057,40 @@ width:2.3vw;
 }
 #phoneInput::placeholder { color: var(--text-muted); }
 
+/* 1. Обов'язкові налаштування для появи скролу */
+.custom-country-list {
+    max-height: 190px; /* Обмеж висоту списку (зміни на своє значення) */
+    overflow-y: auto;  /* Вмикає вертикальний скрол */
+    
+    /* Для Firefox */
+    scrollbar-width: thin; 
+    scrollbar-color: var(--border-light) transparent; /* колір повзунка і прозорий фон */
+}
+
+/* 2. Стилізація для Chrome, Edge, Safari */
+
+/* Ширина самого скролбару */
+.custom-country-list::-webkit-scrollbar {
+    width: 6px; 
+}
+
+/* Фон (трек) під скролбаром */
+.custom-country-list::-webkit-scrollbar-track {
+    background: transparent; /* або #fdfaf3, якщо потрібен фон */
+    border-radius: 10px;
+}
+
+/* Сам повзунок */
+.custom-country-list::-webkit-scrollbar-thumb {
+    background-color: var(--border-light); /* Червоний колір акценту */
+    border-radius: 10px;
+}
+
+/* Повзунок при наведенні мишки */
+.custom-country-list::-webkit-scrollbar-thumb:hover {
+    background-color: var(--border-hover); /* Трохи темніший червоний */
+}
+
 
 .custom-country-list {
     position: absolute;
@@ -1113,29 +1121,8 @@ width:2.3vw;
     
 }
 
-.custom-country-list::-webkit-scrollbar { width: 6px; }
-.custom-country-list::-webkit-scrollbar-thumb { background-color: var(--border-hover); border-radius: 10px; }
 
 
-.custom-country-list::-webkit-scrollbar { 
-    width: 6px; 
-}
-
-.custom-country-list::-webkit-scrollbar-track { 
-    background: transparent; 
-    
-   
-    margin: 16px 0; 
-}
-
-.custom-country-list::-webkit-scrollbar-thumb { 
-    background-color: var(--border-hover); 
-    border-radius: 10px; 
-}
-
-.custom-country-list::-webkit-scrollbar-thumb:hover { 
-    background-color: var(--border-hover); 
-}
 
 .country-item {
     padding: 12px 20px;
@@ -1397,12 +1384,13 @@ padding-bottom: 15px;
 .service-card-footer {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 15px;
   font-size: 14px;
 }
 
 .service-card-action {
   text-decoration: none;
+  cursor: pointer;
   border-bottom: 1px solid var(--color-primary); 
 }
 
@@ -1969,13 +1957,38 @@ padding-bottom: 15px;
     margin-bottom: 40px;
 }
 
+
+/* Закріплення фільтра */
 .price-page-filter {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--bg-main); /* Суцільний колір без прозорості */
+    padding: 20px 0;
     margin-top: 50px;
+
+    margin-bottom: 60px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
 }
+
+/* Коли фільтр приліп, додаємо тонку лінію знизу для розділення */
+.price-page-filter.is-pinned {
+    border-bottom: 1px solid var(--border-main);
+}
+
+/* Підсвітка картки */
+.price-card {
+    transition: all 0.5s ease; /* Плавність для підсвітки */
+}
+
+/* Клас підсвітки, який активується при кліку */
+.price-card.highlight-card {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 25px rgba(191, 220, 255, 0.2);
+    transform: translateY(-5px);
+}
+
 
 .price-page-filter-btn {
     background-color: var(--border-main);
@@ -2152,6 +2165,7 @@ padding-bottom: 15px;
     padding: 0px 20px;
   
 }
+
 
 .cta-section{
   padding-bottom: 100px;
@@ -2904,6 +2918,10 @@ padding-bottom: 15px;
   padding-bottom: 100px;
 }
 
+.service-title{
+    margin-bottom: 25px;
+}
+
 .single-service-grid-container {
     max-width: 1200px;
     width: 100%;
@@ -2956,6 +2974,10 @@ padding-bottom: 15px;
     width: 100%;
     display: flex;
     justify-content: center; 
+}
+
+.privacy-title{
+    line-height: 100%;
 }
 
 .privacy-container {
