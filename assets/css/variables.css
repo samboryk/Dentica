@@ -4,7 +4,7 @@
   --color-primary-hover: #A9CDFA;
   --color-primary-rgb: 191, 220, 255;
   --color-error: #FF4D4F;
-
+  --shadow:  rgba(0, 0, 0, 0.6);
   --bg-main: #0D0D0D;
   --bg-footer: linear-gradient(to right, rgb(45, 45, 45), rgb(14, 14, 12));
   --bg-hero: linear-gradient(315deg, #0e0e0c 0%, #2d2d2d 33%, #0e0e0c 66%, #2d2d2d 100%);
@@ -25,23 +25,25 @@
 
 /* Світла тема (Light Mode) */
 body.light-mode {
-  --bg-main: #F8F9FA; /* Світло-сірий фон */
-  --bg-hero: linear-gradient(315deg, #f8f9fa 0%, #e9ecef 33%, #f8f9fa 66%, #e9ecef 100%);
-  --surface-1: #7A90AA;
-  --surface-2: #F1F3F5;
-  --surface-3: #E9ECEF;
+  --color-primary: #BFDCFF;
+  --color-primary-hover: #A9CDFA;
+  --color-primary-rgb: 191, 220, 255;
+  --color-error: #FF4D4F;
+  --shadow:   rgb(190, 206, 224);
+  --bg-main: #EAEFF5;
+  --bg-footer: linear-gradient(to bottom, rgb(190, 206, 224), rgb(234, 239, 245));
+  --bg-hero: linear-gradient(315deg, #A7B6C8 0%, #EAEFF5 33%, #CDDCEF 66%, #EAEFF5 100%);
+  --surface-1: #1A1A1A;
+  --surface-2: #222222;
+  --surface-3: #2D2D2D;
 
-  --border-main: #DEE2E6;
-  --border-light: #CED4DA;
-  --border-hover: #ADB5BD;
+  --border-main: #95A5B8;
+  --border-light: #444444;
+  --border-hover: #555555;
 
-  --text-main: #1A1A1A; /* Темний текст */
-  --text-secondary: #495057;
-  --text-accent: #6C757D;
-  --text-muted: #ADB5BD;
-  
-  /* Для світлої теми можна трохи затемнити акцентний синій для кращої читабельності */
-  --color-primary: #7A90AA; 
-  --color-primary-hover: #1E44A3;
-  --color-primary-rgb: 43, 89, 195;
+  --text-white: #333333;
+  --text-main: #333333;
+  --text-secondary: #CCCCCC;
+  --text-accent: #A0AAB5;
+  --text-muted: #888888;
 }

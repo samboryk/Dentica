@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/css/enhancements.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -92,18 +93,14 @@
   <model-viewer
   id="tooth-viewer"
   src="/assets/models/tooth.glb"
-  environment-image="https://modelviewer.dev/shared-assets/environments/aircraft_workshop_01_1k.hdr"
-
-  exposure="1.1"
-  roughness="0.15"
-  shadow-intensity="0"
+  environment-image="neutral"
+  exposure="0.65"
   tone-mapping="commerce"
   disable-zoom
   disable-pan
   interaction-prompt="none"
-  style="width:85%;height:85%;background:transparent;--poster-color:transparent;"
-  
-></model-viewer>
+  style="width:85%;height:85%;background:transparent;--poster-color:transparent;">
+  </model-viewer>
 <div class="tooth-shadow"></div>
 </div>
               <div class="hero-bottom bottom-left">
@@ -768,6 +765,7 @@
 <script src="assets/js/ai-chat.js"></script>
 <script src="/assets/js/main.js"></script>
 <script type="module" src="assets/js/tooth.js"></script>
+<script src="assets/js/enhancements.js"></script>
 </body>
 
 </html>
