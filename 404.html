@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/variables.css">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -15,7 +16,7 @@
     <title>Dentica - Сучасна стоматологія</title>
 </head>
 <body>
-<header class="header">
+<header data-aos="fade-down" data-aos-delay="200" class="header">
   <div class="container">
     
     <div class="logo">
@@ -59,18 +60,18 @@
 <main class="main-content not-found-wrapper">
     <section class="not-found-page">
         <div class="not-found-container">
-             <img class="not-found-image" src="/assets/images/404.png" alt="">  
-            <h2 class="not-found-subtitle">Ой, здається, цей зубчик загубився...</h2>
-            <p class="not-found-text">
+             <img data-aos="zoom-out" data-aos-delay="100" class="not-found-image" src="/assets/images/404.png" alt="">  
+            <h2 data-aos="fade-up" data-aos-delay="200" class="not-found-subtitle">Ой, здається, цей зубчик загубився...</h2>
+            <p data-aos="fade-up" data-aos-delay="200" class="not-found-text">
                 Сторінку, яку ви шукаєте, було видалено, перейменовано або вона тимчасово недоступна.
                 Повернімося на головну, щоб відновити ідеальну усмішку!
             </p>
-            <a href="/" class="btn not-found-btn">На головну сторінку</a>
+            <a data-aos="fade-up" data-aos-delay="300" href="/" class="btn not-found-btn">На головну сторінку</a>
         </div>
     </section>
 </main>
 
-<footer class="footer">
+<footer data-aos="fade-up" data-aos-delay="100" class="footer">
   <div class="container">
 
     <div class="footer-top">
@@ -112,7 +113,14 @@
 
   </div>
 </footer>
-
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800, 
+      once: true, 
+      offset: 0
+    });
+  </script>
 </body>
 
 </html>

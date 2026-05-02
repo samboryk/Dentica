@@ -22,8 +22,25 @@ function cycleWord() {
 setInterval(cycleWord, 4000);
 
 
-/* ── 3D модель зуба (твій існуючий код) ── */
+/* ── Елементи прелоадера ── */
+const preloader = document.getElementById('preloader');
+const progressText = document.getElementById('progress-text');
+const progressFill = document.getElementById('progress-fill');
+
+
+/* ── 3D модель зуба ── */
 const viewer = document.getElementById("tooth-viewer");
+
+// Відслідковуємо прогрес завантаження моделі
+viewer.addEventListener('progress', (event) => {
+  // event.detail.totalProgress повертає значення від 0 до 1
+  const percentComplete = (event.detail.totalProgress * 100).toFixed(0);
+  
+  if (progressText && progressFill) {
+      progressText.innerText = `${percentComplete}%`;
+      progressFill.style.width = `${percentComplete}%`;
+  }
+});
 
 const BASE_THETA = 0;
 const BASE_PHI = 90;
@@ -65,7 +82,33 @@ function animate() {
   );
 }
 
+// Подія успішного завантаження
 viewer.addEventListener("load", () => {
+  /* ── Приховуємо прелоадер ── */
+  if (progressText && progressFill && preloader) {
+      progressText.innerText = '100%';
+      progressFill.style.width = '100%';
+      
+      setTimeout(() => {
+          preloader.style.opacity = '0';
+          
+          setTimeout(() => {
+              preloader.style.visibility = 'hidden';
+              
+              /* ── ЗАПУСК AOS АНІМАЦІЙ ── */
+              /* Запускаємо AOS тільки коли прелоадер повністю зник */
+              AOS.init({
+                once: false,  // Дозволяємо повторну анімацію
+                mirror: true, // Вмикаємо дзеркальну анімацію (при скролі вгору)
+                offset: 0,    // Анімація спрацює відразу, як елемент з'явиться
+                duration: 800 // Тривалість анімації (можеш змінити під себе)
+              });
+              
+          }, 100); // Чекаємо завершення CSS-транзиції прелоадера
+      }, 100); // Невелика затримка для краси
+  }
+
+  /* ── Ініціалізація сцени ── */
   viewer.setAttribute("camera-orbit", `${BASE_THETA}deg ${BASE_PHI}deg auto`);
   viewer.setAttribute("min-camera-orbit", "auto auto auto");
   viewer.setAttribute("max-camera-orbit", "auto auto auto");

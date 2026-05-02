@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/variables.css">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -15,7 +16,7 @@
     <title>Олександра Ромашевська - Dentica</title>
 </head>
 <body>
-<header class="header">
+<header  data-aos="fade-down" data-aos-delay="200"  class="header">
   <div class="container">
     
     <div class="logo">
@@ -60,7 +61,7 @@
   <section class="doctor-profile">
     <div class="container doctor-grid-container">
         
-        <div class="doctor-header-left">
+        <div data-aos="fade-down" data-aos-delay="100"  class="doctor-header-left">
             <h1 class="doctor-main-title">Олександра Ромашевська</h1>
         </div>
 
@@ -68,7 +69,7 @@
             
             <div class="doctor-accordion-wrapper">
                 
-                <div class="accordion-item">
+                <div data-aos="fade-up" data-aos-delay="100"   class="accordion-item">
                     <div class="accordion-header">
                         <h3 class="accordion-title">Про лікаря</h3>
                         <button class="accordion-btn">
@@ -84,14 +85,14 @@
                     </div>
                 </div>
 
-                <div class="accordion-item">
+                <div data-aos="fade-up" data-aos-delay="200"  class="accordion-item">
                     <div class="accordion-header">
                         <h3 class="accordion-title">Освіта та кваліфікація</h3>
                         <button class="accordion-btn">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="7" x2="7" y2="17"></line><polyline points="17 17 7 17 7 7"></polyline></svg>
                         </button>
                     </div>
-                    <div class="accordion-content">
+                    <div  class="accordion-content">
                         <div class="accordion-inner-text">
                             <div class="accordion-text-block">
                                 <p><b>2014 – 2019 рр.</b> — Національний медичний університет імені О.О. Богомольця, спеціальність «Стоматологія».</p>
@@ -103,7 +104,7 @@
                     </div>
                 </div>
 
-                <div class="accordion-item">
+                <div data-aos="fade-up" data-aos-delay="300"  class="accordion-item">
                     <div class="accordion-header">
                         <h3 class="accordion-title">Спеціалізація та навички</h3>
                         <button class="accordion-btn">
@@ -120,7 +121,7 @@
                     </div>
                 </div>
 
-                <div class="accordion-item">
+                <div data-aos="fade-up" data-aos-delay="400" class="accordion-item">
                     <div class="accordion-header">
                         <h3 class="accordion-title">Досвід роботи</h3>
                         <button class="accordion-btn">
@@ -138,7 +139,7 @@
 
             </div>
 
-            <div class="doctor-photo-wrapper">
+            <div data-aos="fade-left" data-aos-delay="100"  class="doctor-photo-wrapper">
                 <img src="assets/images/doctor1_1.png" alt="Олександра Ромашевська" class="doctor-photo">
             </div>
 
@@ -146,8 +147,9 @@
     </div>
 </section>
 <section class="certificates">
-    <div class="container certificates-grid-container">
-        <h2 class="certificates-title title"><span class="thin-b">Професійний </span><span class="thin-w">розвиток</span></h2>
+     <h2 data-aos="fade-down" data-aos-delay="100"  class="certificates-title title"><span class="thin-b">Професійний </span><span class="thin-w">розвиток</span></h2>
+    <div data-aos="fade-up" data-aos-delay="200"  class="container certificates-grid-container">
+       
 
         <div class="certificates-slider-wrapper">
             <button class="team-btn prev-btn cert-btn" id="cert-prev">
@@ -175,7 +177,7 @@
 </section>
 </main>
 
-<footer class="footer">
+<footer data-aos="fade-up" data-aos-delay="100"  class="footer">
   <div class="container">
 
     <div class="footer-top">
@@ -217,6 +219,14 @@
 
   </div>
 </footer>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800, 
+      once: true, 
+      offset: 0
+    });
+  </script>
 <script src="/assets/js/ai-config.js"></script>
 <script src="/assets/js/main.js"></script>
 </body>

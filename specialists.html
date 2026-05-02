@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/variables.css">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -13,10 +14,10 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js"></script>
-    <title>Спеціалісти - Dentiфca</title>
+    <title>Спеціалісти - Dentica</title>
 </head>
 <body>
-<header class="header">
+<header data-aos="fade-down" data-aos-delay="200" class="header">
   <div class="container">
     
     <div class="logo">
@@ -64,8 +65,8 @@
   <section class="team">
     <div class="container team-grid-container">
         <div class="team-header">
-             <h1 class="page-title">Спеціалісти</h1>
-            <div class="team-slider-controls">
+             <h1 data-aos="fade-down" data-aos-delay="100"  class="page-title">Спеціалісти</h1>
+            <div data-aos="fade-down" data-aos-delay="100" class="team-slider-controls">
                 <button class="team-btn prev-btn" id="team-prev">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
                 </button>
@@ -75,7 +76,7 @@
             </div>
         </div>
 
-        <div class="team-content-grid">
+        <div data-aos="fade-up" data-aos-delay="100" class="team-content-grid">
             <div class="team-image-wrapper">
                 <img src="assets/images/doctor1.png" alt="Олександра Ромашевська" class="team-image" id="team-photo">
             </div>
@@ -105,13 +106,14 @@
 </section>
 
 <section class="results-section">
-    <div class="container results-container">
-        
-        <h2 class="results-title title">
+     <h2 data-aos="fade-down" data-aos-delay="100" class="results-title title">
             <span class="thin-w">Результати </span> <span class="thin-b">нашої </span>  <span class="roman">роботи</span>
         </h2>
+    <div data-aos="fade-up" data-aos-delay="100" class="container results-container">
+        
+       
 
-        <div class="results-slider-wrapper" id="results-wrapper">
+        <div  class="results-slider-wrapper" id="results-wrapper">
             
             <button class="team-btn prev-btn slider-nav-btn" id="res-prev" style="position: absolute; left: 0; z-index: 10;">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -141,7 +143,7 @@
 
 </main>
 
-<footer class="footer">
+<footer data-aos="fade-up" data-aos-delay="100" class="footer">
   <div class="container">
 
     <div class="footer-top">
@@ -190,7 +192,7 @@
         </svg>
     </button>
 
-    <button id="aiChatBtn" class="widget-btn chat-btn" aria-label="Відкрити чат-помічник">
+    <button data-aos="zoom-in" data-aos-delay="100" id="aiChatBtn" class="widget-btn chat-btn" aria-label="Відкрити чат-помічник">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3C14.7536 3.00359 16.9135 3.8994 18.507 5.49298C20.1006 7.08656 20.9964 9.24636 21 11.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -210,7 +212,7 @@
                 <p>Онлайн консультант</p>
             </div>
         </div>
-        <button class="ai-chat-close" id="aiChatCloseBtn">
+        <button  class="ai-chat-close" id="aiChatCloseBtn">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -241,6 +243,14 @@
 <script src="/assets/js/form.js"></script>
 <script src="/assets/js/ai-config.js"></script>
 <script src="assets/js/ai-chat.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800, 
+      once: true, 
+      offset: 0
+    });
+  </script>
 </body>
 
 </html>

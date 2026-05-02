@@ -1,13 +1,35 @@
- document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const modalOverlay = document.getElementById('appointmentModal');
     const openBtns = document.querySelectorAll('.js-open-modal');
     const closeBtn = document.getElementById('closeModalBtn');
+
+    // Завантажуємо CSS іконок та український прапор після завантаження основних ресурсів сторінки
+    window.addEventListener('load', () => {
+        if (!document.getElementById('flag-icons-css')) {
+            const link = document.createElement('link');
+            link.id = 'flag-icons-css';
+            link.rel = 'stylesheet';
+            link.href = 'https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css';
+            document.head.appendChild(link);
+            
+            // Також завантажуємо саму картинку прапора, щоб вона 100% була готова
+            const img = new Image();
+            img.src = 'https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/flags/4x3/ua.svg';
+        }
+    });
 
     // Функція відкриття модалки
     const openModal = () => {
         modalOverlay.classList.add('is-active');
       
-        
+        // Завантажуємо решту прапорів відразу після відкриття модалки
+        document.querySelectorAll('.lazy-flag').forEach(span => {
+            if (span.dataset.flag) {
+                span.className = span.dataset.flag;
+                span.removeAttribute('data-flag');
+            }
+        });
+
         // Фокус на інпут з невеликою затримкою для плавності
         setTimeout(() => {
             document.getElementById('phoneInput').focus();
@@ -94,7 +116,7 @@ const TELEGRAM_BOT_TOKEN = '8615878715:AAHSLK0kyqpEVLDXV5tulwQsRZgw1LlkI_M';
             li.className = `country-item ${country.code === currentCountry ? 'active' : ''}`;
             
             const flagClass = `fi fi-${country.code.toLowerCase()}`;
-            li.innerHTML = `<span class="${flagClass}" style="font-size: 16px; border-radius: 2px;"></span> ${country.name} (${country.dial})`;
+            li.innerHTML = `<span class="lazy-flag" data-flag="${flagClass}" style="font-size: 16px; border-radius: 2px;"></span> ${country.name} (${country.dial})`;
             
             li.addEventListener('click', () => {
                 document.querySelectorAll('.country-item').forEach(i => i.classList.remove('active'));

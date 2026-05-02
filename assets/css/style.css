@@ -3,6 +3,28 @@ html {
   font-size: 62.5%; 
   scrollbar-width: thin;
     scrollbar-color: var(--border-light) var(--bg-main);
+    overflow-x: hidden;
+}
+
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto; /* Вимикаємо нативний плавний скрол, щоб уникнути конфліктів */
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 ::-webkit-scrollbar {
@@ -37,6 +59,7 @@ main{
 body{
     font-family: 'Helvetica Neue Cyr', sans-serif;
     margin: 0;
+    
     background: var(--bg-main);
     color: var(--text-main);
     height: 100%;
@@ -54,6 +77,66 @@ body{
     align-items: center;
     margin: 0 auto;
     
+}
+
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  /* Темний градієнт як на макеті */
+  background: var(--bg-footer);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.preloader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px; /* Відстань між зіркою, текстом і лінією */
+}
+
+.star-icon {
+  width: 180px;
+  height: 180px;
+  padding-bottom: 40px;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.progress-text {
+  color: var(--text-main);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.progress-bar-container {
+  width: 200px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.15); /* Напівпрозорий фон лінії */
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%; /* Початкове значення */
+  background: var(--color-primary); /* Світло-блакитний колір заповнення */
+  transition: width 0.1s linear; /* Плавний рух смуги */
+  border-radius: 2px;
+}
+
+/* Анімація для зірки */
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
 }
 
 a{
@@ -1969,9 +2052,9 @@ padding-bottom: 15px;
     top: 0;
     z-index: 1000;
     background-color: var(--bg-main); /* Суцільний колір без прозорості */
-    padding: 20px 0;
+    
     margin-top: 50px;
-
+    padding: 20px 0 0 0 ;
     margin-bottom: 60px;
     border-bottom: 1px solid transparent;
     transition: border-color 0.3s ease;
@@ -2001,6 +2084,7 @@ padding-bottom: 15px;
     border: 1px solid transparent;
     border-radius: 20px;
     padding: 8px 20px;
+    margin-right: 10px;
     font-size: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
