@@ -3180,6 +3180,10 @@ padding-bottom: 15px;
 .nav{
     display: none;
 }
+
+.cta-section{
+    display: none;
+}
 .header {
         padding: 0 20px;
         height: 80px;
@@ -3205,6 +3209,15 @@ padding-bottom: 15px;
         justify-content: center;
         cursor: pointer;
     }
+    .hero-background{
+  margin: 0 ;
+    overflow:hidden;
+    background: var(--bg-hero);
+    animation: gradient 30s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    padding-bottom: 80px;
+}
 
     /* --- ГОЛОВНИЙ ЕКРАН (HERO) --- */
     .hero-grid {
@@ -3218,10 +3231,10 @@ padding-bottom: 15px;
     }
 
     /* 1. Ховаємо старі десктопні тексти та бокову панель */
-    .title-left, 
-    .title-right,
+    .title-left h1, 
+    .title-right h1,
     .sidebar-right {
-        display: none !important;
+        display: none;
     }
 
     /* 2. Стилі для НОВОГО мобільного заголовка */
@@ -3233,14 +3246,19 @@ padding-bottom: 15px;
         z-index: 2;
     }
 
-    
-
-    /* Основний текст під ним */
-    .mobile-main-text {
-        font-size: 25px;
-        line-height: 1.4;
-        color: var(--text-main);
+    .hero-bg-text{
+        margin-top: 50px;
     }
+    
+    .mobile-top-text{
+        font-size: 2.5rem;
+    }
+
+    .mobile-bottom-text{
+        font-size: 1.8rem;
+    }
+
+
 
     /* 3. Зуб та зірочки */
     .hero-tooth {
@@ -3255,7 +3273,6 @@ padding-bottom: 15px;
 
     /* Повертаємо та вирівнюємо зірочки */
     .star-left, .star-right {
-        display: block !important;
         position: absolute;
         width: 35px; /* Збільшив розмір, щоб було як на фото */
         z-index: 3;
@@ -3264,7 +3281,7 @@ padding-bottom: 15px;
 
     .star-left {
         left: 5%;
-        top: 60%; /* Ліва зірочка трохи нижче */
+        top: 40%; /* Ліва зірочка трохи нижче */
     }
 
     .star-right {
