@@ -1,140 +1,140 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // ==========================================
+    // СЛАЙДЕР КОМАНДИ (ЛІКАРІ)
+    // ==========================================
     const teamData = [
         {
             photo: "assets/images/doctor1.png", 
             name: "Олександра Ромашевська",
             role: "Головний лікар-стоматолог",
             desc: "Експерт з естетичної стоматології та складних реставрацій. Поєднує багаторічний досвід із цифровими технологіями, створюючи ідеальні посмішки з увагою до кожної деталі.",
-            number: "01",
-            quote: "Досконалість у кожній деталі вашої посмішки"
+            number: "01"
         },
         {
             photo: "assets/images/doctor2.png", 
             name: "Іван Петренко",
             role: "Хірург-імплантолог",
             desc: "Спеціалізується на безболісній хірургії та відновленні втрачених зубів. Використовує передові протоколи лікування для максимального комфорту пацієнтів.",
-            number: "02",
-            quote: "Повертаємо впевненість та радість життя"
+            number: "02"
         },
         {
             photo: "assets/images/doctor3.png", 
             name: "Марія Коваль",
             role: "Ортодонт",
             desc: "Допомагає вирівняти зуби та виправити прикус у будь-якому віці за допомогою сучасних брекет-систем та невидимих елайнерів.",
-            number: "03",
-            quote: "Рівні зуби — це фундамент здоров'я"
+            number: "03"
         }
     ];
 
-    let currentIndex = 0;
-    let isAnimating = false;
+    let currentTeamIndex = 0;
+    let isTeamAnimating = false;
 
+    // Збираємо всі елементи безпечно
     const els = {
-        photo: document.getElementById('team-photo'), // Картинка (для заміни src)
-        photoWrapper: document.querySelector('.team-image-wrapper'), // Обгортка (для АНІМАЦІЇ)
+        photo: document.getElementById('team-photo'),
+        photoWrapper: document.querySelector('.team-image-wrapper'),
         infoCard: document.getElementById('team-info-card'),
-        quoteCard: document.getElementById('team-quote-card'),
+        actionCard: document.querySelector('.contact-action-card'), // Нова картка з графіком
         name: document.getElementById('team-name'),
         role: document.getElementById('team-role'),
         desc: document.getElementById('team-desc'),
         number: document.getElementById('team-number'),
-        quote: document.getElementById('team-quote'),
         btnNext: document.getElementById('team-next'),
         btnPrev: document.getElementById('team-prev')
     };
 
-    if (!els.photo || !els.btnNext) return;
+    // Якщо на сторінці немає кнопок або фото (наприклад, це інша сторінка) - виходимо
+    if (els.photo && els.btnNext && els.btnPrev) {
+        
+        // Початковий стан: ставимо існуючі обгортки по центру
+        if (els.photoWrapper) els.photoWrapper.classList.add('carousel-center');
+        if (els.infoCard) els.infoCard.classList.add('carousel-center');
+        if (els.actionCard) els.actionCard.classList.add('carousel-center');
 
-    // Початковий стан: ставимо по центру
-    els.photoWrapper.classList.add('carousel-center');
-    els.infoCard.classList.add('carousel-center');
-    els.quoteCard.classList.add('carousel-center');
+        // Попереднє завантаження картинок
+        teamData.forEach(member => {
+            const img = new Image();
+            img.src = member.photo;
+        });
 
-    teamData.forEach(member => {
-        const img = new Image();
-        img.src = member.photo;
-    });
+        function changeTeamSlide(direction) {
+            if (isTeamAnimating) return;
+            isTeamAnimating = true;
 
-    function changeSlide(direction) {
-        if (isAnimating) return;
-        isAnimating = true;
+            const outClass = direction === 'next' ? 'carousel-out-left' : 'carousel-out-right';
+            const readyClass = direction === 'next' ? 'carousel-ready-right' : 'carousel-ready-left';
 
-        const outClass = direction === 'next' ? 'carousel-out-left' : 'carousel-out-right';
-        const readyClass = direction === 'next' ? 'carousel-ready-right' : 'carousel-ready-left';
+            if (direction === 'next') {
+                currentTeamIndex = (currentTeamIndex + 1) % teamData.length;
+            } else {
+                currentTeamIndex = (currentTeamIndex - 1 + teamData.length) % teamData.length;
+            }
 
-        if (direction === 'next') {
-            currentIndex = (currentIndex + 1) % teamData.length;
-        } else {
-            currentIndex = (currentIndex - 1 + teamData.length) % teamData.length;
-        }
+            const nextData = teamData[currentTeamIndex];
 
-        const nextData = teamData[currentIndex];
+            // Фільтруємо тільки ті елементи, які реально існують в HTML
+            const elementsToAnimate = [els.photoWrapper, els.infoCard, els.actionCard].filter(el => el !== null);
 
-        // 1. ВІДПРАВЛЯЄМО ВЕСЬ КОНТЕНТ ЗА ЕКРАН
-        els.photoWrapper.classList.remove('carousel-center');
-        els.infoCard.classList.remove('carousel-center');
-        els.quoteCard.classList.remove('carousel-center');
-
-        els.photoWrapper.classList.add(outClass);
-        els.infoCard.classList.add(outClass);
-        els.quoteCard.classList.add(outClass);
-
-        // 2. Чекаємо поки все сховається
-        setTimeout(() => {
-            // Міняємо дані (картинка зараз невидима)
-            els.photo.src = nextData.photo;
-            els.name.textContent = nextData.name;
-            els.role.textContent = nextData.role;
-            els.desc.textContent = nextData.desc;
-            els.number.textContent = nextData.number;
-            els.quote.textContent = nextData.quote;
-
-            // Перекидаємо ОБГОРТКУ на інший бік
-            els.photoWrapper.classList.remove(outClass);
-            els.infoCard.classList.remove(outClass);
-            els.quoteCard.classList.remove(outClass);
-
-            els.photoWrapper.classList.add(readyClass);
-            els.infoCard.classList.add(readyClass);
-            els.quoteCard.classList.add(readyClass);
-
-            // 3. ВИВОДИМО НОВИЙ КОНТЕНТ У ЦЕНТР
-            requestAnimationFrame(() => {
-                void els.photoWrapper.offsetWidth; 
-
-                els.photoWrapper.classList.remove(readyClass);
-                els.infoCard.classList.remove(readyClass);
-                els.quoteCard.classList.remove(readyClass);
-
-                els.photoWrapper.classList.add('carousel-center');
-                els.infoCard.classList.add('carousel-center');
-                els.quoteCard.classList.add('carousel-center');
-
-                setTimeout(() => { isAnimating = false; }, 400);
+            // 1. ВІДПРАВЛЯЄМО ВЕСЬ КОНТЕНТ ЗА ЕКРАН
+            elementsToAnimate.forEach(el => {
+                el.classList.remove('carousel-center');
+                el.classList.add(outClass);
             });
 
-        }, 400); 
-    }
+            // 2. Чекаємо поки все сховається
+            setTimeout(() => {
+                // Безпечно міняємо дані (тільки ті, що змінюються і існують)
+                if (els.photo) els.photo.src = nextData.photo;
+                if (els.name) els.name.textContent = nextData.name;
+                if (els.role) els.role.textContent = nextData.role;
+                if (els.desc) els.desc.textContent = nextData.desc;
+                if (els.number) els.number.textContent = nextData.number;
 
-    els.btnNext.addEventListener('click', () => changeSlide('next'));
-    els.btnPrev.addEventListener('click', () => changeSlide('prev'));
+                // Перекидаємо ОБГОРТКИ на інший бік
+                elementsToAnimate.forEach(el => {
+                    el.classList.remove(outClass);
+                    el.classList.add(readyClass);
+                });
+
+                // 3. ВИВОДИМО НОВИЙ КОНТЕНТ У ЦЕНТР
+                requestAnimationFrame(() => {
+                    void (els.photoWrapper ? els.photoWrapper.offsetWidth : 0); 
+
+                    elementsToAnimate.forEach(el => {
+                        el.classList.remove(readyClass);
+                        el.classList.add('carousel-center');
+                    });
+
+                    setTimeout(() => { isTeamAnimating = false; }, 400);
+                });
+
+            }, 400); 
+        }
+
+        els.btnNext.addEventListener('click', () => changeTeamSlide('next'));
+        els.btnPrev.addEventListener('click', () => changeTeamSlide('prev'));
+    }
 });
 
 
 document.addEventListener("DOMContentLoaded", () => {
+    // ==========================================
+    // СЛАЙДЕР ВІДГУКІВ
+    // ==========================================
     const track = document.getElementById('reviews-track');
     const btnNext = document.getElementById('rev-next');
     const btnPrev = document.getElementById('rev-prev');
     const paginationContainer = document.getElementById('reviews-pagination');
     
+    // Якщо елементів відгуків немає на цій сторінці - безпечно виходимо
     if (!track || !btnNext || !btnPrev || !paginationContainer) return;
 
     let currentIndex = 0;
     const cards = track.querySelectorAll('.review-card');
-    const visibleCards = 3; // Показуємо 3 картки
+    const visibleCards = 3; 
     const totalCards = cards.length;
     const maxIndex = Math.max(0, totalCards - visibleCards);
-    const autoPlayInterval = 4000; // Час в мілісекундах (4 секунди)
+    const autoPlayInterval = 4000; 
     let autoPlayTimer;
 
     if (totalCards <= visibleCards) {
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
         dot.addEventListener('click', () => {
             currentIndex = i;
             updateSliderPosition();
-            resetAutoPlay(); // Скидаємо таймер при кліку
+            resetAutoPlay(); 
         });
         
         paginationContainer.appendChild(dot);
@@ -161,6 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- Оновлення позиції ---
     function updateSliderPosition() {
+        if (!cards.length) return;
         const cardWidth = cards[0].offsetWidth;
         const gap = 24; 
         
@@ -189,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentIndex < maxIndex) {
             currentIndex++;
         } else {
-            currentIndex = 0; // Повертаємось на початок
+            currentIndex = 0; 
         }
         updateSliderPosition();
     }
@@ -227,8 +228,5 @@ document.addEventListener("DOMContentLoaded", () => {
     // Ініціалізація
     updateSliderPosition();
     startAutoPlay();
-
     window.addEventListener('resize', updateSliderPosition);
 });
-
-

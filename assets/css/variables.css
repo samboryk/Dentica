@@ -1,5 +1,10 @@
 /* Стандартна темна тема (Dark Mode) */
 :root {
+  --hero-title-main: #333333;
+  --hero-btn: #BFDCFF;
+
+
+
   --color-primary: #BFDCFF;
   --color-primary-hover: #A9CDFA;
   --color-primary-rgb: 191, 220, 255;
@@ -25,6 +30,8 @@
 
 /* Світла тема (Light Mode) */
 body.light-mode {
+    --hero-title-main: #95A5B8;
+    --hero-btn: #C5D5E7;
   --color-primary: #BFDCFF;
   --color-primary-hover: #A9CDFA;
   --color-primary-rgb: 191, 220, 255;

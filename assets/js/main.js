@@ -68,127 +68,123 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
-  const slider = document.querySelector('.reviews-slider');
-  const dotsContainer = document.querySelector('.reviews-dots');
-  const btnPrev = document.querySelector('.reviews-btn--prev');
-  const btnNext = document.querySelector('.reviews-btn--next');
-  const cards = document.querySelectorAll('.review-card');
-
-  if (!slider || !dotsContainer || cards.length === 0) return;
-
-  // --- 1. КОНФІГУРАЦІЯ КРАПОЧОК (МАКСИМУМ 5) ---
-  const MAX_DOTS = 5;
-  const numDots = Math.min(cards.length, MAX_DOTS);
-  
-  dotsContainer.innerHTML = '';
-  for (let i = 0; i < numDots; i++) {
-    const dot = document.createElement('span');
-    dot.classList.add('reviews-dot');
-    if (i === 0) dot.classList.add('reviews-dot--active');
-    dotsContainer.appendChild(dot);
-  }
-  const dots = document.querySelectorAll('.reviews-dot');
-
-  // Функція для розрахунку кроку скролу
-  const getScrollAmount = () => {
-    const gap = parseInt(window.getComputedStyle(slider).gap) || 0;
-    return cards[0].offsetWidth + gap;
-  };
-
-  // --- 2. ЛОГІКА ПЕРЕМИКАННЯ КРАПОК ---
-  const updateActiveDot = () => {
-    const scrollLeft = slider.scrollLeft;
-    const maxScroll = slider.scrollWidth - slider.clientWidth;
     
-    // Визначаємо прогрес скролу від 0 до 1
-    const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
-    
-    // Визначаємо індекс активної крапки (від 0 до 4)
-    let activeDotIndex = Math.round(progress * (numDots - 1));
+    // ==========================================
+    // 1. КАСТОМНИЙ СЛАЙДЕР ВІДГУКІВ (.reviews-slider)
+    // ==========================================
+    const slider = document.querySelector('.reviews-slider');
+    const dotsContainer = document.querySelector('.reviews-dots');
+    const btnPrev = document.querySelector('.reviews-btn--prev');
+    const btnNext = document.querySelector('.reviews-btn--next');
+    const cards = document.querySelectorAll('.review-card');
 
-    dots.forEach((dot, index) => {
-      dot.classList.toggle('reviews-dot--active', index === activeDotIndex);
-    });
-  };
+    if (slider && dotsContainer && cards.length > 0) {
+        const MAX_DOTS = 5;
+        const numDots = Math.min(cards.length, MAX_DOTS);
+        
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < numDots; i++) {
+            const dot = document.createElement('span');
+            dot.classList.add('reviews-dot');
+            if (i === 0) dot.classList.add('reviews-dot--active');
+            dotsContainer.appendChild(dot);
+        }
+        const dots = document.querySelectorAll('.reviews-dot');
 
-  slider.addEventListener('scroll', updateActiveDot);
+        const getScrollAmount = () => {
+            const gap = parseInt(window.getComputedStyle(slider).gap) || 0;
+            return cards[0].offsetWidth + gap;
+        };
 
-  // --- 3. КЛІК ПО КРАПКАХ ---
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      const maxScroll = slider.scrollWidth - slider.clientWidth;
-      const targetScroll = (maxScroll / (numDots - 1)) * index;
-      
-      slider.scrollTo({
-        left: targetScroll,
-        behavior: 'smooth'
-      });
-    });
-  });
+        const updateActiveDot = () => {
+            const scrollLeft = slider.scrollLeft;
+            const maxScroll = slider.scrollWidth - slider.clientWidth;
+            const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
+            let activeDotIndex = Math.round(progress * (numDots - 1));
 
-  // --- 4. КНОПКИ ТА ЗАЦИКЛЕННЯ ---
-  const moveNext = () => {
-    const isEnd = Math.ceil(slider.scrollLeft + slider.clientWidth) >= slider.scrollWidth - 10;
-    if (isEnd) {
-      slider.scrollTo({ left: 0, behavior: 'smooth' }); // Повернення на початок (зациклення)
-    } else {
-      slider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('reviews-dot--active', index === activeDotIndex);
+            });
+        };
+
+        slider.addEventListener('scroll', updateActiveDot);
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                const maxScroll = slider.scrollWidth - slider.clientWidth;
+                const targetScroll = (maxScroll / (numDots - 1)) * index;
+                
+                slider.scrollTo({
+                    left: targetScroll,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const moveNext = () => {
+            const isEnd = Math.ceil(slider.scrollLeft + slider.clientWidth) >= slider.scrollWidth - 10;
+            if (isEnd) {
+                slider.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                slider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+            }
+        };
+
+        const movePrev = () => {
+            const isStart = slider.scrollLeft <= 10;
+            if (isStart) {
+                slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' });
+            } else {
+                slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+            }
+        };
+
+        if (btnNext) btnNext.addEventListener('click', moveNext);
+        if (btnPrev) btnPrev.addEventListener('click', movePrev);
+
+        let autoScroll = setInterval(moveNext, 5000);
+
+        const resetTimer = () => {
+            clearInterval(autoScroll);
+            autoScroll = setInterval(moveNext, 5000);
+        };
+
+        slider.addEventListener('mousedown', () => clearInterval(autoScroll));
+        slider.addEventListener('touchstart', () => clearInterval(autoScroll));
+        
+        if (btnNext) btnNext.addEventListener('click', resetTimer);
+        if (btnPrev) btnPrev.addEventListener('click', resetTimer);
     }
-  };
 
-  const movePrev = () => {
-    const isStart = slider.scrollLeft <= 10;
-    if (isStart) {
-      slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' }); // В кінець
-    } else {
-      slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-    }
-  };
-
-  btnNext?.addEventListener('click', moveNext);
-  btnPrev?.addEventListener('click', movePrev);
-
-  // --- 5. АВТОПРОКРУТКА ---
-  let autoScroll = setInterval(moveNext, 5000);
-
-  const resetTimer = () => {
-    clearInterval(autoScroll);
-    autoScroll = setInterval(moveNext, 5000);
-  };
-
-  // Зупиняємо таймер при взаємодії
-  slider.addEventListener('mousedown', () => clearInterval(autoScroll));
-  slider.addEventListener('touchstart', () => clearInterval(autoScroll));
-  [btnNext, btnPrev].forEach(btn => btn?.addEventListener('click', resetTimer));
-});
-
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  const swiper = new Swiper('.results-swiper', {
-    effect: 'coverflow', // Вмикаємо 3D ефект перекриття
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: 'auto', // Ширина береться з CSS (.swiper-slide)
-    loop: true,
+    // ==========================================
+    // 2. СЛАЙДЕР SWIPER 3D (.results-swiper)
+    // ==========================================
+    const swiperElement = document.querySelector('.results-swiper');
     
-    // Налаштування ефекту наїжджання
-    coverflowEffect: {
-      rotate: 0,       // Не крутимо слайди
-      stretch: -40,    // Від'ємне значення "натягує" бокові слайди під центральний
-      depth: 150,      // Глибина перспективи
-      modifier: 1,
-      slideShadows: true, // Додає тіні між слайдами
-    },
+    // Ініціалізуємо Swiper ТІЛЬКИ якщо елемент існує на сторінці
+    if (swiperElement) {
+        const swiper = new Swiper('.results-swiper', {
+            effect: 'coverflow', 
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto', 
+            loop: true,
+            
+            coverflowEffect: {
+                rotate: 0,       
+                stretch: -40,    
+                depth: 150,      
+                modifier: 1,
+                slideShadows: true, 
+            },
 
-    navigation: {
-      nextEl: '.slider-nav.next',
-      prevEl: '.slider-nav.prev',
-    },
-  });
+            navigation: {
+                nextEl: '.slider-nav.next',
+                prevEl: '.slider-nav.prev',
+            },
+        });
+    }
 });
 
 document.addEventListener('DOMContentLoaded', () => {

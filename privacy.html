@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/variables.css">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -15,7 +16,7 @@
     <title>Dentica - Сучасна стоматологія</title>
 </head>
 <body>
-<header class="header">
+<header data-aos="fade-down" data-aos-delay="200" class="header">
   <div class="container">
     
     <div class="logo">
@@ -60,11 +61,11 @@
     <section class="privacy-page">
         <div class=" privacy-container">
             <div class="privacy-header">
-                <h1 class="page-title privacy-title">Політика конфіденційності</h1>
-                <p class="privacy-date">Останнє оновлення: Квітень 2026</p>
+                <h1 data-aos="fade-down" data-aos-delay="100" class="page-title privacy-title">Політика конфіденційності</h1>
+                <p data-aos="fade-up" data-aos-delay="200" class="privacy-date">Останнє оновлення: Квітень 2026</p>
             </div>
 
-            <div class="privacy-content">
+            <div data-aos="fade-up" data-aos-delay="300" class="privacy-content">
                 <p>Ця Політика конфіденційності пояснює, як стоматологічна клініка «Dentica» (далі — «Клініка», «Ми») збирає, використовує, захищає та розкриває вашу персональну інформацію під час використання нашого вебсайту та послуг.</p>
 
                 <h2>1. Збір персональних даних</h2>
@@ -119,7 +120,7 @@
     </section>
 </main>
 
-<footer class="footer">
+<footer data-aos="fade-up" data-aos-delay="100" class="footer">
   <div class="container">
 
     <div class="footer-top">
@@ -214,6 +215,14 @@
 <script src="/assets/js/ai-config.js"></script>
 <script src="/assets/js/main.js"></script>
 <script type="module" src="assets/js/tooth.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800, 
+      once: true, 
+      offset: 0
+    });
+  </script>
 </body>
 
 </html>

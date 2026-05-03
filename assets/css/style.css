@@ -361,7 +361,7 @@ position: absolute;
   margin-top: -2.5rem;
   letter-spacing: -2px;
   font-weight: 700;
-  color: var(--border-main);
+  color: var(--hero-title-main);
   text-align: center;
    -webkit-user-select: none; 
   -ms-user-select: none;    
@@ -520,6 +520,7 @@ width:2.3vw;
 }
 
 
+
 .btn{
     width: 160px;
     height: 45px;
@@ -598,7 +599,7 @@ width:2.3vw;
 .sidebar-socials a {
   width: 4rem; 
   height: 4rem;
-  background-color: var(--border-main);
+  background-color: var( --hero-title-main);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -645,7 +646,7 @@ width:2.3vw;
 }
 
 .title-right {
-  animation: floatRight 7s ease-in-out 1.5s infinite;
+  animation: floatRight 7s ease-in-out infinite;
 }
 
 
@@ -1315,6 +1316,7 @@ width:2.3vw;
     display: grid;
     grid-template-columns: repeat(12, 1fr); 
     gap: 24px;
+    box-sizing: border-box;
 }
 
 
@@ -1687,36 +1689,10 @@ padding-bottom: 15px;
     box-shadow: 0 6px 20px rgba(191, 220, 255, 0.4);
 }
 
-.team-quote-card {
-    background-color: var(--color-primary);
-    border-radius: 24px;
-    padding: 0 40px;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    height: 100%; 
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-}
-
-.team-quote-number {
-    font-size: 56px;
-    font-weight: 400;
-    color: var(--bg-main);
-    line-height: 1;
-}
-
-.team-quote-text {
-    font-size: 18px;
-    color: var(--bg-main);
-    line-height: 1.3;
-    font-weight: 500;
-}
 
 
 
-
-.team-image-wrapper, #team-info-card, #team-quote-card {
+.team-image-wrapper, #team-info-card, .contact-action-card {
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
     will-change: transform, opacity;
 }
@@ -1728,7 +1704,7 @@ padding-bottom: 15px;
     transform: none !important;
 }
 
-
+.link-text { display: none; } /* Ховаємо текст на ПК */
 
 
 
@@ -3271,12 +3247,436 @@ padding-bottom: 15px;
     height: 450px; 
 }
 
-contacts-header-text {
+.contacts-header-text {
     display: block;
     align-items: flex-end;
     width: 100%;
     gap: 40px;
 }
+
+.title{
+    text-align: center;
+    font-size: 4rem;
+}
+
+.trust {
+    padding: 80px 0 0 0;
+   
+}
+
+.trust-image-wrapper{
+    display: none;
+}
+
+.trust-grid-container {
+    max-width: 480px;
+    grid-template-columns: 1fr; /* Замість auto — займає всю вільну ширину */
+    /* grid-template-rows: repeat(5, auto); — це можна навіть прибрати, Grid сам створить потрібну кількість рядків */
+  
+    gap: 30px;
+    margin: 0 auto;
+}
+
+.trust-card {
+    grid-column: 1;
+    width: 100%; /* Замість 340px — тепер картка адаптивна */
+    height: 150px; /* Безпечніше, ніж жорсткий height */
+    align-items: center;
+    padding: 20px 40px;
+    /* box-sizing: border-box; успадковується з десктопу, тому padding не зламає ширину 100% */
+}
+
+.trust-content {
+    grid-column: 1;
+    display: block;
+}
+
+
+.trust-description {
+    font-size: 1.6rem; 
+    text-align: center;
+    padding-top: 30px;
+}
+
+
+.trust-card-number {
+    font-size: 45px;
+    text-align: center;
+}
+
+.trust-card-title {
+    font-size: 20px;
+    text-align: center;
+        margin: 0 ;
+        padding-bottom: 5px;
+}
+
+.trust-card-text {
+    font-size: 12px;
+    text-align: center;
+
+}
+
+.services {
+  padding: 80px 0;
+}
+
+.services-container {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+/* --- Заголовок та підзаголовок --- */
+.services-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.services-subtitle {
+    font-size: 14px; /* Менший розмір для акуратності */
+    line-height: 1.4;
+    text-align: center;
+    padding-top: 16px;
+    margin-bottom: 10px;
+}
+
+
+.services-all-link {
+    display: inline-block;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px; /* Трохи менший відступ між картками для мобільного */
+    padding: 0 20px;
+}
+
+/* Ховаємо велике фото (якщо воно є в HTML) */
+.services-image-wrapper {
+    display: none;
+}
+
+/* --- Сама картка --- */
+.service-card {
+    padding: 30px 24px;
+    height: auto; /* ГОЛОВНИЙ ФІКС: дозволяємо картці розтягуватись під текст */
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px; /* Заокруглення як на скріншоті */
+    background-color: var(--surface-2); /* Твій темний фон картки */
+    border: 1px solid var(--border-main);
+}
+
+/* Велика цифра (01, 02) - додай цей клас у HTML, якщо його там ще немає */
+.service-card-number {
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 12px;
+}
+
+.service-card-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    padding: 0;
+}
+
+.service-card-description {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0 0 24px 0; /* Відступ вниз до футера */
+    flex-grow: 1; /* Відштовхує футер в самий низ, якщо картки будуть різної висоти */
+    opacity: 0.8;
+}
+
+/* --- Футер картки з лінками --- */
+.service-card-footer {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between; /* Розносить "Записатись" і "Ціна" по різних краях */
+    align-items: center;
+}
+
+/* Стилізація самих посилань у футері */
+.service-card-footer a {
+    font-size: 14px;
+    text-decoration: underline;
+    /* color: var(--color-primary); */
+}
+
+
+.team {
+    padding-bottom: 80px;
+}
+
+
+
+    .team-grid-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 20px;
+        width: 100%;
+        box-sizing: border-box; /* Фікс від горизонтального скролу */
+    }
+
+    .team-header {
+        display: contents; /* Дозволяє керувати дітьми через flex */
+    }
+
+
+    .team-content-grid {
+        order: 2; /* Картка лікаря по центру */
+        display: flex;
+        flex-direction: column;
+        height: auto; 
+        gap: 16px;
+        width: 100%; 
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .team-slider-controls {
+        order: 3; /* Кнопки слайдера внизу */
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+  
+
+    .team-image-wrapper {
+        height: 235px;
+        aspect-ratio: 4 / 3;
+        width: 100%; 
+        max-width: 100%;
+        border-radius: 16px;
+        box-sizing: border-box;
+    }
+
+    .team-info-wrapper {
+        display: block; 
+        height: auto;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Ховаємо картку графіка на телефоні */
+    .team-info-wrapper .contact-action-card {
+        display: none;
+    }
+
+ .team-member-card {
+        padding: 24px 16px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        text-align: center;
+        border-radius: 16px;
+        width: 100%; 
+        max-width: 100%;
+        box-sizing: border-box; 
+        overflow: hidden;
+
+        /* ГОЛОВНИЙ ФІКС ВИСОТИ */
+        height: 280px; /* Задай тут висоту, щоб вліз найдовший опис лікаря */
+        justify-content: flex-start;
+        gap: 16px;
+    }
+
+    .team-member-footer {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        width: 100%;
+        
+        /* Розтягуємо блок з текстом і кнопкою на весь вільний простір, що залишився */
+        flex-grow: 1; 
+    }
+
+    .team-member-desc {
+        text-align: center;
+        font-size: 13px; 
+        max-width: 95%;
+        line-height: 1.4;
+    }
+
+    .team-member-link {
+        width: 100%;
+        max-width: 285px;
+        height: 60px; 
+        border-radius: 35px; 
+        font-size: 15px;
+        font-weight: 500;
+        
+        /* ГОЛОВНИЙ ФІКС КНОПКИ: автоматично відштовхує кнопку в самий низ */
+        margin-top: auto; 
+    }
+
+   .team-member-divider {
+        margin: 0; 
+        width: 80%; 
+        height: 1px;
+        min-height: 1px; /* Гарантуємо мінімальну висоту */
+        flex-shrink: 0; /* ЗАБОРОНЯЄМО Flexbox ховати лінію */
+        background-color: var(--color-primary); /* Дублюємо колір про всяк випадок */
+    }
+    .team-member-name {
+        font-size: 20px;
+        padding-bottom: 4px;
+    }
+
+    .team-member-role {
+        font-size: 12px;
+    }
+
+
+  
+
+    /* Показуємо текст і ховаємо іконку стрілочки */
+    .link-text { 
+        display: inline;
+    } 
+    
+    .team-member-link svg { 
+        display: none; 
+    }
+
+
+.faq {
+  padding-bottom: 80px;
+}
+
+.faq-container {
+  max-width: 480px; 
+  padding: 0 20px;
+}
+
+.faq-header {
+  margin-bottom: 30px;
+}
+
+.faq-item-question {
+  font-size: 16px;
+}
+
+.faq-item-body {
+    flex-direction: column; /* Робимо колонку: спочатку фото, потім текст */
+    gap: 16px; /* Зменшуємо відстань між картинкою і текстом */
+  }
+
+  .faq-item-image-wrapper {
+    flex: 0 0 auto;
+    max-width: 100%;
+     }
+
+
+  .faq-item-text {
+    width: 100%; 
+    font-size: 16px; /* Менший розмір тексту для читабельності на 480px */
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+    padding: 0 10px; /* Менший відступ від лінії */
+    border-left: 2px solid var(--color-primary); /* Тонша лінія акценту */
+  }
+
+  .faq-item-info .btn{
+    align-self: center;
+  }
+
+  .reviews {
+        padding-bottom: 80px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow: hidden; /* БРОНЯ: жорстко відрізає все, що намагається вилізти за екран */
+    }
+
+    .reviews-grid-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px; 
+        padding: 0 20px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box; /* ГОЛОВНИЙ ФІКС від горизонтального скролу */
+    }
+
+    /* Дозволяємо витягнути заголовок і кнопки з хедера */
+    .reviews-header {
+        display: contents;
+    }
+
+ 
+
+    /* Блок із картками іде другим */
+    .reviews-content-grid {
+        order: 2;
+        gap: 20px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* В'юпорт слайдера */
+    .reviews-slider-viewport {
+        height: auto; 
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .reviews-track {
+        align-items: stretch; 
+    }
+
+    /* 2. Картка відгуку (одна на весь екран) */
+    .review-card {
+        width: 100%; /* Показуємо рівно 1 картку на екрані */
+        max-width: 100%;
+        padding: 45px 30px;
+        height: 260px;
+        align-items: center; 
+        text-align: center;
+        box-sizing: border-box; /* Щоб падінги не розпирали картку */
+    }
+
+    /* Текст відгуку */
+    .review-text {
+        font-size: 16px; 
+    }
+
+    /* Блок автора (аватар + ім'я) */
+    .review-author {
+        width: fit-content;
+
+        text-align: left; 
+    }
+
+    /* 3. Пагінація (крапочки) іде третьою */
+    .reviews-pagination {
+        order: 3;
+        margin-top: 0;
+    }
+
+    /* 4. Кнопки управління (< >) ідуть в самий низ */
+    .reviews-slider-controls {
+        order: 4;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 24px;
+    }
+
 
 
 }
