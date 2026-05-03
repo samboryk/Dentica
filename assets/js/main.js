@@ -80,9 +80,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.review-card');
 
     if (slider && dotsContainer && cards.length > 0) {
-        const MAX_DOTS = 5;
-        const numDots = Math.min(cards.length, MAX_DOTS);
         
+        // --- ДИНАМІЧНА ЛОГІКА ДЛЯ ПК ТА МОБІЛЬНИХ ---
+        // Визначаємо, скільки карток ми бачимо одночасно
+        const visibleCards = window.innerWidth <= 480 ? 1 : 3;
+        
+        // Вираховуємо, скільки всього "кроків" потрібно, щоб прогортати всі відгуки
+        const totalSteps = Math.max(1, cards.length - visibleCards + 1);
+        
+        // Обмежуємо кількість крапочок до 5 (щоб дизайн не ламався, якщо відгуків буде 20)
+        const MAX_DOTS = 5;
+        const numDots = Math.min(totalSteps, MAX_DOTS);
+        
+        // Генеруємо крапочки
         dotsContainer.innerHTML = '';
         for (let i = 0; i < numDots; i++) {
             const dot = document.createElement('span');
@@ -100,7 +110,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const updateActiveDot = () => {
             const scrollLeft = slider.scrollLeft;
             const maxScroll = slider.scrollWidth - slider.clientWidth;
-            const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
+            
+            if (maxScroll <= 0) return; // Захист від помилок, якщо скролу немає
+
+            const progress = scrollLeft / maxScroll;
             let activeDotIndex = Math.round(progress * (numDots - 1));
 
             dots.forEach((dot, index) => {
@@ -125,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const moveNext = () => {
             const isEnd = Math.ceil(slider.scrollLeft + slider.clientWidth) >= slider.scrollWidth - 10;
             if (isEnd) {
-                slider.scrollTo({ left: 0, behavior: 'smooth' });
+                slider.scrollTo({ left: 0, behavior: 'smooth' }); // Зациклення на початок
             } else {
                 slider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
             }
@@ -134,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const movePrev = () => {
             const isStart = slider.scrollLeft <= 10;
             if (isStart) {
-                slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' });
+                slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' }); // Зациклення в кінець
             } else {
                 slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
             }
@@ -155,7 +168,13 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (btnNext) btnNext.addEventListener('click', resetTimer);
         if (btnPrev) btnPrev.addEventListener('click', resetTimer);
+        
+        // Оновлюємо крапочки, якщо користувач переверне телефон
+        window.addEventListener('resize', () => {
+            updateActiveDot();
+        });
     }
+});
 
     // ==========================================
     // 2. СЛАЙДЕР SWIPER 3D (.results-swiper)
