@@ -3209,14 +3209,16 @@ padding-bottom: 15px;
         justify-content: center;
         cursor: pointer;
     }
+
     .hero-background{
   margin: 0 ;
     overflow:hidden;
+    height: 100vh;
     background: var(--bg-hero);
     animation: gradient 30s ease infinite;
     background-size: 400% 400%;
     background-attachment: fixed;
-    padding-bottom: 80px;
+    padding-bottom: 0px;
 }
 
     /* --- ГОЛОВНИЙ ЕКРАН (HERO) --- */
@@ -3251,7 +3253,8 @@ padding-bottom: 15px;
     }
     
     .mobile-top-text{
-        font-size: 2.5rem;
+        font-size: 2.3rem;
+        padding-bottom:2px
     }
 
     .mobile-bottom-text{
@@ -3265,7 +3268,7 @@ padding-bottom: 15px;
         position: relative; /* Щоб зірочки орієнтувались по зубу */
         width: 100%;
         height: 320px; 
-        margin: 0 0 24px 0;
+        margin: -10px 0 0px 0;
         display: flex;
         justify-content: center;
         align-items: center;
