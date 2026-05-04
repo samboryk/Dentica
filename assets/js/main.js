@@ -205,30 +205,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    document.addEventListener('DOMContentLoaded', () => {
+  const header = document.querySelector('.header');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    // --- 1. Логіка фону (градієнта) ---
+    // Якщо ми не на самому верху - показуємо градієнт
+    if (currentScroll > 0) {
+      header.classList.add('is-scrolled');
+    } else {
+      // Якщо на самому верху - робимо повністю прозорим
+      header.classList.remove('is-scrolled');
+    }
+
+    // --- 2. Логіка ховання/показу хедера ---
+    // На верху сторінки гарантовано показуємо хедер
+    if (currentScroll <= 0) {
+      header.classList.remove('is-hidden');
+      return;
+    }
+
+    // Скролимо вниз (і вже пройшли більше 100px) — ховаємо хедер
+    if (currentScroll > lastScroll && !header.classList.contains('is-hidden') && currentScroll > 100) {
+      header.classList.add('is-hidden');
+    } 
+    // Скролимо вгору — показуємо хедер
+    else if (currentScroll < lastScroll && header.classList.contains('is-hidden')) {
+      header.classList.remove('is-hidden');
+    }
+
+    lastScroll = currentScroll;
+  });
+});
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const filter = document.querySelector('.price-page-filter');
     const buttons = document.querySelectorAll('.price-page-filter-btn');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     
     // 1. Поява кнопки "Вгору" та границя фільтра при скролі
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
 
-        // Кнопка вгору
+    // Кнопка вгору (додана перевірка, чи існує кнопка на сторінці)
+    if (scrollTopBtn) {
         if (scrollY > 400) {
             scrollTopBtn.classList.add('show');
         } else {
             scrollTopBtn.classList.remove('show');
         }
+    }
 
-        // Границя для фільтра (is-pinned)
+    // Границя для фільтра (is-pinned) (додана перевірка, чи існує фільтр)
+    if (filter) { 
         if (filter.getBoundingClientRect().top <= 0) {
             filter.classList.add('is-pinned');
         } else {
             filter.classList.remove('is-pinned');
         }
-    });
-
+    }
+});
     // 2. Клік "Вгору"
     scrollTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });

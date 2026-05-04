@@ -79,6 +79,10 @@ body{
     
 }
 
+.mobile-hero-title{
+    display: none;
+}
+
 
 #preloader {
   position: fixed;
@@ -144,12 +148,45 @@ a{
   color: inherit;     
 }
 
-.header{
+.header {
     display: flex;
     justify-content: space-between;
     width: 100%;
     height: 100px;
-    position: relative;
+    
+    /* Фіксуємо хедер зверху */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: transparent; /* На самому верху повністю прозорий */
+    
+    /* Анімація тільки для руху */
+    transition: transform 0.4s ease-in-out;
+}
+
+/* Створюємо градієнт, який лежить під контентом хедера */
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ховаємо під текст і логотип */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.904) 0%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0; /* На старті градієнта не видно */
+    transition: opacity 0.4s ease-in-out; /* Плавна поява градієнта */
+}
+
+/* Клас для появи градієнта, коли ми трохи проскролили */
+.header.is-scrolled::before {
+    opacity: 1;
+}
+
+/* Клас для ховання хедера при скролі вниз */
+.header.is-hidden {
+    transform: translateY(-100%);
 }
 
 .logo{
@@ -342,6 +379,155 @@ position: absolute;
 
 
 
+.mobile-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mobile-menu-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0 20px; /* Бокові відступи */
+}
+
+/* Шапка всередині меню */
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px; /* Така ж висота як у основного хедера */
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+/* Кнопка закриття */
+.mobile-close {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: var(--border-main, #333);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+.mobile-close:hover {
+  background-color: var(--color-primary);
+}
+
+/* Навігація: посилання-пігулки */
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  flex: 1; /* Займає вільний простір, щоб соцмережі були внизу */
+  margin-top: 20px;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  /* Жорстко задаємо темний колір, щоб перевірити, чи з'явиться фон */
+  background-color: #121212 !important; 
+  z-index: 99999 !important; /* Робимо z-index максимальним */
+  
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* Забороняємо будь-які кліки, коли меню невидиме */
+  transform: translateY(-20px);
+  transition: all 0.4s ease-in-out;
+}
+
+.mobile-menu.is-open {
+  opacity: 1 !important; /* Примусово робимо непрозорим */
+  visibility: visible !important; /* Примусово показуємо */
+  pointer-events: auto !important; /* Повертаємо можливість клікати */
+  transform: translateY(0);
+}
+
+.mobile-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+  height: 60px;
+  border: 2px solid var(--color-primary, #BFDCFF);
+  border-radius: 35px;
+  color: var(--text-main, #fff);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 400;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.mobile-link:hover {
+  background-color: var(--color-primary);
+  color: var(--bg-main);
+}
+
+/* Кнопка "Записатись" */
+.mobile-action-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+  height: 60px;
+  background-color: var(--border-main, #333);
+  border-radius: 35px;
+  padding: 6px 6px 6px 30px; /* Падінги, щоб кнопка стрілки була з правого краю */
+  text-decoration: none;
+  color: var(--text-main, #fff);
+  font-size: 1.2rem;
+  margin-top: 8px;
+}
+
+.mobile-action-btn .icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--color-primary, #BFDCFF);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Соцмережі внизу */
+.mobile-socials {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding-bottom: 40px;
+}
+
+.social-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--border-main, #333);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s;
+}
+.social-circle:hover {
+  transform: translateY(-3px);
+  background-color: var(--color-primary);
+}
+.social-circle:hover svg path {
+  stroke: var(--bg-main, #000);
+  fill: var(--bg-main, #000); /* Для Google іконки */
+}
+
 
 
 .hero-grid {
@@ -351,6 +537,7 @@ position: absolute;
   min-height: calc(100vh - 100px);
   position: relative;
   margin: 0 auto;
+  padding-top: 100px;
 }
 
 .hero-bg-text{
@@ -3197,17 +3384,34 @@ padding-bottom: 15px;
         gap: 12px;
         flex: none; /* Щоб дії не розтягувались */
     }
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: var(--border-main); /* Такий самий фон, як у theme-toggle */
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 400ms ease-out;
+  }
 
-    .menu {
-        display: flex; /* Показуємо кнопку гамбургера */
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        background-color: var(--border-main);
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-    }
+  .menu:hover {
+    background-color: var(--color-primary);
+  }
+
+  /* Змінюємо колір іконок при наведенні (опціонально) */
+  .menu:hover svg path {
+    stroke: var(--bg-main, #333); /* Замініть на змінну вашого фону, якщо потрібен контраст */
+  }
+
+  /* Налаштовуємо контейнер з кнопками */
+  .header-actions {
+    flex: 0; /* Вимикаємо розтягування */
+    gap: 12px; /* Відстань між круглими кнопками, як на скріншоті */
+  }
 
     .hero-background{
    margin: 0 ;
@@ -3224,6 +3428,7 @@ padding-bottom: 15px;
         text-align: center;
         min-height: auto;
         width: 100%;
+        padding-top: 80px;
         gap: 0; /* Прибираємо стандартний відступ, щоб текст наїжджав гарно */
     }
 
@@ -3925,7 +4130,108 @@ padding-bottom: 15px;
     width: 70%;
   }
 
+.price-container {
+        padding-bottom: 60px;
+        padding-left: 16px; 
+        padding-right: 16px;
+        padding-top: 80px;
+    }
 
+    .price-page-header {
+        margin-bottom: 24px;
+    }
+
+    /* Фільтри: робимо горизонтальний скрол для кнопок */
+    .price-page-filter {
+        margin-top: 20px;
+        margin-bottom: 30px;
+        padding-top: 10px;
+        
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        
+        /* Приховуємо скроллбар для естетики */
+        -ms-overflow-style: none;  /* IE та Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+
+    .price-page-filter::-webkit-scrollbar {
+        display: none; /* Chrome, Safari та Opera */
+    }
+
+    .price-page-filter-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+        flex-shrink: 0; /* Щоб кнопки не стискалися */
+    }
+
+    /* Сітка: переводимо в 1 колонку */
+    .price-page-grid {
+        column-count: 1; 
+        display: flex;
+        flex-direction: column;
+        gap: 16px; /* Відстань між картками */
+    }
+
+    /* Картки: зменшуємо відступи (padding) та скруглення */
+    .price-card {
+        padding: 24px 20px;
+        border-radius: 20px;
+        margin-bottom: 0; /* Оскільки використовуємо gap у контейнері */
+    }
+
+    .price-card-title {
+        font-size: 1.8rem;
+        margin-bottom: 24px;
+    }
+
+    .price-card-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    /* Рядки з цінами: оптимізуємо шрифти та відступи */
+    .price-row {
+        margin-bottom: 12px;
+        gap: 6px;
+    }
+
+    .price-row-name {
+        font-size: 1.3rem;
+    }
+
+    .price-row-value {
+        font-size: 1.4rem;
+    }
+
+    .price-card-link {
+        margin-top: 24px;
+        font-size: 1.3rem;
+    }
+
+    /* Блок завантаження та дисклеймер */
+    .price-page-download {
+        margin-top: 40px;
+        gap: 24px;
+    }
+
+    .price-disclaimer p {
+        font-size: 1rem; /* Робимо текст дрібнішим, як на макеті */
+        line-height: 1.4;
+    }
+
+    /* Прибираємо лінії біля кнопки для чистоти мобільного дизайну */
+    .price-page-download-container .footer-divider {
+        display: none; 
+    }
+
+    /* Кнопка завантаження: задаємо фіксовану ширину, як на скріншоті */
+    .price-page-download-container .btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 14px 20px;
+    }
 
 
 }
