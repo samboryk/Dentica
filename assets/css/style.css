@@ -3188,6 +3188,7 @@ padding-bottom: 15px;
         padding: 0 20px;
         height: 80px;
         align-items: center;
+        width: 100%;
     }
 
     .nav, .header-btn {
@@ -3211,13 +3212,9 @@ padding-bottom: 15px;
     }
 
     .hero-background{
-  margin: 0 ;
-    overflow:hidden;
+   margin: 0 ;
     height: 100vh;
-    background: var(--bg-hero);
-    animation: gradient 30s ease infinite;
-    background-size: 400% 400%;
-    background-attachment: fixed;
+    overflow: hidden;
     padding-bottom: 0px;
 }
 
@@ -3817,6 +3814,74 @@ padding-bottom: 15px;
         gap: 24px;
     }
 
+    .contacts-header-text {
+    flex-direction: column;
+    align-items: ;
+    gap: 30px;
+  }
+
+  .page-title {
+    font-size: 5rem; /* Значно зменшуємо розмір заголовка */
+    line-height: 1.1;
+  }
+
+  .page-description {
+    width: 100%;
+    text-align: justify;
+  }
+
+  /* Змінюємо сітку на flex для зручної зміни порядку (карту наверх) */
+  .contacts-content-grid {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+
+  /* Переміщуємо карту на перше місце та зменшуємо висоту */
+  .contacts-map-wrapper {
+    order: -1; 
+    height: 250px;
+    border-radius: 20px;
+  }
+
+  /* Скидаємо фіксовану висоту для блоку з картками */
+  .contacts-info-wrapper {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Картка "Години роботи": контент в колонку, центрування */
+  .contact-action-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+    gap: 16px;
+    border-radius: 20px;
+  }
+
+  .contact-action-card .btn {
+    
+    justify-content: center;
+  }
+
+  /* Картка "Контактна інформація": центрування тексту та іконок */
+  .contact-details-card {
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 20px;
+  }
+
+  .details-blocks {
+    align-items: center; /* Центруємо блоки з текстом */
+    gap: 24px;
+  }
+
+  /* Центруємо соціальні мережі */
+  .contact-socials {
+    justify-content: center;
+    margin-top: 30px;
+  }
 
 
 }
