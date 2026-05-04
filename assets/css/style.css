@@ -3720,6 +3720,7 @@ padding-bottom: 15px;
     width: 100%; 
     font-size: 16px; /* Менший розмір тексту для читабельності на 480px */
     line-height: 1.5;
+    text-align: justify;
     margin: 0 0 20px 0;
     padding: 0 10px; /* Менший відступ від лінії */
     border-left: 2px solid var(--color-primary); /* Тонша лінія акценту */
