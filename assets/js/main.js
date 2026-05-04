@@ -203,8 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 prevEl: '.slider-nav.prev',
             },
         });
-    }
-});
+    };
 
 document.addEventListener('DOMContentLoaded', () => {
     const filter = document.querySelector('.price-page-filter');
