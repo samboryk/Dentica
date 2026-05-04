@@ -3917,6 +3917,13 @@ padding-bottom: 15px;
     font-size: 2rem;
   }
 
+  .info-block{
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    width: 70%;
+  }
+
 
 
 
