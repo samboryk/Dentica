@@ -3181,9 +3181,7 @@ padding-bottom: 15px;
     display: none;
 }
 
-.cta-section{
-    display: none;
-}
+
 .header {
         padding: 0 20px;
         height: 80px;
@@ -3816,9 +3814,37 @@ padding-bottom: 15px;
 
     .contacts-header-text {
     flex-direction: column;
-    align-items: ;
+
     gap: 30px;
   }
+
+
+/* 3. Жорстко обмежуємо ширину головного контейнера */
+  .contacts-grid-container {
+    width: 100%;
+    max-width: 100vw; /* Контейнер не може бути ширшим за екран (viewport) */
+    padding: 0 16px; /* Трохи зменшуємо бокові відступи для мобільних для економії місця */
+    box-sizing: border-box; 
+  }
+
+  /* 4. Забороняємо сітці та карткам вилазити за межі контейнера */
+  .contacts-content-grid,
+  .contact-action-card,
+  .contact-details-card,
+  .contacts-map-wrapper {
+    width: 100%;
+    max-width: 100%; /* Гарантуємо, що картки не розтягнуться більше ніж на 100% батьківського блоку */
+    box-sizing: border-box; /* Падінги карток враховуються всередину, а не назовні */
+  }
+
+  /* 5. Додаткова страховка для iframe з картою */
+  .contacts-map-wrapper iframe {
+    width: 100% !important;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+
 
   .page-title {
     font-size: 5rem; /* Значно зменшуємо розмір заголовка */
@@ -3882,6 +3908,16 @@ padding-bottom: 15px;
     justify-content: center;
     margin-top: 30px;
   }
+
+  .cta-title{
+    font-size: 3.5rem;
+  }
+
+  .cta-title-small{
+    font-size: 2rem;
+  }
+
+
 
 
 }
