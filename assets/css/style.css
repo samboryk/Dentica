@@ -1593,7 +1593,7 @@ width:2.3vw;
 
 
 .services {
-  padding: 100px 0;
+  padding-top: 100px 0;
 }
 
 .services-container {
@@ -4262,8 +4262,190 @@ padding-bottom: 15px;
         max-width: 280px;
         padding: 14px 20px;
     }
+    .single-service {
+        padding: 50px 0; 
+        overflow-x: hidden; /* Ховаємо випадковий горизонтальний скрол */
+    }
 
+    .single-service-grid-container {
+        width: 100%;
+        box-sizing: border-box; /* ВИПРАВЛЕННЯ: падінги не будуть розтягувати блок більше ніж на 100% */
+        padding: 0 15px; 
+        grid-template-columns: 1fr; /* Одна колонка */
+        grid-template-rows: auto; 
+        row-gap: 16px; 
+    }
 
+    /* 1. Заголовок */
+    .single-service-header-layout {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    /* 2. Фотографія */
+    .single-service-photo-wrapper {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .single-service-photo-wrapper .single-service-photo {
+        height: 220px; 
+        border-radius: 16px; 
+    }
+
+    /* 3. Картка "Години роботи / Записатись" */
+    .single-service-grid-container .contact-action-card {
+        grid-column: 1 / -1;
+        grid-row: 3;
+    }
+
+    /* 4. Акордеони */
+    .single-service-accordion-wrapper {
+        grid-column: 1 / -1;
+        grid-row: 4;
+        gap: 12px;
+    }
+
+    .accordion-text-block {
+        margin: 0 15px 15px 15px; 
+        padding-left: 12px;
+    }
+
+    .doctor-profile {
+        padding: 80px 0;
+    }
+    
+    .certificates {
+        padding: 0 0 60px 0;
+    }
+
+    /* Додаємо безпечні відступи для контейнера */
+    .doctor-grid-container {
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
+    /* 2. Заголовок */
+    .doctor-main-title {
+        font-size: 36px; /* Зменшуємо шрифт заголовка */
+        margin-bottom: 24px;
+    }
+
+    /* 3. Головна сітка (Фото + Акордеони) */
+    .doctor-content-grid {
+        grid-template-columns: 1fr; /* Перемикаємо на одну колонку */
+        gap: 20px;
+    }
+
+    /* Піднімаємо фотографію на перший рядок */
+    .doctor-photo-wrapper {
+        grid-column: 1 / -1;
+        grid-row: 1; 
+        height: 360px; /* Зменшуємо висоту блоку з фотографією */
+        border-radius: 20px 40px 20px 40px; 
+    }
+
+    /* Опускаємо акордеони на другий рядок */
+    .doctor-accordion-wrapper {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        gap: 12px;
+    }
+
+    /* 4. Налаштування самих акордеонів */
+    .accordion-header {
+        padding: 16px 20px; /* Зменшуємо відступи всередині кнопок */
+    }
+
+    .accordion-title {
+        font-size: 16px; 
+    }
+
+    .accordion-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    /* Внутрішній текст акордеона */
+    .accordion-inner-text p {
+        font-size: 14px;
+        padding: 0 20px; 
+    }
+
+    .accordion-text-block {
+        margin: 0 15px 20px 15px; 
+        padding-left: 12px;
+    }
+
+    /* 5. Сертифікати */
+    .certificates-slider-wrapper {
+        gap: 16px;
+    }
+
+    .cert-card {
+        /* Робимо картку такої ширини, щоб було видно краї сусідніх карток */
+        width: calc(100vw - 100px); 
+        height: 320px; /* Зменшуємо висоту сертифіката */
+    }
+
+    /* Якщо бокові кнопки-стрілки знаходяться зліва/справа від слайдера, 
+       на мобілці їх краще приховати (залишити свайп) АБО вони у вас вже винесені вниз */
+    .cert-btn.side-arrows { 
+        display: none; /* Застосовуйте, якщо стрілки ламають ширину */
+    }
+
+    .doctor-profile,
+    .certificates {
+        overflow: hidden; 
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    /* Для сертифікатів прибираємо бокові відступи, щоб слайди йшли від краю до краю */
+    .certificates-grid-container {
+        padding: 0; 
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* 2. Перебудовуємо обгортку слайдера */
+    .certificates-slider-wrapper {
+        flex-wrap: wrap; /* Дозволяємо кнопкам "впасти" на наступний рядок */
+        justify-content: center; /* Центруємо кнопки знизу */
+        gap: 20px; /* Відстань між слайдером та кнопками */
+    }
+
+    /* 3. Налаштовуємо сам контейнер слайдера */
+    .certificates-viewport {
+        order: -1; /* Примусово піднімаємо слайдер на самий верх (над кнопками) */
+        flex: 0 0 100%; /* Змушуємо зайняти 100% ширини екрана */
+        width: 100%;
+    }
+
+    .certificates-track {
+        gap: 16px; /* Трохи зменшуємо відстань між самими картками */
+    }
+
+    /* 4. Робимо картки правильного розміру (щоб було видно сусідні) */
+    .cert-card {
+        /* Задаємо ширину екрана мінус 100px. Це залишить по 50px по боках для видимості сусідніх карток */
+        width: calc(100vw - 100px); 
+        height: 340px; /* Пропорційно зменшуємо висоту */
+        box-sizing: border-box;
+    }
+
+    /* 5. Розташування кнопок (стрілок) знизу */
+    .cert-btn {
+        margin: 0 10px; /* Додаємо відступ між стрілками "вліво" та "вправо" */
+    }
+
+    /* Опціонально: трохи зменшити розмір головного заголовка на мобілці */
+    .doctor-main-title {
+        font-size: 50px;
+        margin-bottom: 24px;
+        align-items:  center ;
+        text-align: center;
+    }
 }
 
 
