@@ -940,7 +940,7 @@ width:2.3vw;
 
 
 .contacts {
-    padding-bottom: 100px;
+    padding: 100px 0;
     width: 100%;
 }
 
@@ -1722,7 +1722,7 @@ padding-bottom: 15px;
 }
 
 .team {
-    padding-bottom: 100px;
+    padding: 100px 0;
     width: 100%;
 }
 
@@ -2201,7 +2201,7 @@ padding-bottom: 15px;
     max-width: 1200px; 
     margin: 0 auto;
     width: 100%;
-    padding-bottom: 100px;
+    padding: 100px 0;
 }
 
 .price-page-header {
@@ -2225,6 +2225,8 @@ padding-bottom: 15px;
 
 /* Коли фільтр приліп, додаємо тонку лінію знизу для розділення */
 .price-page-filter.is-pinned {
+    padding-top: 100px;
+    z-index: 1;
     border-bottom: 1px solid var(--border-main);
 }
 
@@ -2780,7 +2782,7 @@ padding-bottom: 15px;
 }
 
 .doctor-profile {
-    padding-bottom:100px ;
+    padding:100px  0;
     width: 100%;
 }
 
@@ -3167,7 +3169,7 @@ padding-bottom: 15px;
 }
 
 .single-service{
-  padding-bottom: 100px;
+  padding: 100px 0;
 }
 
 .service-title{
@@ -3364,25 +3366,53 @@ padding-bottom: 15px;
 
 @media (max-width: 480px){
 
-.nav{
-    display: none;
-}
-
-
 .header {
-        padding: 0 20px;
-        height: 80px;
-        align-items: center;
+        height: 80px; /* Робимо хедер трохи нижчим, як на твоєму скріні */
+        padding: 0 15px; /* Безпечні відступи по боках */
+        box-sizing: border-box; /* Гарантує, що padding не розтягне хедер більше ніж на 100% */
+        align-items: center; /* Центруємо елементи по вертикалі */
+    }
+
+    /* Якщо в тебе є обгортка .container всередині .header, скидаємо її марджини */
+    .header .container {
         width: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
     }
 
-    .nav, .header-btn {
-        display: none !important; /* Ховаємо десктопні лінки і широку кнопку */
+    /* Ховаємо десктопну навігацію та велику кнопку "Записатись" */
+    .nav,
+    .header-btn {
+        display: none; 
     }
 
+    /* Показуємо кнопку бургер-меню */
+    .menu {
+        display: flex; /* Показуємо блок */
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Налаштовуємо праву частину (перемикач теми + бургер) */
     .header-actions {
-        gap: 12px;
-        flex: none; /* Щоб дії не розтягувались */
+        flex: 0 auto; /* Забороняємо розтягуватись, займає лише свою ширину */
+        gap: 10px; /* Зменшуємо відступ між кнопками, щоб зекономити місце */
+        justify-content: flex-end;
+    }
+
+    /* Логотип заповнює залишок простору зліва */
+    .logo {
+        flex: 1; 
+        justify-content: flex-start;
     }
 .menu {
     display: flex;
