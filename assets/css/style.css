@@ -148,17 +148,273 @@ a{
   color: inherit;     
 }
 
+
+
+/* Кнопки меню і теми */
+.menu, .theme-toggle {
+  position: relative;
+  z-index: 10000 !important; 
+}
+
+/* =============================================
+   MOBILE MENU FULL-SCREEN OVERLAY (header above)
+   ============================================= */
+.mobile-menu-overlay {
+  /* Повноекранний — але хедер вище (z-index 9999) */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+
+  /* Фон */
+  background-color: #0d0d0d;
+  background-color: var(--bg-main, #0d0d0d);
+
+  /* Нижче за хедер — щоб він залишався видимим */
+  z-index: 9998;
+
+  /* Флекс для внутрішнього розміщення */
+  display: flex;
+  flex-direction: column;
+
+  /* Початковий прихований стан */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Стан «Відкрито» */
+.mobile-menu-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+/* Світла тема */
+body.light-mode .mobile-menu-overlay {
+  background-color: #eaeff5;
+  background-color: var(--bg-main, #eaeff5);
+}
+
+/* Без декоративного псевдо-елемента */
+.mobile-menu-overlay::before {
+  display: none;
+}
+
+/* ---- Шапка оверлею (лого + кнопка закриття) ---- */
+.mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 80px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border-main);
+}
+
+.mobile-menu-logo img {
+  height: 36px;
+  width: auto;
+}
+
+.mobile-menu-close {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 1px solid var(--border-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.mobile-menu-close:hover {
+  background: var(--color-primary);
+  color: var(--bg-main);
+  transform: rotate(90deg);
+}
+
+/* ---- Основний контент меню ---- */
+.mobile-menu-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 32px 32px; /* top=80px — відступ за хедер (80px на мобільних) */
+  gap: 12px;
+}
+
+/* ---- Навігаційні пункти ---- */
+.mobile-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-nav-list li {
+  overflow: hidden;
+}
+
+.mobile-nav-list li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #eaeff5;
+  color: var(--text-main, #eaeff5);
+  text-decoration: none;
+  padding: 16px 24px;
+  border-radius: 50px;
+  border: 1px solid var(--color-primary, #bfdcff);
+  background: transparent;
+  letter-spacing: 0;
+  /* Анімація появи */
+  transform: translateY(30px);
+  opacity: 0;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity   0.35s ease,
+    background 0.25s ease,
+    color     0.25s ease;
+}
+
+/* Стаггер-анімація при відкритті */
+.mobile-menu-overlay.is-active .mobile-nav-list li:nth-child(1) a { transform: translateY(0); opacity: 1; transition-delay: 0.08s; }
+.mobile-menu-overlay.is-active .mobile-nav-list li:nth-child(2) a { transform: translateY(0); opacity: 1; transition-delay: 0.16s; }
+.mobile-menu-overlay.is-active .mobile-nav-list li:nth-child(3) a { transform: translateY(0); opacity: 1; transition-delay: 0.24s; }
+.mobile-menu-overlay.is-active .mobile-nav-list li:nth-child(4) a { transform: translateY(0); opacity: 1; transition-delay: 0.32s; }
+
+.mobile-nav-list li a:hover {
+  background: var(--color-primary, #bfdcff);
+  color: #0d0d0d;
+}
+
+/* Роздільник між навігацією і підвалом */
+.mobile-menu-divider {
+  height: 1px;
+  background: var(--border-main, #333);
+  margin: 20px 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  transition: transform 0.5s ease 0.38s, opacity 0.4s ease 0.38s;
+}
+
+.mobile-menu-overlay.is-active .mobile-menu-divider {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* ---- Нижня частина (соцмережі + CTA) ---- */
+.mobile-menu-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease 0.25s, transform 0.3s ease 0.25s;
+}
+
+.mobile-menu-overlay.is-active .mobile-menu-footer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu-socials {
+  display: flex;
+  gap: 10px;
+}
+
+.mobile-menu-socials a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface-2, #222);
+  border: 1px solid var(--border-main, #333);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-main, #eaeff5);
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.mobile-menu-socials a:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--bg-main);
+}
+
+/* CTA кнопка в footer меню — стиль як header-btn */
+.mobile-menu-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 46px;
+  min-width: 160px;
+  padding: 0 5px 0 20px;
+  border-radius: 30px;
+  background: var(--border-main, #2a2a2a);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text-main);
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 10px;
+  transition: opacity 0.25s;
+}
+
+.mobile-menu-cta::after {
+  content: '';
+  display: flex;
+  width: 36px;
+  height: 36px;
+  border-radius: 50px;
+  background: var(--color-primary, #bfdcff);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24'%3E%3Cpath d='M7 17L17 7M17 7H7M17 7v10' stroke='%230d0d0d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.mobile-menu-cta:hover {
+  opacity: 0.85;
+}
+
+/* Зупиняємо скрол сторінки, коли меню відкрито (body, не html!) */
+body.menu-is-open,
+body[style*="overflow: hidden"] {
+  overflow: hidden !important;
+}
+
+
 .header {
     display: flex;
     justify-content: space-between;
     width: 100%;
     height: 100px;
+
+  z-index: 9999 !important; 
     
     /* Фіксуємо хедер зверху */
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 999;
     background: transparent; /* На самому верху повністю прозорий */
     
     /* Анімація тільки для руху */
@@ -188,6 +444,10 @@ a{
 .header.is-hidden {
     transform: translateY(-100%);
 }
+
+
+
+
 
 .logo{
     flex: 1; 
@@ -325,6 +585,29 @@ a{
   transform: rotate(-15deg); 
 }
 
+/* Кнопка гамбургер-меню — стилізація span'ів для анімації → × */
+.menu span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #BFDCFF;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  pointer-events: none;
+}
+
+/* Анімація: 3 риски → хрестик */
+.menu.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.menu.is-open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.menu.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 .menu{
     display: none;
 }
@@ -378,155 +661,6 @@ position: absolute;
 
 
 
-
-.mobile-menu.is-open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.mobile-menu-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 0 20px; /* Бокові відступи */
-}
-
-/* Шапка всередині меню */
-.mobile-menu-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100px; /* Така ж висота як у основного хедера */
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-/* Кнопка закриття */
-.mobile-close {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background-color: var(--border-main, #333);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.3s;
-}
-.mobile-close:hover {
-  background-color: var(--color-primary);
-}
-
-/* Навігація: посилання-пігулки */
-.mobile-nav-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  flex: 1; /* Займає вільний простір, щоб соцмережі були внизу */
-  margin-top: 20px;
-}
-
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100dvh;
-  /* Жорстко задаємо темний колір, щоб перевірити, чи з'явиться фон */
-  background-color: #121212 !important; 
-  z-index: 99999 !important; /* Робимо z-index максимальним */
-  
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none; /* Забороняємо будь-які кліки, коли меню невидиме */
-  transform: translateY(-20px);
-  transition: all 0.4s ease-in-out;
-}
-
-.mobile-menu.is-open {
-  opacity: 1 !important; /* Примусово робимо непрозорим */
-  visibility: visible !important; /* Примусово показуємо */
-  pointer-events: auto !important; /* Повертаємо можливість клікати */
-  transform: translateY(0);
-}
-
-.mobile-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 320px;
-  height: 60px;
-  border: 2px solid var(--color-primary, #BFDCFF);
-  border-radius: 35px;
-  color: var(--text-main, #fff);
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: 400;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.mobile-link:hover {
-  background-color: var(--color-primary);
-  color: var(--bg-main);
-}
-
-/* Кнопка "Записатись" */
-.mobile-action-btn {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 320px;
-  height: 60px;
-  background-color: var(--border-main, #333);
-  border-radius: 35px;
-  padding: 6px 6px 6px 30px; /* Падінги, щоб кнопка стрілки була з правого краю */
-  text-decoration: none;
-  color: var(--text-main, #fff);
-  font-size: 1.2rem;
-  margin-top: 8px;
-}
-
-.mobile-action-btn .icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background-color: var(--color-primary, #BFDCFF);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Соцмережі внизу */
-.mobile-socials {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  padding-bottom: 40px;
-}
-
-.social-circle {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: var(--border-main, #333);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.3s;
-}
-.social-circle:hover {
-  transform: translateY(-3px);
-  background-color: var(--color-primary);
-}
-.social-circle:hover svg path {
-  stroke: var(--bg-main, #000);
-  fill: var(--bg-main, #000); /* Для Google іконки */
-}
 
 
 
@@ -3392,14 +3526,30 @@ padding-bottom: 15px;
 
     /* Показуємо кнопку бургер-меню */
     .menu {
-        display: flex; /* Показуємо блок */
+        display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: 5px;
         width: 45px;
         height: 45px;
-        background: transparent;
+        border-radius: 50%;
+        background: var(--border-main);
         border: none;
         cursor: pointer;
+        padding: 0;
+        flex-shrink: 0;
+        transition: background-color 0.25s ease;
+    }
+
+    /* Hover — лише на пристроях з підтримкою hover (ne mobile) */
+    @media (hover: hover) {
+        .menu:hover {
+            background-color: var(--color-primary);
+        }
+        .menu:hover span {
+            background: var(--bg-main);
+        }
     }
 
     /* Налаштовуємо праву частину (перемикач теми + бургер) */
@@ -3414,34 +3564,7 @@ padding-bottom: 15px;
         flex: 1; 
         justify-content: flex-start;
     }
-.menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: var(--border-main); /* Такий самий фон, як у theme-toggle */
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    transition: background-color 400ms ease-out;
-  }
 
-  .menu:hover {
-    background-color: var(--color-primary);
-  }
-
-  /* Змінюємо колір іконок при наведенні (опціонально) */
-  .menu:hover svg path {
-    stroke: var(--bg-main, #333); /* Замініть на змінну вашого фону, якщо потрібен контраст */
-  }
-
-  /* Налаштовуємо контейнер з кнопками */
-  .header-actions {
-    flex: 0; /* Вимикаємо розтягування */
-    gap: 12px; /* Відстань між круглими кнопками, як на скріншоті */
-  }
 
     .hero-background{
    margin: 0 ;
@@ -3579,9 +3702,7 @@ padding-bottom: 15px;
     display: none;
 }
 
-.menu{
-    display: block;
-}
+
 
 .grid-contacts {
   grid-template-columns: 100%;

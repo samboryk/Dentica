@@ -1,4 +1,4 @@
-// Зачекаємо, поки DOM завантажиться
+﻿// Зачекаємо, поки DOM завантажиться
 document.addEventListener("DOMContentLoaded", function() {
   const themeToggle = document.querySelector(".theme-toggle");
   
@@ -7,6 +7,58 @@ document.addEventListener("DOMContentLoaded", function() {
     // toggles .active class on and off
     this.classList.toggle("active");
   });
+});
+
+// ==========================================
+// MOBILE MENU (Повноекранне мобільне меню)
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn    = document.querySelector('.menu');
+    const overlay    = document.getElementById('mobileMenuOverlay');
+
+    if (!menuBtn || !overlay) return;
+
+    // Функція відкриття
+    function openMenu() {
+        overlay.classList.add('is-active');
+        menuBtn.classList.add('is-open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Функція закриття
+    function closeMenu() {
+        overlay.classList.remove('is-active');
+        menuBtn.classList.remove('is-open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    // Клік по бургер-кнопці — toggle
+    menuBtn.addEventListener('click', () => {
+        overlay.classList.contains('is-active') ? closeMenu() : openMenu();
+    });
+
+    // Закриття при кліку на посилання або CTA всередині меню
+    overlay.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            setTimeout(closeMenu, 250);
+        });
+    });
+
+    // Закриття клавішею Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('is-active')) {
+            closeMenu();
+        }
+    });
+
+    // Автозакриття при збільшенні вікна до десктопного розміру
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 480 && overlay.classList.contains('is-active')) {
+            closeMenu();
+        }
+    });
 });
 
 
@@ -640,3 +692,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ТУТ ТВІЙ КОД ДЛЯ АКОРДЕОНА (initAccordion)
 });
+
+
