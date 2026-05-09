@@ -62,11 +62,11 @@ body{
     
     background: var(--body-bg);
     color: var(--body-text);
-    height: 100%;
     font-size: 1.6rem;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    min-height: 100dvh;
 }
 
 .container{

@@ -96,6 +96,11 @@ viewer.addEventListener("load", () => {
           setTimeout(() => {
               preloader.style.display = 'none'; // Повністю видаляємо з DOM-дерева
               
+              /* Розблоковуємо скрол */
+              document.body.style.overflow = '';
+              document.documentElement.style.overflow = '';
+              document.body.classList.remove('lenis-stopped');
+
               /* ── ЗАПУСК ТА ОНОВЛЕННЯ АНІМАЦІЙ ── */
               if (typeof AOS !== 'undefined') {
                   AOS.init({
@@ -111,6 +116,13 @@ viewer.addEventListener("load", () => {
               if (typeof ScrollTrigger !== 'undefined') {
                   ScrollTrigger.refresh();
               }
+              
+              // Примусово оновлюємо всі розміри через 100мс
+              setTimeout(() => {
+                window.dispatchEvent(new Event('resize'));
+                if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+                if (typeof AOS !== 'undefined') AOS.refresh();
+              }, 100);
               
           }, 600); // Чекаємо завершення CSS-транзиції
       }, 200); 
