@@ -91,21 +91,29 @@ viewer.addEventListener("load", () => {
       
       setTimeout(() => {
           preloader.style.opacity = '0';
+          preloader.style.pointerEvents = 'none'; // Блокуємо перехоплення подій відразу
           
           setTimeout(() => {
-              preloader.style.visibility = 'hidden';
+              preloader.style.display = 'none'; // Повністю видаляємо з DOM-дерева
               
-              /* ── ЗАПУСК AOS АНІМАЦІЙ ── */
-              /* Запускаємо AOS тільки коли прелоадер повністю зник */
-              AOS.init({
-                once: false,  // Дозволяємо повторну анімацію
-                mirror: true, // Вмикаємо дзеркальну анімацію (при скролі вгору)
-                offset: 0,    // Анімація спрацює відразу, як елемент з'явиться
-                duration: 800 // Тривалість анімації (можеш змінити під себе)
-              });
+              /* ── ЗАПУСК ТА ОНОВЛЕННЯ АНІМАЦІЙ ── */
+              if (typeof AOS !== 'undefined') {
+                  AOS.init({
+                    once: false,
+                    mirror: true,
+                    offset: 20,    
+                    duration: 800 
+                  });
+                  AOS.refresh();
+              }
+
+              /* Оновлюємо GSAP ScrollTrigger для перерахунку координат */
+              if (typeof ScrollTrigger !== 'undefined') {
+                  ScrollTrigger.refresh();
+              }
               
-          }, 100); // Чекаємо завершення CSS-транзиції прелоадера
-      }, 100); // Невелика затримка для краси
+          }, 600); // Чекаємо завершення CSS-транзиції
+      }, 200); 
   }
 
   /* ── Ініціалізація сцени ── */
