@@ -1,14 +1,3 @@
-﻿// Зачекаємо, поки DOM завантажиться
-document.addEventListener("DOMContentLoaded", function() {
-  const themeToggle = document.querySelector(".theme-toggle");
-  
-  // Додаємо обробник кліку
-  themeToggle.addEventListener("click", function() {
-    // toggles .active class on and off
-    this.classList.toggle("active");
-  });
-});
-
 // ==========================================
 // MOBILE MENU (Повноекранне мобільне меню)
 // ==========================================
@@ -68,17 +57,20 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.querySelector('.theme-toggle');
     const body = document.body;
+    const html = document.documentElement;
 
     // 1. Перевіряємо, чи користувач вже обирав тему раніше
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
         body.classList.add('light-mode');
+        html.classList.add('light-mode');
         themeToggle.classList.add('active');
     }
 
     // 2. Функція перемикання
     themeToggle.addEventListener('click', () => {
         body.classList.toggle('light-mode');
+        html.classList.toggle('light-mode');
         themeToggle.classList.toggle('active');
 
         // Зберігаємо вибір
@@ -488,6 +480,81 @@ document.addEventListener("DOMContentLoaded", () => {
         updateSlider();
         startAutoPlay();
         
+        // ==========================================
+        // Lightbox для сертифікатів
+        // ==========================================
+        const modalHtml = `
+            <div class="cert-modal" id="cert-lightbox">
+                <button class="cert-modal-close" id="cert-lightbox-close">&times;</button>
+                <button class="team-btn cert-modal-nav cert-modal-prev" id="cert-lightbox-prev">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <img class="cert-modal-content" id="cert-lightbox-img" src="" alt="Сертифікат">
+                <button class="team-btn cert-modal-nav cert-modal-next" id="cert-lightbox-next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+        `;
+        // Додаємо тільки один раз
+        if (!document.getElementById('cert-lightbox')) {
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+        }
+
+        const lightbox = document.getElementById('cert-lightbox');
+        const lightboxImg = document.getElementById('cert-lightbox-img');
+        const lightboxClose = document.getElementById('cert-lightbox-close');
+        const lightboxPrev = document.getElementById('cert-lightbox-prev');
+        const lightboxNext = document.getElementById('cert-lightbox-next');
+        let currentLightboxIndex = 0;
+
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            lightboxImg.src = cards[currentLightboxIndex].src;
+            lightboxImg.style.opacity = 1;
+            lightbox.classList.add('show');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('show');
+            document.body.classList.remove('modal-open');
+            setTimeout(() => { lightboxImg.src = ''; }, 300);
+        }
+        
+        function navigateLightbox(step) {
+            currentLightboxIndex += step;
+            if (currentLightboxIndex < 0) currentLightboxIndex = cards.length - 1;
+            if (currentLightboxIndex >= cards.length) currentLightboxIndex = 0;
+            
+            // Плавна анімація зміни картинки
+            lightboxImg.style.opacity = 0;
+            setTimeout(() => {
+                lightboxImg.src = cards[currentLightboxIndex].src;
+                lightboxImg.style.opacity = 1;
+            }, 150);
+        }
+
+        cards.forEach((card, index) => {
+            card.addEventListener('click', () => {
+                openLightbox(index);
+            });
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); navigateLightbox(-1); });
+        lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); navigateLightbox(1); });
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('show')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+
         // Оновлюємо при зміні розміру вікна
         window.addEventListener('resize', updateSlider);
     }

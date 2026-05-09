@@ -1,6 +1,6 @@
 /* Стандартна темна тема (Dark Mode) */
 :root {
-  --hero-title-main: #333333;
+  --hero-title-main: #f30000;
   --hero-btn: #BFDCFF;
 
 
@@ -26,13 +26,284 @@
   --text-secondary: #CCCCCC;
   --text-accent: #A0AAB5;
   --text-muted: #888888;
+
+  /* --- Globals --- */
+  --body-bg: #0D0D0D;
+  --body-text: #EAEFF5;
+  --scrollbar-track-bg: #0D0D0D;
+  --scrollbar-thumb-bg: #333333;
+  --scrollbar-thumb-border: #0D0D0D;
+  --scrollbar-thumb-hover-bg: var(--color-primary);
+
+  /* --- Preloader --- */
+  --preloader-bg: linear-gradient(to right, rgb(45, 45, 45), rgb(14, 14, 12));
+  --preloader-text: #EAEFF5;
+  --preloader-track: rgba(255, 255, 255, 0.15);
+  --preloader-fill: #BFDCFF;
+  --preloader-star: #BFDCFF;
+
+  /* --- Mobile Menu --- */
+  --mobile-menu-overlay-bg: #0D0D0D;
+  --mobile-menu-header-border: #333333;
+  --mobile-menu-close-bg: #222222;
+  --mobile-menu-close-border: #333333;
+  --mobile-menu-close-icon: #EAEFF5;
+  --mobile-menu-close-hover-bg: #BFDCFF;
+  --mobile-menu-close-hover-icon: #0D0D0D;
+  --mobile-menu-nav-text: #EAEFF5;
+  --mobile-menu-nav-border: #BFDCFF;
+  --mobile-menu-nav-hover-bg: #BFDCFF;
+  --mobile-menu-nav-hover-text: #0D0D0D;
+  --mobile-menu-divider: #333333;
+  --mobile-menu-social-bg: #222222;
+  --mobile-menu-social-border: #333333;
+  --mobile-menu-social-icon: #EAEFF5;
+  --mobile-menu-social-hover-bg: #BFDCFF;
+  --mobile-menu-social-hover-border: #BFDCFF;
+  --mobile-menu-social-hover-icon: #0D0D0D;
+  --mobile-menu-cta-bg: #333333;
+  --mobile-menu-cta-text: #EAEFF5;
+  --mobile-menu-cta-icon-bg: #BFDCFF;
+
+  /* --- Header --- */
+  --header-bg: linear-gradient(to bottom, rgba(0, 0, 0, 0.904) 0%, rgba(0, 0, 0, 0) 100%);
+  --header-nav-text: #EAEFF5;
+  --theme-toggle-bg: #333333;
+  --theme-toggle-active-bg: #BFDCFF;
+  --theme-toggle-dark-circle: #BFDCFF;
+  --theme-toggle-light-circle: #EAEFF5;
+  --theme-toggle-dark-icon: #BFDCFF;
+  --theme-toggle-light-icon: #333333;
+  --theme-toggle-hover-icon: #333333;
+  --hamburger-menu-icon: #BFDCFF;
+  --header-btn-bg: #333333;
+  --header-btn-text: #EAEFF5;
+  --header-btn-arrow-bg: #BFDCFF;
+  --logo-star: #BFDCFF;
+  --logo-text: #EAEFF5;
+
+  /* --- Globals (Typography & Buttons) --- */
+  --thin-text-w-color: #EAEFF5;
+  --thin-text-b-color: #BFDCFF;
+  --btn-bg: #BFDCFF;
+  --btn-text: #0D0D0D;
+  --btn-hover-bg: #A9CDFA;
+
+  /* --- Hero --- */
+  --hero-bg-text-color: #333333;
+  --hero-tooth-shadow: rgba(0, 0, 0, 0.6);
+  --hero-info-card-bg: #333333;
+  --hero-bg: linear-gradient(315deg, #0e0e0c 0%, #2d2d2d 33%, #0e0e0c 66%, #2d2d2d 100%);
+  --hero-sidebar-social-bg: #333333;
+  --hero-star-right: #BFDCFF;
+  --hero-star-left: #EAEFF5;
+
+
+  /* --- Footer --- */
+  --footer-bg: linear-gradient(to right, rgb(45, 45, 45), rgb(14, 14, 12));
+  --footer-text: #EAEFF5;
+  --footer-divider: #333333;
+  --footer-made-text: #444444;
+
+  /* --- Contact --- */
+  --contact-action-bg: #BFDCFF;
+  --contact-action-text: #222222;
+  --contact-action-border: #333333;
+  --contact-map-border: #333333;
+  --contact-details-bg: #222222;
+  --contact-details-border: #333333;
+  --contact-info-title: #A0AAB5;
+  --contact-info-text: #EAEFF5;
+  --contact-info-link-hover: #BFDCFF;
+  --contact-social-bg: #2D2D2D;
+  --contact-social-text: #EAEFF5;
+  --contact-social-hover-bg: #BFDCFF;
+  --contact-social-hover-text: #0D0D0D;
+  --contact-action-info-title: #A0AAB5;
+  --contact-action-info-text: #0D0D0D;
+  --contact-action-btn-bg: #222222;
+  --contact-action-btn-text: #EAEFF5;
+  --contact-aurora-1: rgba(191, 220, 255, 1);
+  --contact-aurora-2: rgba(191, 220, 255, 0.5);
+
+  /* --- Modal --- */
+  --modal-overlay-bg: rgba(0, 0, 0, 0.4);
+  --modal-close-icon: #888888;
+  --modal-close-icon-hover: #FF4D4F;
+  --modal-card-bg: #222222;
+  --modal-title: #EAEFF5;
+  --modal-desc: #888888;
+  --modal-label: #EAEFF5;
+  --modal-input-bg: #2D2D2D;
+  --modal-input-border: #444444;
+  --modal-input-border-focused: #BFDCFF;
+  --modal-input-border-error: #FF4D4F;
+  --modal-input-text: #EAEFF5;
+  --modal-divider: #444444;
+  --modal-disclaimer-text: #888888;
+  --modal-disclaimer-link: #EAEFF5;
+  --modal-success-title: #EAEFF5;
+  --modal-checkmark-color: #BFDCFF;
+  --modal-checkmark-bg: #0D0D0D;
+    --modal-country-list-bg: #2D2D2D;
+  --modal-country-list-border: #444444;
+  --modal-country-item-hover: #444444;
+  --modal-country-item-active: #242424;
+
+  /* --- Trust --- */
+  --trust-desc-text: #EAEFF5;
+  --trust-img-border: #333333;
+  --trust-card-border: #333333;
+  --trust-card-dark-bg: #222222;
+  --trust-card-dark-text: #EAEFF5;
+  --trust-card-accent-bg: #BFDCFF;
+  --trust-card-accent-text: #0D0D0D;
+
+  /* --- Services --- */
+  --service-card-border: #333333;
+  --service-card-bg: #222222;
+  --service-card-action-border: #BFDCFF;
+  --service-card-number: #BFDCFF;
+  --service-card-title: #EAEFF5;
+  --service-card-desc: #EAEFF5;
+  --service-card-action-text: #BFDCFF;
+  --service-price-text: #EAEFF5;
+
+  /* --- Team --- */
+  --team-btn-border: #333333;
+  --team-btn-text: #EAEFF5;
+  --team-btn-hover-bg: #222222;
+  --team-img-bg: #222222;
+  --team-card-bg: #222222;
+  --team-card-border: #333333;
+  --team-member-name: #EAEFF5;
+  --team-member-role: #A0AAB5;
+  --team-member-divider: #BFDCFF;
+  --team-member-desc: #EAEFF5;
+  --team-member-link-bg: #BFDCFF;
+  --team-member-link-text: #0D0D0D;
+
+  /* --- FAQ --- */
+  --faq-title-accent: #BFDCFF;
+  --faq-list-border: #333333;
+  --faq-item-trigger-text: #EAEFF5;
+  --faq-item-trigger-hover: #BFDCFF;
+  --faq-item-icon: #EAEFF5;
+  --faq-item-text: #EAEFF5;
+  --faq-item-border-left: #BFDCFF;
+
+  /* --- Reviews --- */
+  --review-card-bg: #222222;
+  /* --- Reviews (part 2) --- */
+  --review-avatar-bg: #BFDCFF;
+  --review-avatar-text: #0D0D0D;
+  --review-author-name: #EAEFF5;
+  --review-author-role: #A0AAB5;
+  --review-dot-bg: #1A1A1A;
+  --review-dot-active: #BFDCFF;
+
+  /* --- Price --- */
+  --price-filter-bg: #0D0D0D;
+  --price-filter-border: #333333;
+  --price-card-highlight-border: #BFDCFF;
+  --price-card-highlight-shadow: rgba(191, 220, 255, 0.2);
+  --price-filter-btn-bg: #333333;
+  --price-filter-btn-text: #BFDCFF;
+  --price-filter-btn-hover-text: #EAEFF5;
+  --price-card-bg: #1A1A1A;
+  --price-card-border: #333333;
+  --price-card-hover-border: #555555;
+  --price-card-title: #EAEFF5;
+  --price-card-icon-bg: rgba(191, 220, 255, 0.1);
+  --price-card-icon-color: #BFDCFF;
+  --price-row-name: #CCCCCC;
+  --price-row-dots: #555555;
+  --price-row-value: #EAEFF5;
+  --price-card-link: #BFDCFF;
+  --price-card-link-hover: #EAEFF5;
+  --price-disclaimer-text: #888888;
+  --price-disclaimer-strong: #EAEFF5;
+
+  /* --- Results Slider --- */
+  --slider-nav-border: rgba(255, 255, 255, 0.4);
+  --slider-nav-color: #EAEFF5;
+
+  /* --- Floating Widgets --- */
+  --widget-chat-bg: #BFDCFF;
+  --widget-chat-icon: #333333;
+  --widget-chat-shadow: rgba(191, 220, 255, 0.4);
+  --widget-scroll-bg: #333333;
+  --widget-scroll-icon: #BFDCFF;
+  --widget-scroll-border: #1A1A1A;
+
+  /* --- Chat Window --- */
+  --chat-window-bg: #222222;
+  --chat-window-border: #333333;
+  --chat-header-bg: linear-gradient(to right, #2D2D2D, #222222);
+  --chat-avatar-bg: #BFDCFF;
+  --chat-avatar-icon: #222222;
+  --chat-title-text: #EAEFF5;
+  --chat-title-desc: #888888;
+  --chat-close-icon: #888888;
+  --chat-close-hover: #FF4D4F;
+  --chat-body-bg: #222222;
+  --chat-scrollbar-thumb: #333333;
+  --chat-bot-msg-bg: #2D2D2D;
+  --chat-bot-msg-text: #EAEFF5;
+  --chat-user-msg-bg: #BFDCFF;
+  --chat-user-msg-text: #222222;
+  --chat-typing-dot: #888888;
+  --chat-footer-bg: #222222;
+  --chat-input-bg: #2D2D2D;
+  --chat-input-text: #EAEFF5;
+
+  /* --- Doctor Profile --- */
+  --doctor-title: #EAEFF5;
+  --doctor-accordion-bg: #222222;
+  --doctor-accordion-border: #1A1A1A;
+  --doctor-accordion-title: #EAEFF5;
+  --doctor-accordion-btn-bg: #BFDCFF;
+  --doctor-accordion-btn-icon: #0D0D0D;
+  --doctor-accordion-text: #EAEFF5;
+  --doctor-photo-bg: #BFDCFF;
+  --doctor-main-title-text: #EAEFF5;
+
+  /* --- Accordion (Generic) --- */
+  --accordion-active-border: #1A1A1A;
+  --accordion-text-border: #BFDCFF;
+  --accordion-text-color: #EAEFF5;
+
+  /* --- Certificates --- */
+  --cert-card-border: #BCBCBC;
+  --cert-dot-bg: #1A1A1A;
+  --cert-dot-active: #BFDCFF;
+
+  /* --- Results Slider --- */
+  --results-title-accent: #A0AAB5;
+  --results-dot-active: #BFDCFF;
+
+  /* --- Single Service --- */
+  --single-service-photo-border: #95A5B8;
+
+  /* --- Privacy Page --- */
+  --privacy-date-text: #888888;
+  --privacy-content-text: #CCCCCC;
+  --privacy-title-color: #BFDCFF;
+  --privacy-bullet-color: #BFDCFF;
+  --privacy-strong-text: #EAEFF5;
+
+  /* --- Not Found Page --- */
+  --404-title-color: #BFDCFF;
+  --404-subtitle-text: #EAEFF5;
+  --404-desc-text: #888888;
+  --404-btn-bg: #BFDCFF;
 }
 
 /* Світла тема (Light Mode) */
-body.light-mode {
-    --hero-title-main: #95A5B8;
-    --hero-btn: #C5D5E7;
-  --color-primary: #BFDCFF;
+html.light-mode, body.light-mode {
+
+  --hero-btn: #C5D5E7;
+  --color-primary: #C5D5E7;
   --color-primary-hover: #A9CDFA;
   --color-primary-rgb: 191, 220, 255;
   --color-error: #FF4D4F;
@@ -48,9 +319,279 @@ body.light-mode {
   --border-light: #444444;
   --border-hover: #555555;
 
-  --text-white: #333333;
-  --text-main: #333333;
+  --text-white: #212121;
+  --text-main: #212121;
   --text-secondary: #CCCCCC;
   --text-accent: #A0AAB5;
   --text-muted: #888888;
+
+  /* --- Globals --- */
+  --body-bg: #E9EDF2;
+  --body-text: #212121;
+  --scrollbar-track-bg: #EAEFF5;
+  --scrollbar-thumb-bg: #A0AAB5;
+  --scrollbar-thumb-border: #EAEFF5;
+  --scrollbar-thumb-hover-bg: var(--color-primary);
+
+  /* --- Preloader --- */
+  --preloader-bg: linear-gradient(315deg, #d1dce9c8 0%, #EAEFF5 33%, #d1dce9c8 40%, #EAEFF5 100%);
+  --preloader-text: #333333;
+  --preloader-track: #7A90AA;
+  --preloader-fill: #7A90AA;
+  --preloader-star: #7A90AA;
+
+  /* --- Mobile Menu --- */
+  --mobile-menu-overlay-bg: #EAEFF5;
+  --mobile-menu-header-border: #95A5B8;
+  --mobile-menu-close-bg: #EAEFF5;
+  --mobile-menu-close-border: #95A5B8;
+  --mobile-menu-close-icon: #333333;
+  --mobile-menu-close-hover-bg: #BFDCFF;
+  --mobile-menu-close-hover-icon: #333333;
+  --mobile-menu-nav-text: #333333;
+  --mobile-menu-nav-border: #BFDCFF;
+  --mobile-menu-nav-hover-bg: #BFDCFF;
+  --mobile-menu-nav-hover-text: #333333;
+  --mobile-menu-divider: #95A5B8;
+  --mobile-menu-social-bg: #EAEFF5;
+  --mobile-menu-social-border: #95A5B8;
+  --mobile-menu-social-icon: #333333;
+  --mobile-menu-social-hover-bg: #BFDCFF;
+  --mobile-menu-social-hover-border: #BFDCFF;
+  --mobile-menu-social-hover-icon: #333333;
+  --mobile-menu-cta-bg: #95A5B8;
+  --mobile-menu-cta-text: #333333;
+  --mobile-menu-cta-icon-bg: #BFDCFF;
+
+  /* --- Header --- */
+  --header-bg: linear-gradient(to bottom, rgba(234, 239, 245, 0.95) 0%, rgba(234, 239, 245, 0) 100%);
+  --header-nav-text: #333333;
+  --theme-toggle-bg: #C5D5E7;
+  --theme-toggle-active-bg: #C5D5E7;
+  --theme-toggle-dark-circle: #BFDCFF;
+  --theme-toggle-light-circle: #EAEFF5;
+  --theme-toggle-dark-icon: #BFDCFF;
+  --theme-toggle-light-icon: #333333;
+  --theme-toggle-hover-icon: #95A5B8;
+  --hamburger-menu-icon: #BFDCFF;
+  --header-btn-bg: #C5D5E7;
+  --header-btn-text: #333333;
+  --header-btn-arrow-bg: #EAEFF5;
+  --logo-star: #7A90AA;
+  --logo-text: #333333;
+
+  /* --- Globals (Typography & Buttons) --- */
+  --thin-text-w-color: #333333;
+  --thin-text-b-color: #869BB4;
+  --btn-bg: #C5D5E7;
+  --btn-text: #333333;
+  --btn-hover-bg: #D6E4F3;
+
+  /* --- Hero --- */
+  --hero-bg-text-color: #95A5B8;
+  --hero-tooth-shadow: rgb(190, 206, 224);
+  --hero-info-card-bg: #C5D5E7;
+  --hero-bg: linear-gradient(315deg, #d1dce9c8 0%, #EAEFF5 33%, #d1dce9c8 40%, #EAEFF5 100%);
+  --hero-sidebar-social-bg: #95A5B8;
+  --hero-star-right: #7A90AA;
+  --hero-star-left: #333333;
+
+  /* --- Footer --- */
+  --footer-bg: linear-gradient(to bottom, rgb(190, 206, 224), rgb(234, 239, 245));
+  --footer-text: #333333;
+  --footer-divider: #95A5B8;
+  --footer-made-text: #7D8895;
+
+  /* --- Contact --- */
+  --contact-action-bg: #333333;
+  --contact-action-text: #EAEFF5; 
+  --contact-action-border: #222222;
+  --contact-map-border: #95A5B8;
+  --contact-details-bg: #D5E2F0; 
+  --contact-details-border: #95A5B8;
+  --contact-info-title: #333333;
+  --contact-info-text: #333333;
+  --contact-info-link-hover: #BFDCFF;
+  --contact-social-bg: #95A5B8;
+  --contact-social-text: #EAEFF5;
+  --contact-social-hover-bg: #BFDCFF;
+  --contact-social-hover-text: #333333;
+  --contact-action-info-title: #A0AAB5;
+  --contact-action-info-text: #EAEFF5;
+  --contact-action-btn-bg: #D5E2F0;
+  --contact-action-btn-text: #333333;
+  --contact-aurora-1: #95A5B8;
+  --contact-aurora-2: #95A5B8;
+
+  /* --- Modal --- */
+  --modal-overlay-bg: rgba(1, 0, 0, 0.4); 
+  --modal-close-icon: #7A90AA;
+  --modal-close-icon-hover: #FF4D4F;
+  --modal-card-bg: #EAEFF5;
+  --modal-title: #333333;
+  --modal-desc: #7A90AA;
+  --modal-label: #333333;
+  --modal-input-bg: #EAEFF5;
+  --modal-input-border: #95A5B8;
+  --modal-input-border-focused: #C5D5E7;
+  --modal-input-border-error: #FF4D4F;
+  --modal-input-text: #333333;
+  --modal-divider: #95A5B8;
+  --modal-disclaimer-text: #7A90AA;
+  --modal-disclaimer-link: #333333;
+  --modal-success-title: #333333;
+  --modal-checkmark-color: #7A90AA;
+  --modal-checkmark-bg: #EAEFF5;
+  --modal-country-list-bg: #EAEFF5;
+  --modal-country-list-border: #95A5B8;
+  --modal-country-item-hover: #dee6ef;
+  --modal-country-item-active: #C5D5E7;
+
+  /* --- Trust --- */
+  --trust-desc-text: #212121;
+  --trust-img-border: #95A5B8;
+  --trust-card-border: #95A5B8;
+  --trust-card-dark-bg: #C5D5E7;
+  --trust-card-dark-text: #212121;
+  --trust-card-accent-bg: #333333;
+  --trust-card-accent-text: #EAEFF5;
+
+  /* --- Services --- */
+  --service-card-border: #95A5B8;
+  --service-card-bg: #C5D5E7;
+  --service-card-action-border: #7A90AA;
+  --service-card-number: #7A90AA;
+  --service-card-title: #212121;
+  --service-card-desc: #212121;
+  --service-card-action-text: #7A90AA;
+  --service-price-text: #212121;
+
+  /* --- Team --- */
+  --team-btn-border: #95A5B8;
+  --team-btn-text: #333333;
+  --team-btn-hover-bg: #D5E2F0;
+  --team-img-bg: #D5E2F0;
+  --team-card-bg: #C5D5E7;
+  --team-card-border: #95A5B8;
+  --team-member-name: #333333;
+  --team-member-role: #7A90AA;
+  --team-member-divider: #7A90AA;
+  --team-member-desc: #212121;
+  --team-member-link-bg: #333333;
+  --team-member-link-text: #FFFFFF;
+
+  /* --- FAQ --- */
+  --faq-title-accent: #7A90AA;
+  --faq-list-border: #95A5B8;
+  --faq-item-trigger-text: #333333;
+  --faq-item-trigger-hover: #7A90AA;
+  --faq-item-icon: #333333;
+  --faq-item-text: #333333;
+  --faq-item-border-left: #A2B2C5;
+
+  /* --- Reviews --- */
+  --review-card-bg: #C5D5E7;
+  /* --- Reviews (part 2) --- */
+  --review-avatar-bg: #7A90AA;
+  --review-avatar-text: #EAEFF5;
+  --review-author-name: #333333;
+  --review-author-role: #7A90AA;
+  --review-dot-bg: #333333;
+  --review-dot-active: #7A90AA;
+
+  /* --- Price --- */
+  --price-filter-bg: #E9EDF2;
+  --price-filter-border: #95A5B8;
+  --price-card-highlight-border: #BFDCFF;
+  --price-card-highlight-shadow: rgba(191, 220, 255, 0.2);
+  --price-filter-btn-bg: #C5D5E7;
+  --price-filter-btn-text: #333333;
+  --price-filter-btn-hover-text: #7A90AA;
+  --price-card-bg: #C5D5E7;
+  --price-card-border: #7A90AA;
+  --price-card-hover-border: #444444;
+  --price-card-title: #333333;
+  --price-card-icon-bg: #7A90AA;
+  --price-card-icon-color: #EAEFF5;
+  --price-row-name: #333333;
+  --price-row-dots: #444444;
+  --price-row-value: #333333;
+  --price-card-link: #333333;
+  --price-card-link-hover: #7A90AA;
+  --price-disclaimer-text: #333333;
+  --price-disclaimer-strong: #7A90AA;
+
+  /* --- Results Slider --- */
+  --slider-nav-border: rgba(0, 0, 0, 0.4);
+  --slider-nav-color: #333333;
+
+  /* --- Floating Widgets --- */
+  --widget-chat-bg: #95A5B8;
+  --widget-chat-icon: #C5D5E7;
+  --widget-chat-shadow: #7A90AA;
+  --widget-scroll-bg: #C5D5E7;
+  --widget-scroll-icon: #7A90AA;
+  --widget-scroll-border: #7A90AA;
+
+  /* --- Chat Window --- */
+  --chat-window-bg: #EAEFF5;
+  --chat-window-border: #95A5B8;
+  --chat-header-bg: linear-gradient(to right, #EAEFF5, #EAEFF5);
+  --chat-avatar-bg: #BFDCFF;
+  --chat-avatar-icon: #EAEFF5;
+  --chat-title-text: #333333;
+  --chat-title-desc: #888888;
+  --chat-close-icon: #888888;
+  --chat-close-hover: #FF4D4F;
+  --chat-body-bg: #EAEFF5;
+  --chat-scrollbar-thumb: #95A5B8;
+  --chat-bot-msg-bg: #EAEFF5;
+  --chat-bot-msg-text: #333333;
+  --chat-user-msg-bg: #BFDCFF;
+  --chat-user-msg-text: #EAEFF5;
+  --chat-typing-dot: #888888;
+  --chat-footer-bg: #EAEFF5;
+  --chat-input-bg: #EAEFF5;
+  --chat-input-text: #333333;
+
+  /* --- Doctor Profile --- */
+  --doctor-title: #333333;
+  --doctor-accordion-bg: #C5D5E7;
+  --doctor-accordion-border: #95A5B8;
+  --doctor-accordion-title: #333333;
+  --doctor-accordion-btn-bg: #7A90AA;
+  --doctor-accordion-btn-icon: #FFFFFF;
+  --doctor-accordion-text: #333333;
+  --doctor-photo-bg: #7A90AA;
+  --doctor-main-title-text: #333333;
+
+  /* --- Accordion (Generic) --- */
+  --accordion-active-border: #D5E2F0;
+  --accordion-text-border: #7A90AA;
+  --accordion-text-color: #333333;
+
+  /* --- Certificates --- */
+  --cert-card-border: #7A90AA;
+  --cert-dot-bg: #D5E2F0;
+  --cert-dot-active: #BFDCFF;
+
+  /* --- Results Slider --- */
+  --results-title-accent: #A0AAB5;
+  --results-dot-active: #BFDCFF;
+
+  /* --- Single Service --- */
+  --single-service-photo-border: #95A5B8;
+
+  /* --- Privacy Page --- */
+  --privacy-date-text: #888888;
+  --privacy-content-text: #888888;
+  --privacy-title-color: #BFDCFF;
+  --privacy-bullet-color: #BFDCFF;
+  --privacy-strong-text: #333333;
+
+  /* --- Not Found Page --- */
+  --404-title-color: #BFDCFF;
+  --404-subtitle-text: #333333;
+  --404-desc-text: #888888;
+  --404-btn-bg: #BFDCFF;
 }
