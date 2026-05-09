@@ -3755,24 +3755,14 @@ body.light-mode .not-found-image {
         margin: 0;
         height: 100vh;
         height: 100dvh;
+        position: relative;
         overflow: hidden;
-        padding-bottom: 0px;
-        display: flex;
-        flex-direction: column;
     }
 
-    .hero-background > main {
-        flex: 1;
+    .hero-background > .hero {
+        height: 100%;
         display: flex;
         flex-direction: column;
-        min-height: 0;
-    }
-
-    .hero-background > main > .hero {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        min-height: 0;
     }
 
     .hero > .container {
