@@ -328,7 +328,8 @@ window.addEventListener('scroll', () => {
             const targetCard = document.getElementById(targetId);
             
             if (targetCard) {
-                const offset = filter.offsetHeight + 20;
+                // Візуальна висота фільтра при закріпленні на 80px більша через transform
+                const offset = filter.offsetHeight + 80 + 20;
                 const elementPosition = targetCard.getBoundingClientRect().top + window.pageYOffset;
                 
                 window.scrollTo({
@@ -571,108 +572,115 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const slides = document.querySelectorAll('.result-slide');
-    const btnNext = document.getElementById('res-next');
-    const btnPrev = document.getElementById('res-prev');
-    const paginationContainer = document.getElementById('res-pagination');
-    const wrapper = document.getElementById('results-wrapper');
-    
-    if (!slides.length || !btnNext || !btnPrev || !paginationContainer) return;
+    // ============================================
+    // RESULTS SLIDER – простий трековий (2 видимі)
+    // ============================================
+    const track      = document.getElementById('res-track');
+    const viewport   = document.getElementById('results-viewport');
+    const btnNext    = document.getElementById('res-next');
+    const btnPrev    = document.getElementById('res-prev');
+    const pagination = document.getElementById('res-pagination');
 
-    let currentIndex = 2; // Починаємо з центрального (3-го)
-    const totalSlides = slides.length;
-    
-    // СПОВІЛЬНЕНО АВТОПЛЕЙ ДО 5 СЕКУНД
-    const autoPlayDelay = 3000; 
-    let autoPlayTimer;
+    if (!track || !btnNext || !btnPrev || !viewport) return;
 
-    // Створюємо цятки
-    paginationContainer.innerHTML = ''; 
-    slides.forEach((_, i) => {
-        const dot = document.createElement('div');
-        dot.classList.add('res-dot');
-        dot.addEventListener('click', () => {
-            currentIndex = i;
-            updateSlider();
-            resetAutoPlay();
+    const cards     = Array.from(track.querySelectorAll('.result-card'));
+    const total     = cards.length;
+    const VISIBLE   = 2;
+    const GAP       = 24;
+    const maxIndex  = Math.max(0, total - VISIBLE);
+    const AUTOPLAY  = 5000;
+    let current     = 0;
+    let autoTimer   = null;
+    let userInteracted = false;
+
+    // ── Пагінація ────────────────────────────────
+    if (pagination) {
+        pagination.innerHTML = '';
+        for (let i = 0; i <= maxIndex; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'res-dot';
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => { userInteracted = true; stopAuto(); goTo(i); });
+            pagination.appendChild(dot);
+        }
+    }
+    const dots = pagination ? pagination.querySelectorAll('.res-dot') : [];
+
+    function getGap() {
+        return parseInt(getComputedStyle(track).gap) || 24;
+    }
+
+    function goTo(index) {
+        const gap = getGap();
+        const cardW = cards[0].offsetWidth;
+        const visibleNow = cardW < viewport.offsetWidth * 0.6 ? 2 : 1;
+        const max = Math.max(0, total - visibleNow);
+        current = Math.max(0, Math.min(index, max));
+        const offset = current * (cardW + gap);
+        track.style.transform = `translateX(-${offset}px)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function next() { goTo(current < maxIndex ? current + 1 : 0); }
+    function prev() { goTo(current > 0 ? current - 1 : maxIndex); }
+
+    function startAuto() { if (userInteracted) return; autoTimer = setInterval(next, AUTOPLAY); }
+    function stopAuto()  { clearInterval(autoTimer); }
+
+    btnNext.addEventListener('click', () => { userInteracted = true; stopAuto(); next(); });
+    btnPrev.addEventListener('click', () => { userInteracted = true; stopAuto(); prev(); });
+    viewport.addEventListener('mouseenter', stopAuto);
+    viewport.addEventListener('mouseleave', () => { if (!userInteracted) startAuto(); });
+
+    goTo(0);
+    startAuto();
+
+    // ============================================
+    // BEFORE / AFTER SLIDER DRAG LOGIC
+    // ============================================
+    document.querySelectorAll('.ba-slider[data-ba]').forEach(slider => {
+        const handle = slider.querySelector('.ba-handle');
+        const before = slider.querySelector('.ba-before');
+        const lblBefore = slider.querySelector('.ba-label-before');
+        const lblAfter  = slider.querySelector('.ba-label-after');
+        if (!handle || !before) return;
+
+        let isDragging = false;
+
+        function setPosition(clientX) {
+            const rect = slider.getBoundingClientRect();
+            let pos = (clientX - rect.left) / rect.width;
+            pos = Math.max(0.02, Math.min(0.98, pos));
+            const pct = pos * 100;
+            handle.style.left = pct + '%';
+            before.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+            if (lblBefore) lblBefore.style.opacity = pct < 22 ? '0' : '1';
+            if (lblAfter)  lblAfter.style.opacity  = pct > 78 ? '0' : '1';
+        }
+
+        handle.addEventListener('mousedown', (e) => {
+            isDragging = true; handle.classList.add('dragging');
+            userInteracted = true; stopAuto();
+            e.preventDefault(); e.stopPropagation();
         });
-        paginationContainer.appendChild(dot);
-    });
-    const dots = paginationContainer.querySelectorAll('.res-dot');
-
-    function updateSlider() {
-        slides.forEach((slide, i) => {
-            slide.className = 'result-slide';
-            slide.onclick = null;
-            
-            // Розраховуємо індекси сусідів по колу
-            const prev1 = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
-            const next1 = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
-            const prev2 = (prev1 === 0) ? totalSlides - 1 : prev1 - 1;
-            const next2 = (next1 === totalSlides - 1) ? 0 : next1 + 1;
-
-            // Призначаємо класи для 5-ти видимих карток
-            if (i === currentIndex) {
-                slide.classList.add('active');
-            } else if (i === prev1) {
-                slide.classList.add('prev-1');
-                slide.onclick = () => { currentIndex = i; updateSlider(); resetAutoPlay(); };
-            } else if (i === next1) {
-                slide.classList.add('next-1');
-                slide.onclick = () => { currentIndex = i; updateSlider(); resetAutoPlay(); };
-            } else if (i === prev2) {
-                slide.classList.add('prev-2');
-                slide.onclick = () => { currentIndex = i; updateSlider(); resetAutoPlay(); };
-            } else if (i === next2) {
-                slide.classList.add('next-2');
-                slide.onclick = () => { currentIndex = i; updateSlider(); resetAutoPlay(); };
-            }
+        document.addEventListener('mousemove', (e) => { if (isDragging) setPosition(e.clientX); });
+        document.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false; handle.classList.remove('dragging');
         });
 
-        // Оновлюємо цятки
-        dots.forEach((dot, index) => {
-            if (index === currentIndex) dot.classList.add('active');
-            else dot.classList.remove('active');
+        handle.addEventListener('touchstart', (e) => {
+            isDragging = true; handle.classList.add('dragging');
+            userInteracted = true; stopAuto();
+            e.preventDefault(); e.stopPropagation();
         });
-    }
-
-    function goToNext() {
-        currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
-        updateSlider();
-    }
-
-    function goToPrev() {
-        currentIndex = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
-        updateSlider();
-    }
-
-    function startAutoPlay() {
-        autoPlayTimer = setInterval(goToNext, autoPlayDelay);
-    }
-
-    function resetAutoPlay() {
-        clearInterval(autoPlayTimer);
-        startAutoPlay();
-    }
-
-    btnNext.addEventListener('click', () => {
-        goToNext();
-        resetAutoPlay();
+        document.addEventListener('touchmove', (e) => { if (isDragging) setPosition(e.touches[0].clientX); });
+        document.addEventListener('touchend', () => {
+            if (!isDragging) return;
+            isDragging = false; handle.classList.remove('dragging');
+        });
     });
-
-    btnPrev.addEventListener('click', () => {
-        goToPrev();
-        resetAutoPlay();
-    });
-
-    wrapper.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
-    wrapper.addEventListener('mouseleave', startAutoPlay);
-
-    // Перший запуск
-    updateSlider();
-    startAutoPlay();
 });
-
 
 // ==========================================
     // БІЧНА НАВІГАЦІЯ (Scroll Spy)

@@ -104,6 +104,7 @@
   --footer-text: #EAEFF5;
   --footer-divider: #333333;
   --footer-made-text: #444444;
+    --footer-star: #EAEFF5;
 
   /* --- Contact --- */
   --contact-action-bg: #BFDCFF;
@@ -293,10 +294,10 @@
   --privacy-strong-text: #EAEFF5;
 
   /* --- Not Found Page --- */
-  --404-title-color: #BFDCFF;
-  --404-subtitle-text: #EAEFF5;
-  --404-desc-text: #888888;
-  --404-btn-bg: #BFDCFF;
+  --title-color-404: #BFDCFF;
+  --subtitle-text-404: #EAEFF5;
+  --desc-text-404: #888888;
+  --btn-bg-404: #BFDCFF;
 }
 
 /* Світла тема (Light Mode) */
@@ -334,7 +335,7 @@ html.light-mode, body.light-mode {
   --scrollbar-thumb-hover-bg: var(--color-primary);
 
   /* --- Preloader --- */
-  --preloader-bg: linear-gradient(315deg, #d1dce9c8 0%, #EAEFF5 33%, #d1dce9c8 40%, #EAEFF5 100%);
+  --preloader-bg: linear-gradient(315deg, #d1dce9 0%, #EAEFF5 33%, #d1dce9 40%, #EAEFF5 100%);
   --preloader-text: #333333;
   --preloader-track: #7A90AA;
   --preloader-fill: #7A90AA;
@@ -385,7 +386,7 @@ html.light-mode, body.light-mode {
   --thin-text-b-color: #869BB4;
   --btn-bg: #C5D5E7;
   --btn-text: #333333;
-  --btn-hover-bg: #D6E4F3;
+  --btn-hover-bg: #b8c7d6;
 
   /* --- Hero --- */
   --hero-bg-text-color: #95A5B8;
@@ -401,6 +402,7 @@ html.light-mode, body.light-mode {
   --footer-text: #333333;
   --footer-divider: #95A5B8;
   --footer-made-text: #7D8895;
+  --footer-star: #7A90AA;
 
   /* --- Contact --- */
   --contact-action-bg: #333333;
@@ -411,10 +413,10 @@ html.light-mode, body.light-mode {
   --contact-details-border: #95A5B8;
   --contact-info-title: #333333;
   --contact-info-text: #333333;
-  --contact-info-link-hover: #BFDCFF;
+  --contact-info-link-hover: #95A5B8;
   --contact-social-bg: #95A5B8;
   --contact-social-text: #EAEFF5;
-  --contact-social-hover-bg: #BFDCFF;
+  --contact-social-hover-bg: #EAEFF5;
   --contact-social-hover-text: #333333;
   --contact-action-info-title: #A0AAB5;
   --contact-action-info-text: #EAEFF5;
@@ -535,9 +537,9 @@ html.light-mode, body.light-mode {
 
   /* --- Chat Window --- */
   --chat-window-bg: #EAEFF5;
-  --chat-window-border: #95A5B8;
+  --chat-window-border: #7A90AA;
   --chat-header-bg: linear-gradient(to right, #EAEFF5, #EAEFF5);
-  --chat-avatar-bg: #BFDCFF;
+  --chat-avatar-bg: #7A90AA;
   --chat-avatar-icon: #EAEFF5;
   --chat-title-text: #333333;
   --chat-title-desc: #888888;
@@ -545,11 +547,11 @@ html.light-mode, body.light-mode {
   --chat-close-hover: #FF4D4F;
   --chat-body-bg: #EAEFF5;
   --chat-scrollbar-thumb: #95A5B8;
-  --chat-bot-msg-bg: #EAEFF5;
+  --chat-bot-msg-bg: #C5D5E7;
   --chat-bot-msg-text: #333333;
-  --chat-user-msg-bg: #BFDCFF;
+  --chat-user-msg-bg: #7A90AA;
   --chat-user-msg-text: #EAEFF5;
-  --chat-typing-dot: #888888;
+  --chat-typing-dot: #7A90AA;
   --chat-footer-bg: #EAEFF5;
   --chat-input-bg: #EAEFF5;
   --chat-input-text: #333333;
@@ -583,15 +585,15 @@ html.light-mode, body.light-mode {
   --single-service-photo-border: #95A5B8;
 
   /* --- Privacy Page --- */
-  --privacy-date-text: #888888;
-  --privacy-content-text: #888888;
+  --privacy-date-text: #333333;
+  --privacy-content-text: #333333;
   --privacy-title-color: #BFDCFF;
   --privacy-bullet-color: #BFDCFF;
   --privacy-strong-text: #333333;
 
   /* --- Not Found Page --- */
-  --404-title-color: #BFDCFF;
-  --404-subtitle-text: #333333;
-  --404-desc-text: #888888;
-  --404-btn-bg: #BFDCFF;
+  --title-color-404: #BFDCFF;
+  --subtitle-text-404: #333333;
+  --desc-text-404: #888888;
+  --btn-bg-404: #C5D5E7;
 }
