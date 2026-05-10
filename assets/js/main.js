@@ -2,6 +2,22 @@
 // MOBILE MENU (Повноекранне мобільне меню)
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+    // Ініціалізація анімацій відразу (не чекаючи 3D модель)
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            once: false,
+            mirror: true,
+            offset: 50,
+            disable: false
+        });
+    }
+
+    // Оновлюємо координати при скролі (лікує "залипання" на мобайлі)
+    window.addEventListener('scroll', () => {
+        AOS.refresh();
+    });
+
     const menuBtn    = document.querySelector('.menu');
     const overlay    = document.getElementById('mobileMenuOverlay');
 

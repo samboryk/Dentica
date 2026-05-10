@@ -101,14 +101,9 @@ viewer.addEventListener("load", () => {
               document.documentElement.style.overflow = '';
               document.body.classList.remove('lenis-stopped');
 
-              /* ── ЗАПУСК ТА ОНОВЛЕННЯ АНІМАЦІЙ ── */
+              /* ── ОНОВЛЕННЯ АНІМАЦІЙ ── */
+              // AOS вже запущений у main.js, тут ми його просто оновлюємо
               if (typeof AOS !== 'undefined') {
-                  AOS.init({
-                    once: false,
-                    mirror: true,
-                    offset: 20,    
-                    duration: 800 
-                  });
                   AOS.refresh();
               }
 
