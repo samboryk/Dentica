@@ -2117,6 +2117,7 @@ padding-bottom: 15px;
 }
 
 .price-container {
+    box-sizing: border-box;
     display: block; 
     max-width: 1200px; 
     margin: 0 auto;
@@ -2220,6 +2221,7 @@ padding-bottom: 15px;
 }
 
 .price-card {
+    box-sizing: border-box;
     background-color: var(--price-card-bg);
     border: 1px solid var(--price-card-border);
     border-radius: 24px;
@@ -3314,6 +3316,7 @@ body.modal-open {
 }
 
 .privacy-container {
+    box-sizing: border-box;
     max-width: 800px; 
     width: 100%;
     padding: 0 20px;
@@ -4298,10 +4301,15 @@ body.light-mode .not-found-image {
         margin-top: 20px;
         margin-bottom: 30px;
         padding-top: 10px;
+        margin-left: -16px;
+        margin-right: -16px;
+        padding-left: 16px;
+        padding-right: 16px;
         
         display: flex;
         overflow-x: auto;
         white-space: nowrap;
+        transition: padding-top 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         
         /* Приховуємо скроллбар для естетики */
         -ms-overflow-style: none;  /* IE та Edge */
@@ -4310,6 +4318,23 @@ body.light-mode .not-found-image {
 
     .price-page-filter::-webkit-scrollbar {
         display: none; /* Chrome, Safari та Opera */
+    }
+
+    .price-page-filter.is-pinned .price-page-filter-btn,
+    .price-page-filter.is-pinned .footer-divider {
+        transform: none; 
+    }
+
+    .price-page-filter.is-pinned {
+        padding-top: 90px; 
+        margin-bottom: -50px; 
+        padding-bottom: 20px;
+        background-color: var(--price-filter-bg);
+        border-bottom: 1px solid var(--price-filter-border);
+    }
+
+    .price-page-filter::before {
+        display: none !important;
     }
 
     .price-page-filter-btn {
@@ -4381,8 +4406,7 @@ body.light-mode .not-found-image {
     /* Кнопка завантаження: задаємо фіксовану ширину, як на скріншоті */
     .price-page-download-container .btn {
         width: 100%;
-        max-width: 280px;
-        padding: 14px 20px;
+        max-width: 230px;
     }
     .single-service {
         padding: 50px 0; 
@@ -4392,7 +4416,7 @@ body.light-mode .not-found-image {
     .single-service-grid-container {
         width: 100%;
         box-sizing: border-box; /* ВИПРАВЛЕННЯ: падінги не будуть розтягувати блок більше ніж на 100% */
-        padding: 40px 15px; 
+        padding: 30px 15px; 
         grid-template-columns: 1fr; /* Одна колонка */
         grid-template-rows: auto; 
         row-gap: 16px; 
