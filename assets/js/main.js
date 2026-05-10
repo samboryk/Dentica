@@ -401,168 +401,168 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // 2. ЛОГІКА СЛАЙДЕРА (Безкінечне коло)
     // ==========================================
-    function initCertSlider() {
-        const track = document.getElementById('cert-track');
-        const btnNext = document.getElementById('cert-next');
-        const btnPrev = document.getElementById('cert-prev');
-        const paginationContainer = document.getElementById('cert-pagination');
+ function initCertSlider() {
+    const track = document.getElementById('cert-track');
+    const btnNext = document.getElementById('cert-next');
+    const btnPrev = document.getElementById('cert-prev');
+    const paginationContainer = document.getElementById('cert-pagination');
+    
+    if (!track || !btnNext || !btnPrev || !paginationContainer) return;
+
+    let currentIndex = 0;
+    const cards = track.querySelectorAll('.cert-card');
+    if (!cards.length) return;
+
+    // ВРАХОВУЄМО АДАПТИВ: якщо екран менше 768px, вважаємо що видима 1 картка
+    const isMobile = window.innerWidth <= 768;
+    const visibleCards = isMobile ? 1 : 3; 
+    const totalCards = cards.length;
+    const maxIndex = Math.max(0, totalCards - visibleCards);
+    
+    const autoPlayDelay = 3000; 
+    let autoPlayTimer;
+
+    // Генерація цяток
+    paginationContainer.innerHTML = ''; 
+    for (let i = 0; i <= maxIndex; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('cert-dot');
+        if (i === 0) dot.classList.add('active');
         
-        if (!track || !btnNext || !btnPrev || !paginationContainer) return;
-
-        let currentIndex = 0;
-        const cards = track.querySelectorAll('.cert-card');
-        if (!cards.length) return;
-
-        const visibleCards = 3; 
-        const totalCards = cards.length;
-        const maxIndex = Math.max(0, totalCards - visibleCards);
-        const autoPlayDelay = 3000; 
-        let autoPlayTimer;
-
-        // Генерація цяток
-        paginationContainer.innerHTML = ''; 
-        for (let i = 0; i <= maxIndex; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('cert-dot');
-            if (i === 0) dot.classList.add('active');
-            
-            dot.addEventListener('click', () => {
-                currentIndex = i;
-                updateSlider();
-                resetAutoPlay();
-            });
-            paginationContainer.appendChild(dot);
-        }
-        const dots = paginationContainer.querySelectorAll('.cert-dot');
-
-        // Функція зсуву треку
-        function updateSlider() {
-            // Беремо ширину першої картки ТІЛЬКИ коли вона вже відмальована
-            const cardWidth = cards[0].offsetWidth;
-            const gap = 24; 
-            const moveDistance = (cardWidth + gap) * currentIndex;
-            
-            track.style.transform = `translateX(-${moveDistance}px)`;
-
-            // Оновлюємо активну цятку
-            dots.forEach((dot, index) => {
-                if (index === currentIndex) dot.classList.add('active');
-                else dot.classList.remove('active');
-            });
-        }
-
-        function nextSlide() {
-            currentIndex = (currentIndex < maxIndex) ? currentIndex + 1 : 0;
-            updateSlider();
-        }
-
-        function startAutoPlay() {
-            autoPlayTimer = setInterval(nextSlide, autoPlayDelay);
-        }
-
-        function resetAutoPlay() {
-            clearInterval(autoPlayTimer);
-            startAutoPlay();
-        }
-
-        // Кліки по кнопках
-        btnNext.addEventListener('click', () => {
-            nextSlide();
-            resetAutoPlay();
-        });
-
-        btnPrev.addEventListener('click', () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : maxIndex;
+        dot.addEventListener('click', () => {
+            currentIndex = i;
             updateSlider();
             resetAutoPlay();
         });
+        paginationContainer.appendChild(dot);
+    }
+    const dots = paginationContainer.querySelectorAll('.cert-dot');
 
-        // Пауза при наведенні
-        track.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
-        track.addEventListener('mouseleave', startAutoPlay);
+    // Функція зсуву треку
+    function updateSlider() {
+        const cardWidth = cards[0].offsetWidth;
+        
+        // ДИНАМІЧНИЙ GAP: беремо реальне значення з CSS (працюватиме і 24px для ПК, і 16px для моб)
+        const trackStyles = window.getComputedStyle(track);
+        const gap = parseFloat(trackStyles.gap) || 0; 
+        
+        const moveDistance = (cardWidth + gap) * currentIndex;
+        
+        track.style.transform = `translateX(-${moveDistance}px)`;
 
-        // Перший запуск
+        dots.forEach((dot, index) => {
+            if (index === currentIndex) dot.classList.add('active');
+            else dot.classList.remove('active');
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex < maxIndex) ? currentIndex + 1 : 0;
         updateSlider();
+    }
+
+    function startAutoPlay() {
+        autoPlayTimer = setInterval(nextSlide, autoPlayDelay);
+    }
+
+    function resetAutoPlay() {
+        clearInterval(autoPlayTimer);
         startAutoPlay();
+    }
+
+    btnNext.addEventListener('click', () => {
+        nextSlide();
+        resetAutoPlay();
+    });
+
+    btnPrev.addEventListener('click', () => {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : maxIndex;
+        updateSlider();
+        resetAutoPlay();
+    });
+
+    track.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
+    track.addEventListener('mouseleave', startAutoPlay);
+
+    updateSlider();
+    startAutoPlay();
+    
+    // ==========================================
+    // Lightbox для сертифікатів
+    // ==========================================
+    const modalHtml = `
+        <div class="cert-modal" id="cert-lightbox">
+            <button class="cert-modal-close" id="cert-lightbox-close">&times;</button>
+            <button class="team-btn cert-modal-nav cert-modal-prev" id="cert-lightbox-prev">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <img class="cert-modal-content" id="cert-lightbox-img" src="" alt="Сертифікат">
+            <button class="team-btn cert-modal-nav cert-modal-next" id="cert-lightbox-next">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+        </div>
+    `;
+    
+    if (!document.getElementById('cert-lightbox')) {
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    }
+
+    const lightbox = document.getElementById('cert-lightbox');
+    const lightboxImg = document.getElementById('cert-lightbox-img');
+    const lightboxClose = document.getElementById('cert-lightbox-close');
+    const lightboxPrev = document.getElementById('cert-lightbox-prev');
+    const lightboxNext = document.getElementById('cert-lightbox-next');
+    let currentLightboxIndex = 0;
+
+    function openLightbox(index) {
+        currentLightboxIndex = index;
+        lightboxImg.src = cards[currentLightboxIndex].src;
+        lightboxImg.style.opacity = 1;
+        lightbox.classList.add('show');
+        document.body.classList.add('modal-open');
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('show');
+        document.body.classList.remove('modal-open');
+        setTimeout(() => { lightboxImg.src = ''; }, 300);
+    }
+    
+    function navigateLightbox(step) {
+        currentLightboxIndex += step;
+        if (currentLightboxIndex < 0) currentLightboxIndex = cards.length - 1;
+        if (currentLightboxIndex >= cards.length) currentLightboxIndex = 0;
         
-        // ==========================================
-        // Lightbox для сертифікатів
-        // ==========================================
-        const modalHtml = `
-            <div class="cert-modal" id="cert-lightbox">
-                <button class="cert-modal-close" id="cert-lightbox-close">&times;</button>
-                <button class="team-btn cert-modal-nav cert-modal-prev" id="cert-lightbox-prev">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-                </button>
-                <img class="cert-modal-content" id="cert-lightbox-img" src="" alt="Сертифікат">
-                <button class="team-btn cert-modal-nav cert-modal-next" id="cert-lightbox-next">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-                </button>
-            </div>
-        `;
-        // Додаємо тільки один раз
-        if (!document.getElementById('cert-lightbox')) {
-            document.body.insertAdjacentHTML('beforeend', modalHtml);
-        }
-
-        const lightbox = document.getElementById('cert-lightbox');
-        const lightboxImg = document.getElementById('cert-lightbox-img');
-        const lightboxClose = document.getElementById('cert-lightbox-close');
-        const lightboxPrev = document.getElementById('cert-lightbox-prev');
-        const lightboxNext = document.getElementById('cert-lightbox-next');
-        let currentLightboxIndex = 0;
-
-        function openLightbox(index) {
-            currentLightboxIndex = index;
+        lightboxImg.style.opacity = 0;
+        setTimeout(() => {
             lightboxImg.src = cards[currentLightboxIndex].src;
             lightboxImg.style.opacity = 1;
-            lightbox.classList.add('show');
-            document.body.classList.add('modal-open');
-        }
-
-        function closeLightbox() {
-            lightbox.classList.remove('show');
-            document.body.classList.remove('modal-open');
-            setTimeout(() => { lightboxImg.src = ''; }, 300);
-        }
-        
-        function navigateLightbox(step) {
-            currentLightboxIndex += step;
-            if (currentLightboxIndex < 0) currentLightboxIndex = cards.length - 1;
-            if (currentLightboxIndex >= cards.length) currentLightboxIndex = 0;
-            
-            // Плавна анімація зміни картинки
-            lightboxImg.style.opacity = 0;
-            setTimeout(() => {
-                lightboxImg.src = cards[currentLightboxIndex].src;
-                lightboxImg.style.opacity = 1;
-            }, 150);
-        }
-
-        cards.forEach((card, index) => {
-            card.addEventListener('click', () => {
-                openLightbox(index);
-            });
-        });
-
-        lightboxClose.addEventListener('click', closeLightbox);
-        lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); navigateLightbox(-1); });
-        lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); navigateLightbox(1); });
-        
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
-        });
-        
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('show')) return;
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') navigateLightbox(-1);
-            if (e.key === 'ArrowRight') navigateLightbox(1);
-        });
-
-        // Оновлюємо при зміні розміру вікна
-        window.addEventListener('resize', updateSlider);
+        }, 150);
     }
+
+    cards.forEach((card, index) => {
+        card.addEventListener('click', () => {
+            openLightbox(index);
+        });
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); navigateLightbox(-1); });
+    lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); navigateLightbox(1); });
+    
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('show')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
+
+    window.addEventListener('resize', updateSlider);
+}
 
     // ВАЖЛИВО: Запускаємо слайдер ТІЛЬКИ після повного завантаження всіх картинок (window.load)
     // Це лікує проблему, коли ширина картинок дорівнює нулю на момент запуску скрипта

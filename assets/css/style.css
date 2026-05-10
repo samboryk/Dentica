@@ -4505,6 +4505,8 @@ body.light-mode .not-found-image {
         gap: 16px;
     }
 
+
+
     .cert-card {
         /* Робимо картку такої ширини, щоб було видно краї сусідніх карток */
         width: calc(100vw - 100px); 
@@ -4529,6 +4531,7 @@ body.light-mode .not-found-image {
         padding: 0; 
         width: 100%;
         box-sizing: border-box;
+        margin-bottom: 80px;
     }
 
     /* 2. Перебудовуємо обгортку слайдера */
@@ -4540,13 +4543,17 @@ body.light-mode .not-found-image {
 
     /* 3. Налаштовуємо сам контейнер слайдера */
     .certificates-viewport {
-        order: -1; /* Примусово піднімаємо слайдер на самий верх (над кнопками) */
+        order: 1; /* Примусово піднімаємо слайдер на самий верх (над кнопками) */
         flex: 0 0 100%; /* Змушуємо зайняти 100% ширини екрана */
         width: 100%;
+        padding: 20px 0; 
     }
 
     .certificates-track {
-        gap: 16px; /* Трохи зменшуємо відстань між самими картками */
+        gap: 16px;
+        /* Оскільки картка на 100px менша за екран, 
+           додаємо по 50px по боках треку, щоб відцентрувати перший слайд */
+        padding: 0 50px;/* Трохи зменшуємо відстань між самими картками */
     }
 
     /* 4. Робимо картки правильного розміру (щоб було видно сусідні) */
@@ -4555,10 +4562,16 @@ body.light-mode .not-found-image {
         width: calc(100vw - 100px); 
         height: 340px; 
         box-sizing: border-box;
+        scroll-snap-align: center;
     }
+    .certificates-pagination {
+        order: 2;
+        margin-top: -80px;
 
+}
     /* 5. Розташування кнопок (стрілок) знизу */
     .cert-btn {
+        order: 3;
         margin: 0 10px; /* Додаємо відступ між стрілками "вліво" та "вправо" */
     }
 
