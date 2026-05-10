@@ -97,17 +97,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 // 3. ВИВОДИМО НОВИЙ КОНТЕНТ У ЦЕНТР
-                // Використовуємо подвійний тайм-аут для гарантованого переривання циклу рендерингу
-                setTimeout(() => {
-                    requestAnimationFrame(() => {
-                        elementsToAnimate.forEach(el => {
-                            el.classList.remove(readyClass);
-                            el.classList.add('carousel-center');
-                        });
-
-                        setTimeout(() => { isTeamAnimating = false; }, 500);
+                requestAnimationFrame(() => {
+                    elementsToAnimate.forEach(el => {
+                        el.classList.remove(readyClass);
+                        el.classList.add('carousel-center');
                     });
-                }, 50); // Маленька пауза для стабільності
+
+                    setTimeout(() => { isTeamAnimating = false; }, 500);
+                });
 
             }, 500); 
         }
