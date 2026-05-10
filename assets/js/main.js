@@ -577,7 +577,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     // ============================================
-    // RESULTS SLIDER – простий трековий (2 видимі)
+    // RESULTS SLIDER – адаптивний трековий
     // ============================================
     const track      = document.getElementById('res-track');
     const viewport   = document.getElementById('results-viewport');
@@ -589,53 +589,86 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const cards     = Array.from(track.querySelectorAll('.result-card'));
     const total     = cards.length;
-    const VISIBLE   = 2;
-    const GAP       = 24;
-    const maxIndex  = Math.max(0, total - VISIBLE);
     const AUTOPLAY  = 5000;
     let current     = 0;
     let autoTimer   = null;
     let userInteracted = false;
+    let dots = []; // Зберігатимемо крапки тут для швидкого доступу
 
-    // ── Пагінація ────────────────────────────────
-    if (pagination) {
+    // 1. Динамічно визначаємо кількість видимих карток
+    function getVisibleCount() {
+        if (!cards[0]) return 1;
+        const cardW = cards[0].offsetWidth;
+        return cardW < viewport.offsetWidth * 0.6 ? 2 : 1;
+    }
+
+    // 2. Динамічно отримуємо максимальний індекс
+    function getMaxIndex() {
+        return Math.max(0, total - getVisibleCount());
+    }
+
+    // 3. Функція рендеру пагінації (генеруємо заново при ресайзі)
+    function renderPagination() {
+        if (!pagination) return;
         pagination.innerHTML = '';
-        for (let i = 0; i <= maxIndex; i++) {
+        dots = [];
+        const max = getMaxIndex();
+        
+        for (let i = 0; i <= max; i++) {
             const dot = document.createElement('div');
             dot.className = 'res-dot';
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => { userInteracted = true; stopAuto(); goTo(i); });
+            if (i === current) dot.classList.add('active');
+            dot.addEventListener('click', () => { 
+                userInteracted = true; 
+                stopAuto(); 
+                goTo(i); 
+            });
             pagination.appendChild(dot);
+            dots.push(dot);
         }
     }
-    const dots = pagination ? pagination.querySelectorAll('.res-dot') : [];
 
     function getGap() {
         return parseInt(getComputedStyle(track).gap) || 24;
     }
 
     function goTo(index) {
+        const max = getMaxIndex();
+        // Переконуємось, що current не виходить за межі після зміни екрану
+        current = Math.max(0, Math.min(index, max)); 
+        
         const gap = getGap();
         const cardW = cards[0].offsetWidth;
-        const visibleNow = cardW < viewport.offsetWidth * 0.6 ? 2 : 1;
-        const max = Math.max(0, total - visibleNow);
-        current = Math.max(0, Math.min(index, max));
         const offset = current * (cardW + gap);
+        
         track.style.transform = `translateX(-${offset}px)`;
+        
+        // Оновлюємо активну крапку (якщо пагінація існує)
         dots.forEach((d, i) => d.classList.toggle('active', i === current));
     }
 
-    function next() { goTo(current < maxIndex ? current + 1 : 0); }
-    function prev() { goTo(current > 0 ? current - 1 : maxIndex); }
+    // Використовуємо динамічний getMaxIndex() замість статичного maxIndex
+    function next() { goTo(current < getMaxIndex() ? current + 1 : 0); }
+    function prev() { goTo(current > 0 ? current - 1 : getMaxIndex()); }
 
     function startAuto() { if (userInteracted) return; autoTimer = setInterval(next, AUTOPLAY); }
     function stopAuto()  { clearInterval(autoTimer); }
 
+    // Обробники подій
     btnNext.addEventListener('click', () => { userInteracted = true; stopAuto(); next(); });
     btnPrev.addEventListener('click', () => { userInteracted = true; stopAuto(); prev(); });
     viewport.addEventListener('mouseenter', stopAuto);
     viewport.addEventListener('mouseleave', () => { if (!userInteracted) startAuto(); });
 
+    // 4. Слухаємо зміну розміру вікна (наприклад, поворот телефону)
+    window.addEventListener('resize', () => {
+        // Якщо кількість видимих карток змінилась, треба оновити крапки та позицію
+        renderPagination();
+        goTo(current); 
+    });
+
+    // Ініціалізація
+    renderPagination();
     goTo(0);
     startAuto();
 

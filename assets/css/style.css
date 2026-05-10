@@ -4392,7 +4392,7 @@ body.light-mode .not-found-image {
     .single-service-grid-container {
         width: 100%;
         box-sizing: border-box; /* ВИПРАВЛЕННЯ: падінги не будуть розтягувати блок більше ніж на 100% */
-        padding: 0 15px; 
+        padding: 40px 15px; 
         grid-template-columns: 1fr; /* Одна колонка */
         grid-template-rows: auto; 
         row-gap: 16px; 

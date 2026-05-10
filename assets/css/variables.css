@@ -139,6 +139,7 @@
   --modal-input-border: #444444;
   --modal-input-border-focused: #BFDCFF;
   --modal-input-border-error: #FF4D4F;
+  --modal-msg-error: #FF4D4F;
   --modal-input-text: #EAEFF5;
   --modal-divider: #444444;
   --modal-disclaimer-text: #888888;
@@ -437,6 +438,7 @@ html.light-mode, body.light-mode {
   --modal-input-border: #95A5B8;
   --modal-input-border-focused: #C5D5E7;
   --modal-input-border-error: #FF4D4F;
+  --modal-msg-error: #FF4D4F;
   --modal-input-text: #333333;
   --modal-divider: #95A5B8;
   --modal-disclaimer-text: #7A90AA;
