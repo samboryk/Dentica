@@ -18,43 +18,31 @@ document.addEventListener('DOMContentLoaded', () => {
         AOS.refresh();
     });
 
-    const menuBtn    = document.querySelector('.menu');
-    const overlay    = document.getElementById('mobileMenuOverlay');
+    const menuBtn     = document.querySelector('.menu');
+    const drawerNav   = document.getElementById('drawerNav');
 
-    if (!menuBtn || !overlay) return;
-
-    // Функція відкриття
-    function openMenu() {
-        overlay.classList.add('is-active');
-        menuBtn.classList.add('is-open');
-        overlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    }
-
-    // Функція закриття
-    function closeMenu() {
-        overlay.classList.remove('is-active');
-        menuBtn.classList.remove('is-open');
-        overlay.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    }
-
-    // Клік по бургер-кнопці — toggle
-    menuBtn.addEventListener('click', () => {
-        overlay.classList.contains('is-active') ? closeMenu() : openMenu();
-    });
-
-    // Закриття при кліку на посилання або CTA всередині меню
-    overlay.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            setTimeout(closeMenu, 250);
+    if (menuBtn && drawerNav) {
+        menuBtn.addEventListener('click', () => {
+            const isOpen = document.body.classList.toggle('menu-open');
+            menuBtn.classList.toggle('is-open', isOpen);
         });
-    });
+
+        // Закриття при кліку на посилання
+        drawerNav.querySelectorAll('a, .drawer-btn, .drawer-cta').forEach(link => {
+            link.addEventListener('click', () => {
+                if (!link.closest('.theme-toggle')) {
+                    document.body.classList.remove('menu-open');
+                    menuBtn.classList.remove('is-open');
+                }
+            });
+        });
+    }
 
     // Закриття клавішею Escape
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && overlay.classList.contains('is-active')) {
-            closeMenu();
+        if (e.key === 'Escape' && document.body.classList.contains('menu-open')) {
+            document.body.classList.remove('menu-open');
+            menuBtn.classList.remove('is-open');
         }
     });
 

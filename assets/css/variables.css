@@ -100,7 +100,7 @@
 
 
   /* --- Footer --- */
-  --footer-bg: linear-gradient(to right, rgb(45, 45, 45), rgb(14, 14, 12));
+  --footer-bg: linear-gradient(to bottom, rgb(45, 45, 45), rgb(14, 14, 12));
   --footer-text: #EAEFF5;
   --footer-divider: #333333;
   --footer-made-text: #444444;
