@@ -81,34 +81,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 el.classList.add(outClass);
             });
 
-            // 2. Чекаємо поки все сховається
+            // 2. Чекаємо поки все сховається (500мс відповідно до CSS)
             setTimeout(() => {
-                // Безпечно міняємо дані (тільки ті, що змінюються і існують)
+                // Безпечно міняємо дані
                 if (els.photo) els.photo.src = nextData.photo;
                 if (els.name) els.name.textContent = nextData.name;
                 if (els.role) els.role.textContent = nextData.role;
                 if (els.desc) els.desc.textContent = nextData.desc;
                 if (els.number) els.number.textContent = nextData.number;
 
-                // Перекидаємо ОБГОРТКИ на інший бік
+                // Перекидаємо ОБГОРТКИ на інший бік (миттєво, бо transition: none в CSS)
                 elementsToAnimate.forEach(el => {
                     el.classList.remove(outClass);
                     el.classList.add(readyClass);
                 });
 
                 // 3. ВИВОДИМО НОВИЙ КОНТЕНТ У ЦЕНТР
-                requestAnimationFrame(() => {
-                    void (els.photoWrapper ? els.photoWrapper.offsetWidth : 0); 
+                // Використовуємо подвійний тайм-аут для гарантованого переривання циклу рендерингу
+                setTimeout(() => {
+                    requestAnimationFrame(() => {
+                        elementsToAnimate.forEach(el => {
+                            el.classList.remove(readyClass);
+                            el.classList.add('carousel-center');
+                        });
 
-                    elementsToAnimate.forEach(el => {
-                        el.classList.remove(readyClass);
-                        el.classList.add('carousel-center');
+                        setTimeout(() => { isTeamAnimating = false; }, 500);
                     });
+                }, 50); // Маленька пауза для стабільності
 
-                    setTimeout(() => { isTeamAnimating = false; }, 400);
-                });
-
-            }, 400); 
+            }, 500); 
         }
 
         els.btnNext.addEventListener('click', () => changeTeamSlide('next'));
@@ -126,72 +127,68 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnPrev = document.getElementById('rev-prev');
     const paginationContainer = document.getElementById('reviews-pagination');
     
-    // Якщо елементів відгуків немає на цій сторінці - безпечно виходимо
     if (!track || !btnNext || !btnPrev || !paginationContainer) return;
 
     let currentIndex = 0;
     const cards = track.querySelectorAll('.review-card');
-    const visibleCards = 3; 
     const totalCards = cards.length;
-    const maxIndex = Math.max(0, totalCards - visibleCards);
     const autoPlayInterval = 4000; 
     let autoPlayTimer;
 
-    if (totalCards <= visibleCards) {
-        btnNext.style.display = 'none';
-        btnPrev.style.display = 'none';
-        return;
+    // Функція розрахунку параметрів (враховує мобільну версію)
+    function getSliderParams() {
+        const visibleCards = window.innerWidth <= 480 ? 1 : 3;
+        const maxIndex = Math.max(0, totalCards - visibleCards);
+        return { visibleCards, maxIndex };
     }
 
+    let { visibleCards, maxIndex } = getSliderParams();
+
     // --- Генерація пагінації ---
-    for (let i = 0; i <= maxIndex; i++) {
-        const dot = document.createElement('div');
-        dot.classList.add('pagination-dot');
-        if (i === 0) dot.classList.add('active');
+    function renderPagination() {
+        paginationContainer.innerHTML = '';
+        ({ maxIndex } = getSliderParams()); // Перераховуємо maxIndex
         
-        dot.addEventListener('click', () => {
-            currentIndex = i;
-            updateSliderPosition();
-            resetAutoPlay(); 
-        });
-        
-        paginationContainer.appendChild(dot);
+        for (let i = 0; i <= maxIndex; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('pagination-dot');
+            if (i === currentIndex) dot.classList.add('active');
+            
+            dot.addEventListener('click', () => {
+                currentIndex = i;
+                updateSliderPosition();
+                resetAutoPlay(); 
+            });
+            
+            paginationContainer.appendChild(dot);
+        }
     }
-    const dots = paginationContainer.querySelectorAll('.pagination-dot');
 
     // --- Оновлення позиції ---
     function updateSliderPosition() {
         if (!cards.length) return;
+        
+        ({ maxIndex } = getSliderParams());
+        // Захист від виходу за межі при ресайзі
+        if (currentIndex > maxIndex) currentIndex = maxIndex;
+
         const cardWidth = cards[0].offsetWidth;
-        const gap = 24; 
+        const gap = window.innerWidth <= 480 ? 16 : 24; // На мобайлі зазвичай менший gap
         
         const moveDistance = (cardWidth + gap) * currentIndex;
         track.style.transform = `translateX(-${moveDistance}px)`;
 
-        // Оновлення кнопок
-        btnPrev.style.opacity = currentIndex === 0 ? '0.3' : '1';
-        btnPrev.style.cursor = currentIndex === 0 ? 'default' : 'pointer';
-        
-        btnNext.style.opacity = currentIndex === maxIndex ? '0.3' : '1';
-        btnNext.style.cursor = currentIndex === maxIndex ? 'default' : 'pointer';
-
         // Оновлення крапочок
+        const dots = paginationContainer.querySelectorAll('.pagination-dot');
         dots.forEach((dot, index) => {
-            if (index === currentIndex) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
+            dot.classList.toggle('active', index === currentIndex);
         });
     }
 
     // --- Функції авто-гортання ---
     function nextSlide() {
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-        } else {
-            currentIndex = 0; 
-        }
+        ({ maxIndex } = getSliderParams());
+        currentIndex = (currentIndex < maxIndex) ? currentIndex + 1 : 0;
         updateSliderPosition();
     }
 
@@ -204,29 +201,32 @@ document.addEventListener("DOMContentLoaded", () => {
         startAutoPlay();
     }
 
-    // --- Обробники кнопок ---
+    // --- Обробники кнопок (З ЦИКЛОМ) ---
     btnNext.addEventListener('click', () => {
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-            updateSliderPosition();
-            resetAutoPlay();
-        }
+        ({ maxIndex } = getSliderParams());
+        currentIndex = (currentIndex < maxIndex) ? currentIndex + 1 : 0;
+        updateSliderPosition();
+        resetAutoPlay();
     });
 
     btnPrev.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateSliderPosition();
-            resetAutoPlay();
-        }
+        ({ maxIndex } = getSliderParams());
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : maxIndex;
+        updateSliderPosition();
+        resetAutoPlay();
     });
 
-    // --- Зупинка автоплею при наведенні миші ---
+    // Зупинка при наведенні
     track.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
     track.addEventListener('mouseleave', startAutoPlay);
 
     // Ініціалізація
+    renderPagination();
     updateSliderPosition();
     startAutoPlay();
-    window.addEventListener('resize', updateSliderPosition);
+
+    window.addEventListener('resize', () => {
+        renderPagination();
+        updateSliderPosition();
+    });
 });

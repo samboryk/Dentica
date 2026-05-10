@@ -629,9 +629,11 @@ width:2.3vw;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.btn:hover {
-  background-color: var(--btn-hover-bg);
-  transform: scale(1.02);
+@media (hover: hover) {
+  .btn:hover {
+    background-color: var(--btn-hover-bg);
+    transform: scale(1.02);
+  }
 }
 
 
@@ -1005,10 +1007,12 @@ width:2.3vw;
     text-decoration: none;
 }
 
-.social-icon:hover {
-    background-color: var(--contact-social-hover-bg);
-    color: var(--contact-social-hover-text);
-    transform: translateY(-2px);
+@media (hover: hover) {
+  .social-icon:hover {
+      background-color: var(--contact-social-hover-bg);
+      color: var(--contact-social-hover-text);
+      transform: translateY(-2px);
+  }
 }
 
 
@@ -1030,8 +1034,10 @@ width:2.3vw;
     color: var(--contact-action-btn-text) ;
 }
 
-.contact-action-card .btn:hover {
-    transform: scale(1.05);
+@media (hover: hover) {
+  .contact-action-card .btn:hover {
+      transform: scale(1.05);
+  }
 }
 
 .info-block h3 {
@@ -1067,8 +1073,11 @@ width:2.3vw;
 .contact-details-card .info-block p {
     color: var(--contact-info-text);
 }
-.contact-details-card .info-link:hover {
-    color: var(--contact-info-link-hover);
+
+@media (hover: hover) {
+  .contact-details-card .info-link:hover {
+      color: var(--contact-info-link-hover);
+  }
 }
 
 .contact-action-card .info-block p {
@@ -1165,8 +1174,10 @@ width:2.3vw;
     justify-content: center;
 }
 
-.modal-close:hover {
-    color: var(--modal-close-icon-hover); /* В темній темі можна змінити на білий */
+@media (hover: hover) {
+  .modal-close:hover {
+      color: var(--modal-close-icon-hover); /* В темній темі можна змінити на білий */
+  }
 }
 
 .form-card {
@@ -1335,7 +1346,10 @@ width:2.3vw;
     gap: 12px;
     transition: background-color 0.2s;
 }
-.country-item:hover { background-color: var(--modal-country-item-hover); }
+
+@media (hover: hover) {
+  .country-item:hover { background-color: var(--modal-country-item-hover); }
+}
 .country-item.active { background-color: var(--modal-country-item-active); }
 
 
@@ -1370,7 +1384,10 @@ width:2.3vw;
     margin: 0;
 }
 .disclaimer a { color: var(--modal-disclaimer-text); text-decoration: none; transition: color 0.3s; }
-.disclaimer a:hover { color: var(--modal-disclaimer-link); }
+
+@media (hover: hover) {
+  .disclaimer a:hover { color: var(--modal-disclaimer-link); }
+}
 
 .success-state {
     display: flex;
@@ -1692,8 +1709,10 @@ padding-bottom: 15px;
     transition: all 0.3s ease;
 }
 
-.team-btn:hover {
+@media (hover: hover) {
+  .team-btn:hover {
     background: var(--team-btn-hover-bg);
+  }
 }
 
 .team-content-grid {
@@ -1796,16 +1815,18 @@ padding-bottom: 15px;
     transition: 0.3s ease;
 }
 
-.team-member-link:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(191, 220, 255, 0.4);
+@media (hover: hover) {
+  .team-member-link:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(191, 220, 255, 0.4);
+  }
 }
 
 
 
 
 .team-image-wrapper, #team-info-card, .contact-action-card {
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+    transition: transform 0.5s cubic-bezier(0.2, 0, 0.2, 1), opacity 0.5s ease;
     will-change: transform, opacity;
 }
 
@@ -1850,6 +1871,11 @@ padding-bottom: 15px;
 .carousel-center {
     opacity: 1 !important;
     transform: translateX(0) !important;
+    pointer-events: auto !important;
+}
+
+.carousel-out-left, .carousel-out-right, .carousel-ready-left, .carousel-ready-right {
+    pointer-events: none !important;
 }
 .faq {
   padding-bottom: 100px;
@@ -1899,8 +1925,10 @@ padding-bottom: 15px;
   transition: color 0.3s ease;
 }
 
-.faq-item-trigger:hover {
-  color: var(--faq-item-trigger-hover); 
+@media (hover: hover) {
+  .faq-item-trigger:hover {
+    color: var(--faq-item-trigger-hover); 
+  }
 }
 
 .faq-item-question {
@@ -2202,7 +2230,12 @@ padding-bottom: 15px;
     transition: all 0.3s ease;
 }
 
-.price-page-filter-btn:hover,
+@media (hover: hover) {
+  .price-page-filter-btn:hover {
+      color: var(--price-filter-btn-hover-text);
+  }
+}
+
 .price-page-filter-btn.active {
     color: var(--price-filter-btn-hover-text);
 }
@@ -2238,9 +2271,11 @@ padding-bottom: 15px;
     flex-direction: column;
 }
 
-.price-card:hover {
-    border-color: var(--price-card-hover-border);
-    transform: translateY(-2px);
+@media (hover: hover) {
+  .price-card:hover {
+      border-color: var(--price-card-hover-border);
+      transform: translateY(-2px);
+  }
 }
 
 .price-card-title {
@@ -2327,8 +2362,10 @@ padding-bottom: 15px;
     align-self: flex-start;
 }
 
-.price-card-link:hover {
-    color: var(--price-card-link-hover);
+@media (hover: hover) {
+  .price-card-link:hover {
+      color: var(--price-card-link-hover);
+  }
 }
 
 .price-page-download {
@@ -2485,8 +2522,10 @@ padding-bottom: 15px;
   transition: border-color 0.3s;
 }
 
-.slider-nav:hover {
-  border-color: var(--slider-nav-color);
+@media (hover: hover) {
+  .slider-nav:hover {
+    border-color: var(--slider-nav-color);
+  }
 }
 
 .slider-nav.prev {
@@ -2525,9 +2564,11 @@ padding-bottom: 15px;
     color: var(--widget-chat-icon);
 }
 
-.chat-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px var(--widget-chat-shadow);
+@media (hover: hover) {
+  .chat-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px var(--widget-chat-shadow);
+  }
 }
 
 
@@ -3053,7 +3094,7 @@ body.modal-open {
 }
 
 .accordion-text-block {
-    border-left: 3px solid var(--cert-card-border); 
+    border-left: 3px solid var(--accordion-text-border); 
     padding-left: 20px; 
     margin: 0 32px 32px 32px; 
 }
@@ -3987,8 +4028,9 @@ body.light-mode .not-found-image {
         box-sizing: border-box; 
         overflow: hidden;
 
-        /* ГОЛОВНИЙ ФІКС ВИСОТИ */
-        height: 280px; /* Задай тут висоту, щоб вліз найдовший опис лікаря */
+        /* ФІКС: min-height замість фіксованої height, щоб уникнути виходу тексту */
+        min-height: 310px; 
+        height: auto;
         justify-content: flex-start;
         gap: 16px;
     }
@@ -4138,6 +4180,7 @@ body.light-mode .not-found-image {
 
     .reviews-track {
         align-items: stretch; 
+        gap: 16px;
     }
 
     /* 2. Картка відгуку (одна на весь екран) */
@@ -4145,7 +4188,8 @@ body.light-mode .not-found-image {
         width: 100%; /* Показуємо рівно 1 картку на екрані */
         max-width: 100%;
         padding: 45px 30px;
-        height: 260px;
+        min-height: 260px;
+        height: auto;
         align-items: center; 
         text-align: center;
         box-sizing: border-box; /* Щоб падінги не розпирали картку */
@@ -4153,7 +4197,7 @@ body.light-mode .not-found-image {
 
     /* Текст відгуку */
     .review-text {
-        font-size: 16px; 
+        font-size: 14px; 
     }
 
     /* Блок автора (аватар + ім'я) */
@@ -4733,9 +4777,11 @@ body.menu-open #scroll-top {
     
 }
 
-.drawer-btn:hover{
+@media (hover: hover) {
+  .drawer-btn:hover {
     background: var(--btn-bg);
     color: var(--btn-text);
+  }
 }
 
 .drawer-cta {
