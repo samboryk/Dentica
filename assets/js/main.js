@@ -115,9 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
-    
     // ==========================================
     // 1. КАСТОМНИЙ СЛАЙДЕР ВІДГУКІВ (.reviews-slider)
     // ==========================================
@@ -128,27 +126,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.review-card');
 
     if (slider && dotsContainer && cards.length > 0) {
-        
-        // --- ДИНАМІЧНА ЛОГІКА ДЛЯ ПК ТА МОБІЛЬНИХ ---
-        // Визначаємо, скільки карток ми бачимо одночасно
-        const visibleCards = window.innerWidth <= 480 ? 1 : 3;
-        
-        // Вираховуємо, скільки всього "кроків" потрібно, щоб прогортати всі відгуки
-        const totalSteps = Math.max(1, cards.length - visibleCards + 1);
-        
-        // Обмежуємо кількість крапочок до 5 (щоб дизайн не ламався, якщо відгуків буде 20)
         const MAX_DOTS = 5;
-        const numDots = Math.min(totalSteps, MAX_DOTS);
-        
-        // Генеруємо крапочки
-        dotsContainer.innerHTML = '';
-        for (let i = 0; i < numDots; i++) {
-            const dot = document.createElement('span');
-            dot.classList.add('reviews-dot');
-            if (i === 0) dot.classList.add('reviews-dot--active');
-            dotsContainer.appendChild(dot);
-        }
-        const dots = document.querySelectorAll('.reviews-dot');
+        let dots = [];
+        let numDots = 1;
+
+        // --- ДИНАМІЧНА ІНІЦІАЛІЗАЦІЯ КРАПОК ---
+        const initDots = () => {
+            // Динамічно визначаємо видимі картки на основі реальної ширини елементів (замість хардкоду px)
+            const visibleCards = Math.max(1, Math.round(slider.clientWidth / cards[0].offsetWidth));
+            const totalSteps = Math.max(1, cards.length - visibleCards + 1);
+            numDots = Math.min(totalSteps, MAX_DOTS);
+
+            // Очищаємо контейнер перед (пере)генерацією
+            dotsContainer.innerHTML = '';
+            
+            // Якщо крок лише 1 (всі картки влазять), крапки не потрібні
+            if (numDots <= 1) return; 
+
+            for (let i = 0; i < numDots; i++) {
+                const dot = document.createElement('span');
+                dot.classList.add('reviews-dot');
+                if (i === 0) dot.classList.add('reviews-dot--active');
+                
+                // Додаємо подію кліку одразу при створенні крапки
+                dot.addEventListener('click', () => {
+                    const maxScroll = slider.scrollWidth - slider.clientWidth;
+                    // Захист від ділення на нуль
+                    const targetScroll = numDots > 1 ? (maxScroll / (numDots - 1)) * i : 0;
+                    
+                    slider.scrollTo({
+                        left: targetScroll,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                dotsContainer.appendChild(dot);
+            }
+            dots = document.querySelectorAll('.reviews-dot');
+            updateActiveDot(); // Оновлюємо стан одразу після генерації
+        };
 
         const getScrollAmount = () => {
             const gap = parseInt(window.getComputedStyle(slider).gap) || 0;
@@ -156,12 +172,15 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const updateActiveDot = () => {
+            if (dots.length <= 1) return; // Немає сенсу оновлювати, якщо крапок 0 або 1
+
             const scrollLeft = slider.scrollLeft;
             const maxScroll = slider.scrollWidth - slider.clientWidth;
             
-            if (maxScroll <= 0) return; // Захист від помилок, якщо скролу немає
+            if (maxScroll <= 0) return;
 
             const progress = scrollLeft / maxScroll;
+            // Визначаємо поточну активну крапку на основі % прокрутки
             let activeDotIndex = Math.round(progress * (numDots - 1));
 
             dots.forEach((dot, index) => {
@@ -169,22 +188,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
+        // Слухаємо скрол для оновлення крапок
         slider.addEventListener('scroll', updateActiveDot);
 
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                const maxScroll = slider.scrollWidth - slider.clientWidth;
-                const targetScroll = (maxScroll / (numDots - 1)) * index;
-                
-                slider.scrollTo({
-                    left: targetScroll,
-                    behavior: 'smooth'
-                });
-            });
-        });
-
         const moveNext = () => {
-            const isEnd = Math.ceil(slider.scrollLeft + slider.clientWidth) >= slider.scrollWidth - 10;
+            // Додано запас у 5px (іноді брайзери рахують дробові пікселі)
+            const isEnd = Math.ceil(slider.scrollLeft + slider.clientWidth) >= slider.scrollWidth - 5;
             if (isEnd) {
                 slider.scrollTo({ left: 0, behavior: 'smooth' }); // Зациклення на початок
             } else {
@@ -193,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const movePrev = () => {
-            const isStart = slider.scrollLeft <= 10;
+            const isStart = slider.scrollLeft <= 5;
             if (isStart) {
                 slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' }); // Зациклення в кінець
             } else {
@@ -204,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (btnNext) btnNext.addEventListener('click', moveNext);
         if (btnPrev) btnPrev.addEventListener('click', movePrev);
 
+        // --- АВТОСКРОЛ ТА ЙОГО СКИДАННЯ ---
         let autoScroll = setInterval(moveNext, 5000);
 
         const resetTimer = () => {
@@ -212,18 +222,20 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         slider.addEventListener('mousedown', () => clearInterval(autoScroll));
-        slider.addEventListener('touchstart', () => clearInterval(autoScroll));
+        slider.addEventListener('touchstart', () => clearInterval(autoScroll), { passive: true });
         
         if (btnNext) btnNext.addEventListener('click', resetTimer);
         if (btnPrev) btnPrev.addEventListener('click', resetTimer);
         
-        // Оновлюємо крапочки, якщо користувач переверне телефон
+        // Запускаємо ініціалізацію при завантаженні
+        initDots();
+
+        // Оновлюємо крапочки, якщо користувач змінить розмір вікна/переверне телефон
         window.addEventListener('resize', () => {
-            updateActiveDot();
+            initDots(); // Повністю перераховуємо крапки
         });
     }
 });
-
     // ==========================================
     // 2. СЛАЙДЕР SWIPER 3D (.results-swiper)
     // ==========================================
