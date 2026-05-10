@@ -11,7 +11,7 @@
   --color-error: #FF4D4F;
   --shadow:  rgba(0, 0, 0, 0.6);
   --bg-main: #0D0D0D;
-  --bg-footer: linear-gradient(to right, rgb(45, 45, 45), rgb(14, 14, 12));
+  --bg-footer: linear-gradient(to bottom, rgb(45, 45, 45), rgb(14, 14, 12));
   --bg-hero: linear-gradient(315deg, #0e0e0c 0%, #2d2d2d 33%, #0e0e0c 66%, #2d2d2d 100%);
   --surface-1: #1A1A1A;
   --surface-2: #222222;
