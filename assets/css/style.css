@@ -3905,8 +3905,7 @@ body.light-mode .not-found-image {
 /* Стилізація самих посилань у футері */
 .service-card-footer a {
     font-size: 14px;
-    text-decoration: underline;
-    /* color: var(--color-primary); */
+    
 }
 
 
@@ -4291,6 +4290,12 @@ body.light-mode .not-found-image {
         padding-right: 16px;
         padding-top: 80px;
     }
+
+    .ai-chat-header {
+    padding-top: 80px;
+    margin-top: -80px; /* ВИПРАВЛЕННЯ: відтягуємо заголовок вгору, щоб він не створював зайвого простору на початку сторінки */
+
+}
 
     .price-page-header {
         margin-bottom: 24px;
@@ -4765,9 +4770,88 @@ body.menu-open #scroll-top {
 }
 
 
-.drawer-cta .text{
-  left: 50px; 
+.chat-btn {
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
 }
 
+
+
+/* --- Mobile Form Adaptation --- */
+.modal-overlay {
+    overflow-y: auto;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content {
+    margin: auto; /* Центруємо вертикально та горизонтально */
+    width: calc(100% - 60px);
+    height: auto;
+    max-height: none;
+    overflow: visible !important;
+    border-radius: 24px;
+}
+
+.form-card {
+    padding: 30px 20px;
+    grid-template-rows: auto;
+    gap: 20px;
+}
+
+.form-title {
+    font-size: 2.4rem;
+}
+
+.form-desc {
+    font-size: 1.4rem;
+}
+
+.modal-close {
+    top: 15px;
+    right: 15px;
+}
+
+.form-wrapper {
+    gap: 15px;
+}
+
+.custom-phone-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.country-selector .code, #phoneInput {
+    font-size: 1.4rem;
+}
+
+.custom-country-list {
+    max-height: 200px; /* Трохи зменшуємо для мобільних */
+}
+
+#submitBtn {
+    width: 100%;
+}
+
+/* --- AI Chat Mobile Adaptation --- */
+.ai-chat-window {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100dvh; 
+    max-height: 100vh;
+    border-radius: 0;
+    border: none;
+    z-index: 1000; /* Менше ніж z-index хедера (2000001) */
+    padding-top: 80px; /* Зсуваємо контент під хедер */
+    box-sizing: border-box;
+}
+
+.ai-chat-window.show {
+    transform: translateY(0) scale(1);
+}
 
 
