@@ -157,244 +157,6 @@ a{
   z-index: 10000 !important; 
 }
 
-/* =============================================
-   MOBILE MENU FULL-SCREEN OVERLAY (header above)
-   ============================================= */
-.mobile-menu-overlay {
-  /* Повноекранний — але хедер вище (z-index 9999) */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-
-  /* Фон */
-  background-color: var(--mobile-menu-overlay-bg);
-
-  /* Нижче за хедер — щоб він залишався видимим */
-  z-index: 9998;
-
-  /* Флекс для внутрішнього розміщення */
-  display: flex;
-  flex-direction: column;
-
-  /* Початковий прихований стан */
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-/* Стан «Відкрито» */
-.mobile-menu-overlay.is-active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: all;
-}
-
-/* body.light-mode .mobile-menu-overlay {} */
-
-/* Без декоративного псевдо-елемента */
-.mobile-menu-overlay::before {
-  display: none;
-}
-
-/* ---- Шапка оверлею (лого + кнопка закриття) ---- */
-.mobile-menu-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-  height: 80px;
-  flex-shrink: 0;
-  border-bottom: 1px solid var(--mobile-menu-header-border);
-}
-
-.mobile-menu-logo img {
-  height: 36px;
-  width: auto;
-}
-
-.mobile-menu-close {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--mobile-menu-close-bg);
-  border: 1px solid var(--mobile-menu-close-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--mobile-menu-close-icon);
-  transition: background 0.3s, transform 0.3s;
-}
-
-.mobile-menu-close:hover {
-  background: var(--mobile-menu-close-hover-bg);
-  color: var(--mobile-menu-close-hover-icon);
-  transform: rotate(90deg);
-}
-
-/* ---- Основний контент меню ---- */
-.mobile-menu-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 80px 32px 32px; /* top=80px — відступ за хедер (80px на мобільних) */
-  gap: 12px;
-}
-
-/* ---- Навігаційні пункти ---- */
-.mobile-nav-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.mobile-nav-list li {
-  overflow: hidden;
-}
-
-.mobile-nav-list li a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  font-size: 1.6rem;
-  font-weight: 400;
-  color: var(--mobile-menu-nav-text);
-  text-decoration: none;
-  padding: 16px 24px;
-  border-radius: 50px;
-  border: 1px solid var(--mobile-menu-nav-border);
-  background: transparent;
-  letter-spacing: 0;
-  /* Анімація появи */
-  transform: translateY(30px);
-  opacity: 0;
-  transition:
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity   0.35s ease,
-    background 0.25s ease,
-    color     0.25s ease;
-}
-
-/* Стаггер-анімація при відкритті */
-.mobile-menu-overlay.is-active .mobile-nav-list li:nth-child(1) a { transform: translateY(0); opacity: 1; transition-delay: 0.08s; }
-.mobile-menu-overlay.is-active .mobile-nav-list li:nth-child(2) a { transform: translateY(0); opacity: 1; transition-delay: 0.16s; }
-.mobile-menu-overlay.is-active .mobile-nav-list li:nth-child(3) a { transform: translateY(0); opacity: 1; transition-delay: 0.24s; }
-.mobile-menu-overlay.is-active .mobile-nav-list li:nth-child(4) a { transform: translateY(0); opacity: 1; transition-delay: 0.32s; }
-
-.mobile-nav-list li a:hover {
-  background: var(--mobile-menu-nav-hover-bg);
-  color: var(--mobile-menu-nav-hover-text);
-}
-
-/* Роздільник між навігацією і підвалом */
-.mobile-menu-divider {
-  height: 1px;
-  background: var(--mobile-menu-divider);
-  margin: 20px 0;
-  transform: scaleX(0);
-  transform-origin: left;
-  opacity: 0;
-  transition: transform 0.5s ease 0.38s, opacity 0.4s ease 0.38s;
-}
-
-.mobile-menu-overlay.is-active .mobile-menu-divider {
-  transform: scaleX(1);
-  opacity: 1;
-}
-
-/* ---- Нижня частина (соцмережі + CTA) ---- */
-.mobile-menu-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.3s ease 0.25s, transform 0.3s ease 0.25s;
-}
-
-.mobile-menu-overlay.is-active .mobile-menu-footer {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.mobile-menu-socials {
-  display: flex;
-  gap: 10px;
-}
-
-.mobile-menu-socials a {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--mobile-menu-social-bg);
-  border: 1px solid var(--mobile-menu-social-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--mobile-menu-social-icon);
-  transition: background 0.25s, color 0.25s, border-color 0.25s;
-}
-
-.mobile-menu-socials a:hover {
-  background: var(--mobile-menu-social-hover-bg);
-  border-color: var(--mobile-menu-social-hover-border);
-  color: var(--mobile-menu-social-hover-icon);
-}
-
-/* CTA кнопка в footer меню — стиль як header-btn */
-.mobile-menu-cta {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 46px;
-  min-width: 160px;
-  padding: 0 5px 0 20px;
-  border-radius: 30px;
-  background: var(--mobile-menu-cta-bg);
-  font-size: 1.4rem;
-  font-weight: 500;
-  color: var(--mobile-menu-cta-text);
-  white-space: nowrap;
-  cursor: pointer;
-  gap: 10px;
-  transition: opacity 0.25s;
-}
-
-.mobile-menu-cta::after {
-  content: '';
-  display: flex;
-  width: 36px;
-  height: 36px;
-  border-radius: 50px;
-  background: var(--mobile-menu-cta-icon-bg);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24'%3E%3Cpath d='M7 17L17 7M17 7H7M17 7v10' stroke='%230d0d0d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  flex-shrink: 0;
-}
-
-.mobile-menu-cta:hover {
-  opacity: 0.85;
-}
-
-/* Зупиняємо скрол сторінки, коли меню відкрито (body, не html!) */
-body.menu-is-open,
-body[style*="overflow: hidden"] {
-  overflow: hidden !important;
-}
 
 
 .header {
@@ -402,8 +164,7 @@ body[style*="overflow: hidden"] {
     justify-content: space-between;
     width: 100%;
     height: 100px;
-
-  z-index: 9999 !important; 
+    z-index: 2000001 !important;
     
     /* Фіксуємо хедер зверху */
     position: fixed;
@@ -1221,6 +982,10 @@ width:2.3vw;
     color: var(--contact-info-link-hover);
 }
 
+.info-text:hover {
+    color: var(--contact-info-link-hover);
+}
+
 .contact-socials {
     display: flex;
     gap: 16px;
@@ -1313,7 +1078,7 @@ width:2.3vw;
 
 
 .aurora{
-  z-index: 0;
+  z-index: -1;
   position:absolute;
   width:350px;
   height:200px;
@@ -4869,21 +4634,6 @@ body.light-mode .not-found-image {
 
 
 
-/* ==========================================
-   NEW DRAWER MOBILE NAV (Reuse Original Header)
-   ========================================== */
-.header {
-    z-index: 2000001 !important; /* ЗАВЖДИ НАД МЕНЮ */
-    transition: background 0.3s ease;
-}
-
-body.menu-open .header {
-    background: #000000 !important; /* Темна тема */
-}
-
-body.light-mode.menu-open .header {
-    background: #ffffff !important; /* Світла тема */
-}
 
 .drawer-nav {
     position: fixed;
@@ -4891,7 +4641,7 @@ body.light-mode.menu-open .header {
     left: 0;
     width: 100%;
     height: 100dvh;
-    background: #000000 !important;
+
     z-index: 2000000 !important;
     display: none;
     flex-direction: column;
@@ -4899,9 +4649,7 @@ body.light-mode.menu-open .header {
     transition: background 0.3s ease;
 }
 
-body.light-mode .drawer-nav {
-    background: #ffffff !important;
-}
+
 
 body.menu-open .drawer-nav {
     display: flex;
@@ -4917,16 +4665,13 @@ body.menu-open #scroll-top {
 }
 
 .drawer-container {
-    flex: 1;
+    flex: start;
     display: flex;
     flex-direction: column;
     padding: 20px 24px 60px;
     background: transparent; /* Використовує фон батька */
 }
 
-body.light-mode .drawer-container {
-    background: #ffffff;
-}
 
 .drawer-nav-list {
     display: flex;
@@ -4938,64 +4683,41 @@ body.light-mode .drawer-container {
 }
 
 .drawer-btn {
-    width: 100%;
-    max-width: 320px;
-    height: 60px;
-    border: 1.5px solid rgba(171, 210, 250, 0.8);
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #ffffff !important;
-    font-size: 1.7rem;
-    font-weight: 500;
-    text-decoration: none;
+    color: var( --body-text);
     background: transparent;
+    border: 2px solid var(--btn-bg);
+    width: 230px;
+    height: 60px;
+    
 }
 
-body.light-mode .drawer-btn {
-    color: #1a1a1a !important;
-    border-color: #abd2fa;
-    background: rgba(171, 210, 250, 0.1);
+.drawer-btn:hover{
+    background: var(--btn-bg);
+    color: var(--btn-text);
 }
 
 .drawer-cta {
-    width: 100%;
-    max-width: 320px;
-    height: 72px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    padding: 0 8px 0 32px;
-    justify-content: space-between;
-    color: white;
-    font-size: 1.8rem;
-    font-weight: 600;
-    text-decoration: none;
-    margin-top: 10px;
+    width: 230px;
+    height: 60px;
+    display: block;
+    border: none;
 }
 
-body.light-mode .drawer-cta {
-    background: #f0f7ff;
-    color: #1a1a1a;
-    border: 1px solid #abd2fa;
-}
-
-.drawer-arrow {
-    width: 56px;
-    height: 56px;
-    background: #abd2fa;
-    border-radius: 50%;
+.drawer-cta .drawer-arrow{
+    position: absolute;
+    right: 5px; 
+    top: 0;
+    width: 80px; 
+    height: 50px;
+    border-radius: 65px;
+    background-color: var(--header-btn-arrow-bg); 
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #000;
-}
-
-body.light-mode .drawer-arrow {
-    background: #1a1a1a;
-    color: #ffffff;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: width 0.3s ease-out; 
+    z-index: 2;
 }
 
 .drawer-footer {
@@ -5006,20 +4728,14 @@ body.light-mode .drawer-arrow {
     padding-bottom: 20px;
 }
 
-.drawer-social {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
+.drawer-footer .social-icon:hover {
+    background-color: var(--btn-bg);
 }
 
-body.light-mode .drawer-social {
-    background: #f0f7ff;
-    color: #1a1a1a;
-    border: 1px solid #abd2fa;
+
+.drawer-cta .text{
+  left: 50px; 
 }
+
+
 
