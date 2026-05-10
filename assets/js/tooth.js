@@ -31,15 +31,15 @@ const progressFill = document.getElementById('progress-fill');
 let fakeProgress = 0;
 const fakeInterval = setInterval(() => {
     if (fakeProgress < 67) {
-        // Швидкий підйом до 67
-        fakeProgress += Math.random() * 20;
+        // Миттєвий підйом до 67
+        fakeProgress += Math.random() * 30;
         if (fakeProgress >= 67) {
             fakeProgress = 67;
             clearInterval(fakeInterval);
         }
         updateUI(fakeProgress.toFixed(0));
     }
-}, 200);
+}, 100);
 
 function updateUI(percent) {
     if (progressText && progressFill) {
@@ -57,19 +57,17 @@ const viewer = document.getElementById("tooth-viewer");
 // Відслідковуємо прогрес завантаження моделі
 if (viewer) {
   viewer.addEventListener('progress', (event) => {
-    // Реальний прогрес мапимо так, щоб він не перебивав 67% завчасно
     const realPercent = (event.detail.totalProgress * 100);
-    if (realPercent > 67) {
-        // Якщо завантаження пішло далі 67, можна показувати, 
-        // але для вашого запиту ми тримаємо паузу до 100
+    if (realPercent > 80) {
+        updateUI(realPercent.toFixed(0));
     }
   });
 }
 
-// Захисний тайм-аут: якщо модель грузиться занадто довго — прибираємо прелоадер
+// Захисний тайм-аут: 3 секунди - це максимум для комфорту
 const safetyTimeout = setTimeout(() => {
     hidePreloader();
-}, 4500); // 4.5 секунди ліміту для iPhone/поганого інтернету
+}, 3000); 
 
 function hidePreloader() {
     if (!preloader || preloader.classList.contains('is-hidden')) return;
@@ -82,6 +80,7 @@ function hidePreloader() {
         progressFill.style.width = '100%';
     }
 
+    // Майже миттєве зникнення після 100%
     setTimeout(() => {
         preloader.style.opacity = '0';
         preloader.style.pointerEvents = 'none';
@@ -92,14 +91,11 @@ function hidePreloader() {
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
             
-            // Запуск анімацій
             if (typeof window.initAllAnimations === 'function') {
                 window.initAllAnimations();
             }
-            
-            if (typeof AOS !== 'undefined') AOS.refresh();
-        }, 600);
-    }, 100); 
+        }, 400); // Швидша транзиція
+    }, 20); 
 }
 
 const BASE_THETA = 0;
