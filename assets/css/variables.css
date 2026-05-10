@@ -587,12 +587,12 @@ html.light-mode, body.light-mode {
   /* --- Privacy Page --- */
   --privacy-date-text: #333333;
   --privacy-content-text: #333333;
-  --privacy-title-color: #BFDCFF;
-  --privacy-bullet-color: #BFDCFF;
+  --privacy-title-color: #7A90AA;
+  --privacy-bullet-color: #7A90AA;
   --privacy-strong-text: #333333;
 
   /* --- Not Found Page --- */
-  --title-color-404: #BFDCFF;
+  --title-color-404: #7A90AA;
   --subtitle-text-404: #333333;
   --desc-text-404: #888888;
   --btn-bg-404: #C5D5E7;
