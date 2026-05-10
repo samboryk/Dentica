@@ -90,7 +90,6 @@ body{
   left: 0;
   width: 100%;
   height: 100vh;
-  height: 100dvh;
   /* Темний градієнт як на макеті */
   background: var(--preloader-bg);
   display: flex;
@@ -1111,7 +1110,6 @@ width:2.3vw;
     left: 0;
     width: 100vw;
     height: 100vh;
-    height: 100dvh;
     background-color: var(--modal-overlay-bg);
     backdrop-filter: blur(5px);
     display: flex;
@@ -2694,7 +2692,7 @@ padding-bottom: 15px;
 }
 
 .ai-chat-footer {
-    padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
+    padding: 16px;
     border-top: 1px solid var(--chat-window-border);
     display: flex;
     gap: 10px;
@@ -3035,9 +3033,8 @@ padding-bottom: 15px;
 }
 
 /* Ensure body doesn't scroll when modal is open */
-body.modal-open, body.chat-open {
+body.modal-open {
     overflow: hidden;
-    overscroll-behavior: none;
 }
 
 .accordion-content {
@@ -4841,22 +4838,18 @@ body.menu-open #scroll-top {
 
 /* --- AI Chat Mobile Adaptation --- */
 .ai-chat-window {
-    position: fixed;
     top: 0;
     bottom: 0;
-    left: 0;
     right: 0;
     width: 100%;
-    height: 100vh;
-    height: 100dvh;
-    max-height: none;
+    height: auto;
+    position: fixed;
+    left: 0;
     border-radius: 0;
     border: none;
-    z-index: 1000; 
-    padding-top: 80px; 
+    z-index: 1000; /* Менше ніж z-index хедера (2000001) */
+    padding-top: 80px; /* Зсуваємо контент під хедер */
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
 }
 
 .ai-chat-window.show {
