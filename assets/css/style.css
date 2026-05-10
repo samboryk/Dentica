@@ -4308,7 +4308,7 @@ body.light-mode .not-found-image {
 
     /* Фільтри: робимо горизонтальний скрол для кнопок */
     .price-page-filter {
-        margin-top: 20px;
+        margin-top: 20px;   
         margin-bottom: 30px;
         padding-top: 10px;
         margin-left: -16px;
