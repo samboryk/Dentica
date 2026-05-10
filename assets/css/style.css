@@ -4781,13 +4781,14 @@ body.menu-open #scroll-top {
 /* --- Mobile Form Adaptation --- */
 .modal-overlay {
     overflow-y: auto;
-    padding: 20px 0;
+    padding: 0;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
 }
 
 .modal-content {
-    margin: auto; /* Центруємо вертикально та горизонтально */
+    margin: 20px auto 100px;
     width: calc(100% - 60px);
     height: auto;
     max-height: none;
@@ -4841,8 +4842,9 @@ body.menu-open #scroll-top {
     bottom: 0;
     right: 0;
     width: 100%;
-    height: 100dvh; 
-    max-height: 100vh;
+    height: auto;
+    position: fixed;
+    left: 0;
     border-radius: 0;
     border: none;
     z-index: 1000; /* Менше ніж z-index хедера (2000001) */
@@ -4851,7 +4853,8 @@ body.menu-open #scroll-top {
 }
 
 .ai-chat-window.show {
-    transform: translateY(0) scale(1);
+    transform: none;
+    opacity: 1;
 }
 
 
