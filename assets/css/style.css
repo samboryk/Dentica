@@ -1566,6 +1566,7 @@ width: 100%;
   display: flex;
   justify-content: right;
 padding-bottom: 15px;
+color: var(--service-card-action-text);
  }
 
 .services-header {
