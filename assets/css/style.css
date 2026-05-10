@@ -3589,6 +3589,10 @@ body.light-mode .not-found-image {
         align-items: stretch;
     }
 
+    .header {
+        height: 80px;
+    }
+
     /* --- ГОЛОВНИЙ ЕКРАН (HERO) --- */
     .hero-grid {
         display: flex; 
@@ -3598,7 +3602,7 @@ body.light-mode .not-found-image {
         flex: 1;
         min-height: 0;
         width: 100%;
-        padding-top: 80px;
+        padding-top: 100px;
         padding-bottom: 3vh;
         gap: 0;
         box-sizing: border-box;
@@ -3801,8 +3805,7 @@ body.light-mode .not-found-image {
 }
 
 .trust {
-    padding: 80px 0 0 0;
-   
+    padding: 100px 0 0 0;
 }
 
 .trust-image-wrapper{
@@ -3820,11 +3823,12 @@ body.light-mode .not-found-image {
 
 .trust-card {
     grid-column: 1;
-    width: 100%; /* Замість 340px — тепер картка адаптивна */
-    height: 150px; /* Безпечніше, ніж жорсткий height */
+    width: 100%; 
+    height: auto;
+    min-height: 140px;
     align-items: center;
-    padding: 20px 40px;
-    /* box-sizing: border-box; успадковується з десктопу, тому padding не зламає ширину 100% */
+    padding: 20px 24px;
+    box-sizing: border-box;
 }
 
 .trust-content {
@@ -3855,7 +3859,26 @@ body.light-mode .not-found-image {
 .trust-card-text {
     font-size: 12px;
     text-align: center;
+}
 
+/* ФІКС ДЛЯ НАДВУЗЬКИХ ЕКРАНІВ (GALAXY FOLD) */
+@media screen and (max-width: 350px) {
+    .trust-card-number {
+        font-size: 38px;
+    }
+    .trust-card-title {
+        font-size: 18px;
+    }
+    .trust-card {
+        padding: 16px 16px;
+        min-height: 130px;
+    }
+    .header {
+        height: 70px;
+    }
+    .hero-grid, .trust {
+        padding-top: 90px;
+    }
 }
 
 .services {

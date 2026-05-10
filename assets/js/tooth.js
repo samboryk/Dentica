@@ -80,22 +80,26 @@ function hidePreloader() {
         progressFill.style.width = '100%';
     }
 
-    // Майже миттєве зникнення після 100%
+    // Миттєве зникнення після 100%
     setTimeout(() => {
         preloader.style.opacity = '0';
         preloader.style.pointerEvents = 'none';
         preloader.classList.add('is-hidden');
+
+        // ЗАПУСК АНІМАЦІЙ НЕГАЙНО (не чекаючи завершення fade-out)
+        if (typeof window.initAllAnimations === 'function') {
+            window.initAllAnimations();
+        }
+        if (typeof AOS !== 'undefined') {
+            AOS.refresh();
+        }
         
         setTimeout(() => {
             preloader.style.display = 'none';
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
-            
-            if (typeof window.initAllAnimations === 'function') {
-                window.initAllAnimations();
-            }
-        }, 400); // Швидша транзиція
-    }, 20); 
+        }, 400); 
+    }, 10); 
 }
 
 const BASE_THETA = 0;
