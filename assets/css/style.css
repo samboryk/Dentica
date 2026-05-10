@@ -3071,6 +3071,7 @@ body.modal-open {
 .results-container {
     max-width: 1200px;
     width: 100%;
+    box-sizing: border-box;
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
@@ -4573,8 +4574,9 @@ body.light-mode .not-found-image {
        Results Section – 480px
        ========================================== */
     .results-section {
-        padding-bottom: 60px;
+        padding-bottom: 80px;
         overflow: hidden;
+
     }
 
     .results-container {
@@ -4591,18 +4593,11 @@ body.light-mode .not-found-image {
 
     .result-card {
         flex: 0 0 100%;
+        width: 100%;
         height: 280px;
     }
 
-    .results-controls {
-        margin-top: 20px;
-        gap: 16px;
-    }
-
-    .results-controls .team-btn {
-        width: 44px;
-        height: 44px;
-    }
+    
 
     /* BA slider на мобілці */
     .ba-handle-circle {
