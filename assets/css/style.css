@@ -4962,3 +4962,677 @@ body.menu-open #scroll-top {
         z-index: 999;
     }
 }
+
+
+/* ==========================================
+   Small Desktop (Compressed Desktop): 801-1199
+   ========================================== */
+@media (min-width: 801px) and (max-width: 1199px) {
+    .container {
+        width: 92%;
+        padding: 0 12px;
+    }
+
+    .header {
+        height: 92px;
+    }
+
+    .hero-grid {
+        min-height: calc(100vh - 92px);
+        padding-top: 92px;
+    }
+
+    .hero-bg-text {
+        font-size: 14.5vw;
+    }
+
+    .hero-title {
+        font-size: 2.6vw;
+    }
+
+    .hero-desc {
+        font-size: 1.3rem;
+        line-height: 1.45;
+    }
+
+    .info-card {
+        padding: 1.2rem 1.6rem 0.9rem;
+        border-radius: 16px;
+    }
+
+    .info-card-title {
+        font-size: 1.25rem;
+    }
+
+    .info-card-value {
+        font-size: 1.45rem;
+    }
+
+    .btn,
+    .header-btn {
+        width: 148px;
+        height: 42px;
+    }
+
+    .header-btn .text,
+    .btn .text,
+    .nav-list {
+        font-size: 1.3rem;
+    }
+
+    .header-btn .arrow {
+        width: 44px;
+        height: 31px;
+    }
+
+    .title {
+        font-size: 5.8rem;
+    }
+
+    .contacts-grid-container,
+    .trust-grid-container,
+    .team-grid-container,
+    .reviews-grid-container,
+    .results-container,
+    .single-service-grid-container,
+    .doctor-grid-container,
+    .price-container,
+    .privacy-container {
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .contacts-content-grid,
+    .team-content-grid,
+    .doctor-content-grid {
+        gap: 18px;
+    }
+
+    .contacts-content-grid {
+        height: 420px;
+    }
+
+    .contacts-info-wrapper,
+    .contacts-map-wrapper {
+        height: 420px;
+    }
+
+    .contact-action-card {
+        padding: 24px 28px;
+    }
+
+    .contact-details-card {
+        padding: 30px;
+    }
+
+    .trust-card {
+        padding: 26px 28px;
+        height: 230px;
+    }
+
+    .trust-card-number {
+        font-size: 5rem;
+    }
+
+    .trust-card-title {
+        font-size: 1.8rem;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    .service-card {
+        height: 174px;
+        padding: 20px;
+    }
+
+    .service-card-number {
+        font-size: 4.2rem;
+    }
+
+    .service-card-title {
+        font-size: 1.8rem;
+        margin-top: 10px;
+    }
+
+    .service-card-description {
+        font-size: 1rem;
+    }
+
+    .services-image-wrapper {
+        grid-column: span 3;
+        height: 220px;
+    }
+
+    .team-content-grid {
+        height: 420px;
+    }
+
+    .team-info-wrapper {
+        grid-template-rows: 1fr 118px;
+        gap: 18px;
+    }
+
+    .team-member-card {
+        padding: 30px;
+    }
+
+    .team-member-name {
+        font-size: 2.4rem;
+    }
+
+    .team-member-desc {
+        font-size: 1.3rem;
+    }
+
+    .review-card {
+        width: calc((100% - 24px) / 2);
+        padding: 30px;
+    }
+
+    .review-text {
+        font-size: 1.6rem;
+    }
+
+    .price-page-grid {
+        column-count: 2;
+        column-gap: 18px;
+    }
+
+    .price-card {
+        padding: 24px;
+        margin-bottom: 18px;
+    }
+
+    .price-card-title {
+        font-size: 2rem;
+        margin-bottom: 22px;
+    }
+
+    .price-row-name {
+        font-size: 1.3rem;
+    }
+
+    .price-row-value {
+        font-size: 1.45rem;
+    }
+
+    .single-service-grid-container {
+        column-gap: 24px;
+        row-gap: 18px;
+    }
+
+    .single-service-photo-wrapper .single-service-photo {
+        height: 280px;
+    }
+
+    .doctor-main-title {
+        font-size: 4.8rem;
+    }
+
+    .doctor-photo-wrapper {
+        height: 430px;
+    }
+
+    .accordion-header {
+        padding: 18px 24px;
+    }
+
+    .accordion-title {
+        font-size: 1.8rem;
+    }
+
+    .cert-card {
+        height: 360px;
+    }
+
+    .result-card {
+        height: 340px;
+    }
+
+    .not-found-title {
+        font-size: 12rem;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+
+  /* ЯДЕРНИЙ ФІКС СКРОЛУ (Глобально для 1024px) */
+
+
+  /* Додатковий захист для самої секції */
+  .hero {
+    width: 100%;
+  }
+
+  /* Повертаємо оригінальну ширину контейнера (85%) для правильних пропорцій grid */
+  .hero .container {
+    width: 85%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  /* ============================================
+     1. HEADER — ховаємо меню, показуємо бургер
+     ============================================ */
+  .header .container {
+    width: 94%;
+    padding: 0 8px;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .header-btn {
+    display: none;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--header-btn-bg);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .header-actions {
+    gap: 1rem;
+    flex: 0 auto;
+  }
+
+  .theme-toggle {
+    width: 42px;
+    height: 42px;
+  }
+
+  /* ============================================
+     2. ТИПОГРАФІКА — зменшуємо ~25% від десктопу
+     ============================================ */
+  .title {
+    font-size: 5rem;
+    line-height: 1.05;
+  }
+
+  .page-title {
+    font-size: 6.4rem;
+    line-height: 0.95;
+  }
+
+  .faq-title {
+    font-size: 3.6rem;
+    line-height: 1.1;
+  }
+
+  .cta-title {
+    font-size: 4rem;
+    line-height: 1.08;
+  }
+
+  .cta-title-small {
+    font-size: 3.4rem;
+    line-height: 1.08;
+  }
+
+  .doctor-main-title {
+    font-size: 4.2rem;
+    line-height: 1.05;
+  }
+
+  .reviews-header .title {
+    font-size: 4.8rem;
+    line-height: 1.05;
+  }
+
+  /* ============================================
+     3. ПОСЛУГИ — 2 колонки замість 3-4
+     ============================================ */
+  .services-container {
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .services-image-wrapper {
+    grid-column: span 2;
+    height: 220px;
+  }
+
+  .service-card {
+    height: auto;
+    min-height: 186px;
+    padding: 22px;
+  }
+
+  .service-card-title {
+    font-size: 1.8rem;
+  }
+
+  .service-card-description{
+    font-size: 1.1rem;
+  }
+
+  /* ============================================
+     4. ПРАЙС — фільтри з flex-wrap, зменшені відступи
+     ============================================ */
+  .price-container {
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .price-page-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    margin-bottom: 36px;
+  }
+
+  .price-page-filter-btn {
+    margin-right: 0;
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .price-page-grid {
+    column-count: 1;
+    column-gap: 0;
+  }
+
+  .price-card {
+    padding: 22px 18px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .price-card-title {
+    font-size: 2rem;
+  }
+
+  .price-row-name {
+    font-size: 1.3rem;
+  }
+
+  .price-row-value {
+    font-size: 1.45rem;
+  }
+
+  /* ============================================
+     5. CTA СЕКЦІЯ — пропорції 6/6, менший gap
+     ============================================ */
+  .cta-section .contacts-content-grid {
+    gap: 16px;
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .cta-section .contacts-map-wrapper {
+    grid-column: span 6;
+    height: 400px;
+  }
+
+  .cta-section .contacts-info-wrapper {
+    grid-column: span 6;
+    height: 400px;
+    gap: 14px;
+  }
+
+  .info-block{
+    font-size: 1.3rem;
+  }
+
+  
+  /* ============================================
+     6. HERO СЕКЦІЯ — оригінальний grid (20 колонок)
+     Зуб і тексти — ідентично десктопу
+     ============================================ */
+
+  /* Оригінальний desktop grid — НІЯКОГО overflow:hidden, бо він обрізає tooth і тексти */
+  .hero-grid {
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    min-height: calc(100vh - 92px);
+    padding-top: 92px;
+  }
+
+  /* Зуб — оригінальна позиція */
+  .hero-tooth {
+    grid-column: 7 / 15;
+    grid-row: 1 / 4;
+  }
+
+  /* Текст зліва — оригінальна позиція з невеликим зсувом */
+  .title-left {
+    grid-column: 6 / 8;
+    grid-row: 2;
+    margin-top: -2vw;
+    margin-left: -11.46vw;
+    animation: floatLeft 7s ease-in-out infinite;
+  }
+
+  .title-left .thin-w {
+    margin-left: 4.69vw;
+  }
+
+  /* Текст справа — оригінальна позиція */
+  .title-right {
+    grid-column: 14 / 18;
+    grid-row: 2;
+    margin-left: 1vw;
+    margin-top: 4.7vw;
+    animation: floatRight 7s ease-in-out infinite;
+  }
+
+  .title-right .thin-b {
+    margin-left: -2.5vw;
+  }
+
+  /* Шрифт як на десктопі або дуже близько (2.1vw) */
+  .hero-title {
+    font-size: 2.1vw;
+    line-height: 1.2;
+  }
+
+  /* Зірки — оригінальні розміри */
+  .star {
+    width: 2vw;
+  }
+
+  .star-right {
+    margin-left: 12vw;
+  }
+
+  .star-left {
+    margin-left: 2vw;
+  }
+
+  /* Нижні блоки */
+  .hero-bottom.bottom-left {
+    grid-column: 1 / 9;
+    grid-row: 3;
+    padding-bottom: 32px;
+  }
+
+  .hero-bottom.bottom-right {
+    grid-column: 11 / 21;
+    grid-row: 3;
+    padding-bottom: 32px;
+    gap: 12px;
+  }
+
+  /* Інфо-картки — трохи менші */
+  .info-card {
+    padding: 1.2rem 1.5rem 0.8rem;
+    border-radius: 16px;
+  }
+
+  .info-card-title {
+    font-size: 1.2rem;
+  }
+
+  .info-card-value {
+    font-size: 1.4rem;
+    white-space: nowrap;
+  }
+
+  .hero-desc {
+    font-size: 1.3rem;
+    line-height: 1.45;
+  }
+
+  /* Фонтекст — трохи менший щоб не переповнювати (14.5vw -> 14vw) */
+  .hero-bg-text {
+    font-size: 14vw;
+  }
+
+  /* ============================================
+     Додаткові адаптації для 1024px
+     ============================================ */
+
+
+
+  /* Відгуки */
+  .reviews {
+    overflow-x: hidden;
+  }
+
+  .review-card {
+    width: calc((100% - 24px) / 2);
+    padding: 24px;
+    min-height: 260px;
+  }
+
+
+
+  .reviews-slider-viewport {
+    height: 260px;
+  }
+
+   .services-all-link{
+    font-size: 1.2rem;
+    text-decoration: underline;
+   }
+  /* FAQ */
+  .faq-container {
+    max-width: 900px;
+  }
+
+  .faq-item-trigger {
+    padding: 24px 0;
+  }
+
+  .faq-item-question {
+    font-size: 1.8rem;
+    padding-right: 30px;
+  }
+
+  .faq-item-body {
+    padding-bottom: 30px;
+  }
+
+  .faq-item-text {
+    font-size: 1.45rem;
+  }
+
+  /* Trust */
+  .trust-content {
+    grid-column: span 7;
+    gap: 20px;
+  }
+
+  .trust-image-wrapper {
+    grid-column: span 5;
+    height: 300px;
+  }
+
+  .trust-card {
+    padding: 24px 20px;
+    height: auto;
+    min-height: 220px;
+  }
+
+  .trust-card-number {
+    font-size: 4.6rem;
+    margin-bottom: 10px;
+  }
+
+  .trust-card-title {
+    font-size: 1.6rem;
+    line-height: 1.3;
+  }
+
+  .trust-card-text {
+    font-size: 1.3rem;
+  }
+
+  /* Btn загальний */
+  .btn {
+    width: 150px;
+    height: 42px
+    ;
+  }
+
+  .btn .text {
+    font-size: 1.3rem;
+  }
+
+  /* Результати */
+  .results {
+    overflow-x: hidden;
+  }
+
+  .result-card {
+    height: 340px;
+  }
+
+  /* Сертифікати */
+  .cert-card {
+    height: 360px;
+  }
+
+  /* Лікар */
+  .doctor-photo-wrapper {
+    height: 430px;
+  }
+
+  .accordion-header {
+    padding: 20px 26px;
+  }
+
+  .accordion-title {
+    font-size: 1.8rem;
+  }
+
+ 
+  /* Сингл-сервіс */
+  .single-service-grid-container {
+    column-gap: 28px;
+  }
+
+  /* Not found */
+  .not-found-title {
+    font-size: 12rem;
+  }
+}
+
+
+
