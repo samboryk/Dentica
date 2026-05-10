@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Функція відкриття модалки
     const openModal = () => {
         modalOverlay.classList.add('is-active');
+        document.body.classList.add('modal-open');
       
         // Завантажуємо решту прапорів відразу після відкриття модалки
         document.querySelectorAll('.lazy-flag').forEach(span => {
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Функція закриття модалки
     const closeModal = () => {
         modalOverlay.classList.remove('is-active');
-       
+        document.body.classList.remove('modal-open');
     };
 
    if (openBtns.length > 0) {

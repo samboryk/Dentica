@@ -8,15 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendBtn = document.getElementById('aiChatSendBtn');
 
     // === НАЛАШТУВАННЯ ===
-    const API_KEY = "AIzaSyCbdjoqBGCcbvOUboCTN6mzo9GwayjUUXY"; // Твій ключ
+    // Конфігурація тепер винесена на сервер (/api/chat) для безпеки та стабільності
 
-    // Актуальна модель на квітень 2026
-    const MODEL_NAME = "gemini-2.5-flash";        // Рекомендую для чату (швидко + добре)
-    // Альтернативи:
-    // const MODEL_NAME = "gemini-2.5-pro";       // потужніша, але дорожча
-    // const MODEL_NAME = "gemini-2.5-flash-lite"; // найдешевша для великих обсягів
-
-    const API_URL = `https://generativelanguage.googleapis.com/v1/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
 
     let isSending = false; // Захист від подвійних запитів
 
@@ -24,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (chatBtn) {
         chatBtn.onclick = () => {
             chatWindow.classList.toggle('show');
+            document.body.classList.toggle('chat-open');
             chatInput?.focus();
             console.log("Відкриття вікна Dentica AI...");
         };
@@ -32,29 +26,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     closeBtn?.addEventListener('click', () => {
         chatWindow.classList.remove('show');
+        document.body.classList.remove('chat-open');
     });
 
 
     document.addEventListener('keydown', (e) => {
-        // Перевіряємо, чи натиснуто Esc і чи чат наразі відкритий
         if (e.key === 'Escape' && chatWindow.classList.contains('show')) {
             chatWindow.classList.remove('show');
+            document.body.classList.remove('chat-open');
         }
     });
 
     // 2. Закриття при кліці поза вікном чату
     document.addEventListener('click', (e) => {
-        // Перевіряємо, чи чат відкритий
         if (chatWindow.classList.contains('show')) {
-            // Перевіряємо, чи клік відбувся НЕ по самому вікну чату 
-            // та НЕ по кнопці його відкриття
             if (!chatWindow.contains(e.target) && !chatBtn.contains(e.target)) {
                 chatWindow.classList.remove('show');
+                document.body.classList.remove('chat-open');
             }
         }
     });
 
-    // Функція відправки повідомлення
+    // Функція відправки повідомлення (Стрімінг через /api/chat)
     async function handleSendMessage() {
         if (isSending) return;
         const message = chatInput.value.trim();
@@ -63,52 +56,63 @@ document.addEventListener('DOMContentLoaded', () => {
         isSending = true;
         sendBtn.disabled = true;
 
-        // Додаємо повідомлення користувача
         addMessage('user', message);
         chatInput.value = '';
+        
+        // Створюємо порожнє повідомлення для бота, яке будемо наповнювати
+        const botMsgDiv = document.createElement('div');
+        botMsgDiv.className = 'chat-msg bot-msg';
+        const botTextP = document.createElement('p');
+        botMsgDiv.appendChild(botTextP);
+        chatBody.appendChild(botMsgDiv);
+        
         showTypingIndicator();
 
         try {
-            const response = await fetch(API_URL, {
+            const response = await fetch('/api/chat', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    contents: [{
-                        parts: [{
-                            text: `${DENTICA_CONTEXT || ''}\n\nКористувач: ${message}`
-                        }]
-                    }],
-                    generationConfig: {
-                        temperature: 0.7,
-                        maxOutputTokens: 1000,
-                    }
-                })
+                body: JSON.stringify({ message })
             });
 
-            const data = await response.json();
-
             if (!response.ok) {
-                console.error("API Error:", data);
-                let errorMsg = data.error?.message || "Помилка сервера";
-
-                if (data.error?.code === 404) {
-                    errorMsg = `Модель ${MODEL_NAME} не знайдена. Спробуй іншу модель (наприклад gemini-2.5-flash).`;
-                }
-
-                throw new Error(errorMsg);
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Помилка сервера');
             }
 
-            // Отримуємо текст відповіді
-            const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text 
-                || "Вибачте, не вдалося згенерувати відповідь.";
-
             removeTypingIndicator();
-            addMessage('bot', aiText);
+            
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let aiResponse = "";
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                
+                const chunk = decoder.decode(value, { stream: true });
+                
+                // Парсимо SSE формат (Gemini повертає блоки "data: {...}")
+                const lines = chunk.split('\n');
+                for (const line of lines) {
+                    if (line.startsWith('data: ')) {
+                        try {
+                            const json = JSON.parse(line.substring(6));
+                            const textChunk = json.candidates?.[0]?.content?.parts?.[0]?.text || "";
+                            aiResponse += textChunk;
+                            botTextP.innerHTML = aiResponse.replace(/\n/g, '<br>');
+                            chatBody.scrollTop = chatBody.scrollHeight;
+                        } catch (e) {
+                            // Пропускаємо неповні JSON чанки
+                        }
+                    }
+                }
+            }
 
         } catch (error) {
             console.error("Chat Error:", error);
             removeTypingIndicator();
-            addMessage('bot', "Вибачте, сталася помилка при обробці запиту. Спробуйте ще раз.");
+            botTextP.innerText = `Помилка: ${error.message}. Спробуйте пізніше.`;
         } finally {
             isSending = false;
             sendBtn.disabled = false;
