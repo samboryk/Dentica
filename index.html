@@ -14,13 +14,7 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="/assets/js/external/intlTelInput-23.css" />
     <link rel="stylesheet" href="/assets/js/external/intlTelInput-18.css" />
-    <link rel="preload" href="/assets/js/external/draco/draco_wasm_wrapper.js" as="fetch" crossorigin="anonymous">
-    <link rel="preload" href="/assets/js/external/draco/draco_decoder.wasm" as="fetch" type="application/wasm" crossorigin="anonymous">
-    <link rel="preload" href="/assets/models/tooth.glb" as="fetch" crossorigin="anonymous">
-    <script type="module" src="/assets/js/external/model-viewer.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-    <script src="/assets/js/external/gsap.min.js"></script>
-    <script src="/assets/js/external/ScrollTrigger.min.js"></script>    
+    
     <script>
       self.ModelViewerElement = self.ModelViewerElement || {};
       self.ModelViewerElement.dracoDecoderLocation = 'assets/js/external/draco/';
@@ -174,8 +168,7 @@
   id="tooth-viewer"
   src="/assets/models/tooth.glb"
   draco-decoder-location="/assets/js/external/draco/"
-    loading="eager"
-  reveal="auto"
+  loading="eager"
   environment-image="neutral"
   exposure="0.65"
   tone-mapping="commerce"
@@ -857,7 +850,11 @@
 <script src="/assets/js/ai-config.js"></script>
 <script src="assets/js/ai-chat.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+<script src="/assets/js/external/gsap.min.js"></script>
+<script src="/assets/js/external/ScrollTrigger.min.js"></script>
 <script src="/assets/js/main.js"></script>
+<script type="module" src="/assets/js/external/model-viewer.min.js"></script>
 <script type="module" src="assets/js/tooth.js"></script>
 </body>
 

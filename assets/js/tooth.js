@@ -53,21 +53,60 @@ function updateUI(percent) {
 
 /* ── 3D модель зуба ── */
 const viewer = document.getElementById("tooth-viewer");
+let modelLoaded = false;
+let windowLoaded = false;
+
+function checkAllLoaded() {
+    if (modelLoaded && windowLoaded) {
+        hidePreloader();
+    }
+}
 
 // Відслідковуємо прогрес завантаження моделі
 if (viewer) {
   viewer.addEventListener('progress', (event) => {
     const realPercent = (event.detail.totalProgress * 100);
-    if (realPercent > 80) {
+    if (!preloader.classList.contains('is-hidden') && realPercent > 80) {
         updateUI(realPercent.toFixed(0));
     }
   });
+
+  viewer.addEventListener("load", () => {
+    modelLoaded = true;
+    
+    /* ── Ініціалізація сцени ── */
+    viewer.setAttribute("camera-orbit", `${BASE_THETA}deg ${BASE_PHI}deg auto`);
+    viewer.setAttribute("min-camera-orbit", "auto auto auto");
+    viewer.setAttribute("max-camera-orbit", "auto auto auto");
+
+    const model = viewer.model;
+    if (model && model.materials) {
+      model.materials.forEach((material) => {
+        material.pbrMetallicRoughness.setBaseColorFactor([0.9, 0.9, 0.9, 1]);
+        material.pbrMetallicRoughness.setMetallicFactor(0);
+        material.pbrMetallicRoughness.setRoughnessFactor(0.4);
+      });
+    }
+
+    animate();
+    checkAllLoaded();
+  });
+} else {
+  modelLoaded = true; // Якщо в'ювера немає, вважаємо модель "завантаженою"
 }
 
-// Захисний тайм-аут: 3 секунди - це максимум для комфорту
+// Приховуємо прелоадер як тільки завантажиться основне вікно
+window.addEventListener('load', () => {
+    windowLoaded = true;
+    checkAllLoaded();
+});
+
+// Захисний тайм-аут: якщо щось пішло не так, все одно пускаємо користувача
 const safetyTimeout = setTimeout(() => {
-    hidePreloader();
-}, 3000); 
+    if (!preloader.classList.contains('is-hidden')) {
+        hidePreloader();
+    }
+}, 5000); 
 
 function hidePreloader() {
     if (!preloader || preloader.classList.contains('is-hidden')) return;
@@ -80,13 +119,12 @@ function hidePreloader() {
         progressFill.style.width = '100%';
     }
 
-    // Миттєве зникнення після 100%
+    // Плавно приховуємо
     setTimeout(() => {
         preloader.style.opacity = '0';
         preloader.style.pointerEvents = 'none';
         preloader.classList.add('is-hidden');
 
-        // ЗАПУСК АНІМАЦІЙ НЕГАЙНО (не чекаючи завершення fade-out)
         if (typeof window.initAllAnimations === 'function') {
             window.initAllAnimations();
         }
@@ -99,7 +137,7 @@ function hidePreloader() {
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
         }, 400); 
-    }, 10); 
+    }, 100); 
 }
 
 const BASE_THETA = 0;
@@ -136,28 +174,10 @@ function animate() {
   const floatTheta = currentTheta + Math.sin(time) * 5;
   const floatPhi   = currentPhi   + Math.cos(time * 0.7) * 4;
 
-  viewer.setAttribute(
-    "camera-orbit",
-    `${floatTheta}deg ${floatPhi}deg ${DISTANCE}`
-  );
+  if (viewer) {
+    viewer.setAttribute(
+      "camera-orbit",
+      `${floatTheta}deg ${floatPhi}deg ${DISTANCE}`
+    );
+  }
 }
-
-// Подія успішного завантаження
-viewer.addEventListener("load", () => {
-  /* ── Приховуємо прелоадер ── */
-  hidePreloader();
-
-  /* ── Ініціалізація сцени ── */
-  viewer.setAttribute("camera-orbit", `${BASE_THETA}deg ${BASE_PHI}deg auto`);
-  viewer.setAttribute("min-camera-orbit", "auto auto auto");
-  viewer.setAttribute("max-camera-orbit", "auto auto auto");
-
-  const model = viewer.model;
-  model.materials.forEach((material) => {
-    material.pbrMetallicRoughness.setBaseColorFactor([0.9, 0.9, 0.9, 1]);
-    material.pbrMetallicRoughness.setMetallicFactor(0);
-    material.pbrMetallicRoughness.setRoughnessFactor(0.4);
-  });
-
-  animate();
-});
