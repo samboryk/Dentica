@@ -71,7 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-    // Налаштування Telegram тепер на бекенді
+const TELEGRAM_BOT_TOKEN = '8615878715:AAHSLK0kyqpEVLDXV5tulwQsRZgw1LlkI_M';
+    const TELEGRAM_CHAT_ID   = '-1003737699666';
+    const API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
     const input = document.getElementById("phoneInput");
     const wrapper = document.getElementById("customPhoneWrapper");
@@ -218,10 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = `🦷 Нова заявка з сайту Dentica!\n\n📞 Телефон: ${finalNumber}`;
 
         try {
-            const res = await fetch('/api/telegram', { 
+            const res = await fetch(API_URL, { 
                 method: 'POST', 
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text: text }) 
+                body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: text }) 
             });
             const data = await res.json();
             
