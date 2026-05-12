@@ -45,8 +45,10 @@ html.lenis {
 }
 
 
-::-webkit-scrollbar-thumb:hover {
-    background-color: var(--scrollbar-thumb-hover-bg);
+@media (hover: hover) {
+  ::-webkit-scrollbar-thumb:hover {
+      background-color: var(--scrollbar-thumb-hover-bg);
+  }
 }
 
 
@@ -317,17 +319,19 @@ a{
   color: var(--theme-toggle-light-icon); 
 }
 
-.theme-toggle:not(.active):hover .dark::before {
-  opacity: 1;
-  transform: scale(1); 
-}
+@media (hover: hover) {
+  .theme-toggle:not(.active):hover .dark::before {
+    opacity: 1;
+    transform: scale(1); 
+  }
 
-.theme-toggle:not(.active):hover .dark {
-  color: var(--theme-toggle-hover-icon); 
-}
+  .theme-toggle:not(.active):hover .dark {
+    color: var(--theme-toggle-hover-icon); 
+  }
 
-.theme-toggle:not(.active):hover .dark svg {
-  transform: rotate(180deg);
+  .theme-toggle:not(.active):hover .dark svg {
+    transform: rotate(180deg);
+  }
 }
 
 .theme-toggle.active .dark {
@@ -340,13 +344,15 @@ a{
   transform: scale(1) rotate(0deg);
 }
 
-.theme-toggle.active:hover .light::before {
-  opacity: 1;
-  transform: scale(1); 
-}
+@media (hover: hover) {
+  .theme-toggle.active:hover .light::before {
+    opacity: 1;
+    transform: scale(1); 
+  }
 
-.theme-toggle.active:hover .light svg {
-  transform: rotate(-15deg); 
+  .theme-toggle.active:hover .light svg {
+    transform: rotate(-15deg); 
+  }
 }
 
 /* Кнопка гамбургер-меню — стилізація span'ів для анімації → × */
@@ -980,12 +986,14 @@ width:2.3vw;
     line-height: 1.4;
 }
 
-.info-link:hover {
-    color: var(--contact-info-link-hover);
-}
+@media (hover: hover) {
+  .info-link:hover {
+      color: var(--contact-info-link-hover);
+  }
 
-.info-text:hover {
-    color: var(--contact-info-link-hover);
+  .info-text:hover {
+      color: var(--contact-info-link-hover);
+  }
 }
 
 .contact-socials {
@@ -1299,8 +1307,10 @@ width:2.3vw;
 }
 
 /* Повзунок при наведенні мишки */
-.custom-country-list::-webkit-scrollbar-thumb:hover {
-    background-color: var(--modal-country-item-hover); /* Трохи темніший червоний */
+@media (hover: hover) {
+    .custom-country-list::-webkit-scrollbar-thumb:hover {
+        background-color: var(--modal-country-item-hover); /* Трохи темніший червоний */
+    }
 }
 
 
@@ -2585,9 +2595,11 @@ color: var(--service-card-action-text);
     transform: translateY(20px); 
 }
 
-.scroll-btn:hover {
-    background-color: var(--widget-scroll-bg);
-    border-color: var(--widget-scroll-icon);
+@media (hover: hover) {
+  .scroll-btn:hover {
+      background-color: var(--widget-scroll-bg);
+      border-color: var(--widget-scroll-icon);
+  }
 }
 
 
@@ -2673,8 +2685,10 @@ color: var(--service-card-action-text);
     padding: 4px;
 }
 
-.ai-chat-close:hover {
-    color: var(--chat-close-hover);
+@media (hover: hover) {
+  .ai-chat-close:hover {
+      color: var(--chat-close-hover);
+  }
 }
 
 .ai-chat-body {
@@ -2777,8 +2791,10 @@ color: var(--service-card-action-text);
     transition: transform 0.2s;
 }
 
-.ai-chat-footer button:hover {
-    transform: scale(1.05);
+@media (hover: hover) {
+  .ai-chat-footer button:hover {
+      transform: scale(1.05);
+  }
 }
 
 .doctor-profile {
@@ -3097,10 +3113,12 @@ color: var(--service-card-action-text);
     backdrop-filter: blur(4px);
 }
 
-.cert-modal-close:hover {
-    background: var(--color-primary);
-    color: #000000;
-    transform: rotate(90deg);
+@media (hover: hover) {
+    .cert-modal-close:hover {
+        background: var(--color-primary);
+        color: #000000;
+        transform: rotate(90deg);
+    }
 }
 
 .cert-modal-nav {
@@ -3120,10 +3138,12 @@ color: var(--service-card-action-text);
     backdrop-filter: blur(4px);
 }
 
-.cert-modal-nav:hover {
-    background: var(--color-primary);
-    color: #000000;
-    border-color: var(--color-primary);
+@media (hover: hover) {
+    .cert-modal-nav:hover {
+        background: var(--color-primary);
+        color: #000000;
+        border-color: var(--color-primary);
+    }
 }
 
 .cert-modal-prev {
@@ -3297,7 +3317,13 @@ body.modal-open {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.ba-handle:hover .ba-handle-circle,
+@media (hover: hover) {
+    .ba-handle:hover .ba-handle-circle {
+        transform: scale(1.12);
+        box-shadow: 0 4px 22px rgba(0, 0, 0, 0.55);
+    }
+}
+
 .ba-handle.dragging .ba-handle-circle {
     transform: scale(1.12);
     box-shadow: 0 4px 22px rgba(0, 0, 0, 0.55);
@@ -4934,8 +4960,10 @@ body.menu-open #scroll-top {
     padding-bottom: 20px;
 }
 
-.drawer-footer .social-icon:hover {
-    background-color: var(--btn-bg);
+@media (hover: hover) {
+  .drawer-footer .social-icon:hover {
+      background-color: var(--btn-bg);
+  }
 }
 
 
@@ -5120,6 +5148,8 @@ body.menu-open #scroll-top {
         width: 148px;
         height: 42px;
     }
+
+    
 
     .header-btn .text,
     .btn .text,
