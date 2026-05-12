@@ -223,6 +223,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         slider.addEventListener('mousedown', () => clearInterval(autoScroll));
         slider.addEventListener('touchstart', () => clearInterval(autoScroll), { passive: true });
+
+        // SWIPE ДЛЯ ВІДГУКІВ (legacy)
+        let revStartX = 0;
+        let revEndX = 0;
+
+        slider.addEventListener('touchstart', (e) => {
+            revStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        slider.addEventListener('touchend', (e) => {
+            revEndX = e.changedTouches[0].screenX;
+            const diff = revStartX - revEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) moveNext();
+                else movePrev();
+                resetTimer();
+            }
+        }, { passive: true });
         
         if (btnNext) btnNext.addEventListener('click', resetTimer);
         if (btnPrev) btnPrev.addEventListener('click', resetTimer);
@@ -496,6 +514,25 @@ document.addEventListener("DOMContentLoaded", () => {
     track.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
     track.addEventListener('mouseleave', startAutoPlay);
 
+    // SWIPE ДЛЯ СЛАЙДЕРА
+    let trackStartX = 0;
+    let trackEndX = 0;
+
+    track.addEventListener('touchstart', (e) => {
+        trackStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+        trackEndX = e.changedTouches[0].screenX;
+        const diff = trackStartX - trackEndX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) nextSlide();
+            else currentIndex = (currentIndex > 0) ? currentIndex - 1 : maxIndex;
+            updateSlider();
+            resetAutoPlay();
+        }
+    }, { passive: true });
+
     updateSlider();
     startAutoPlay();
     
@@ -567,6 +604,29 @@ document.addEventListener("DOMContentLoaded", () => {
             openLightbox(index);
         });
     });
+
+    // Swipe для Lightbox
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    lightbox.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleLightboxSwipe();
+    }, { passive: true });
+
+    function handleLightboxSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            navigateLightbox(1); // Swipe left -> next
+        }
+        if (touchEndX > touchStartX + swipeThreshold) {
+            navigateLightbox(-1); // Swipe right -> prev
+        }
+    }
 
     lightboxClose.addEventListener('click', closeLightbox);
     lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); navigateLightbox(-1); });
@@ -683,6 +743,25 @@ document.addEventListener("DOMContentLoaded", () => {
     btnPrev.addEventListener('click', () => { userInteracted = true; stopAuto(); prev(); });
     viewport.addEventListener('mouseenter', stopAuto);
     viewport.addEventListener('mouseleave', () => { if (!userInteracted) startAuto(); });
+
+    // SWIPE ДЛЯ RESULTS
+    let resStartX = 0;
+    let resEndX = 0;
+
+    viewport.addEventListener('touchstart', (e) => {
+        resStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    viewport.addEventListener('touchend', (e) => {
+        resEndX = e.changedTouches[0].screenX;
+        const diff = resStartX - resEndX;
+        if (Math.abs(diff) > 50) {
+            userInteracted = true;
+            stopAuto();
+            if (diff > 0) next();
+            else prev();
+        }
+    }, { passive: true });
 
     // 4. Слухаємо зміну розміру вікна (наприклад, поворот телефону)
     window.addEventListener('resize', () => {

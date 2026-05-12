@@ -111,6 +111,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
         els.btnNext.addEventListener('click', () => changeTeamSlide('next'));
         els.btnPrev.addEventListener('click', () => changeTeamSlide('prev'));
+
+        // SWIPE ДЛЯ КОМАНДИ
+        let teamStartX = 0;
+        let teamEndX = 0;
+        const teamSwipeZone = document.querySelector('.team-content-grid');
+
+        if (teamSwipeZone) {
+            teamSwipeZone.addEventListener('touchstart', (e) => {
+                teamStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            teamSwipeZone.addEventListener('touchend', (e) => {
+                teamEndX = e.changedTouches[0].screenX;
+                const diff = teamStartX - teamEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) changeTeamSlide('next');
+                    else changeTeamSlide('prev');
+                }
+            }, { passive: true });
+        }
     }
 });
 
@@ -216,6 +236,28 @@ document.addEventListener("DOMContentLoaded", () => {
     // Зупинка при наведенні
     track.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
     track.addEventListener('mouseleave', startAutoPlay);
+
+    // SWIPE ДЛЯ ВІДГУКІВ
+    let revStartX = 0;
+    let revEndX = 0;
+
+    track.addEventListener('touchstart', (e) => {
+        revStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+        revEndX = e.changedTouches[0].screenX;
+        const diff = revStartX - revEndX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) nextSlide();
+            else {
+                ({ maxIndex } = getSliderParams());
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : maxIndex;
+                updateSliderPosition();
+            }
+            resetAutoPlay();
+        }
+    }, { passive: true });
 
     // Ініціалізація
     renderPagination();
