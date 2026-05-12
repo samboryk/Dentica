@@ -1,309 +1,6 @@
-/* Стандартна темна тема (Dark Mode) */
+/* Стандартна світла тема (Light Mode) */
 :root {
   --hero-title-main: #f30000;
-  --hero-btn: #BFDCFF;
-
-
-
-  --color-primary: #BFDCFF;
-  --color-primary-hover: #A9CDFA;
-  --color-primary-rgb: 191, 220, 255;
-  --color-error: #FF4D4F;
-  --shadow:  rgba(0, 0, 0, 0.6);
-  --bg-main: #0D0D0D;
-  --bg-footer: linear-gradient(to bottom, rgb(45, 45, 45), rgb(14, 14, 12));
-  --bg-hero: linear-gradient(315deg, #0e0e0c 0%, #2d2d2d 33%, #0e0e0c 66%, #2d2d2d 100%);
-  --surface-1: #1A1A1A;
-  --surface-2: #222222;
-  --surface-3: #2D2D2D;
-
-  --border-main: #333333;
-  --border-light: #444444;
-  --border-hover: #555555;
-
-  --text-white: #FFFFFF;
-  --text-main: #EAEFF5;
-  --text-secondary: #CCCCCC;
-  --text-accent: #A0AAB5;
-  --text-muted: #888888;
-
-  /* --- Globals --- */
-  --body-bg: #0D0D0D;
-  --body-text: #EAEFF5;
-  --scrollbar-track-bg: #0D0D0D;
-  --scrollbar-thumb-bg: #333333;
-  --scrollbar-thumb-border: #0D0D0D;
-  --scrollbar-thumb-hover-bg: var(--color-primary);
-
-  /* --- Preloader --- */
-  --preloader-bg: linear-gradient(to right, rgb(45, 45, 45), rgb(14, 14, 12));
-  --preloader-text: #EAEFF5;
-  --preloader-track: rgba(255, 255, 255, 0.15);
-  --preloader-fill: #BFDCFF;
-  --preloader-star: #BFDCFF;
-
-  /* --- Mobile Menu --- */
-  --mobile-menu-overlay-bg: #0D0D0D;
-  --mobile-menu-header-border: #333333;
-  --mobile-menu-close-bg: #222222;
-  --mobile-menu-close-border: #333333;
-  --mobile-menu-close-icon: #EAEFF5;
-  --mobile-menu-close-hover-bg: #BFDCFF;
-  --mobile-menu-close-hover-icon: #0D0D0D;
-  --mobile-menu-nav-text: #EAEFF5;
-  --mobile-menu-nav-border: #BFDCFF;
-  --mobile-menu-nav-hover-bg: #BFDCFF;
-  --mobile-menu-nav-hover-text: #0D0D0D;
-  --mobile-menu-divider: #333333;
-  --mobile-menu-social-bg: #222222;
-  --mobile-menu-social-border: #333333;
-  --mobile-menu-social-icon: #EAEFF5;
-  --mobile-menu-social-hover-bg: #BFDCFF;
-  --mobile-menu-social-hover-border: #BFDCFF;
-  --mobile-menu-social-hover-icon: #0D0D0D;
-  --mobile-menu-cta-bg: #333333;
-  --mobile-menu-cta-text: #EAEFF5;
-  --mobile-menu-cta-icon-bg: #BFDCFF;
-
-  /* --- Header --- */
-  --header-bg: linear-gradient(to bottom, rgba(0, 0, 0, 0.904) 0%, rgba(0, 0, 0, 0) 100%);
-  --header-nav-text: #EAEFF5;
-  --theme-toggle-bg: #333333;
-  --theme-toggle-active-bg: #BFDCFF;
-  --theme-toggle-dark-circle: #BFDCFF;
-  --theme-toggle-light-circle: #EAEFF5;
-  --theme-toggle-dark-icon: #BFDCFF;
-  --theme-toggle-light-icon: #333333;
-  --theme-toggle-hover-icon: #333333;
-  --hamburger-menu-icon: #BFDCFF;
-  --header-btn-bg: #333333;
-  --header-btn-text: #EAEFF5;
-  --header-btn-arrow-bg: #BFDCFF;
-  --logo-star: #BFDCFF;
-  --logo-text: #EAEFF5;
-
-  /* --- Globals (Typography & Buttons) --- */
-  --thin-text-w-color: #EAEFF5;
-  --thin-text-b-color: #BFDCFF;
-  --btn-bg: #BFDCFF;
-  --btn-text: #0D0D0D;
-  --btn-hover-bg: #A9CDFA;
-
-  /* --- Hero --- */
-  --hero-bg-text-color: #414141;
-  --hero-tooth-shadow: rgba(0, 0, 0, 0.6);
-  --hero-info-card-bg: #333333;
-  --hero-bg: linear-gradient(315deg, #0e0e0c 0%, #2d2d2d 33%, #0e0e0c 66%, #2d2d2d 100%);
-  --hero-sidebar-social-bg: #333333;
-  --hero-star-right: #BFDCFF;
-  --hero-star-left: #EAEFF5;
-
-
-  /* --- Footer --- */
-  --footer-bg: linear-gradient(to bottom, rgb(45, 45, 45), rgb(14, 14, 12));
-  --footer-text: #EAEFF5;
-  --footer-divider: #333333;
-  --footer-made-text: #444444;
-    --footer-star: #EAEFF5;
-
-  /* --- Contact --- */
-  --contact-action-bg: #BFDCFF;
-  --contact-action-text: #222222;
-  --contact-action-border: #333333;
-  --contact-map-border: #333333;
-  --contact-details-bg: #222222;
-  --contact-details-border: #333333;
-  --contact-info-title: #A0AAB5;
-  --contact-info-text: #EAEFF5;
-  --contact-info-link-hover: #BFDCFF;
-  --contact-social-bg: #2D2D2D;
-  --contact-social-text: #EAEFF5;
-  --contact-social-hover-bg: #BFDCFF;
-  --contact-social-hover-text: #0D0D0D;
-  --contact-action-info-title: #0D0D0D;
-  --contact-action-info-text: #0D0D0D;
-  --contact-action-btn-bg: #222222;
-  --contact-action-btn-text: #EAEFF5;
-  --contact-aurora-1: rgba(191, 220, 255, 1);
-  --contact-aurora-2: rgba(191, 220, 255, 0.5);
-
-  /* --- Modal --- */
-  --modal-overlay-bg: rgba(0, 0, 0, 0.4);
-  --modal-close-icon: #888888;
-  --modal-close-icon-hover: #FF4D4F;
-  --modal-card-bg: #222222;
-  --modal-title: #EAEFF5;
-  --modal-desc: #888888;
-  --modal-label: #EAEFF5;
-  --modal-input-bg: #2D2D2D;
-  --modal-input-border: #444444;
-  --modal-input-border-focused: #BFDCFF;
-  --modal-input-border-error: #FF4D4F;
-  --modal-msg-error: #FF4D4F;
-  --modal-input-text: #EAEFF5;
-  --modal-divider: #444444;
-  --modal-disclaimer-text: #888888;
-  --modal-disclaimer-link: #EAEFF5;
-  --modal-success-title: #EAEFF5;
-  --modal-checkmark-color: #BFDCFF;
-  --modal-checkmark-bg: #0D0D0D;
-    --modal-country-list-bg: #2D2D2D;
-  --modal-country-list-border: #444444;
-  --modal-country-item-hover: #444444;
-  --modal-country-item-active: #242424;
-
-  /* --- Trust --- */
-  --trust-desc-text: #EAEFF5;
-  --trust-img-border: #333333;
-  --trust-card-border: #333333;
-  --trust-card-dark-bg: #222222;
-  --trust-card-dark-text: #EAEFF5;
-  --trust-card-accent-bg: #BFDCFF;
-  --trust-card-accent-text: #0D0D0D;
-
-  /* --- Services --- */
-  --service-card-border: #333333;
-  --service-card-bg: #222222;
-  --service-card-action-border: #BFDCFF;
-  --service-card-number: #BFDCFF;
-  --service-card-title: #EAEFF5;
-  --service-card-desc: #EAEFF5;
-  --service-card-action-text: #BFDCFF;
-  --service-price-text: #EAEFF5;
-
-  /* --- Team --- */
-  --team-btn-border: #333333;
-  --team-btn-text: #EAEFF5;
-  --team-btn-hover-bg: #222222;
-  --team-img-bg: #222222;
-  --team-card-bg: #222222;
-  --team-card-border: #333333;
-  --team-member-name: #EAEFF5;
-  --team-member-role: #A0AAB5;
-  --team-member-divider: #BFDCFF;
-  --team-member-desc: #EAEFF5;
-  --team-member-link-bg: #BFDCFF;
-  --team-member-link-text: #0D0D0D;
-
-  /* --- FAQ --- */
-  --faq-title-accent: #BFDCFF;
-  --faq-list-border: #333333;
-  --faq-item-trigger-text: #EAEFF5;
-  --faq-item-trigger-hover: #BFDCFF;
-  --faq-item-icon: #EAEFF5;
-  --faq-item-text: #EAEFF5;
-  --faq-item-border-left: #BFDCFF;
-
-  /* --- Reviews --- */
-  --review-card-bg: #222222;
-  /* --- Reviews (part 2) --- */
-  --review-avatar-bg: #BFDCFF;
-  --review-avatar-text: #0D0D0D;
-  --review-author-name: #EAEFF5;
-  --review-author-role: #A0AAB5;
-  --review-dot-bg: #1A1A1A;
-  --review-dot-active: #BFDCFF;
-
-  /* --- Price --- */
-  --price-filter-bg: #0D0D0D;
-  --price-filter-border: #333333;
-  --price-card-highlight-border: #BFDCFF;
-  --price-card-highlight-shadow: rgba(191, 220, 255, 0.2);
-  --price-filter-btn-bg: #333333;
-  --price-filter-btn-text: #BFDCFF;
-  --price-filter-btn-hover-text: #EAEFF5;
-  --price-card-bg: #1A1A1A;
-  --price-card-border: #333333;
-  --price-card-hover-border: #555555;
-  --price-card-title: #EAEFF5;
-  --price-card-icon-bg: rgba(191, 220, 255, 0.1);
-  --price-card-icon-color: #BFDCFF;
-  --price-row-name: #CCCCCC;
-  --price-row-dots: #555555;
-  --price-row-value: #EAEFF5;
-  --price-card-link: #BFDCFF;
-  --price-card-link-hover: #EAEFF5;
-  --price-disclaimer-text: #888888;
-  --price-disclaimer-strong: #EAEFF5;
-
-  /* --- Results Slider --- */
-  --slider-nav-border: rgba(255, 255, 255, 0.4);
-  --slider-nav-color: #EAEFF5;
-
-  /* --- Floating Widgets --- */
-  --widget-chat-bg: #BFDCFF;
-  --widget-chat-icon: #333333;
-  --widget-chat-shadow: rgba(191, 220, 255, 0.4);
-  --widget-scroll-bg: #333333;
-  --widget-scroll-icon: #BFDCFF;
-  --widget-scroll-border: #1A1A1A;
-
-  /* --- Chat Window --- */
-  --chat-window-bg: #222222;
-  --chat-window-border: #333333;
-  --chat-header-bg: linear-gradient(to right, #2D2D2D, #222222);
-  --chat-avatar-bg: #BFDCFF;
-  --chat-avatar-icon: #222222;
-  --chat-title-text: #EAEFF5;
-  --chat-title-desc: #888888;
-  --chat-close-icon: #888888;
-  --chat-close-hover: #FF4D4F;
-  --chat-body-bg: #222222;
-  --chat-scrollbar-thumb: #333333;
-  --chat-bot-msg-bg: #2D2D2D;
-  --chat-bot-msg-text: #EAEFF5;
-  --chat-user-msg-bg: #BFDCFF;
-  --chat-user-msg-text: #222222;
-  --chat-typing-dot: #888888;
-  --chat-footer-bg: #222222;
-  --chat-input-bg: #2D2D2D;
-  --chat-input-text: #EAEFF5;
-
-  /* --- Doctor Profile --- */
-  --doctor-title: #EAEFF5;
-  --doctor-accordion-bg: #222222;
-  --doctor-accordion-border: #1A1A1A;
-  --doctor-accordion-title: #EAEFF5;
-  --doctor-accordion-btn-bg: #BFDCFF;
-  --doctor-accordion-btn-icon: #0D0D0D;
-  --doctor-accordion-text: #EAEFF5;
-  --doctor-photo-bg: #BFDCFF;
-  --doctor-main-title-text: #EAEFF5;
-
-  /* --- Accordion (Generic) --- */
-  --accordion-active-border: #1A1A1A;
-  --accordion-text-border: #BFDCFF;
-  --accordion-text-color: #EAEFF5;
-
-  /* --- Certificates --- */
-  --cert-card-border: #BCBCBC;
-  --cert-dot-bg: #1A1A1A;
-  --cert-dot-active: #BFDCFF;
-
-  /* --- Results Slider --- */
-  --results-title-accent: #A0AAB5;
-  --results-dot-active: #BFDCFF;
-
-  /* --- Single Service --- */
-  --single-service-photo-border: #95A5B8;
-
-  /* --- Privacy Page --- */
-  --privacy-date-text: #888888;
-  --privacy-content-text: #CCCCCC;
-  --privacy-title-color: #BFDCFF;
-  --privacy-bullet-color: #BFDCFF;
-  --privacy-strong-text: #EAEFF5;
-
-  /* --- Not Found Page --- */
-  --title-color-404: #BFDCFF;
-  --subtitle-text-404: #EAEFF5;
-  --desc-text-404: #888888;
-  --btn-bg-404: #BFDCFF;
-}
-
-/* Світла тема (Light Mode) */
-html.light-mode, body.light-mode {
-
   --hero-btn: #C5D5E7;
   --color-primary: #C5D5E7;
   --color-primary-hover: #A9CDFA;
@@ -369,12 +66,12 @@ html.light-mode, body.light-mode {
   --header-bg: linear-gradient(to bottom, rgba(234, 239, 245, 0.95) 0%, rgba(234, 239, 245, 0) 100%);
   --header-nav-text: #333333;
   --theme-toggle-bg: #C5D5E7;
-  --theme-toggle-active-bg: #C5D5E7;
-  --theme-toggle-dark-circle: #BFDCFF;
-  --theme-toggle-light-circle: #EAEFF5;
+  --theme-toggle-active-bg: #333333;
+  --theme-toggle-dark-circle: #EAEFF5;
+  --theme-toggle-light-circle: #333333;
   --theme-toggle-dark-icon: #BFDCFF;
   --theme-toggle-light-icon: #333333;
-  --theme-toggle-hover-icon: #95A5B8;
+  --theme-toggle-hover-icon: #BFDCFF;
   --hamburger-menu-icon: #333333;
   --header-btn-bg: #C5D5E7;
   --header-btn-text: #333333;
@@ -598,4 +295,302 @@ html.light-mode, body.light-mode {
   --subtitle-text-404: #333333;
   --desc-text-404: #888888;
   --btn-bg-404: #C5D5E7;
+}
+
+/* Темна тема (Dark Mode) - активується класом .dark-mode */
+html.dark-mode, body.dark-mode {
+  --hero-title-main: #f30000;
+  --hero-btn: #BFDCFF;
+  --color-primary: #BFDCFF;
+  --color-primary-hover: #A9CDFA;
+  --color-primary-rgb: 191, 220, 255;
+  --color-error: #FF4D4F;
+  --shadow:  rgba(0, 0, 0, 0.6);
+  --bg-main: #0D0D0D;
+  --bg-footer: linear-gradient(to bottom, rgb(45, 45, 45), rgb(14, 14, 12));
+  --bg-hero: linear-gradient(315deg, #0e0e0c 0%, #2d2d2d 33%, #0e0e0c 66%, #2d2d2d 100%);
+  --surface-1: #1A1A1A;
+  --surface-2: #222222;
+  --surface-3: #2D2D2D;
+
+  --border-main: #333333;
+  --border-light: #444444;
+  --border-hover: #555555;
+
+  --text-white: #FFFFFF;
+  --text-main: #EAEFF5;
+  --text-secondary: #CCCCCC;
+  --text-accent: #A0AAB5;
+  --text-muted: #888888;
+
+  /* --- Globals --- */
+  --body-bg: #0D0D0D;
+  --body-text: #EAEFF5;
+  --scrollbar-track-bg: #0D0D0D;
+  --scrollbar-thumb-bg: #333333;
+  --scrollbar-thumb-border: #0D0D0D;
+  --scrollbar-thumb-hover-bg: var(--color-primary);
+
+  /* --- Preloader --- */
+  --preloader-bg: linear-gradient(to right, rgb(45, 45, 45), rgb(14, 14, 12));
+  --preloader-text: #EAEFF5;
+  --preloader-track: rgba(255, 255, 255, 0.15);
+  --preloader-fill: #BFDCFF;
+  --preloader-star: #BFDCFF;
+
+  /* --- Mobile Menu --- */
+  --mobile-menu-overlay-bg: #0D0D0D;
+  --mobile-menu-header-border: #333333;
+  --mobile-menu-close-bg: #222222;
+  --mobile-menu-close-border: #333333;
+  --mobile-menu-close-icon: #EAEFF5;
+  --mobile-menu-close-hover-bg: #BFDCFF;
+  --mobile-menu-close-hover-icon: #0D0D0D;
+  --mobile-menu-nav-text: #EAEFF5;
+  --mobile-menu-nav-border: #BFDCFF;
+  --mobile-menu-nav-hover-bg: #BFDCFF;
+  --mobile-menu-nav-hover-text: #0D0D0D;
+  --mobile-menu-divider: #333333;
+  --mobile-menu-social-bg: #222222;
+  --mobile-menu-social-border: #333333;
+  --mobile-menu-social-icon: #EAEFF5;
+  --mobile-menu-social-hover-bg: #BFDCFF;
+  --mobile-menu-social-hover-border: #BFDCFF;
+  --mobile-menu-social-hover-icon: #0D0D0D;
+  --mobile-menu-cta-bg: #333333;
+  --mobile-menu-cta-text: #EAEFF5;
+  --mobile-menu-cta-icon-bg: #BFDCFF;
+
+  /* --- Header --- */
+  --header-bg: linear-gradient(to bottom, rgba(0, 0, 0, 0.904) 0%, rgba(0, 0, 0, 0) 100%);
+  --header-nav-text: #EAEFF5;
+  --theme-toggle-bg: #333333;
+  --theme-toggle-active-bg: #333333;
+  --theme-toggle-dark-circle: #BFDCFF;
+  --theme-toggle-light-circle: #333333;
+  --theme-toggle-dark-icon: #BFDCFF;
+  --theme-toggle-light-icon: #333333;
+  --theme-toggle-hover-icon: #333333;
+  --hamburger-menu-icon: #BFDCFF;
+  --header-btn-bg: #333333;
+  --header-btn-text: #EAEFF5;
+  --header-btn-arrow-bg: #BFDCFF;
+  --logo-star: #BFDCFF;
+  --logo-text: #EAEFF5;
+
+  /* --- Globals (Typography & Buttons) --- */
+  --thin-text-w-color: #EAEFF5;
+  --thin-text-b-color: #BFDCFF;
+  --btn-bg: #BFDCFF;
+  --btn-text: #0D0D0D;
+  --btn-hover-bg: #A9CDFA;
+
+  /* --- Hero --- */
+  --hero-bg-text-color: #414141;
+  --hero-tooth-shadow: rgba(0, 0, 0, 0.6);
+  --hero-info-card-bg: #333333;
+  --hero-bg: linear-gradient(315deg, #0e0e0c 0%, #2d2d2d 33%, #0e0e0c 66%, #2d2d2d 100%);
+  --hero-sidebar-social-bg: #333333;
+  --hero-star-right: #BFDCFF;
+  --hero-star-left: #EAEFF5;
+
+  /* --- Footer --- */
+  --footer-bg: linear-gradient(to bottom, rgb(45, 45, 45), rgb(14, 14, 12));
+  --footer-text: #EAEFF5;
+  --footer-divider: #333333;
+  --footer-made-text: #444444;
+  --footer-star: #EAEFF5;
+
+  /* --- Contact --- */
+  --contact-action-bg: #BFDCFF;
+  --contact-action-text: #222222;
+  --contact-action-border: #333333;
+  --contact-map-border: #333333;
+  --contact-details-bg: #222222;
+  --contact-details-border: #333333;
+  --contact-info-title: #A0AAB5;
+  --contact-info-text: #EAEFF5;
+  --contact-info-link-hover: #BFDCFF;
+  --contact-social-bg: #2D2D2D;
+  --contact-social-text: #EAEFF5;
+  --contact-social-hover-bg: #BFDCFF;
+  --contact-social-hover-text: #0D0D0D;
+  --contact-action-info-title: #0D0D0D;
+  --contact-action-info-text: #0D0D0D;
+  --contact-action-btn-bg: #222222;
+  --contact-action-btn-text: #EAEFF5;
+  --contact-aurora-1: rgba(191, 220, 255, 1);
+  --contact-aurora-2: rgba(191, 220, 255, 0.5);
+
+  /* --- Modal --- */
+  --modal-overlay-bg: rgba(0, 0, 0, 0.4);
+  --modal-close-icon: #888888;
+  --modal-close-icon-hover: #FF4D4F;
+  --modal-card-bg: #222222;
+  --modal-title: #EAEFF5;
+  --modal-desc: #888888;
+  --modal-label: #EAEFF5;
+  --modal-input-bg: #2D2D2D;
+  --modal-input-border: #444444;
+  --modal-input-border-focused: #BFDCFF;
+  --modal-input-border-error: #FF4D4F;
+  --modal-msg-error: #FF4D4F;
+  --modal-input-text: #EAEFF5;
+  --modal-divider: #444444;
+  --modal-disclaimer-text: #888888;
+  --modal-disclaimer-link: #EAEFF5;
+  --modal-success-title: #EAEFF5;
+  --modal-checkmark-color: #BFDCFF;
+  --modal-checkmark-bg: #0D0D0D;
+  --modal-country-list-bg: #2D2D2D;
+  --modal-country-list-border: #444444;
+  --modal-country-item-hover: #444444;
+  --modal-country-item-active: #242424;
+
+  /* --- Trust --- */
+  --trust-desc-text: #EAEFF5;
+  --trust-img-border: #333333;
+  --trust-card-border: #333333;
+  --trust-card-dark-bg: #222222;
+  --trust-card-dark-text: #EAEFF5;
+  --trust-card-accent-bg: #BFDCFF;
+  --trust-card-accent-text: #0D0D0D;
+
+  /* --- Services --- */
+  --service-card-border: #333333;
+  --service-card-bg: #222222;
+  --service-card-action-border: #BFDCFF;
+  --service-card-number: #BFDCFF;
+  --service-card-title: #EAEFF5;
+  --service-card-desc: #EAEFF5;
+  --service-card-action-text: #BFDCFF;
+  --service-price-text: #EAEFF5;
+
+  /* --- Team --- */
+  --team-btn-border: #333333;
+  --team-btn-text: #EAEFF5;
+  --team-btn-hover-bg: #222222;
+  --team-img-bg: #222222;
+  --team-card-bg: #222222;
+  --team-card-border: #333333;
+  --team-member-name: #EAEFF5;
+  --team-member-role: #A0AAB5;
+  --team-member-divider: #BFDCFF;
+  --team-member-desc: #EAEFF5;
+  --team-member-link-bg: #BFDCFF;
+  --team-member-link-text: #0D0D0D;
+
+  /* --- FAQ --- */
+  --faq-title-accent: #BFDCFF;
+  --faq-list-border: #333333;
+  --faq-item-trigger-text: #EAEFF5;
+  --faq-item-trigger-hover: #BFDCFF;
+  --faq-item-icon: #EAEFF5;
+  --faq-item-text: #EAEFF5;
+  --faq-item-border-left: #BFDCFF;
+
+  /* --- Reviews --- */
+  --review-card-bg: #222222;
+  --review-avatar-bg: #BFDCFF;
+  --review-avatar-text: #0D0D0D;
+  --review-author-name: #EAEFF5;
+  --review-author-role: #A0AAB5;
+  --review-dot-bg: #1A1A1A;
+  --review-dot-active: #BFDCFF;
+
+  /* --- Price --- */
+  --price-filter-bg: #0D0D0D;
+  --price-filter-border: #333333;
+  --price-card-highlight-border: #BFDCFF;
+  --price-card-highlight-shadow: rgba(191, 220, 255, 0.2);
+  --price-filter-btn-bg: #333333;
+  --price-filter-btn-text: #BFDCFF;
+  --price-filter-btn-hover-text: #EAEFF5;
+  --price-card-bg: #1A1A1A;
+  --price-card-border: #333333;
+  --price-card-hover-border: #555555;
+  --price-card-title: #EAEFF5;
+  --price-card-icon-bg: rgba(191, 220, 255, 0.1);
+  --price-card-icon-color: #BFDCFF;
+  --price-row-name: #CCCCCC;
+  --price-row-dots: #555555;
+  --price-row-value: #EAEFF5;
+  --price-card-link: #BFDCFF;
+  --price-card-link-hover: #EAEFF5;
+  --price-disclaimer-text: #888888;
+  --price-disclaimer-strong: #EAEFF5;
+
+  /* --- Results Slider --- */
+  --slider-nav-border: rgba(255, 255, 255, 0.4);
+  --slider-nav-color: #EAEFF5;
+
+  /* --- Floating Widgets --- */
+  --widget-chat-bg: #BFDCFF;
+  --widget-chat-icon: #333333;
+  --widget-chat-shadow: rgba(191, 220, 255, 0.4);
+  --widget-scroll-bg: #333333;
+  --widget-scroll-icon: #BFDCFF;
+  --widget-scroll-border: #1A1A1A;
+
+  /* --- Chat Window --- */
+  --chat-window-bg: #222222;
+  --chat-window-border: #333333;
+  --chat-header-bg: linear-gradient(to right, #2D2D2D, #222222);
+  --chat-avatar-bg: #BFDCFF;
+  --chat-avatar-icon: #222222;
+  --chat-title-text: #EAEFF5;
+  --chat-title-desc: #888888;
+  --chat-close-icon: #888888;
+  --chat-close-hover: #FF4D4F;
+  --chat-body-bg: #222222;
+  --chat-scrollbar-thumb: #333333;
+  --chat-bot-msg-bg: #2D2D2D;
+  --chat-bot-msg-text: #EAEFF5;
+  --chat-user-msg-bg: #BFDCFF;
+  --chat-user-msg-text: #222222;
+  --chat-typing-dot: #888888;
+  --chat-footer-bg: #222222;
+  --chat-input-bg: #2D2D2D;
+  --chat-input-text: #EAEFF5;
+
+  /* --- Doctor Profile --- */
+  --doctor-title: #EAEFF5;
+  --doctor-accordion-bg: #222222;
+  --doctor-accordion-border: #1A1A1A;
+  --doctor-accordion-title: #EAEFF5;
+  --doctor-accordion-btn-bg: #BFDCFF;
+  --doctor-accordion-btn-icon: #0D0D0D;
+  --doctor-accordion-text: #EAEFF5;
+  --doctor-photo-bg: #BFDCFF;
+  --doctor-main-title-text: #EAEFF5;
+
+  /* --- Accordion (Generic) --- */
+  --accordion-active-border: #1A1A1A;
+  --accordion-text-border: #BFDCFF;
+  --accordion-text-color: #EAEFF5;
+
+  /* --- Certificates --- */
+  --cert-card-border: #BCBCBC;
+  --cert-dot-bg: #1A1A1A;
+  --cert-dot-active: #BFDCFF;
+
+  /* --- Results Slider --- */
+  --results-title-accent: #A0AAB5;
+  --results-dot-active: #BFDCFF;
+
+  /* --- Single Service --- */
+  --single-service-photo-border: #95A5B8;
+
+  /* --- Privacy Page --- */
+  --privacy-date-text: #888888;
+  --privacy-content-text: #CCCCCC;
+  --privacy-title-color: #BFDCFF;
+  --privacy-bullet-color: #BFDCFF;
+  --privacy-strong-text: #EAEFF5;
+
+  /* --- Not Found Page --- */
+  --title-color-404: #BFDCFF;
+  --subtitle-text-404: #EAEFF5;
+  --desc-text-404: #888888;
+  --btn-bg-404: #BFDCFF;
 }

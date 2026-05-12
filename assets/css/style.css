@@ -308,50 +308,54 @@ a{
 }
 
 .theme-toggle .dark {
-  opacity: 1;
-  transform: scale(1);
+  opacity: 0;
+  transform: scale(0.5) rotate(90deg); 
   color: var(--theme-toggle-dark-icon); 
 }
 
 .theme-toggle .light {
-  opacity: 0;
-  transform: scale(0.5) rotate(45deg); 
+  opacity: 1;
+  transform: scale(1);
   color: var(--theme-toggle-light-icon); 
 }
 
 @media (hover: hover) {
-  .theme-toggle:not(.active):hover .dark::before {
+  .theme-toggle:not(.active):hover .light::before {
     opacity: 1;
     transform: scale(1); 
   }
 
-  .theme-toggle:not(.active):hover .dark {
+  .theme-toggle:not(.active):hover .light {
     color: var(--theme-toggle-hover-icon); 
   }
 
-  .theme-toggle:not(.active):hover .dark svg {
-    transform: rotate(180deg);
+  .theme-toggle:not(.active):hover .light svg {
+    transform: rotate(-15deg);
   }
 }
 
 .theme-toggle.active .dark {
-  opacity: 0;
-  transform: scale(0.5) rotate(-90deg); 
-}
-
-.theme-toggle.active .light {
   opacity: 1;
   transform: scale(1) rotate(0deg);
 }
 
+.theme-toggle.active .light {
+  opacity: 0;
+  transform: scale(0.5) rotate(-90deg);
+}
+
 @media (hover: hover) {
-  .theme-toggle.active:hover .light::before {
+  .theme-toggle.active:hover .dark::before {
     opacity: 1;
     transform: scale(1); 
   }
 
-  .theme-toggle.active:hover .light svg {
-    transform: rotate(-15deg); 
+  .theme-toggle.active:hover .dark {
+    color: var(--theme-toggle-hover-icon); 
+  }
+
+  .theme-toggle.active:hover .dark svg {
+    transform: rotate(180deg); 
   }
 }
 

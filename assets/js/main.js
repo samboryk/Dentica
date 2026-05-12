@@ -65,23 +65,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Перевіряємо, чи користувач вже обирав тему раніше
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-        body.classList.add('light-mode');
-        html.classList.add('light-mode');
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        html.classList.add('dark-mode');
         themeToggle.classList.add('active');
     }
 
     // 2. Функція перемикання
     themeToggle.addEventListener('click', () => {
-        body.classList.toggle('light-mode');
-        html.classList.toggle('light-mode');
+        body.classList.toggle('dark-mode');
+        html.classList.toggle('dark-mode');
         themeToggle.classList.toggle('active');
 
         // Зберігаємо вибір
-        if (body.classList.contains('light-mode')) {
-            localStorage.setItem('theme', 'light');
-        } else {
+        if (body.classList.contains('dark-mode')) {
             localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
         }
     });
 });
