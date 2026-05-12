@@ -504,14 +504,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     const modalHtml = `
         <div class="cert-modal" id="cert-lightbox">
-            <button class="cert-modal-close" id="cert-lightbox-close">&times;</button>
-            <button class="team-btn cert-modal-nav cert-modal-prev" id="cert-lightbox-prev">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            <div class="cert-modal-overlay"></div>
+            <button class="cert-modal-close" id="cert-lightbox-close" aria-label="Закрити">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
-            <img class="cert-modal-content" id="cert-lightbox-img" src="" alt="Сертифікат">
-            <button class="team-btn cert-modal-nav cert-modal-next" id="cert-lightbox-next">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
+            
+            <div class="cert-modal-container">
+                <button class="team-btn cert-modal-nav cert-modal-prev" id="cert-lightbox-prev" aria-label="Попередній">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                
+                <div class="cert-modal-image-wrapper">
+                    <img class="cert-modal-content" id="cert-lightbox-img" src="" alt="Сертифікат">
+                </div>
+
+                <button class="team-btn cert-modal-nav cert-modal-next" id="cert-lightbox-next" aria-label="Наступний">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
         </div>
     `;
     
@@ -563,7 +573,9 @@ document.addEventListener("DOMContentLoaded", () => {
     lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); navigateLightbox(1); });
     
     lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
+        if (e.target === lightbox || e.target.classList.contains('cert-modal-overlay') || e.target.classList.contains('cert-modal-container')) {
+            closeLightbox();
+        }
     });
     
     document.addEventListener('keydown', (e) => {
