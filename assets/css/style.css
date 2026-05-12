@@ -3468,7 +3468,7 @@ body.modal-open {
 }
 
 body.light-mode .not-found-image {
-  content: url('/assets/images/404-light.png');
+  content: url('/assets/images/404-light.webp');
   mix-blend-mode: multiply;
 }
 

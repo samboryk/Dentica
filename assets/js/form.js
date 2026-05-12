@@ -71,9 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-const TELEGRAM_BOT_TOKEN = '8615878715:AAHSLK0kyqpEVLDXV5tulwQsRZgw1LlkI_M';
-    const TELEGRAM_CHAT_ID   = '-1003737699666';
-    const API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    // Налаштування Telegram тепер захищено на бекенді
+    const API_URL = "/api/telegram";
+
+
 
     const input = document.getElementById("phoneInput");
     const wrapper = document.getElementById("customPhoneWrapper");
@@ -217,17 +218,15 @@ const TELEGRAM_BOT_TOKEN = '8615878715:AAHSLK0kyqpEVLDXV5tulwQsRZgw1LlkI_M';
         submitBtn.innerHTML = "Відправка...";
         submitBtn.disabled = true;
 
-        const text = `🦷 Нова заявка з сайту Dentica!\n\n📞 Телефон: ${finalNumber}`;
-
         try {
             const res = await fetch(API_URL, { 
                 method: 'POST', 
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: text }) 
+                body: JSON.stringify({ phone: finalNumber }) 
             });
             const data = await res.json();
             
-            if (!data.ok) throw new Error(data.description);
+            if (!res.ok) throw new Error(data.error || "Помилка сервера");
 
             formState.style.display = 'none';
             successState.style.display = 'flex';

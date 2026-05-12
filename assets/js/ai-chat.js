@@ -8,15 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendBtn = document.getElementById('aiChatSendBtn');
 
     // === НАЛАШТУВАННЯ ===
-    const API_KEY = "AIzaSyCbdjoqBGCcbvOUboCTN6mzo9GwayjUUXY"; // Твій ключ
+    // Ключ тепер захищено на бекенді (Vercel Functions)
+    const API_URL = "/api/chat";
 
-    // Актуальна модель на квітень 2026
-    const MODEL_NAME = "gemini-2.5-flash";        // Рекомендую для чату (швидко + добре)
-    // Альтернативи:
-    // const MODEL_NAME = "gemini-2.5-pro";       // потужніша, але дорожча
-    // const MODEL_NAME = "gemini-2.5-flash-lite"; // найдешевша для великих обсягів
 
-    const API_URL = `https://generativelanguage.googleapis.com/v1/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
 
     let isSending = false; // Захист від подвійних запитів
 
@@ -73,15 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    contents: [{
-                        parts: [{
-                            text: `${DENTICA_CONTEXT || ''}\n\nКористувач: ${message}`
-                        }]
-                    }],
-                    generationConfig: {
-                        temperature: 0.7,
-                        maxOutputTokens: 1000,
-                    }
+                    message: message,
+                    context: typeof DENTICA_CONTEXT !== 'undefined' ? DENTICA_CONTEXT : ''
                 })
             });
 
@@ -90,11 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) {
                 console.error("API Error:", data);
                 let errorMsg = data.error?.message || "Помилка сервера";
-
-                if (data.error?.code === 404) {
-                    errorMsg = `Модель ${MODEL_NAME} не знайдена. Спробуй іншу модель (наприклад gemini-2.5-flash).`;
-                }
-
                 throw new Error(errorMsg);
             }
 
@@ -147,6 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Додатковий дебаг: вивести доступні моделі в консоль
-    console.log(`Dentica AI запущено з моделлю: ${MODEL_NAME}`);
+    // Додатковий дебаг
+    console.log(`Dentica AI підключено до бекенду.`);
 });
