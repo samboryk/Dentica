@@ -3553,9 +3553,9 @@ body.modal-open {
   width: 300px;
 }
 
-body.dark.mode .not-found-image {
+body.dark-mode .not-found-image {
   content: url('/assets/images/404.webp');
-  mix-blend-mode: multiply;
+
 }
 
 .not-found-item{
