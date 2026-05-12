@@ -1582,6 +1582,7 @@ color: var(--service-card-action-text);
   gap: 20px; 
 }
 
+.services-all-link{} 
 
 .service-card {
   
@@ -4226,7 +4227,7 @@ body.light-mode .not-found-image {
 
     /* Текст відгуку */
     .review-text {
-        font-size: 14px; 
+        font-size: 18px; 
     }
 
     /* Блок автора (аватар + ім'я) */
@@ -4967,16 +4968,18 @@ body.menu-open #scroll-top {
         z-index: 999;
     }
 
-        .review-card {
-    width: calc((100% - 20px) / 1);
-    padding: 35px;
-    min-height: 260px;
-  }
+    .reviews-slider-viewport {
+        height: auto;
+        min-height: 320px;
+    }
 
-
-      .reviews-track {
-        align-items: stretch; 
-        gap: 26px;
+    .review-card {
+        width: 100% !important;
+        padding: 30px 24px;
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
 }

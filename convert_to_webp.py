@@ -33,7 +33,7 @@ def convert_to_webp():
             print(f"Успішно: {os.path.basename(file_path)} -> {os.path.basename(new_path)}")
             
             # Опціонально: видаляємо оригінал (закоментуйте наступний рядок, якщо хочете залишити оригінали)
-            # os.remove(file_path)
+            os.remove(file_path)
             
         except Exception as e:
             print(f"Помилка при конвертації {file_path}: {e}")
