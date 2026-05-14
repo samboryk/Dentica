@@ -65,7 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Перевіряємо, чи користувач вже обирав тему раніше
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
         body.classList.add('dark-mode');
         html.classList.add('dark-mode');
         themeToggle.classList.add('active');
@@ -82,6 +84,21 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('theme', 'dark');
         } else {
             localStorage.setItem('theme', 'light');
+        }
+    });
+
+    // 3. Відслідковуємо зміну системної теми
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        if (!localStorage.getItem('theme')) {
+            if (event.matches) {
+                body.classList.add('dark-mode');
+                html.classList.add('dark-mode');
+                themeToggle.classList.add('active');
+            } else {
+                body.classList.remove('dark-mode');
+                html.classList.remove('dark-mode');
+                themeToggle.classList.remove('active');
+            }
         }
     });
 });

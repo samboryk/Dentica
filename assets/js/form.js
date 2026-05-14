@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const openBtns = document.querySelectorAll('.js-open-modal');
     const closeBtn = document.getElementById('closeModalBtn');
 
-    // Завантажуємо CSS іконок та український прапор після завантаження основних ресурсів сторінки
     window.addEventListener('load', () => {
         if (!document.getElementById('flag-icons-css')) {
             const link = document.createElement('link');
@@ -12,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
             link.href = 'https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css';
             document.head.appendChild(link);
             
-            // Також завантажуємо саму картинку прапора, щоб вона 100% була готова
             const img = new Image();
             img.src = 'https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/flags/4x3/ua.svg';
         }
