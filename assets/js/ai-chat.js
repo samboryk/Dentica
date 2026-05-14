@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Елементи
+    
     const chatBtn = document.getElementById('aiChatBtn');
     const chatWindow = document.getElementById('aiChatWindow');
     const closeBtn = document.getElementById('aiChatCloseBtn');
@@ -7,15 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('aiChatInput');
     const sendBtn = document.getElementById('aiChatSendBtn');
 
-    // === НАЛАШТУВАННЯ ===
-    // Ключ тепер захищено на бекенді (Vercel Functions)
+    
+    
     const API_URL = "/api/chat";
 
 
 
-    let isSending = false; // Захист від подвійних запитів
+    let isSending = false; 
 
-    // Логіка відкриття/закриття
+    
     if (chatBtn) {
         chatBtn.onclick = () => {
             chatWindow.classList.toggle('show');
@@ -31,25 +31,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     document.addEventListener('keydown', (e) => {
-        // Перевіряємо, чи натиснуто Esc і чи чат наразі відкритий
+        
         if (e.key === 'Escape' && chatWindow.classList.contains('show')) {
             chatWindow.classList.remove('show');
         }
     });
 
-    // 2. Закриття при кліці поза вікном чату
+    
     document.addEventListener('click', (e) => {
-        // Перевіряємо, чи чат відкритий
+        
         if (chatWindow.classList.contains('show')) {
-            // Перевіряємо, чи клік відбувся НЕ по самому вікну чату 
-            // та НЕ по кнопці його відкриття
+            
+            
             if (!chatWindow.contains(e.target) && !chatBtn.contains(e.target)) {
                 chatWindow.classList.remove('show');
             }
         }
     });
 
-    // Функція відправки повідомлення
+    
     async function handleSendMessage() {
         if (isSending) return;
         const message = chatInput.value.trim();
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isSending = true;
         sendBtn.disabled = true;
 
-        // Додаємо повідомлення користувача
+        
         addMessage('user', message);
         chatInput.value = '';
         showTypingIndicator();
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(errorMsg);
             }
 
-            // Отримуємо текст відповіді
+            
             const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text 
                 || "Вибачте, не вдалося згенерувати відповідь.";
 
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Рендер повідомлень
+    
     function addMessage(sender, text) {
         const msgDiv = document.createElement('div');
         msgDiv.className = `chat-msg ${sender}-msg`;
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('temp-typing')?.remove();
     }
 
-    // Слухачі подій
+    
     sendBtn?.addEventListener('click', handleSendMessage);
     chatInput?.addEventListener('keypress', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
@@ -130,6 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Додатковий дебаг
+    
     console.log(`Dentica AI підключено до бекенду.`);
 });

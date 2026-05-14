@@ -1,4 +1,4 @@
-/* Стандартна світла тема (Light Mode) */
+
 :root {
   --hero-title-main: #f30000;
   --hero-btn: #C5D5E7;
@@ -24,7 +24,7 @@
   --text-accent: #A0AAB5;
   --text-muted: #888888;
 
-  /* --- Globals --- */
+ 
   --body-bg: #E9EDF2;
   --body-text: #212121;
   --scrollbar-track-bg: #EAEFF5;
@@ -32,14 +32,14 @@
   --scrollbar-thumb-border: #EAEFF5;
   --scrollbar-thumb-hover-bg: var(--color-primary);
 
-  /* --- Preloader --- */
+ 
   --preloader-bg: linear-gradient(315deg, #d1dce9 0%, #EAEFF5 33%, #d1dce9 40%, #EAEFF5 100%);
   --preloader-text: #333333;
   --preloader-track: #7A90AA;
   --preloader-fill: #7A90AA;
   --preloader-star: #7A90AA;
 
-  /* --- Mobile Menu --- */
+ 
   --mobile-menu-overlay-bg: #EAEFF5;
   --mobile-menu-header-border: #95A5B8;
   --mobile-menu-close-bg: #EAEFF5;
@@ -62,7 +62,7 @@
   --mobile-menu-cta-text: #333333;
   --mobile-menu-cta-icon-bg: #BFDCFF;
 
-  /* --- Header --- */
+ 
   --header-bg: linear-gradient(to bottom, rgba(234, 239, 245, 0.95) 0%, rgba(234, 239, 245, 0) 100%);
   --header-nav-text: #333333;
   --theme-toggle-bg: #C5D5E7;
@@ -79,14 +79,14 @@
   --logo-star: #7A90AA;
   --logo-text: #333333;
 
-  /* --- Globals (Typography & Buttons) --- */
+ 
   --thin-text-w-color: #333333;
   --thin-text-b-color: #869BB4;
   --btn-bg: #C5D5E7;
   --btn-text: #333333;
   --btn-hover-bg: #b8c7d6;
 
-  /* --- Hero --- */
+ 
   --hero-bg-text-color: #95A5B8;
   --hero-tooth-shadow: rgb(190, 206, 224);
   --hero-info-card-bg: #C5D5E7;
@@ -95,14 +95,14 @@
   --hero-star-right: #7A90AA;
   --hero-star-left: #333333;
 
-  /* --- Footer --- */
+ 
   --footer-bg: linear-gradient(to bottom, rgb(190, 206, 224), rgb(234, 239, 245));
   --footer-text: #333333;
   --footer-divider: #95A5B8;
   --footer-made-text: #7D8895;
   --footer-star: #7A90AA;
 
-  /* --- Contact --- */
+ 
   --contact-action-bg: #333333;
   --contact-action-text: #EAEFF5; 
   --contact-action-border: #222222;
@@ -123,7 +123,7 @@
   --contact-aurora-1: #95A5B8;
   --contact-aurora-2: #95A5B8;
 
-  /* --- Modal --- */
+ 
   --modal-overlay-bg: rgba(1, 0, 0, 0.4); 
   --modal-close-icon: #7A90AA;
   --modal-close-icon-hover: #FF4D4F;
@@ -148,7 +148,7 @@
   --modal-country-item-hover: #dee6ef;
   --modal-country-item-active: #C5D5E7;
 
-  /* --- Trust --- */
+ 
   --trust-desc-text: #212121;
   --trust-img-border: #95A5B8;
   --trust-card-border: #95A5B8;
@@ -157,7 +157,7 @@
   --trust-card-accent-bg: #333333;
   --trust-card-accent-text: #EAEFF5;
 
-  /* --- Services --- */
+ 
   --service-card-border: #95A5B8;
   --service-card-bg: #C5D5E7;
   --service-card-action-border: #7A90AA;
@@ -167,7 +167,7 @@
   --service-card-action-text: #7A90AA;
   --service-price-text: #212121;
 
-  /* --- Team --- */
+ 
   --team-btn-border: #95A5B8;
   --team-btn-text: #333333;
   --team-btn-hover-bg: #D5E2F0;
@@ -181,7 +181,7 @@
   --team-member-link-bg: #333333;
   --team-member-link-text: #FFFFFF;
 
-  /* --- FAQ --- */
+ 
   --faq-title-accent: #7A90AA;
   --faq-list-border: #95A5B8;
   --faq-item-trigger-text: #333333;
@@ -190,9 +190,9 @@
   --faq-item-text: #333333;
   --faq-item-border-left: #A2B2C5;
 
-  /* --- Reviews --- */
+ 
   --review-card-bg: #C5D5E7;
-  /* --- Reviews (part 2) --- */
+ 
   --review-avatar-bg: #7A90AA;
   --review-avatar-text: #EAEFF5;
   --review-author-name: #333333;
@@ -200,7 +200,7 @@
   --review-dot-bg: #333333;
   --review-dot-active: #7A90AA;
 
-  /* --- Price --- */
+ 
   --price-filter-bg: #E9EDF2;
   --price-filter-border: #95A5B8;
   --price-card-highlight-border: #BFDCFF;
@@ -222,11 +222,11 @@
   --price-disclaimer-text: #333333;
   --price-disclaimer-strong: #7A90AA;
 
-  /* --- Results Slider --- */
+ 
   --slider-nav-border: rgba(0, 0, 0, 0.4);
   --slider-nav-color: #333333;
 
-  /* --- Floating Widgets --- */
+ 
   --widget-chat-bg: #95A5B8;
   --widget-chat-icon: #C5D5E7;
   --widget-chat-shadow: #7A90AA;
@@ -234,7 +234,7 @@
   --widget-scroll-icon: #7A90AA;
   --widget-scroll-border: #7A90AA;
 
-  /* --- Chat Window --- */
+ 
   --chat-window-bg: #EAEFF5;
   --chat-window-border: #7A90AA;
   --chat-header-bg: linear-gradient(to right, #EAEFF5, #EAEFF5);
@@ -255,7 +255,7 @@
   --chat-input-bg: #EAEFF5;
   --chat-input-text: #333333;
 
-  /* --- Doctor Profile --- */
+ 
   --doctor-title: #333333;
   --doctor-accordion-bg: #C5D5E7;
   --doctor-accordion-border: #95A5B8;
@@ -266,38 +266,38 @@
   --doctor-photo-bg: #7A90AA;
   --doctor-main-title-text: #333333;
 
-  /* --- Accordion (Generic) --- */
+ 
   --accordion-active-border: #D5E2F0;
   --accordion-text-border: #7A90AA;
   --accordion-text-color: #333333;
 
-  /* --- Certificates --- */
+ 
   --cert-card-border: #7A90AA;
   --cert-dot-bg: #D5E2F0;
   --cert-dot-active: #BFDCFF;
 
-  /* --- Results Slider --- */
+ 
   --results-title-accent: #A0AAB5;
   --results-dot-active: #BFDCFF;
 
-  /* --- Single Service --- */
+ 
   --single-service-photo-border: #95A5B8;
 
-  /* --- Privacy Page --- */
+ 
   --privacy-date-text: #333333;
   --privacy-content-text: #333333;
   --privacy-title-color: #7A90AA;
   --privacy-bullet-color: #7A90AA;
   --privacy-strong-text: #333333;
 
-  /* --- Not Found Page --- */
+ 
   --title-color-404: #7A90AA;
   --subtitle-text-404: #333333;
   --desc-text-404: #888888;
   --btn-bg-404: #C5D5E7;
 }
 
-/* Темна тема (Dark Mode) - активується класом .dark-mode */
+
 html.dark-mode, body.dark-mode {
   --hero-title-main: #f30000;
   --hero-btn: #BFDCFF;
@@ -323,7 +323,7 @@ html.dark-mode, body.dark-mode {
   --text-accent: #A0AAB5;
   --text-muted: #888888;
 
-  /* --- Globals --- */
+ 
   --body-bg: #0D0D0D;
   --body-text: #EAEFF5;
   --scrollbar-track-bg: #0D0D0D;
@@ -331,14 +331,14 @@ html.dark-mode, body.dark-mode {
   --scrollbar-thumb-border: #0D0D0D;
   --scrollbar-thumb-hover-bg: var(--color-primary);
 
-  /* --- Preloader --- */
+ 
   --preloader-bg: linear-gradient(to right, rgb(45, 45, 45), rgb(14, 14, 12));
   --preloader-text: #EAEFF5;
   --preloader-track: rgba(255, 255, 255, 0.15);
   --preloader-fill: #BFDCFF;
   --preloader-star: #BFDCFF;
 
-  /* --- Mobile Menu --- */
+ 
   --mobile-menu-overlay-bg: #0D0D0D;
   --mobile-menu-header-border: #333333;
   --mobile-menu-close-bg: #222222;
@@ -361,7 +361,7 @@ html.dark-mode, body.dark-mode {
   --mobile-menu-cta-text: #EAEFF5;
   --mobile-menu-cta-icon-bg: #BFDCFF;
 
-  /* --- Header --- */
+ 
   --header-bg: linear-gradient(to bottom, rgba(0, 0, 0, 0.904) 0%, rgba(0, 0, 0, 0) 100%);
   --header-nav-text: #EAEFF5;
   --theme-toggle-bg: #333333;
@@ -378,14 +378,14 @@ html.dark-mode, body.dark-mode {
   --logo-star: #BFDCFF;
   --logo-text: #EAEFF5;
 
-  /* --- Globals (Typography & Buttons) --- */
+ 
   --thin-text-w-color: #EAEFF5;
   --thin-text-b-color: #BFDCFF;
   --btn-bg: #BFDCFF;
   --btn-text: #0D0D0D;
   --btn-hover-bg: #A9CDFA;
 
-  /* --- Hero --- */
+ 
   --hero-bg-text-color: #414141;
   --hero-tooth-shadow: rgba(0, 0, 0, 0.6);
   --hero-info-card-bg: #333333;
@@ -394,14 +394,14 @@ html.dark-mode, body.dark-mode {
   --hero-star-right: #BFDCFF;
   --hero-star-left: #EAEFF5;
 
-  /* --- Footer --- */
+ 
   --footer-bg: linear-gradient(to bottom, rgb(45, 45, 45), rgb(14, 14, 12));
   --footer-text: #EAEFF5;
   --footer-divider: #333333;
   --footer-made-text: #444444;
   --footer-star: #EAEFF5;
 
-  /* --- Contact --- */
+ 
   --contact-action-bg: #BFDCFF;
   --contact-action-text: #222222;
   --contact-action-border: #333333;
@@ -422,7 +422,7 @@ html.dark-mode, body.dark-mode {
   --contact-aurora-1: rgba(191, 220, 255, 1);
   --contact-aurora-2: rgba(191, 220, 255, 0.5);
 
-  /* --- Modal --- */
+ 
   --modal-overlay-bg: rgba(0, 0, 0, 0.4);
   --modal-close-icon: #888888;
   --modal-close-icon-hover: #FF4D4F;
@@ -447,7 +447,7 @@ html.dark-mode, body.dark-mode {
   --modal-country-item-hover: #444444;
   --modal-country-item-active: #242424;
 
-  /* --- Trust --- */
+ 
   --trust-desc-text: #EAEFF5;
   --trust-img-border: #333333;
   --trust-card-border: #333333;
@@ -456,7 +456,7 @@ html.dark-mode, body.dark-mode {
   --trust-card-accent-bg: #BFDCFF;
   --trust-card-accent-text: #0D0D0D;
 
-  /* --- Services --- */
+ 
   --service-card-border: #333333;
   --service-card-bg: #222222;
   --service-card-action-border: #BFDCFF;
@@ -466,7 +466,7 @@ html.dark-mode, body.dark-mode {
   --service-card-action-text: #BFDCFF;
   --service-price-text: #EAEFF5;
 
-  /* --- Team --- */
+ 
   --team-btn-border: #333333;
   --team-btn-text: #EAEFF5;
   --team-btn-hover-bg: #222222;
@@ -480,7 +480,7 @@ html.dark-mode, body.dark-mode {
   --team-member-link-bg: #BFDCFF;
   --team-member-link-text: #0D0D0D;
 
-  /* --- FAQ --- */
+ 
   --faq-title-accent: #BFDCFF;
   --faq-list-border: #333333;
   --faq-item-trigger-text: #EAEFF5;
@@ -489,7 +489,7 @@ html.dark-mode, body.dark-mode {
   --faq-item-text: #EAEFF5;
   --faq-item-border-left: #BFDCFF;
 
-  /* --- Reviews --- */
+ 
   --review-card-bg: #222222;
   --review-avatar-bg: #BFDCFF;
   --review-avatar-text: #0D0D0D;
@@ -498,7 +498,7 @@ html.dark-mode, body.dark-mode {
   --review-dot-bg: #1A1A1A;
   --review-dot-active: #BFDCFF;
 
-  /* --- Price --- */
+ 
   --price-filter-bg: #0D0D0D;
   --price-filter-border: #333333;
   --price-card-highlight-border: #BFDCFF;
@@ -520,11 +520,11 @@ html.dark-mode, body.dark-mode {
   --price-disclaimer-text: #888888;
   --price-disclaimer-strong: #EAEFF5;
 
-  /* --- Results Slider --- */
+ 
   --slider-nav-border: rgba(255, 255, 255, 0.4);
   --slider-nav-color: #EAEFF5;
 
-  /* --- Floating Widgets --- */
+ 
   --widget-chat-bg: #BFDCFF;
   --widget-chat-icon: #333333;
   --widget-chat-shadow: rgba(191, 220, 255, 0.4);
@@ -532,7 +532,7 @@ html.dark-mode, body.dark-mode {
   --widget-scroll-icon: #BFDCFF;
   --widget-scroll-border: #1A1A1A;
 
-  /* --- Chat Window --- */
+ 
   --chat-window-bg: #222222;
   --chat-window-border: #333333;
   --chat-header-bg: linear-gradient(to right, #2D2D2D, #222222);
@@ -553,7 +553,7 @@ html.dark-mode, body.dark-mode {
   --chat-input-bg: #2D2D2D;
   --chat-input-text: #EAEFF5;
 
-  /* --- Doctor Profile --- */
+ 
   --doctor-title: #EAEFF5;
   --doctor-accordion-bg: #222222;
   --doctor-accordion-border: #1A1A1A;
@@ -564,31 +564,31 @@ html.dark-mode, body.dark-mode {
   --doctor-photo-bg: #BFDCFF;
   --doctor-main-title-text: #EAEFF5;
 
-  /* --- Accordion (Generic) --- */
+ 
   --accordion-active-border: #1A1A1A;
   --accordion-text-border: #BFDCFF;
   --accordion-text-color: #EAEFF5;
 
-  /* --- Certificates --- */
+ 
   --cert-card-border: #BCBCBC;
   --cert-dot-bg: #1A1A1A;
   --cert-dot-active: #BFDCFF;
 
-  /* --- Results Slider --- */
+ 
   --results-title-accent: #A0AAB5;
   --results-dot-active: #BFDCFF;
 
-  /* --- Single Service --- */
+ 
   --single-service-photo-border: #95A5B8;
 
-  /* --- Privacy Page --- */
+ 
   --privacy-date-text: #888888;
   --privacy-content-text: #CCCCCC;
   --privacy-title-color: #BFDCFF;
   --privacy-bullet-color: #BFDCFF;
   --privacy-strong-text: #EAEFF5;
 
-  /* --- Not Found Page --- */
+ 
   --title-color-404: #BFDCFF;
   --subtitle-text-404: #EAEFF5;
   --desc-text-404: #888888;

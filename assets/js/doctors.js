@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // ==========================================
-    // СЛАЙДЕР КОМАНДИ (ЛІКАРІ)
-    // ==========================================
+    
+    
+    
     const teamData = [
         {
             photo: "assets/images/doctor1.webp", 
@@ -29,12 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentTeamIndex = 0;
     let isTeamAnimating = false;
 
-    // Збираємо всі елементи безпечно
+    
     const els = {
         photo: document.getElementById('team-photo'),
         photoWrapper: document.querySelector('.team-image-wrapper'),
         infoCard: document.getElementById('team-info-card'),
-        actionCard: document.querySelector('.contact-action-card'), // Нова картка з графіком
+        actionCard: document.querySelector('.contact-action-card'), 
         name: document.getElementById('team-name'),
         role: document.getElementById('team-role'),
         desc: document.getElementById('team-desc'),
@@ -43,15 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
         btnPrev: document.getElementById('team-prev')
     };
 
-    // Якщо на сторінці немає кнопок або фото (наприклад, це інша сторінка) - виходимо
+    
     if (els.photo && els.btnNext && els.btnPrev) {
         
-        // Початковий стан: ставимо існуючі обгортки по центру
+        
         if (els.photoWrapper) els.photoWrapper.classList.add('carousel-center');
         if (els.infoCard) els.infoCard.classList.add('carousel-center');
         if (els.actionCard) els.actionCard.classList.add('carousel-center');
 
-        // Попереднє завантаження картинок
+        
         teamData.forEach(member => {
             const img = new Image();
             img.src = member.photo;
@@ -72,31 +72,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const nextData = teamData[currentTeamIndex];
 
-            // Фільтруємо тільки ті елементи, які реально існують в HTML
+            
             const elementsToAnimate = [els.photoWrapper, els.infoCard, els.actionCard].filter(el => el !== null);
 
-            // 1. ВІДПРАВЛЯЄМО ВЕСЬ КОНТЕНТ ЗА ЕКРАН
+            
             elementsToAnimate.forEach(el => {
                 el.classList.remove('carousel-center');
                 el.classList.add(outClass);
             });
 
-            // 2. Чекаємо поки все сховається (500мс відповідно до CSS)
+            
             setTimeout(() => {
-                // Безпечно міняємо дані
+                
                 if (els.photo) els.photo.src = nextData.photo;
                 if (els.name) els.name.textContent = nextData.name;
                 if (els.role) els.role.textContent = nextData.role;
                 if (els.desc) els.desc.textContent = nextData.desc;
                 if (els.number) els.number.textContent = nextData.number;
 
-                // Перекидаємо ОБГОРТКИ на інший бік (миттєво, бо transition: none в CSS)
+                
                 elementsToAnimate.forEach(el => {
                     el.classList.remove(outClass);
                     el.classList.add(readyClass);
                 });
 
-                // 3. ВИВОДИМО НОВИЙ КОНТЕНТ У ЦЕНТР
+                
                 requestAnimationFrame(() => {
                     elementsToAnimate.forEach(el => {
                         el.classList.remove(readyClass);
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         els.btnNext.addEventListener('click', () => changeTeamSlide('next'));
         els.btnPrev.addEventListener('click', () => changeTeamSlide('prev'));
 
-        // SWIPE ДЛЯ КОМАНДИ
+        
         let teamStartX = 0;
         let teamEndX = 0;
         const teamSwipeZone = document.querySelector('.team-content-grid');
@@ -136,9 +136,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    // ==========================================
-    // СЛАЙДЕР ВІДГУКІВ
-    // ==========================================
+    
+    
+    
     const track = document.getElementById('reviews-track');
     const btnNext = document.getElementById('rev-next');
     const btnPrev = document.getElementById('rev-prev');
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const autoPlayInterval = 4000; 
     let autoPlayTimer;
 
-    // Функція розрахунку параметрів (враховує мобільну версію)
+    
     function getSliderParams() {
         const visibleCards = window.innerWidth <= 480 ? 1 : 3;
         const maxIndex = Math.max(0, totalCards - visibleCards);
@@ -161,10 +161,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let { visibleCards, maxIndex } = getSliderParams();
 
-    // --- Генерація пагінації ---
+    
     function renderPagination() {
         paginationContainer.innerHTML = '';
-        ({ maxIndex } = getSliderParams()); // Перераховуємо maxIndex
+        ({ maxIndex } = getSliderParams()); 
         
         for (let i = 0; i <= maxIndex; i++) {
             const dot = document.createElement('div');
@@ -181,28 +181,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // --- Оновлення позиції ---
+    
     function updateSliderPosition() {
         if (!cards.length) return;
         
         ({ maxIndex } = getSliderParams());
-        // Захист від виходу за межі при ресайзі
+        
         if (currentIndex > maxIndex) currentIndex = maxIndex;
 
         const cardWidth = cards[0].offsetWidth;
-        const gap = window.innerWidth <= 480 ? 16 : 24; // На мобайлі зазвичай менший gap
+        const gap = window.innerWidth <= 480 ? 16 : 24; 
         
         const moveDistance = (cardWidth + gap) * currentIndex;
         track.style.transform = `translateX(-${moveDistance}px)`;
 
-        // Оновлення крапочок
+        
         const dots = paginationContainer.querySelectorAll('.pagination-dot');
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentIndex);
         });
     }
 
-    // --- Функції авто-гортання ---
+    
     function nextSlide() {
         ({ maxIndex } = getSliderParams());
         currentIndex = (currentIndex < maxIndex) ? currentIndex + 1 : 0;
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
         startAutoPlay();
     }
 
-    // --- Обробники кнопок (З ЦИКЛОМ) ---
+    
     btnNext.addEventListener('click', () => {
         ({ maxIndex } = getSliderParams());
         currentIndex = (currentIndex < maxIndex) ? currentIndex + 1 : 0;
@@ -233,11 +233,11 @@ document.addEventListener("DOMContentLoaded", () => {
         resetAutoPlay();
     });
 
-    // Зупинка при наведенні
+    
     track.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
     track.addEventListener('mouseleave', startAutoPlay);
 
-    // SWIPE ДЛЯ ВІДГУКІВ
+    
     let revStartX = 0;
     let revEndX = 0;
 
@@ -259,7 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, { passive: true });
 
-    // Ініціалізація
+    
     renderPagination();
     updateSliderPosition();
     startAutoPlay();

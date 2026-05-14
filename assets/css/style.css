@@ -12,7 +12,7 @@ html.lenis {
 }
 
 .lenis.lenis-smooth {
-  scroll-behavior: auto; /* Вимикаємо нативний плавний скрол, щоб уникнути конфліктів */
+  scroll-behavior: auto;
 }
 
 .lenis.lenis-smooth [data-lenis-prevent] {
@@ -92,7 +92,7 @@ body{
   left: 0;
   width: 100%;
   height: 100vh;
-  /* Темний градієнт як на макеті */
+ 
   background: var(--preloader-bg);
   display: flex;
   justify-content: center;
@@ -105,7 +105,7 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px; /* Відстань між зіркою, текстом і лінією */
+  gap: 16px;
 }
 
 .star-icon {
@@ -126,20 +126,20 @@ body{
 .progress-bar-container {
   width: 200px;
   height: 3px;
-  background: var(--preloader-track); /* Напівпрозорий фон лінії */
+  background: var(--preloader-track);
   border-radius: 2px;
   overflow: hidden;
 }
 
 .progress-bar-fill {
   height: 100%;
-  width: 0%; /* Початкове значення */
-  background: var(--preloader-fill); /* Світло-блакитний колір заповнення */
-  transition: width 0.1s linear; /* Плавний рух смуги */
+  width: 0%;
+  background: var(--preloader-fill);
+  transition: width 0.1s linear;
   border-radius: 2px;
 }
 
-/* Анімація для зірки */
+
 @keyframes pulse {
   0% { transform: scale(0.95); opacity: 0.8; }
   50% { transform: scale(1.05); opacity: 1; }
@@ -153,7 +153,7 @@ a{
 
 
 
-/* Кнопки меню і теми */
+
 .menu, .theme-toggle {
   position: relative;
   z-index: 10000 !important; 
@@ -168,18 +168,18 @@ a{
     height: 100px;
     z-index: 20000 !important;
     
-    /* Фіксуємо хедер зверху */
+   
     position: fixed;
     top: 0;
     left: 0;
     z-index: 999;
-    background: transparent; /* На самому верху повністю прозорий */
+    background: transparent;
     
-    /* Анімація тільки для руху */
+   
     transition: transform 0.4s ease-in-out;
 }
 
-/* Створюємо градієнт, який лежить під контентом хедера */
+
 .header::before {
     content: '';
     position: absolute;
@@ -187,18 +187,18 @@ a{
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Ховаємо під текст і логотип */
+    z-index: -1;
     background: var(--header-bg);
-    opacity: 0; /* На старті градієнта не видно */
-    transition: opacity 0.4s ease-in-out; /* Плавна поява градієнта */
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
 }
 
-/* Клас для появи градієнта, коли ми трохи проскролили */
+
 .header.is-scrolled::before {
     opacity: 1;
 }
 
-/* Клас для ховання хедера при скролі вниз */
+
 .header.is-hidden {
     transform: translateY(-100%);
 }
@@ -359,7 +359,7 @@ a{
   }
 }
 
-/* Кнопка гамбургер-меню — стилізація span'ів для анімації → × */
+
 .menu span {
   display: block;
   width: 22px;
@@ -370,7 +370,7 @@ a{
   pointer-events: none;
 }
 
-/* Анімація: 3 риски → хрестик */
+
 .menu.is-open span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
@@ -1124,7 +1124,7 @@ width:2.3vw;
 
 
 
-/* --- Modal Styles --- */
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -1138,7 +1138,7 @@ width:2.3vw;
     align-items: center;
       z-index: 999999999999999 !important;
     
-    /* Анімація приховування */
+   
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -1161,7 +1161,7 @@ width:2.3vw;
     height: 400px;/* Або ширина твоєї оригінальної картки */
     margin: 20px;
     
-    /* Анімація появи знизу */
+   
     transform: translateY(30px);
     transition: transform 0.3s ease;
 }
@@ -1188,7 +1188,7 @@ width:2.3vw;
 
 @media (hover: hover) {
   .modal-close:hover {
-      color: var(--modal-close-icon-hover); /* В темній темі можна змінити на білий */
+      color: var(--modal-close-icon-hover);
   }
 }
 
@@ -1281,39 +1281,39 @@ width:2.3vw;
 }
 #phoneInput::placeholder { color: var(--modal-desc); }
 
-/* 1. Обов'язкові налаштування для появи скролу */
-.custom-country-list {
-    max-height: 190px; /* Обмеж висоту списку (зміни на своє значення) */
-    overflow-y: auto;  /* Вмикає вертикальний скрол */
 
-    /* Для Firefox */
+.custom-country-list {
+    max-height: 190px;
+    overflow-y: auto; 
+
+   
     scrollbar-width: thin; 
-    scrollbar-color: var(--border-light) transparent; /* колір повзунка і прозорий фон */
+    scrollbar-color: var(--border-light) transparent;
 }
 
-/* 2. Стилізація для Chrome, Edge, Safari */
 
-/* Ширина самого скролбару */
+
+
 .custom-country-list::-webkit-scrollbar {
     width: 6px; 
 }
 
-/* Фон (трек) під скролбаром */
+
 .custom-country-list::-webkit-scrollbar-track {
-    background: transparent; /* або #fdfaf3, якщо потрібен фон */
+    background: transparent;
     border-radius: 10px;
 }
 
-/* Сам повзунок */
+
 .custom-country-list::-webkit-scrollbar-thumb {
-    background-color: var(--modal-country-list-border); /* Червоний колір акценту */
+    background-color: var(--modal-country-list-border);
     border-radius: 10px;
 }
 
-/* Повзунок при наведенні мишки */
+
 @media (hover: hover) {
     .custom-country-list::-webkit-scrollbar-thumb:hover {
-        background-color: var(--modal-country-item-hover); /* Трохи темніший червоний */
+        background-color: var(--modal-country-item-hover);
     }
 }
 
@@ -1596,7 +1596,7 @@ color: var(--service-card-action-text);
   gap: 20px; 
 }
 
-.services-all-link{} 
+
 
 .service-card {
   
@@ -1853,7 +1853,7 @@ color: var(--service-card-action-text);
     transform: none !important;
 }
 
-.link-text { display: none; } /* Ховаємо текст на ПК */
+.link-text { display: none; }
 
 
 
@@ -2179,7 +2179,7 @@ color: var(--service-card-action-text);
 }
 
 
-/* Закріплення фільтра */
+
 .price-page-filter {
     position: sticky;
     top: 0;
@@ -2202,7 +2202,7 @@ color: var(--service-card-action-text);
     z-index: -1;
 }
 
-/* Коли фільтр приліп, малюємо фон нижче */
+
 .price-page-filter.is-pinned::before {
     bottom: -80px;
     border-bottom: 1px solid var(--price-filter-border);
@@ -2221,12 +2221,12 @@ color: var(--service-card-action-text);
     transform: translateY(80px);
 }
 
-/* Підсвітка картки */
+
 .price-card {
-    transition: all 0.5s ease; /* Плавність для підсвітки */
+    transition: all 0.5s ease;
 }
 
-/* Клас підсвітки, який активується при кліку */
+
 .price-card.highlight-card {
     border-color: var(--price-card-highlight-border);
     box-shadow: 0 0 25px var(--price-card-highlight-shadow);
@@ -2319,7 +2319,7 @@ color: var(--service-card-action-text);
 
 .price-card-icon svg {
     display: block;
-    /* Оптичне вирівнювання зірки, бо viewBox має зміщення */
+   
     transform: translateX(1px);
 }
 
@@ -2559,7 +2559,7 @@ color: var(--service-card-action-text);
     display: flex;
     flex-direction: column;
     gap: 15px;
-    z-index: 999;
+    z-index: 9999;
 }
 
 .widget-btn {
@@ -2625,7 +2625,7 @@ color: var(--service-card-action-text);
     display: flex;
     flex-direction: column;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    z-index: 800;
+    z-index: 9999;
     overflow: hidden;
     
    
@@ -2973,11 +2973,11 @@ color: var(--service-card-action-text);
     width: calc((100% - 48px) / 3);
     height: 420px;
     flex-shrink: 0;
-    box-sizing: border-box; /* Враховуємо рамку в ширину */
+    box-sizing: border-box;
     border-radius: 20px;
     border: 3px solid var(--cert-card-border);
     object-fit: cover;
-    object-position: center; /* Центруємо по вертикалі і горизонталі */
+    object-position: center;
     background-color: #fff;
     cursor: pointer;
 
@@ -3023,7 +3023,7 @@ color: var(--service-card-action-text);
     transform: scale(1.2);
 }
 
-/* Certificate Lightbox Modal */
+
 .cert-modal {
     --team-btn-border: rgba(255, 255, 255, 0.2);
     --team-btn-text: #ffffff;
@@ -3158,7 +3158,7 @@ color: var(--service-card-action-text);
     right: 40px;
 }
 
-/* Ensure body doesn't scroll when modal is open */
+
 body.modal-open {
     overflow: hidden;
 }
@@ -3219,9 +3219,7 @@ body.modal-open {
     color: var(--text-accent);
 }
 
-/* ==========================================
-   Results Slider – simple track (2 visible)
-   ========================================== */
+
 .results-viewport {
     width: 100%;
     overflow: hidden;
@@ -3251,9 +3249,7 @@ body.modal-open {
     margin-top: 24px;
 }
 
-/* ==========================================
-   Before / After Comparison Slider
-   ========================================== */
+
 .ba-slider {
     position: relative;
     width: 100%;
@@ -3588,13 +3584,13 @@ body.dark-mode .not-found-image {
 @media (max-width: 880px){
 
 .header {
-        height: 80px; /* Робимо хедер трохи нижчим, як на твоєму скріні */
-        padding: 0 15px; /* Безпечні відступи по боках */
-        box-sizing: border-box; /* Гарантує, що padding не розтягне хедер більше ніж на 100% */
-        align-items: center; /* Центруємо елементи по вертикалі */
+        height: 80px;
+        padding: 0 15px;
+        box-sizing: border-box;
+        align-items: center;
     }
 
-    /* Якщо в тебе є обгортка .container всередині .header, скидаємо її марджини */
+   
     .header .container {
         width: 100%;
         margin: 0;
@@ -3605,13 +3601,13 @@ body.dark-mode .not-found-image {
         box-sizing: border-box;
     }
 
-    /* Ховаємо десктопну навігацію та велику кнопку "Записатись" */
+   
     .nav,
     .header-btn {
         display: none; 
     }
 
-    /* Показуємо кнопку бургер-меню */
+   
     .menu {
         display: flex;
         flex-direction: column;
@@ -3629,7 +3625,7 @@ body.dark-mode .not-found-image {
         transition: background-color 0.25s ease;
     }
 
-    /* Hover — лише на пристроях з підтримкою hover (ne mobile) */
+   
     @media (hover: hover) {
         .menu:hover {
             background-color: var(--theme-toggle-active-bg);
@@ -3639,14 +3635,14 @@ body.dark-mode .not-found-image {
         }
     }
 
-    /* Налаштовуємо праву частину (перемикач теми + бургер) */
+   
     .header-actions {
-        flex: 0 auto; /* Забороняємо розтягуватись, займає лише свою ширину */
-        gap: 10px; /* Зменшуємо відступ між кнопками, щоб зекономити місце */
+        flex: 0 auto;
+        gap: 10px;
         justify-content: flex-end;
     }
 
-    /* Логотип заповнює залишок простору зліва */
+   
     .logo {
         flex: 1; 
         justify-content: flex-start;
@@ -3680,7 +3676,7 @@ body.dark-mode .not-found-image {
         height: 80px;
     }
 
-    /* --- ГОЛОВНИЙ ЕКРАН (HERO) --- */
+   
     .hero-grid {
         display: flex; 
         flex-direction: column;
@@ -3695,7 +3691,7 @@ body.dark-mode .not-found-image {
         box-sizing: border-box;
     }
 
-    /* 1. Ховаємо старі десктопні тексти та бокову панель */
+   
     .title-left,
     .title-right {
         position: absolute;
@@ -3703,7 +3699,7 @@ body.dark-mode .not-found-image {
         left: 0;
         width: 100%;
         height: 100%;
-        pointer-events: none; /* Щоб не заважали клікати по кнопках */
+        pointer-events: none;
         display: block;
         z-index: 5;
     }
@@ -3717,7 +3713,7 @@ body.dark-mode .not-found-image {
         display: none;
     }
 
-    /* 2. Стилі для НОВОГО мобільного заголовка */
+   
     .mobile-hero-title {
         display: flex;
         flex-direction: column;
@@ -3743,7 +3739,7 @@ body.dark-mode .not-found-image {
         font-size: clamp(1.6rem, 3.8vw, 2rem);
     }
 
-    /* 3. Зуб та зірочки */
+   
     .hero-tooth {
         position: relative;
         width: 100%;
@@ -3761,7 +3757,7 @@ body.dark-mode .not-found-image {
         height: 100%;
     }
 
-    /* Повертаємо та вирівнюємо зірочки */
+   
     .star-left, .star-right {
         display: none !important;
     }
@@ -3785,7 +3781,7 @@ body.dark-mode .not-found-image {
         color: var(--hero-star-right);
     }
 
-    /* 4. Опис та кнопка внизу */
+   
     .hero-bottom.bottom-left {
         width: 100%;
         padding: 0;
@@ -3901,8 +3897,8 @@ body.dark-mode .not-found-image {
 
 .trust-grid-container {
     max-width: 480px;
-    grid-template-columns: 1fr; /* Замість auto — займає всю вільну ширину */
-    /* grid-template-rows: repeat(5, auto); — це можна навіть прибрати, Grid сам створить потрібну кількість рядків */
+    grid-template-columns: 1fr;
+   
   
     gap: 30px;
     margin: 0 auto;
@@ -3953,7 +3949,7 @@ body.dark-mode .not-found-image {
     text-align: center;
 }
 
-/* ФІКС ДЛЯ НАДВУЗЬКИХ ЕКРАНІВ (GALAXY FOLD) */
+
 @media screen and (max-width: 350px) {
     .trust-card-number {
         font-size: 38px;
@@ -3982,7 +3978,7 @@ body.dark-mode .not-found-image {
     margin: 0 auto;
 }
 
-/* --- Заголовок та підзаголовок --- */
+
 .services-header {
     display: flex;
     flex-direction: column;
@@ -3992,7 +3988,7 @@ body.dark-mode .not-found-image {
 }
 
 .services-subtitle {
-    font-size: 14px; /* Менший розмір для акуратності */
+    font-size: 14px;
     line-height: 1.4;
     text-align: center;
     padding-top: 16px;
@@ -4011,27 +4007,27 @@ body.dark-mode .not-found-image {
 .services-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px; /* Трохи менший відступ між картками для мобільного */
+    gap: 20px;
     padding: 0 20px;
 }
 
-/* Ховаємо велике фото (якщо воно є в HTML) */
+
 .services-image-wrapper {
     display: none;
 }
 
-/* --- Сама картка --- */
+
 .service-card {
     padding: 30px 24px;
-    height: auto; /* ГОЛОВНИЙ ФІКС: дозволяємо картці розтягуватись під текст */
+    height: auto;
     display: flex;
     flex-direction: column;
-    border-radius: 20px; /* Заокруглення як на скріншоті */
-    background-color: var(--service-card-bg); /* Твій темний фон картки */
+    border-radius: 20px;
+    background-color: var(--service-card-bg);
     border: 1px solid var(--service-card-border);
 }
 
-/* Велика цифра (01, 02) - додай цей клас у HTML, якщо його там ще немає */
+
 .service-card-number {
     font-size: 48px;
     font-weight: 300;
@@ -4049,21 +4045,21 @@ body.dark-mode .not-found-image {
 .service-card-description {
     font-size: 13px;
     line-height: 1.5;
-    margin: 0 0 24px 0; /* Відступ вниз до футера */
-    flex-grow: 1; /* Відштовхує футер в самий низ, якщо картки будуть різної висоти */
+    margin: 0 0 24px 0;
+    flex-grow: 1;
     opacity: 0.8;
 }
 
-/* --- Футер картки з лінками --- */
+
 .service-card-footer {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: space-between; /* Розносить "Записатись" і "Ціна" по різних краях */
+    justify-content: space-between;
     align-items: center;
 }
 
-/* Стилізація самих посилань у футері */
+
 .service-card-footer a {
     font-size: 14px;
     
@@ -4082,16 +4078,16 @@ body.dark-mode .not-found-image {
         gap: 12px;
         padding: 0 20px;
         width: 100%;
-        box-sizing: border-box; /* Фікс від горизонтального скролу */
+        box-sizing: border-box;
     }
 
     .team-header {
-        display: contents; /* Дозволяє керувати дітьми через flex */
+        display: contents;
     }
 
 
     .team-content-grid {
-        order: 2; /* Картка лікаря по центру */
+        order: 2;
         display: flex;
         flex-direction: column;
         height: auto; 
@@ -4102,7 +4098,7 @@ body.dark-mode .not-found-image {
     }
 
     .team-slider-controls {
-        order: 3; /* Кнопки слайдера внизу */
+        order: 3;
         justify-content: center;
         margin-top: 10px;
     }
@@ -4126,7 +4122,7 @@ body.dark-mode .not-found-image {
         box-sizing: border-box;
     }
 
-    /* Ховаємо картку графіка на телефоні */
+   
     .team-info-wrapper .contact-action-card {
         display: none;
     }
@@ -4143,7 +4139,7 @@ body.dark-mode .not-found-image {
         box-sizing: border-box; 
         overflow: hidden;
 
-        /* ФІКС: min-height замість фіксованої height, щоб уникнути виходу тексту */
+       
         min-height: 310px; 
         height: auto;
         justify-content: flex-start;
@@ -4156,7 +4152,7 @@ body.dark-mode .not-found-image {
         align-items: center;
         width: 100%;
         
-        /* Розтягуємо блок з текстом і кнопкою на весь вільний простір, що залишився */
+       
         flex-grow: 1; 
     }
 
@@ -4175,7 +4171,7 @@ body.dark-mode .not-found-image {
         font-size: 15px;
         font-weight: 500;
         
-        /* ГОЛОВНИЙ ФІКС КНОПКИ: автоматично відштовхує кнопку в самий низ */
+       
         margin-top: auto; 
     }
 
@@ -4183,9 +4179,9 @@ body.dark-mode .not-found-image {
         margin: 0; 
         width: 80%; 
         height: 1px;
-        min-height: 1px; /* Гарантуємо мінімальну висоту */
-        flex-shrink: 0; /* ЗАБОРОНЯЄМО Flexbox ховати лінію */
-        background-color: var(--team-member-divider); /* Дублюємо колір про всяк випадок */
+        min-height: 1px;
+        flex-shrink: 0;
+        background-color: var(--team-member-divider);
     }
     .team-member-name {
         font-size: 20px;
@@ -4199,7 +4195,7 @@ body.dark-mode .not-found-image {
 
   
 
-    /* Показуємо текст і ховаємо іконку стрілочки */
+   
     .link-text { 
         display: inline;
     } 
@@ -4227,8 +4223,8 @@ body.dark-mode .not-found-image {
 }
 
 .faq-item-body {
-    flex-direction: column; /* Робимо колонку: спочатку фото, потім текст */
-    gap: 16px; /* Зменшуємо відстань між картинкою і текстом */
+    flex-direction: column;
+    gap: 16px;
   }
 
   .faq-item-image-wrapper {
@@ -4239,12 +4235,12 @@ body.dark-mode .not-found-image {
 
   .faq-item-text {
     width: 95%; 
-    font-size: 16px; /* Менший розмір тексту для читабельності на 480px */
+    font-size: 16px;
     line-height: 1.5;
     text-align: justify;
     margin: 0 0 20px 0;
-    padding: 0 10px; /* Менший відступ від лінії */
-    border-left: 2px solid var(--faq-item-border-left); /* Тонша лінія акценту */
+    padding: 0 10px;
+    border-left: 2px solid var(--faq-item-border-left);
   }
 
   .faq-item-info .btn{
@@ -4256,7 +4252,7 @@ body.dark-mode .not-found-image {
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
-        overflow: hidden; /* БРОНЯ: жорстко відрізає все, що намагається вилізти за екран */
+        overflow: hidden;
     }
 
     .reviews-grid-container {
@@ -4266,17 +4262,17 @@ body.dark-mode .not-found-image {
         padding: 0 20px;
         width: 100%;
         max-width: 100%;
-        box-sizing: border-box; /* ГОЛОВНИЙ ФІКС від горизонтального скролу */
+        box-sizing: border-box;
     }
 
-    /* Дозволяємо витягнути заголовок і кнопки з хедера */
+   
     .reviews-header {
         display: contents;
     }
 
  
 
-    /* Блок із картками іде другим */
+   
     .reviews-content-grid {
         order: 2;
         gap: 20px;
@@ -4285,7 +4281,7 @@ body.dark-mode .not-found-image {
         box-sizing: border-box;
     }
 
-    /* В'юпорт слайдера */
+   
     .reviews-slider-viewport {
         height: auto; 
         width: 100%;
@@ -4298,37 +4294,37 @@ body.dark-mode .not-found-image {
         gap: 16px;
     }
 
-    /* 2. Картка відгуку (одна на весь екран) */
+   
     .review-card {
-        width: 100%; /* Показуємо рівно 1 картку на екрані */
+        width: 100%;
         max-width: 100%;
         padding: 45px 30px;
         min-height: 260px;
         height: auto;
         align-items: center; 
         text-align: center;
-        box-sizing: border-box; /* Щоб падінги не розпирали картку */
+        box-sizing: border-box;
     }
 
-    /* Текст відгуку */
+   
     .review-text {
         font-size: 18px; 
     }
 
-    /* Блок автора (аватар + ім'я) */
+   
     .review-author {
         width: fit-content;
 
         text-align: left; 
     }
 
-    /* 3. Пагінація (крапочки) іде третьою */
+   
     .reviews-pagination {
         order: 3;
         margin-top: 0;
     }
 
-    /* 4. Кнопки управління (< >) ідуть в самий низ */
+   
     .reviews-slider-controls {
         order: 4;
         justify-content: center;
@@ -4343,25 +4339,25 @@ body.dark-mode .not-found-image {
   }
 
 
-/* 3. Жорстко обмежуємо ширину головного контейнера */
+
   .contacts-grid-container {
     width: 100%;
-    max-width: 100vw; /* Контейнер не може бути ширшим за екран (viewport) */
-    padding: 0 16px; /* Трохи зменшуємо бокові відступи для мобільних для економії місця */
+    max-width: 100vw;
+    padding: 0 16px;
     box-sizing: border-box; 
   }
 
-  /* 4. Забороняємо сітці та карткам вилазити за межі контейнера */
+ 
   .contacts-content-grid,
   .contact-action-card,
   .contact-details-card,
   .contacts-map-wrapper {
     width: 100%;
-    max-width: 100%; /* Гарантуємо, що картки не розтягнуться більше ніж на 100% батьківського блоку */
-    box-sizing: border-box; /* Падінги карток враховуються всередину, а не назовні */
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
-  /* 5. Додаткова страховка для iframe з картою */
+ 
   .contacts-map-wrapper iframe {
     width: 100% !important;
     max-width: 100%;
@@ -4371,7 +4367,7 @@ body.dark-mode .not-found-image {
 
 
   .page-title {
-    font-size: 5rem; /* Значно зменшуємо розмір заголовка */
+    font-size: 5rem;
     line-height: 1.1;
   }
 
@@ -4380,28 +4376,28 @@ body.dark-mode .not-found-image {
     text-align: justify;
   }
 
-  /* Змінюємо сітку на flex для зручної зміни порядку (карту наверх) */
+ 
   .contacts-content-grid {
     display: flex;
     flex-direction: column;
     height: auto;
   }
 
-  /* Переміщуємо карту на перше місце та зменшуємо висоту */
+ 
   .contacts-map-wrapper {
     order: -1; 
     height: 250px;
     border-radius: 20px;
   }
 
-  /* Скидаємо фіксовану висоту для блоку з картками */
+ 
   .contacts-info-wrapper {
     height: auto;
     display: flex;
     flex-direction: column;
   }
 
-  /* Картка "Години роботи": контент в колонку, центрування */
+ 
   .contact-action-card {
     flex-direction: column;
     text-align: center;
@@ -4415,7 +4411,7 @@ body.dark-mode .not-found-image {
     justify-content: center;
   }
 
-  /* Картка "Контактна інформація": центрування тексту та іконок */
+ 
   .contact-details-card {
     padding: 30px 20px;
     text-align: center;
@@ -4423,11 +4419,11 @@ body.dark-mode .not-found-image {
   }
 
   .details-blocks {
-    align-items: center; /* Центруємо блоки з текстом */
+    align-items: center;
     gap: 24px;
   }
 
-  /* Центруємо соціальні мережі */
+ 
   .contact-socials {
     justify-content: center;
     margin-top: 30px;
@@ -4457,7 +4453,7 @@ body.dark-mode .not-found-image {
 
     .ai-chat-header {
     padding-top: 80px;
-    margin-top: -80px; /* ВИПРАВЛЕННЯ: відтягуємо заголовок вгору, щоб він не створював зайвого простору на початку сторінки */
+    margin-top: -80px;
 
 }
 
@@ -4465,7 +4461,7 @@ body.dark-mode .not-found-image {
         margin-bottom: 24px;
     }
 
-    /* Фільтри: робимо горизонтальний скрол для кнопок */
+   
     .price-page-filter {
         margin-top: 20px;   
         margin-bottom: 30px;
@@ -4480,13 +4476,13 @@ body.dark-mode .not-found-image {
         white-space: nowrap;
         transition: padding-top 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         
-        /* Приховуємо скроллбар для естетики */
-        -ms-overflow-style: none;  /* IE та Edge */
-        scrollbar-width: none;  /* Firefox */
+       
+        -ms-overflow-style: none; 
+        scrollbar-width: none; 
     }
 
     .price-page-filter::-webkit-scrollbar {
-        display: none; /* Chrome, Safari та Opera */
+        display: none;
     }
 
     .price-page-filter.is-pinned .price-page-filter-btn,
@@ -4509,22 +4505,22 @@ body.dark-mode .not-found-image {
     .price-page-filter-btn {
         padding: 8px 16px;
         font-size: 14px;
-        flex-shrink: 0; /* Щоб кнопки не стискалися */
+        flex-shrink: 0;
     }
 
-    /* Сітка: переводимо в 1 колонку */
+   
     .price-page-grid {
         column-count: 1; 
         display: flex;
         flex-direction: column;
-        gap: 16px; /* Відстань між картками */
+        gap: 16px;
     }
 
-    /* Картки: зменшуємо відступи (padding) та скруглення */
+   
     .price-card {
         padding: 24px 20px;
         border-radius: 20px;
-        margin-bottom: 0; /* Оскільки використовуємо gap у контейнері */
+        margin-bottom: 0;
     }
 
     .price-card-title {
@@ -4537,7 +4533,7 @@ body.dark-mode .not-found-image {
         height: 32px;
     }
 
-    /* Рядки з цінами: оптимізуємо шрифти та відступи */
+   
     .price-row {
         margin-bottom: 12px;
         gap: 6px;
@@ -4556,23 +4552,23 @@ body.dark-mode .not-found-image {
         font-size: 1.3rem;
     }
 
-    /* Блок завантаження та дисклеймер */
+   
     .price-page-download {
         margin-top: 40px;
         gap: 24px;
     }
 
     .price-disclaimer p {
-        font-size: 1rem; /* Робимо текст дрібнішим, як на макеті */
+        font-size: 1rem;
         line-height: 1.4;
     }
 
-    /* Прибираємо лінії біля кнопки для чистоти мобільного дизайну */
+   
     .price-page-download-container .footer-divider {
         display: none; 
     }
 
-    /* Кнопка завантаження: задаємо фіксовану ширину, як на скріншоті */
+   
     .price-page-download-container .btn {
         width: 100%;
         max-width: 230px;
@@ -4584,20 +4580,20 @@ body.dark-mode .not-found-image {
 
     .single-service-grid-container {
         width: 100%;
-        box-sizing: border-box; /* ВИПРАВЛЕННЯ: падінги не будуть розтягувати блок більше ніж на 100% */
+        box-sizing: border-box;
         padding: 30px 15px; 
-        grid-template-columns: 1fr; /* Одна колонка */
+        grid-template-columns: 1fr;
         grid-template-rows: auto; 
         row-gap: 16px; 
     }
 
-    /* 1. Заголовок */
+   
     .single-service-header-layout {
         grid-column: 1 / -1;
         grid-row: 1;
     }
 
-    /* 2. Фотографія */
+   
     .single-service-photo-wrapper {
         grid-column: 1 / -1;
         grid-row: 2;
@@ -4608,13 +4604,13 @@ body.dark-mode .not-found-image {
         border-radius: 16px; 
     }
 
-    /* 3. Картка "Години роботи / Записатись" */
+   
     .single-service-grid-container .contact-action-card {
         grid-column: 1 / -1;
         grid-row: 3;
     }
 
-    /* 4. Акордеони */
+   
     .single-service-accordion-wrapper {
         grid-column: 1 / -1;
         grid-row: 4;
@@ -4634,42 +4630,42 @@ body.dark-mode .not-found-image {
         padding: 0 0 60px 0;
     }
 
-    /* Додаємо безпечні відступи для контейнера */
+   
     .doctor-grid-container {
         padding: 0 15px;
         box-sizing: border-box;
     }
 
-    /* 2. Заголовок */
+   
     .doctor-main-title {
-        font-size: 36px; /* Зменшуємо шрифт заголовка */
+        font-size: 36px;
         margin-bottom: 24px;
     }
 
-    /* 3. Головна сітка (Фото + Акордеони) */
+   
     .doctor-content-grid {
-        grid-template-columns: 1fr; /* Перемикаємо на одну колонку */
+        grid-template-columns: 1fr;
         gap: 20px;
     }
 
-    /* Піднімаємо фотографію на перший рядок */
+   
     .doctor-photo-wrapper {
         grid-column: 1 / -1;
         grid-row: 1; 
-        height: 360px; /* Зменшуємо висоту блоку з фотографією */
+        height: 360px;
         border-radius: 20px 40px 20px 40px; 
     }
 
-    /* Опускаємо акордеони на другий рядок */
+   
     .doctor-accordion-wrapper {
         grid-column: 1 / -1;
         grid-row: 2;
         gap: 12px;
     }
 
-    /* 4. Налаштування самих акордеонів */
+   
     .accordion-header {
-        padding: 16px 20px; /* Зменшуємо відступи всередині кнопок */
+        padding: 16px 20px;
 
     }
 
@@ -4682,7 +4678,7 @@ body.dark-mode .not-found-image {
         height: 36px;
     }
 
-    /* Внутрішній текст акордеона */
+   
     .accordion-inner-text p {
         font-size: 14px;
         padding: 0 20px; 
@@ -4693,7 +4689,7 @@ body.dark-mode .not-found-image {
         padding-left: 12px;
     }
 
-    /* 5. Сертифікати */
+   
     .certificates-slider-wrapper {
         gap: 16px;
     }
@@ -4701,15 +4697,14 @@ body.dark-mode .not-found-image {
 
 
     .cert-card {
-        /* Робимо картку такої ширини, щоб було видно краї сусідніх карток */
+       
         width: calc(100vw - 100px); 
         height: 320px; 
     }
 
-    /* Якщо бокові кнопки-стрілки знаходяться зліва/справа від слайдера, 
-       на мобілці їх краще приховати (залишити свайп) АБО вони у вас вже винесені вниз */
+   
     .cert-btn.side-arrows { 
-        display: none; /* Застосовуйте, якщо стрілки ламають ширину */
+        display: none;
     }
 
     .doctor-profile,
@@ -4719,7 +4714,7 @@ body.dark-mode .not-found-image {
         width: 100%;
     }
 
-    /* Для сертифікатів прибираємо бокові відступи, щоб слайди йшли від краю до краю */
+   
     .certificates-grid-container {
         padding: 0; 
         width: 100%;
@@ -4727,31 +4722,30 @@ body.dark-mode .not-found-image {
         margin-bottom: 80px;
     }
 
-    /* 2. Перебудовуємо обгортку слайдера */
+   
     .certificates-slider-wrapper {
-        flex-wrap: wrap; /* Дозволяємо кнопкам "впасти" на наступний рядок */
-        justify-content: center; /* Центруємо кнопки знизу */
-        gap: 20px; /* Відстань між слайдером та кнопками */
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
     }
 
-    /* 3. Налаштовуємо сам контейнер слайдера */
+   
     .certificates-viewport {
-        order: 1; /* Примусово піднімаємо слайдер на самий верх (над кнопками) */
-        flex: 0 0 100%; /* Змушуємо зайняти 100% ширини екрана */
+        order: 1;
+        flex: 0 0 100%;
         width: 100%;
         padding: 20px 0; 
     }
 
     .certificates-track {
         gap: 16px;
-        /* Оскільки картка на 100px менша за екран, 
-           додаємо по 50px по боках треку, щоб відцентрувати перший слайд */
+       
         padding: 0 50px;/* Трохи зменшуємо відстань між самими картками */
     }
 
-    /* 4. Робимо картки правильного розміру (щоб було видно сусідні) */
+   
     .cert-card {
-        /* Задаємо ширину екрана мінус 100px. Це залишить по 50px по боках для видимості сусідніх карток */
+       
         width: calc(100vw - 100px); 
         height: 340px; 
         box-sizing: border-box;
@@ -4762,13 +4756,13 @@ body.dark-mode .not-found-image {
         margin-top: -80px;
 
 }
-    /* 5. Розташування кнопок (стрілок) знизу */
+   
     .cert-btn {
         order: 3;
-        margin: 0 10px; /* Додаємо відступ між стрілками "вліво" та "вправо" */
+        margin: 0 10px;
     }
 
-    /* Опціонально: трохи зменшити розмір головного заголовка на мобілці */
+   
     .doctor-main-title {
         font-size: 50px;
         margin-bottom: 24px;
@@ -4776,7 +4770,7 @@ body.dark-mode .not-found-image {
         text-align: center;
     }
 
-    /* Certificate Modal Mobile */
+   
     .cert-modal-container {
         padding: 20px;
         flex-direction: column;
@@ -4809,9 +4803,7 @@ body.dark-mode .not-found-image {
         max-height: 70vh;
     }
 
-    /* ==========================================
-       Results Section – 480px
-       ========================================== */
+   
     .results-section {
         padding-bottom: 80px;
         overflow: hidden;
@@ -4838,7 +4830,7 @@ body.dark-mode .not-found-image {
 
     
 
-    /* BA slider на мобілці */
+   
     .ba-handle-circle {
         width: 36px;
         height: 36px;
@@ -4889,7 +4881,7 @@ body.menu-open .drawer-nav {
     display: flex;
 }
 
-/* ПРИХОВУЄМО ТІЛЬКИ ОСНОВНИЙ КОНТЕНТ (ЗУБ) */
+
 body.menu-open main, 
 body.menu-open footer,
 body.menu-open #scroll-top {
@@ -4903,7 +4895,7 @@ body.menu-open #scroll-top {
     display: flex;
     flex-direction: column;
     padding: 20px 24px 60px;
-    background: transparent; /* Використовує фон батька */
+    background: transparent;
 }
 
 
@@ -4980,7 +4972,7 @@ body.menu-open #scroll-top {
 
 
 @media (max-width: 880px) {
-    /* --- Mobile Form Adaptation --- */
+   
     .modal-overlay {
         position: fixed;
         top: 0;
@@ -5044,7 +5036,7 @@ body.menu-open #scroll-top {
     }
 
    
-    /* --- AI Chat Mobile Adaptation --- */
+   
     .ai-chat-window {
         position: fixed;
         top: 0;
@@ -5105,9 +5097,7 @@ body.menu-open #scroll-top {
 }
 
 
-/* ==========================================
-   Small Desktop (Compressed Desktop): 801-1199
-   ========================================== */
+
 @media (min-width: 881px) and (max-width: 1199px) {
     .container {
         width: 92%;
@@ -5341,15 +5331,15 @@ body.menu-open #scroll-top {
 
 @media (min-width:881px) and (max-width: 1199px) {
 
-  /* ЯДЕРНИЙ ФІКС СКРОЛУ (Глобально для 1024px) */
+ 
 
 
-  /* Додатковий захист для самої секції */
+ 
   .hero {
     width: 100%;
   }
 
-  /* Повертаємо оригінальну ширину контейнера (85%) для правильних пропорцій grid */
+ 
   .hero .container {
     width: 85%;
     max-width: 1440px;
@@ -5357,9 +5347,7 @@ body.menu-open #scroll-top {
     padding: 0 10px;
   }
 
-  /* ============================================
-     1. HEADER — ховаємо меню, показуємо бургер
-     ============================================ */
+ 
   .header .container {
     width: 94%;
     padding: 0 8px;
@@ -5399,9 +5387,7 @@ body.menu-open #scroll-top {
     height: 42px;
   }
 
-  /* ============================================
-     2. ТИПОГРАФІКА — зменшуємо ~25% від десктопу
-     ============================================ */
+ 
   .title {
     font-size: 5rem;
     line-height: 1.05;
@@ -5437,9 +5423,7 @@ body.menu-open #scroll-top {
     line-height: 1.05;
   }
 
-  /* ============================================
-     3. ПОСЛУГИ — 2 колонки замість 3-4
-     ============================================ */
+ 
   .services-container {
     padding-left: 20px;
     padding-right: 20px;
@@ -5471,9 +5455,7 @@ body.menu-open #scroll-top {
     font-size: 1.1rem;
   }
 
-  /* ============================================
-     4. ПРАЙС — фільтри з flex-wrap, зменшені відступи
-     ============================================ */
+ 
   .price-container {
     padding-left: 12px;
     padding-right: 12px;
@@ -5518,9 +5500,7 @@ body.menu-open #scroll-top {
     font-size: 1.45rem;
   }
 
-  /* ============================================
-     5. CTA СЕКЦІЯ — пропорції 6/6, менший gap
-     ============================================ */
+ 
   .cta-section .contacts-content-grid {
     gap: 16px;
     grid-template-columns: repeat(12, 1fr);
@@ -5548,18 +5528,16 @@ body.menu-open #scroll-top {
     line-height: 1.45;
   }
 
-  /* Фонтекст — трохи менший щоб не переповнювати (14.5vw -> 14vw) */
+ 
   .hero-bg-text {
     font-size: 14vw;
   }
 
-  /* ============================================
-     Додаткові адаптації для 1024px
-     ============================================ */
+ 
 
 
 
-  /* Відгуки */
+ 
   .reviews {
     overflow-x: hidden;
   }
@@ -5580,7 +5558,7 @@ body.menu-open #scroll-top {
     font-size: 1.2rem;
     text-decoration: underline;
    }
-  /* FAQ */
+ 
   .faq-container {
     max-width: 800px;
   }
@@ -5602,7 +5580,7 @@ body.menu-open #scroll-top {
     font-size: 1.45rem;
   }
 
-  /* Trust */
+ 
   .trust-content {
     grid-column: span 7;
     gap: 20px;
@@ -5633,7 +5611,7 @@ body.menu-open #scroll-top {
     font-size: 1.3rem;
   }
 
-  /* Btn загальний */
+ 
   .btn {
     width: 150px;
     height: 42px
@@ -5644,7 +5622,7 @@ body.menu-open #scroll-top {
     font-size: 1.3rem;
   }
 
-  /* Результати */
+ 
   .results {
     overflow-x: hidden;
   }
@@ -5653,12 +5631,12 @@ body.menu-open #scroll-top {
     height: 340px;
   }
 
-  /* Сертифікати */
+ 
   .cert-card {
     height: 360px;
   }
 
-  /* Лікар */
+ 
   .doctor-photo-wrapper {
     height: 430px;
   }
@@ -5702,12 +5680,12 @@ body.menu-open #scroll-top {
   }
 
  
-  /* Сингл-сервіс */
+ 
   .single-service-grid-container {
     column-gap: 28px;
   }
 
-  /* Not found */
+ 
   .not-found-title {
     font-size: 12rem;
   }
@@ -5716,9 +5694,7 @@ body.menu-open #scroll-top {
 
 
 
-/* ==========================================
-   Tablet Adaptation (Bridge): 481px - 900px
-   ========================================== */
+
 @media (min-width: 501px) and (max-width: 880px) {
     
     .team-grid-container, .results-section,
@@ -5736,7 +5712,7 @@ body.menu-open #scroll-top {
     }
 
        .cert-card {
-        /* Робимо картку такої ширини, щоб було видно краї сусідніх карток */
+       
         width: min(480px, calc(100vw - 120px)); 
         height: 400px; 
     }

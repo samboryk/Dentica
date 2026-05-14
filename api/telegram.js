@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  // Перевірка методу (тільки POST)
+  
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     }
 
     const text = `🦷 Нова заявка з сайту Dentica!\n\n📞 Телефон: ${phone}`;
-    const API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    const API_URL = `https:
 
     const response = await fetch(API_URL, {
       method: "POST",
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
       return res.status(response.status).json(data);
     }
 
-    // Повертаємо успіх
+    
     return res.status(200).json({ success: true, data });
 
   } catch (error) {

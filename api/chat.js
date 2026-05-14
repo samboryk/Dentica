@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  // Перевірка методу (тільки POST)
+  
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
     const API_KEY = process.env.GEMINI_API_KEY;
     const MODEL_NAME = "gemini-2.5-flash";
-    const API_URL = `https://generativelanguage.googleapis.com/v1/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
+    const API_URL = `https:
 
     const response = await fetch(API_URL, {
       method: "POST",
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
       return res.status(response.status).json(data);
     }
 
-    // Повертаємо JSON з Gemini на фронтенд
+    
     return res.status(200).json(data);
 
   } catch (error) {

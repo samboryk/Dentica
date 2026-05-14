@@ -1,8 +1,8 @@
-// ==========================================
-// MOBILE MENU (Повноекранне мобільне меню)
-// ==========================================
+﻿
+
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Ініціалізація анімацій відразу (не чекаючи 3D модель)
+    
     if (typeof AOS !== 'undefined') {
         AOS.init({
             duration: 800,
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Оновлюємо координати при скролі (лікує "залипання" на мобайлі)
+    
     window.addEventListener('scroll', () => {
         AOS.refresh();
     });
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             menuBtn.classList.toggle('is-open', isOpen);
         });
 
-        // Закриття при кліку на посилання
+        
         drawerNav.querySelectorAll('a, .drawer-btn, .drawer-cta').forEach(link => {
             link.addEventListener('click', () => {
                 if (!link.closest('.theme-toggle')) {
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Закриття клавішею Escape
+    
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && document.body.classList.contains('menu-open')) {
             document.body.classList.remove('menu-open');
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Автозакриття при збільшенні вікна до десктопного розміру
+    
     window.addEventListener('resize', () => {
         if (window.innerWidth > 480 && overlay.classList.contains('is-active')) {
             closeMenu();
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const html = document.documentElement;
 
-    // 1. Перевіряємо, чи користувач вже обирав тему раніше
+    
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -73,13 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.classList.add('active');
     }
 
-    // 2. Функція перемикання
+    
     themeToggle.addEventListener('click', () => {
         body.classList.toggle('dark-mode');
         html.classList.toggle('dark-mode');
         themeToggle.classList.toggle('active');
 
-        // Зберігаємо вибір
+        
         if (body.classList.contains('dark-mode')) {
             localStorage.setItem('theme', 'dark');
         } else {
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. Відслідковуємо зміну системної теми
+    
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
         if (!localStorage.getItem('theme')) {
             if (event.matches) {
@@ -104,25 +104,25 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Знаходимо всі кнопки-тригери акордеону
+  
   const triggers = document.querySelectorAll('.faq-item-trigger');
 
   triggers.forEach(trigger => {
     trigger.addEventListener('click', function() {
-      // Знаходимо батьківський елемент (.faq-item) поточної кнопки
+      
       const currentItem = this.closest('.faq-item');
       
-      // Перевіряємо, чи цей пункт зараз відкритий
+      
       const isActive = currentItem.classList.contains('faq-item--active');
 
-      // 1. Закриваємо всі пункти (щоб працювало як справжній акордеон)
-      // Якщо ви хочете, щоб можна було відкрити кілька пунктів одночасно - видаліть цей блок
+      
+      
       document.querySelectorAll('.faq-item').forEach(item => {
         item.classList.remove('faq-item--active');
         item.querySelector('.faq-item-trigger').setAttribute('aria-expanded', 'false');
       });
 
-      // 2. Якщо клікнутий пункт був ЗАКРИТИЙ, ми його відкриваємо
+      
       if (!isActive) {
         currentItem.classList.add('faq-item--active');
         this.setAttribute('aria-expanded', 'true');
@@ -133,9 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ==========================================
-    // 1. КАСТОМНИЙ СЛАЙДЕР ВІДГУКІВ (.reviews-slider)
-    // ==========================================
+    
+    
+    
     const slider = document.querySelector('.reviews-slider');
     const dotsContainer = document.querySelector('.reviews-dots');
     const btnPrev = document.querySelector('.reviews-btn--prev');
@@ -147,17 +147,17 @@ document.addEventListener('DOMContentLoaded', () => {
         let dots = [];
         let numDots = 1;
 
-        // --- ДИНАМІЧНА ІНІЦІАЛІЗАЦІЯ КРАПОК ---
+        
         const initDots = () => {
-            // Динамічно визначаємо видимі картки на основі реальної ширини елементів (замість хардкоду px)
+            
             const visibleCards = Math.max(1, Math.round(slider.clientWidth / cards[0].offsetWidth));
             const totalSteps = Math.max(1, cards.length - visibleCards + 1);
             numDots = Math.min(totalSteps, MAX_DOTS);
 
-            // Очищаємо контейнер перед (пере)генерацією
+            
             dotsContainer.innerHTML = '';
             
-            // Якщо крок лише 1 (всі картки влазять), крапки не потрібні
+            
             if (numDots <= 1) return; 
 
             for (let i = 0; i < numDots; i++) {
@@ -165,10 +165,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 dot.classList.add('reviews-dot');
                 if (i === 0) dot.classList.add('reviews-dot--active');
                 
-                // Додаємо подію кліку одразу при створенні крапки
+                
                 dot.addEventListener('click', () => {
                     const maxScroll = slider.scrollWidth - slider.clientWidth;
-                    // Захист від ділення на нуль
+                    
                     const targetScroll = numDots > 1 ? (maxScroll / (numDots - 1)) * i : 0;
                     
                     slider.scrollTo({
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 dotsContainer.appendChild(dot);
             }
             dots = document.querySelectorAll('.reviews-dot');
-            updateActiveDot(); // Оновлюємо стан одразу після генерації
+            updateActiveDot(); 
         };
 
         const getScrollAmount = () => {
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const updateActiveDot = () => {
-            if (dots.length <= 1) return; // Немає сенсу оновлювати, якщо крапок 0 або 1
+            if (dots.length <= 1) return; 
 
             const scrollLeft = slider.scrollLeft;
             const maxScroll = slider.scrollWidth - slider.clientWidth;
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (maxScroll <= 0) return;
 
             const progress = scrollLeft / maxScroll;
-            // Визначаємо поточну активну крапку на основі % прокрутки
+            
             let activeDotIndex = Math.round(progress * (numDots - 1));
 
             dots.forEach((dot, index) => {
@@ -205,14 +205,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
-        // Слухаємо скрол для оновлення крапок
+        
         slider.addEventListener('scroll', updateActiveDot);
 
         const moveNext = () => {
-            // Додано запас у 5px (іноді брайзери рахують дробові пікселі)
+            
             const isEnd = Math.ceil(slider.scrollLeft + slider.clientWidth) >= slider.scrollWidth - 5;
             if (isEnd) {
-                slider.scrollTo({ left: 0, behavior: 'smooth' }); // Зациклення на початок
+                slider.scrollTo({ left: 0, behavior: 'smooth' }); 
             } else {
                 slider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
             }
@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const movePrev = () => {
             const isStart = slider.scrollLeft <= 5;
             if (isStart) {
-                slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' }); // Зациклення в кінець
+                slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' }); 
             } else {
                 slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
             }
@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (btnNext) btnNext.addEventListener('click', moveNext);
         if (btnPrev) btnPrev.addEventListener('click', movePrev);
 
-        // --- АВТОСКРОЛ ТА ЙОГО СКИДАННЯ ---
+        
         let autoScroll = setInterval(moveNext, 5000);
 
         const resetTimer = () => {
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         slider.addEventListener('mousedown', () => clearInterval(autoScroll));
         slider.addEventListener('touchstart', () => clearInterval(autoScroll), { passive: true });
 
-        // SWIPE ДЛЯ ВІДГУКІВ (legacy)
+        
         let revStartX = 0;
         let revEndX = 0;
 
@@ -262,21 +262,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (btnNext) btnNext.addEventListener('click', resetTimer);
         if (btnPrev) btnPrev.addEventListener('click', resetTimer);
         
-        // Запускаємо ініціалізацію при завантаженні
+        
         initDots();
 
-        // Оновлюємо крапочки, якщо користувач змінить розмір вікна/переверне телефон
+        
         window.addEventListener('resize', () => {
-            initDots(); // Повністю перераховуємо крапки
+            initDots(); 
         });
     }
 });
-    // ==========================================
-    // 2. СЛАЙДЕР SWIPER 3D (.results-swiper)
-    // ==========================================
+    
+    
+    
     const swiperElement = document.querySelector('.results-swiper');
     
-    // Ініціалізуємо Swiper ТІЛЬКИ якщо елемент існує на сторінці
+    
     if (swiperElement) {
         const swiper = new Swiper('.results-swiper', {
             effect: 'coverflow', 
@@ -307,27 +307,27 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-    // --- 1. Логіка фону (градієнта) ---
-    // Якщо ми не на самому верху - показуємо градієнт
+    
+    
     if (currentScroll > 0) {
       header.classList.add('is-scrolled');
     } else {
-      // Якщо на самому верху - робимо повністю прозорим
+      
       header.classList.remove('is-scrolled');
     }
 
-    // --- 2. Логіка ховання/показу хедера ---
-    // На верху сторінки гарантовано показуємо хедер
+    
+    
     if (currentScroll <= 0) {
       header.classList.remove('is-hidden');
       return;
     }
 
-    // Скролимо вниз (і вже пройшли більше 100px) — ховаємо хедер
+    
     if (currentScroll > lastScroll && !header.classList.contains('is-hidden') && currentScroll > 100) {
       header.classList.add('is-hidden');
     } 
-    // Скролимо вгору — показуємо хедер
+    
     else if (currentScroll < lastScroll && header.classList.contains('is-hidden')) {
       header.classList.remove('is-hidden');
     }
@@ -345,11 +345,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.price-page-filter-btn');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     
-    // 1. Поява кнопки "Вгору" та границя фільтра при скролі
+    
 window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
 
-    // Кнопка вгору (додана перевірка, чи існує кнопка на сторінці)
+    
     if (scrollTopBtn) {
         if (scrollY > 400) {
             scrollTopBtn.classList.add('show');
@@ -358,7 +358,7 @@ window.addEventListener('scroll', () => {
         }
     }
 
-    // Границя для фільтра (is-pinned) (додана перевірка, чи існує фільтр)
+    
     if (filter) { 
         if (filter.getBoundingClientRect().top <= 0) {
             filter.classList.add('is-pinned');
@@ -367,19 +367,19 @@ window.addEventListener('scroll', () => {
         }
     }
 });
-    // 2. Клік "Вгору"
+    
     scrollTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // 3. Кліки по фільтрах + підсвітка
+    
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
             const targetId = btn.getAttribute('data-target');
             const targetCard = document.getElementById(targetId);
             
             if (targetCard) {
-                // Візуальна висота фільтра при закріпленні на 80px більша через transform
+                
                 const offset = filter.offsetHeight + 80 + 20;
                 const elementPosition = targetCard.getBoundingClientRect().top + window.pageYOffset;
                 
@@ -388,7 +388,7 @@ window.addEventListener('scroll', () => {
                     behavior: 'smooth'
                 });
 
-                // Ефект підсвітки
+                
                 document.querySelectorAll('.price-card').forEach(c => c.classList.remove('highlight-card'));
                 targetCard.classList.add('highlight-card');
                 
@@ -406,9 +406,9 @@ window.addEventListener('scroll', () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     
-    // ==========================================
-    // 1. ЛОГІКА АКОРДЕОНА (Ізольована)
-    // ==========================================
+    
+    
+    
     function initAccordion() {
         const accordionItems = document.querySelectorAll('.accordion-item');
         if (!accordionItems.length) return;
@@ -417,7 +417,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const header = item.querySelector('.accordion-header');
             
             header.addEventListener('click', () => {
-                // Закриваємо всі інші
+                
                 accordionItems.forEach(el => {
                     if (el !== item) {
                         el.classList.remove('active');
@@ -426,10 +426,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
 
-                // Перемикаємо поточний
+                
                 item.classList.toggle('active');
 
-                // Анімація стрілки
+                
                 const icon = item.querySelector('.accordion-btn');
                 if (icon) {
                     icon.style.transform = item.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
@@ -438,16 +438,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-    // Запускаємо акордеон одразу
+    
     initAccordion();
 
 
 
 
     
-    // ==========================================
-    // 2. ЛОГІКА СЛАЙДЕРА (Безкінечне коло)
-    // ==========================================
+    
+    
+    
  function initCertSlider() {
     const track = document.getElementById('cert-track');
     const btnNext = document.getElementById('cert-next');
@@ -460,7 +460,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = track.querySelectorAll('.cert-card');
     if (!cards.length) return;
 
-    // ВРАХОВУЄМО АДАПТИВ: якщо екран менше 768px, вважаємо що видима 1 картка
+    
     const isMobile = window.innerWidth <= 768;
     const visibleCards = isMobile ? 1 : 3; 
     const totalCards = cards.length;
@@ -469,7 +469,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const autoPlayDelay = 3000; 
     let autoPlayTimer;
 
-    // Генерація цяток
+    
     paginationContainer.innerHTML = ''; 
     for (let i = 0; i <= maxIndex; i++) {
         const dot = document.createElement('div');
@@ -485,11 +485,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const dots = paginationContainer.querySelectorAll('.cert-dot');
 
-    // Функція зсуву треку
+    
     function updateSlider() {
         const cardWidth = cards[0].offsetWidth;
         
-        // ДИНАМІЧНИЙ GAP: беремо реальне значення з CSS (працюватиме і 24px для ПК, і 16px для моб)
+        
         const trackStyles = window.getComputedStyle(track);
         const gap = parseFloat(trackStyles.gap) || 0; 
         
@@ -531,7 +531,7 @@ document.addEventListener("DOMContentLoaded", () => {
     track.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
     track.addEventListener('mouseleave', startAutoPlay);
 
-    // SWIPE ДЛЯ СЛАЙДЕРА
+    
     let trackStartX = 0;
     let trackEndX = 0;
 
@@ -553,9 +553,9 @@ document.addEventListener("DOMContentLoaded", () => {
     updateSlider();
     startAutoPlay();
     
-    // ==========================================
-    // Lightbox для сертифікатів
-    // ==========================================
+    
+    
+    
     const modalHtml = `
         <div class="cert-modal" id="cert-lightbox">
             <div class="cert-modal-overlay"></div>
@@ -622,7 +622,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Swipe для Lightbox
+    
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -638,10 +638,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function handleLightboxSwipe() {
         const swipeThreshold = 50;
         if (touchEndX < touchStartX - swipeThreshold) {
-            navigateLightbox(1); // Swipe left -> next
+            navigateLightbox(1); 
         }
         if (touchEndX > touchStartX + swipeThreshold) {
-            navigateLightbox(-1); // Swipe right -> prev
+            navigateLightbox(-1); 
         }
     }
 
@@ -665,8 +665,8 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('resize', updateSlider);
 }
 
-    // ВАЖЛИВО: Запускаємо слайдер ТІЛЬКИ після повного завантаження всіх картинок (window.load)
-    // Це лікує проблему, коли ширина картинок дорівнює нулю на момент запуску скрипта
+    
+    
     if (document.readyState === 'complete') {
         initCertSlider();
     } else {
@@ -677,9 +677,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    // ============================================
-    // RESULTS SLIDER – адаптивний трековий
-    // ============================================
+    
+    
+    
     const track      = document.getElementById('res-track');
     const viewport   = document.getElementById('results-viewport');
     const btnNext    = document.getElementById('res-next');
@@ -694,21 +694,21 @@ document.addEventListener("DOMContentLoaded", () => {
     let current     = 0;
     let autoTimer   = null;
     let userInteracted = false;
-    let dots = []; // Зберігатимемо крапки тут для швидкого доступу
+    let dots = []; 
 
-    // 1. Динамічно визначаємо кількість видимих карток
+    
     function getVisibleCount() {
         if (!cards[0]) return 1;
         const cardW = cards[0].offsetWidth;
         return cardW < viewport.offsetWidth * 0.6 ? 2 : 1;
     }
 
-    // 2. Динамічно отримуємо максимальний індекс
+    
     function getMaxIndex() {
         return Math.max(0, total - getVisibleCount());
     }
 
-    // 3. Функція рендеру пагінації (генеруємо заново при ресайзі)
+    
     function renderPagination() {
         if (!pagination) return;
         pagination.innerHTML = '';
@@ -735,7 +735,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function goTo(index) {
         const max = getMaxIndex();
-        // Переконуємось, що current не виходить за межі після зміни екрану
+        
         current = Math.max(0, Math.min(index, max)); 
         
         const gap = getGap();
@@ -744,24 +744,24 @@ document.addEventListener("DOMContentLoaded", () => {
         
         track.style.transform = `translateX(-${offset}px)`;
         
-        // Оновлюємо активну крапку (якщо пагінація існує)
+        
         dots.forEach((d, i) => d.classList.toggle('active', i === current));
     }
 
-    // Використовуємо динамічний getMaxIndex() замість статичного maxIndex
+    
     function next() { goTo(current < getMaxIndex() ? current + 1 : 0); }
     function prev() { goTo(current > 0 ? current - 1 : getMaxIndex()); }
 
     function startAuto() { if (userInteracted) return; autoTimer = setInterval(next, AUTOPLAY); }
     function stopAuto()  { clearInterval(autoTimer); }
 
-    // Обробники подій
+    
     btnNext.addEventListener('click', () => { userInteracted = true; stopAuto(); next(); });
     btnPrev.addEventListener('click', () => { userInteracted = true; stopAuto(); prev(); });
     viewport.addEventListener('mouseenter', stopAuto);
     viewport.addEventListener('mouseleave', () => { if (!userInteracted) startAuto(); });
 
-    // SWIPE ДЛЯ RESULTS
+    
     let resStartX = 0;
     let resEndX = 0;
 
@@ -780,21 +780,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, { passive: true });
 
-    // 4. Слухаємо зміну розміру вікна (наприклад, поворот телефону)
+    
     window.addEventListener('resize', () => {
-        // Якщо кількість видимих карток змінилась, треба оновити крапки та позицію
+        
         renderPagination();
         goTo(current); 
     });
 
-    // Ініціалізація
+    
     renderPagination();
     goTo(0);
     startAuto();
 
-    // ============================================
-    // BEFORE / AFTER SLIDER DRAG LOGIC
-    // ============================================
+    
+    
+    
     document.querySelectorAll('.ba-slider[data-ba]').forEach(slider => {
         const handle = slider.querySelector('.ba-handle');
         const before = slider.querySelector('.ba-before');
@@ -839,17 +839,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// ==========================================
-    // БІЧНА НАВІГАЦІЯ (Scroll Spy)
-    // ==========================================
+
+    
+    
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.side-scroller a');
 
     if (sections.length > 0 && navLinks.length > 0) {
-        // Налаштування для "спостерігача"
+        
         const observerOptions = {
             root: null,
-            // Спрацьовує, коли секція доходить приблизно до середини екрана
+            
             rootMargin: '-30% 0px -60% 0px', 
             threshold: 0
         };
@@ -859,11 +859,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (entry.isIntersecting) {
                     const currentId = entry.target.getAttribute('id');
                     
-                    // Проходимось по всіх посиланнях
+                    
                     navLinks.forEach(link => {
-                        // Забираємо клас active у всіх `<li>`
+                        
                         link.parentElement.classList.remove('active');
-                        // Додаємо клас active тому `<li>`, чий href співпадає з id секції
+                        
                         if (link.getAttribute('href') === `#${currentId}`) {
                             link.parentElement.classList.add('active');
                         }
@@ -872,7 +872,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }, observerOptions);
 
-        // Вішаємо "спостерігача" на кожну секцію
+        
         sections.forEach(section => observer.observe(section));
     }
 
@@ -880,15 +880,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("DOMContentLoaded", () => {
     
-    // ==========================================
-    // СКРОЛ-ШПИГУН (Side Nav Update 01, 02...)
-    // ==========================================
+    
+    
+    
     const sections = document.querySelectorAll('.hero-background, section[id]');
     const navLinks = document.querySelectorAll('.side-scroller li');
 
     const observerOptions = {
         root: null,
-        threshold: 0.3 // Спрацьовує, коли 30% секції на екрані
+        threshold: 0.3 
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -909,7 +909,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sections.forEach(section => observer.observe(section));
 
-    // Клік по цифрах
+    
     navLinks.forEach((li) => {
         li.addEventListener('click', (e) => {
             e.preventDefault();
@@ -922,7 +922,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // ТУТ ТВІЙ КОД ДЛЯ АКОРДЕОНА (initAccordion)
+    
 });
 
 

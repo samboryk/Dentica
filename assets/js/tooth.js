@@ -1,4 +1,4 @@
-/* ── Зміна слів у фоновому тексті ── */
+
 const words = [
   "Інноваційні",
   "Комфортні",
@@ -9,29 +9,29 @@ let wordIndex = 0;
 const changingText = document.getElementById("changing-text");
 
 function cycleWord() {
-  // Fade out
+  
   changingText.classList.add("fade-out");
 
   setTimeout(() => {
     wordIndex = (wordIndex + 1) % words.length;
     changingText.textContent = words[wordIndex];
     changingText.classList.remove("fade-out");
-  }, 600); // збігається з тривалістю transition
+  }, 600); 
 }
 
 setInterval(cycleWord, 4000);
 
 
-/* ── Елементи прелоадера ── */
+
 const preloader = document.getElementById('preloader');
 const progressText = document.getElementById('progress-text');
 const progressFill = document.getElementById('progress-fill');
 
-// Імітація прогресу до 67% (відсилка/стиль)
+
 let fakeProgress = 0;
 const fakeInterval = setInterval(() => {
     if (fakeProgress < 67) {
-        // Миттєвий підйом до 67
+        
         fakeProgress += Math.random() * 30;
         if (fakeProgress >= 67) {
             fakeProgress = 67;
@@ -51,7 +51,7 @@ function updateUI(percent) {
     }
 }
 
-/* ── 3D модель зуба ── */
+
 const viewer = document.getElementById("tooth-viewer");
 let modelLoaded = false;
 let windowLoaded = false;
@@ -62,7 +62,7 @@ function checkAllLoaded() {
     }
 }
 
-// Відслідковуємо прогрес завантаження моделі
+
 if (viewer) {
   viewer.addEventListener('progress', (event) => {
     const realPercent = (event.detail.totalProgress * 100);
@@ -74,7 +74,7 @@ if (viewer) {
   viewer.addEventListener("load", () => {
     modelLoaded = true;
     
-    /* ── Ініціалізація сцени ── */
+   
     viewer.setAttribute("camera-orbit", `${BASE_THETA}deg ${BASE_PHI}deg auto`);
     viewer.setAttribute("min-camera-orbit", "auto auto auto");
     viewer.setAttribute("max-camera-orbit", "auto auto auto");
@@ -92,16 +92,16 @@ if (viewer) {
     checkAllLoaded();
   });
 } else {
-  modelLoaded = true; // Якщо в'ювера немає, вважаємо модель "завантаженою"
+  modelLoaded = true; 
 }
 
-// Приховуємо прелоадер як тільки завантажиться основне вікно
+
 window.addEventListener('load', () => {
     windowLoaded = true;
     checkAllLoaded();
 });
 
-// Захисний тайм-аут: якщо щось пішло не так, все одно пускаємо користувача
+
 const safetyTimeout = setTimeout(() => {
     if (!preloader.classList.contains('is-hidden')) {
         hidePreloader();
@@ -119,7 +119,7 @@ function hidePreloader() {
         progressFill.style.width = '100%';
     }
 
-    // Плавно приховуємо
+    
     setTimeout(() => {
         preloader.style.opacity = '0';
         preloader.style.pointerEvents = 'none';
