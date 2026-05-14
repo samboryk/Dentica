@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const link = document.createElement('link');
             link.id = 'flag-icons-css';
             link.rel = 'stylesheet';
-            link.href = 'https:
+            link.href = 'https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css';
             document.head.appendChild(link);
             
             const img = new Image();
-            img.src = 'https:
+            img.src = 'https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/flags/4x3/ua.svg';
         }
     });
 

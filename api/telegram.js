@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     }
 
     const text = `🦷 Нова заявка з сайту Dentica!\n\n📞 Телефон: ${phone}`;
-    const API_URL = `https:
+    const API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
     const response = await fetch(API_URL, {
       method: "POST",
