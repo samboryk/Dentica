@@ -4392,6 +4392,8 @@ body.dark-mode .not-found-image {
     font-size: 5rem;
     line-height: 1.1;
     z-index: 1100;
+    text-align: center;
+    display: block;
   }
 
   .page-description {
@@ -4659,6 +4661,8 @@ body.dark-mode .not-found-image {
     .doctor-main-title {
         font-size: 36px;
         margin-bottom: 24px;
+        text-align: center;
+        display: block;
     }
 
    

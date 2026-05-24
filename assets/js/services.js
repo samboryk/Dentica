@@ -56,7 +56,7 @@ const servicesData = [
     {
         id: "orthopedics",
         title: "Ортопедія",
-        photo: "assets/images/cta.webp",
+        photo: "assets/images/ortopedia.png",
         desc: "Відновлення форми, функції та естетики пошкоджених або втрачених зубів за допомогою вінірів, коронок, вкладок та мостоподібних протезів. Ми повернемо вам ідеальну усмішку.",
         prices: [
             { name: "Тимчасова коронка (клінічна)", value: "1 200 ₴" },
@@ -94,7 +94,7 @@ const servicesData = [
     {
         id: "orthodontics",
         title: "Ортодонтія",
-        photo: "assets/images/single.webp",
+        photo: "assets/images/ortodontia.png",
         desc: "Виправлення прикусу та вирівнювання зубного ряду у дітей та дорослих. Ми пропонуємо лікування різними типами брекет-систем (металеві, керамічні, сапфірові) та сучасними прозорими елайнерами.",
         prices: [
             { name: "Консультація ортодонта", value: "700 ₴" },
