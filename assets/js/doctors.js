@@ -1,27 +1,87 @@
-document.addEventListener("DOMContentLoaded", () => {
+// Team Data Configuration
     
     
     
-    const teamData = [
+const teamData = [
         {
+            id: "tkachuk",
             photo: "assets/images/doctor1.webp", 
+            photoLarge: "assets/images/doctor1_1.webp",
             name: "Вікторія Ткачук",
             role: "Головний лікар-стоматолог",
             desc: "Експерт з естетичної стоматології та складних реставрацій. Поєднує багаторічний досвід із цифровими технологіями, створюючи ідеальні посмішки з увагою до кожної деталі.",
+            about: "Головний лікар клініки з багаторічним досвідом. Вважає, що сучасна стоматологія має бути не лише ефективною, але й абсолютно безболісною та комфортною для пацієнта.",
+            education: [
+                "<b>2014 – 2019 рр.</b> — Національний медичний університет імені О.О. Богомольця, спеціальність «Стоматологія».",
+                "<b>2019 – 2021 рр.</b> — Інтернатура за спеціальністю «Загальна стоматологія» на базі НМАПО ім. П.Л. Шупика.",
+                "<b>2021 р.</b> — Отримання вузької спеціалізації «Терапевтична стоматологія».",
+                "<b>З 2022 р.</b> — Дійсний член Асоціації стоматологів України."
+            ],
+            specialization: [
+                "Володіє сучасними протоколами лікування карієсу та його ускладнень. Спеціалізується на високоестетичній реставрації зубів, мікроскопічній ендодонтії (лікування каналів під мікроскопом) та професійному відбілюванні.",
+                "Регулярно проходить стажування з використання цифрових технологій у стоматології."
+            ],
+            experience: [
+                "Понад 6 років безперервної клінічної практики у провідних стоматологічних центрах Києва. З 2023 року — провідний спеціаліст та головний лікар клініки Dentica."
+            ],
+            certificates: [
+                "assets/images/cert1.webp",
+                "assets/images/cert2.webp",
+                "assets/images/cert3.webp"
+            ],
             number: "01"
         },
         {
+            id: "petrenko",
             photo: "assets/images/doctor2.webp", 
+            photoLarge: "assets/images/doctor2_1.png",
             name: "Іван Петренко",
             role: "Хірург-імплантолог",
             desc: "Спеціалізується на безболісній хірургії та відновленні втрачених зубів. Використовує передові протоколи лікування для максимального комфорту пацієнтів.",
+            about: "Висококваліфікований хірург, який постійно вдосконалює свої навички. Головна мета — забезпечити кожному пацієнту безпечне та прогнозоване лікування.",
+            education: [
+                "<b>2012 – 2017 рр.</b> — Національний медичний університет імені О.О. Богомольця.",
+                "<b>2017 – 2019 рр.</b> — Інтернатура та спеціалізація з хірургічної стоматології."
+            ],
+            specialization: [
+                "Дентальна імплантація будь-якого рівня складності.",
+                "Кісткова пластика та синус-ліфтинг.",
+                "Атравматичне видалення зубів мудрості."
+            ],
+            experience: [
+                "Понад 7 років досвіду роботи в провідних хірургічних центрах. Тисячі успішно встановлених імплантатів."
+            ],
+            certificates: [
+                "assets/images/cp1.png",
+                "assets/images/cp2.png"
+            ],
             number: "02"
         },
         {
+            id: "koval",
             photo: "assets/images/doctor3.webp", 
+            photoLarge: "assets/images/doctor3_1.png",
             name: "Марія Коваль",
             role: "Ортодонт",
             desc: "Допомагає вирівняти зуби та виправити прикус у будь-якому віці за допомогою сучасних брекет-систем та невидимих елайнерів.",
+            about: "Марія переконана, що правильний прикус — це основа не лише красивої усмішки, але й здоров'я всього організму. Індивідуальний підхід до кожного.",
+            education: [
+                "<b>2015 – 2020 рр.</b> — Львівський національний медичний університет.",
+                "<b>2020 – 2022 рр.</b> — Спеціалізація з ортодонтії."
+            ],
+            specialization: [
+                "Лікування прикусу за допомогою сучасних брекет-систем.",
+                "Ортодонтичне лікування невидимими елайнерами (Invisalign).",
+                "Дитяча ортодонтія (пластинки, апарати)."
+            ],
+            experience: [
+                "5 років успішної практики. Більше 500 пацієнтів з ідеальними усмішками після зняття брекетів."
+            ],
+            certificates: [
+                "assets/images/ck1.png",
+                "assets/images/ck3.png",
+                "assets/images/ck2.png"
+            ],
             number: "03"
         }
     ];
@@ -39,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         role: document.getElementById('team-role'),
         desc: document.getElementById('team-desc'),
         number: document.getElementById('team-number'),
+        link: document.querySelector('.team-member-link'),
         btnNext: document.getElementById('team-next'),
         btnPrev: document.getElementById('team-prev')
     };
@@ -56,6 +117,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const img = new Image();
             img.src = member.photo;
         });
+        
+        // Initialize the first link on page load
+        if (els.link && teamData[0]) {
+            els.link.href = `doctor.html?id=${teamData[0].id}`;
+        }
 
         function changeTeamSlide(direction) {
             if (isTeamAnimating) return;
@@ -89,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (els.role) els.role.textContent = nextData.role;
                 if (els.desc) els.desc.textContent = nextData.desc;
                 if (els.number) els.number.textContent = nextData.number;
+                if (els.link) els.link.href = `doctor.html?id=${nextData.id}`;
 
                 
                 elementsToAnimate.forEach(el => {
@@ -132,7 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }, { passive: true });
         }
     }
-});
 
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -149,12 +149,27 @@ let currentPhi = BASE_PHI;
 let targetTheta = BASE_THETA;
 let targetPhi = BASE_PHI;
 
+let isToothVisible = true;
+if (viewer) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isToothVisible = entry.isIntersecting;
+        });
+    }, { threshold: 0.0 });
+    observer.observe(viewer);
+}
+
 document.addEventListener("mousemove", (e) => {
+  if (!isToothVisible) return;
+  
   const cx = window.innerWidth / 2;
   const cy = window.innerHeight / 2;
   const nx = (e.clientX - cx) / cx;
   const ny = (e.clientY - cy) / cy;
-  targetTheta = BASE_THETA + nx * 20;
+  
+  // Inverted horizontal multiplier so it rotates TOWARDS the mouse horizontally
+  // Kept original vertical multiplier so up/down feels natural
+  targetTheta = BASE_THETA - nx * 20; 
   targetPhi   = BASE_PHI   - ny * 15;
 });
 
@@ -166,6 +181,10 @@ let time = 0;
 
 function animate() {
   requestAnimationFrame(animate);
+  
+  // Stop heavy DOM updates and calculations when off-screen
+  if (!isToothVisible && viewer) return;
+
   time += 0.008;
 
   currentTheta = lerp(currentTheta, targetTheta, 0.08);

@@ -115,86 +115,18 @@
   <section class="doctor-profile">
     <div class="container doctor-grid-container">
         
-        <div data-aos="fade-down" data-aos-delay="100"  class="doctor-header-left">
-            <h1 class="doctor-main-title">Вікторія Ткачук</h1>
+        <div data-aos="fade-down" data-aos-delay="100" class="doctor-header-left">
+            <h1 class="doctor-main-title" id="doc-name"></h1>
         </div>
 
         <div class="doctor-content-grid">
             
-            <div class="doctor-accordion-wrapper">
-                
-                <div data-aos="fade-up" data-aos-delay="100"   class="accordion-item">
-                    <div class="accordion-header">
-                        <h3 class="accordion-title">Про лікаря</h3>
-                        <button class="accordion-btn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="7" x2="7" y2="17"></line><polyline points="17 17 7 17 7 7"></polyline></svg>
-                        </button>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-inner-text">
-                            <div class="accordion-text-block">
-                                <p>Головний лікар клініки з багаторічним досвідом. Вважає, що сучасна стоматологія має бути не лише ефективною, але й абсолютно безболісною та комфортною для пацієнта.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div data-aos="fade-up" data-aos-delay="200"  class="accordion-item">
-                    <div class="accordion-header">
-                        <h3 class="accordion-title">Освіта та кваліфікація</h3>
-                        <button class="accordion-btn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="7" x2="7" y2="17"></line><polyline points="17 17 7 17 7 7"></polyline></svg>
-                        </button>
-                    </div>
-                    <div  class="accordion-content">
-                        <div class="accordion-inner-text">
-                            <div class="accordion-text-block">
-                                <p><b>2014 – 2019 рр.</b> — Національний медичний університет імені О.О. Богомольця, спеціальність «Стоматологія».</p>
-                                <p><b>2019 – 2021 рр.</b> — Інтернатура за спеціальністю «Загальна стоматологія» на базі НМАПО ім. П.Л. Шупика.</p>
-                                <p><b>2021 р.</b> — Отримання вузької спеціалізації «Терапевтична стоматологія».</p>
-                                <p><b>З 2022 р.</b> — Дійсний член Асоціації стоматологів України.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div data-aos="fade-up" data-aos-delay="300"  class="accordion-item">
-                    <div class="accordion-header">
-                        <h3 class="accordion-title">Спеціалізація та навички</h3>
-                        <button class="accordion-btn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="7" x2="7" y2="17"></line><polyline points="17 17 7 17 7 7"></polyline></svg>
-                        </button>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-inner-text">
-                            <div class="accordion-text-block">
-                                <p>Володіє сучасними протоколами лікування карієсу та його ускладнень. Спеціалізується на високоестетичній реставрації зубів, мікроскопічній ендодонтії (лікування каналів під мікроскопом) та професійному відбілюванні.</p>
-                                <p>Регулярно проходить стажування з використання цифрових технологій у стоматології.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div data-aos="fade-up" data-aos-delay="400" class="accordion-item">
-                    <div class="accordion-header">
-                        <h3 class="accordion-title">Досвід роботи</h3>
-                        <button class="accordion-btn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="7" x2="7" y2="17"></line><polyline points="17 17 7 17 7 7"></polyline></svg>
-                        </button>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-inner-text">
-                            <div class="accordion-text-block">
-                                <p>Понад 6 років безперервної клінічної практики у провідних стоматологічних центрах Києва. З 2023 року — провідний спеціаліст та головний лікар клініки Dentica.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="doctor-accordion-wrapper" id="doc-accordion">
+                <!-- Dynamic content will be loaded here -->
             </div>
 
-            <div data-aos="fade-left" data-aos-delay="100"  class="doctor-photo-wrapper">
-                <img src="assets/images/doctor1_1.webp" alt="Вікторія Ткачук" class="doctor-photo">
+            <div data-aos="fade-left" data-aos-delay="100" class="doctor-photo-wrapper">
+                <img src="" alt="" class="doctor-photo" id="doc-photo">
             </div>
 
         </div>
@@ -212,11 +144,6 @@
 
             <div class="certificates-viewport">
                 <div class="certificates-track" id="cert-track">
-                    <img src="assets/images/cert1.webp" alt="Сертифікат 1" class="cert-card">
-                    <img src="assets/images/cert2.webp" alt="Сертифікат 2" class="cert-card">
-                    <img src="assets/images/cert3.webp" alt="Сертифікат 3" class="cert-card">
-                    <img src="assets/images/cert4.webp" alt="Сертифікат 4" class="cert-card">
-                    <img src="assets/images/cert5.webp" alt="Сертифікат 5" class="cert-card">
                 </div>
             </div>
 
@@ -401,6 +328,7 @@
 <script src="/assets/js/ai-config.js"></script>
 <script src="assets/js/ai-chat.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="assets/js/render-doctor.js"></script>
 <script src="/assets/js/main.js"></script>
 <script type="module" src="assets/js/tooth.js"></script>
 </body>

@@ -846,9 +846,9 @@ width:2.3vw;
 .page-title{
   flex: 1;
   justify-content: start;
-  font-size: 9rem;
+  font-size: clamp(2rem, 7vw, 9rem);
   font-weight: 300;
-  line-height: 70%;
+  line-height: 100%;
 }
 
 .page-description{
@@ -2176,39 +2176,42 @@ color: var(--service-card-action-text);
 
 .price-page-header {
     margin-bottom: 40px;
+    z-index: 1102;
 }
 
 
 
 .price-page-filter {
     position: sticky;
-    top: 0;
+    top: 100px;
     z-index: 1000;
     margin-top: 50px;
-    padding: 20px 0 0 0;
+    padding: 12px 24px;
     margin-bottom: 60px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    transition: background-color 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+    background-color: transparent;
+    border: 1px solid transparent;
 }
 
-.price-page-filter::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -20px;
-    right: -20px;
-    bottom: 0;
-    background-color: var(--price-filter-bg);
-    border-bottom: 1px solid transparent;
-    transition: bottom 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
-    z-index: -1;
+.price-page-filter.is-pinned {
+    background-color: color-mix(in srgb, var(--bg-main) 80%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-color: color-mix(in srgb, var(--text-main) 10%, transparent);
 }
 
-
-.price-page-filter.is-pinned::before {
-    bottom: -80px;
-    border-bottom: 1px solid var(--price-filter-border);
+.price-page-filter.is-pinned .footer-divider {
+    display: none;
 }
+
 
 .price-page-filter-btn {
+
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, background-color 0.3s ease;
 }
 
@@ -2218,7 +2221,7 @@ color: var(--service-card-action-text);
 
 .price-page-filter.is-pinned .price-page-filter-btn,
 .price-page-filter.is-pinned .footer-divider {
-    transform: translateY(80px);
+    transform: translateY(0);
 }
 
 
@@ -2268,6 +2271,10 @@ color: var(--service-card-action-text);
     column-gap: 24px;
 }
 
+.price-page-grid.filtered-single {
+    column-count: 1 !important;
+}
+
 .price-card.active-card {
     border-color: var(--price-card-highlight-border);
     box-shadow: 0 0 15px var(--price-card-highlight-shadow);
@@ -2285,6 +2292,21 @@ color: var(--service-card-action-text);
     transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     display: flex;
     flex-direction: column;
+}
+
+@keyframes filterFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.filtered-animate {
+    animation: filterFadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @media (hover: hover) {
@@ -2971,16 +2993,16 @@ color: var(--service-card-action-text);
 
 .cert-card {
     width: calc((100% - 48px) / 3);
-    height: 420px;
+    aspect-ratio: 3 / 4;
     flex-shrink: 0;
     box-sizing: border-box;
     border-radius: 20px;
     border: 3px solid var(--cert-card-border);
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     background-color: #fff;
     cursor: pointer;
-
+    padding: 8px;
 }
 
 .cert-btn {
@@ -3401,7 +3423,7 @@ body.modal-open {
 }
 
 .single-service-header-layout {
-    grid-column: 1 / 2;
+    grid-column: 1 / 3;
     grid-row: 1 / 2;
 }
 
@@ -4369,6 +4391,7 @@ body.dark-mode .not-found-image {
   .page-title {
     font-size: 5rem;
     line-height: 1.1;
+    z-index: 1100;
   }
 
   .page-description {
@@ -4474,6 +4497,7 @@ body.dark-mode .not-found-image {
         display: flex;
         overflow-x: auto;
         white-space: nowrap;
+        flex-wrap: nowrap;
         transition: padding-top 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         
        
@@ -4491,11 +4515,6 @@ body.dark-mode .not-found-image {
     }
 
     .price-page-filter.is-pinned {
-        padding-top: 90px; 
-        margin-bottom: -50px; 
-        padding-bottom: 20px;
-        background-color: var(--price-filter-bg);
-        border-bottom: 1px solid var(--price-filter-border);
     }
 
     .price-page-filter::before {
@@ -5466,7 +5485,8 @@ body.menu-open #scroll-top {
 
   .price-page-filter {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     gap: 8px 10px;
     margin-bottom: 36px;
   }
@@ -5722,11 +5742,330 @@ body.menu-open #scroll-top {
     padding: 20px;
     min-height: 260px;
   }
-
       .reviews-track {
         align-items: stretch; 
         gap: 26px;
     }
 }
+
+/* Military Support Section */
+.military-support {
+    padding: 80px 0;
+    background-color: var(--body-bg);
+    transition: background-color 0.3s ease;
+}
+
+.military-support-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.military-support-card {
+    background-color: #FFFFFF;
+    border-radius: 28px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.06);
+    min-height: 480px;
+}
+
+.military-support-content {
+    grid-column: span 7;
+    padding: 56px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: var(--text-main);
+    z-index: 2;
+}
+
+.military-support-category {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--thin-text-b-color);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.military-support-heading {
+    font-size: 4.8rem !important;
+    font-weight: 300;
+    line-height: 1.15;
+    margin: 0 0 24px 0;
+    color: var(--text-main);
+    text-align: left;
+}
+
+.military-support-heading .highlight {
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.military-support-discount-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 32px;
+}
+
+.discount-badge {
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 4px;
+    z-index: 1;
+}
+
+.discount-value {
+    font-size: 8.2rem;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.discount-target {
+    font-size: 1.6rem;
+    color: var(--thin-text-b-color);
+    font-weight: 400;
+    margin-top: 4px;
+}
+
+.military-support-desc {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: var(--thin-text-w-color);
+    max-width: 480px;
+    font-weight: 300;
+    margin: 0 0 36px 0;
+}
+
+.military-support-btn {
+    background-color: var(--btn-bg) !important;
+    color: var(--btn-text) !important;
+    border: none !important;
+}
+
+.military-support-btn .text {
+    color: var(--btn-text) !important;
+}
+
+.military-support-graphics {
+    grid-column: span 5;
+    position: relative;
+    height: 100%;
+}
+
+.military-support-image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.military-support-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.camo-pattern-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0.4) 40%, transparent 100%);
+}
+
+/* ----------------------------------------------------
+   DARK THEME OVERRIDES FOR MILITARY SUPPORT
+   ---------------------------------------------------- */
+html.dark-mode .military-support-card,
+body.dark-mode .military-support-card {
+    background-color: #161616;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+}
+
+html.dark-mode .military-support-content,
+body.dark-mode .military-support-content {
+    color: #EAEFF5;
+}
+
+html.dark-mode .military-support-heading,
+body.dark-mode .military-support-heading {
+    color: #FFFFFF;
+}
+
+html.dark-mode .discount-badge,
+body.dark-mode .discount-badge {
+    background-color: #262626;
+    color: #FFFFFF;
+}
+
+html.dark-mode .military-support-category,
+body.dark-mode .military-support-category,
+html.dark-mode .military-support-heading .highlight,
+body.dark-mode .military-support-heading .highlight,
+html.dark-mode .discount-value,
+body.dark-mode .discount-value {
+    color: var(--color-primary);
+}
+
+html.dark-mode .discount-target,
+body.dark-mode .discount-target {
+    color: #A0AAB5;
+}
+
+html.dark-mode .military-support-desc,
+body.dark-mode .military-support-desc {
+    color: #CCCCCC;
+}
+
+html.dark-mode .camo-pattern-overlay,
+body.dark-mode .camo-pattern-overlay {
+    background: linear-gradient(90deg, #161616 0%, rgba(22, 22, 22, 0.4) 40%, transparent 100%);
+}
+
+/* ----------------------------------------------------
+   BREAKPOINTS ADAPTATION (PROJECT SPECIFIC MEDIA QUERIES)
+   ---------------------------------------------------- */
+
+/* 1. Tablet & Small Laptop (881px - 1199px) */
+@media (min-width: 881px) and (max-width: 1199px) {
+    .military-support-container {
+        width: 92%;
+    }
+    
+    .military-support-card {
+        min-height: 420px;
+    }
+
+    .military-support-content {
+        padding: 40px 48px;
+    }
+
+    .military-support-heading {
+        font-size: 3.8rem !important;
+    }
+
+    .discount-value {
+        font-size: 6.4rem;
+    }
+
+    .military-support-desc {
+        font-size: 1.45rem;
+        margin-bottom: 28px;
+    }
+}
+
+/* 2. Mobile & Tablet Portrait (max-width: 880px) */
+@media (max-width: 880px) {
+    .military-support {
+        padding: 60px 0;
+    }
+
+    .military-support-container {
+        width: min(480px, 94%);
+        margin: 0 auto;
+    }
+
+    .military-support-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        border-radius: 24px;
+    }
+
+    .military-support-content {
+        grid-column: span 12;
+        padding: 40px 32px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .military-support-heading {
+        font-size: 3.2rem !important;
+        text-align: center;
+    }
+
+    .military-support-discount-wrapper {
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .discount-value {
+        font-size: 5.2rem;
+    }
+
+    .military-support-desc {
+        font-size: 1.4rem;
+        margin-bottom: 28px;
+        max-width: 100%;
+    }
+
+    .military-support-graphics {
+        grid-column: span 12;
+        height: 320px;
+    }
+
+    .camo-pattern-overlay {
+        background: linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0.2) 65%, transparent 100%);
+    }
+
+    html.dark-mode .camo-pattern-overlay,
+    body.dark-mode .camo-pattern-overlay {
+        background: linear-gradient(0deg, #161616 0%, rgba(22, 22, 22, 0.2) 65%, transparent 100%);
+    }
+}
+
+/* 3. Medium Mobile (501px - 880px) */
+@media (min-width: 501px) and (max-width: 880px) {
+    .military-support-container {
+        width: min(600px, 94%);
+    }
+    
+    .military-support-graphics {
+        height: 380px;
+    }
+}
+
+/* 4. Small Mobile (max-width: 350px) */
+@media screen and (max-width: 350px) {
+    .military-support-content {
+        padding: 24px 16px;
+    }
+
+    .military-support-heading {
+        font-size: 2.6rem !important;
+    }
+
+    .military-support-discount-wrapper {
+        margin-bottom: 16px;
+    }
+
+    .discount-value {
+        font-size: 4.2rem;
+    }
+
+    .military-support-desc {
+        font-size: 1.25rem;
+    }
+}
+
 
     

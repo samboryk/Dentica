@@ -1,23 +1,19 @@
-﻿
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
     
     if (typeof AOS !== 'undefined') {
+        const isDynamicPage = window.location.pathname.includes('doctor.html') || window.location.pathname.includes('service.html');
+        
         AOS.init({
             duration: 800,
-            once: false,
-            mirror: true,
+            once: isDynamicPage,
+            mirror: !isDynamicPage,
             offset: 50,
             disable: false
         });
     }
-
-    
-    window.addEventListener('scroll', () => {
-        AOS.refresh();
-    });
-
     const menuBtn     = document.querySelector('.menu');
     const drawerNav   = document.getElementById('drawerNav');
 
@@ -317,20 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
-    
-    if (currentScroll <= 0) {
-      header.classList.remove('is-hidden');
-      return;
-    }
-
-    
-    if (currentScroll > lastScroll && !header.classList.contains('is-hidden') && currentScroll > 100) {
-      header.classList.add('is-hidden');
-    } 
-    
-    else if (currentScroll < lastScroll && header.classList.contains('is-hidden')) {
-      header.classList.remove('is-hidden');
-    }
+    // Header remains fixed always
 
     lastScroll = currentScroll;
   });
@@ -360,7 +343,8 @@ window.addEventListener('scroll', () => {
 
     
     if (filter) { 
-        if (filter.getBoundingClientRect().top <= 0) {
+        // 100px is the header height + 1px for rounding
+        if (filter.getBoundingClientRect().top <= 101) {
             filter.classList.add('is-pinned');
         } else {
             filter.classList.remove('is-pinned');
@@ -372,30 +356,60 @@ window.addEventListener('scroll', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    const grid = document.querySelector('.price-page-grid');
+    const cards = document.querySelectorAll('.price-card');
     
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
             const targetId = btn.getAttribute('data-target');
-            const targetCard = document.getElementById(targetId);
             
-            if (targetCard) {
-                
-                const offset = filter.offsetHeight + 80 + 20;
-                const elementPosition = targetCard.getBoundingClientRect().top + window.pageYOffset;
-                
-                window.scrollTo({
-                    top: elementPosition - offset,
-                    behavior: 'smooth'
-                });
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-                
-                document.querySelectorAll('.price-card').forEach(c => c.classList.remove('highlight-card'));
-                targetCard.classList.add('highlight-card');
-                
-                setTimeout(() => {
-                    targetCard.classList.remove('highlight-card');
-                }, 2000);
+            if (targetId === 'all') {
+                cards.forEach(c => {
+                    c.style.display = 'block';
+                    c.classList.remove('filtered-animate');
+                    void c.offsetWidth; // Trigger reflow to restart animation
+                    c.classList.add('filtered-animate');
+                });
+                if (grid) grid.classList.remove('filtered-single');
+            } else {
+                cards.forEach(c => {
+                    if (c.id === targetId) {
+                        c.style.display = 'block';
+                        c.classList.remove('filtered-animate');
+                        void c.offsetWidth; // Trigger reflow
+                        c.classList.add('filtered-animate');
+                    } else {
+                        c.style.display = 'none';
+                    }
+                });
+                if (grid) grid.classList.add('filtered-single');
             }
+            
+            // Scroll so the top of the selected card (or grid) is visible
+            setTimeout(() => {
+                const elToScrollTo = (targetId === 'all') ? grid : document.getElementById(targetId);
+                if (elToScrollTo) {
+                    const headerHeight = 100; // exact sticky header height
+                    const filterHeight = filter ? filter.offsetHeight : 0;
+                    const offset = headerHeight + filterHeight + 50;
+                    const elTop = elToScrollTo.getBoundingClientRect().top + window.pageYOffset;
+                    
+                    window.scrollTo({
+                        top: elTop - offset,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 50);
+            
+            // Refresh AOS so it recalculates positions for visible elements
+            setTimeout(() => {
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
+            }, 100);
         });
     });
 });
